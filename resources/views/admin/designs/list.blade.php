@@ -1,15 +1,19 @@
 @extends('layouts.admin')
 
-@section('title-icon')<i class="icon-designs mr-2"></i>@endsection
+@php
+include(getcwd().'/../resources/views/user/crud.php');
+@endphp
 
-@section('title'){!! trans('app/designs.list.title') !!}@endsection
+@section('title-icon')<i class="{!! trans('user/' . $s_category . '.names.ico') !!} mr-2"></i>@endsection
+
+@section('title'){!! $s_title !!}@endsection
 
 @section('breadcrumbs')
     <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
         <div class="d-flex">
             <div class="breadcrumb">
 				@include('admin.common._breadcrumb_home')
-                <span class="breadcrumb-item active">{!! trans('app/designs.breadcrumbs.list') !!}</span>
+                <span class="breadcrumb-item active">{!! $s_title !!}</span>
             </div>
             <a href="{!! route('admin.designs') !!}" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
         </div>
@@ -95,8 +99,8 @@
             <div class="container-fluid">
                 <div class="row filters px-4 pt-3">
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="name" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('common/list.filters.name') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('common/list.filters.name') !!}">
+                        <label>{!! trans('user/crud.list.filters.name') !!}</label>
+                        <input type="text" class="form-control input-sm" placeholder="{!! trans('user/crud.list.filters.name') !!}">
                     </div>
 
                     @include('admin.common.filters.created_at')

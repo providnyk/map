@@ -31,17 +31,19 @@
 }
 </style>
 
-<div class="card_group" style="background-color:{{ $menu_color }};">
+@foreach($menu_title AS $i_idx => $menu_name)
+<div class="card_group" style="background-color:{{ $menu_color[$i_idx] }};">
 	<div class="top_level" style="">
-		<i style="font-size:6em" class="{{ $menu_icon }}"></i>
+		<i style="font-size:6em" class="{{ $menu_icon[$i_idx] }}"></i>
 		<br />
-		<font style="font-size:2em">{!! trans('menu.' . $menu_title) !!}</font>
+		<font style="font-size:2em">{!! trans('menu.' . $menu_name) !!}</font>
 	</div>
 	<div class="sub_level" style="">
-		@foreach($menu_list as $menu_item => $menu_icon)
+		@foreach($menu_list[$i_idx] AS $i_cnt => $menu_item)
 		<a href="{!! route('admin.' . $menu_item) !!}" class="nav-link">
-		<i class="{!! $menu_icon !!}"></i><span>{!! trans('menu.' . $menu_item) !!}</span>
+		<i class="{!! trans('user/' . $menu_item . '.names.ico') !!}"></i><span>{!! trans('user/' . $menu_item . '.names.plr') !!}</span>
 		</a>
 		@endforeach
 	</div>
 </div>
+@endforeach
