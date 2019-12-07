@@ -1,30 +1,28 @@
 <?php
 
 $a_production = [
-    'version_release'       => '1',
-    'version_major'         => '64', # value changes whenever any css,js,api,admin,user value below has changed; reset each realease
+    'version_release'       => '0',
+    'version_major'         => '1', # changes whenever any css,js,api,guest,user value below has changed; reset each realease
     'version_patch'         => '0',
-    'version_type'          => 'release', # preRelease, e.g. 'beta.4'
-    'version_build'         => '91205', # YMMDD
+    'version_stage'         => 'a', # a=alfa,b=beta,rc=candidate,r=release
+    'version_day'           => '341',
+    'version_seq'           => '1',
 ];
 
 return (object) [
 
-    'app'               => $a_production['version_release'] . '.'
-                            .$a_production['version_major'] . '.'
-                            .$a_production['version_patch'] . '-'
-                            .$a_production['version_type'] . '+'
-                            .$a_production['version_build'],
-    'admin'             => '1.21.0',
-    'user'              => '1.43.0',
-    'unit'              => '0.0.0',
-    'api'               => '1.0.0',
-    'css'               => '1.25.0',
-    'js'                => '1.2.0',
+    'app'                   => $a_production['version_release'] . '.'
+    . $a_production['version_major'] . '.'
+    . $a_production['version_patch']
+    . ($a_production['version_stage'] ? '+' : '')
+    . $a_production['version_stage']
+    . $a_production['version_day'] . ':'
+    . $a_production['version_seq'],
+    'release'               => $a_production['version_release'],
+    'guest'                 => '0.00.0',
+    'user'                  => '0.1.0',
+    'unit'                  => '0.00.0',
+    'api'                   => '0.00.0',
+    'css'                   => '0.00.0',
+    'js'                    => '0.00.0',
 ];
-
-/*
-
-#dd($items->toSql(), $items->getBindings());
-
-*/

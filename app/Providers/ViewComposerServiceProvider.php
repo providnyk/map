@@ -29,7 +29,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             }
 
             $view->with([
-                'localizations' => config('translatable.locales'),
+                'localizations' => config('translatable.names'),
                 'current_route_name' => $current_route_name,
             ]);
         });
@@ -195,7 +195,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 
 		config(['translatable' => [
 					'locales' => array_keys($a_L10N),
-					'abbrevs' => $a_L10N,
+					'names' => $a_L10N,
 				]]);
 /**/
 	}
