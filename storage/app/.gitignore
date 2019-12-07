@@ -1,0 +1,4 @@
+*
+!public/
+!test_files/
+!.gitignore

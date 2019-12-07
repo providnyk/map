@@ -1,0 +1,31 @@
+<?php
+
+namespace App;
+
+use App\Traits\GeneralTrait;
+use Dimsav\Translatable\Translatable;
+use Illuminate\Database\Eloquent\Model;
+
+class Vocation extends Model
+{
+    use GeneralTrait;
+    use Translatable;
+
+    // protected $fillable = [
+    //     'timezone'
+    // ];
+
+    public $translatedAttributes = [
+        'name',
+    ];
+
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
+    // public function places()
+    // {
+    //     return $this->hasMany('App\Place');
+    // }
+}

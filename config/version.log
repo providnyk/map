@@ -1,0 +1,214 @@
+1.64.0-release+91205 user ADD photo name at press page
+1.63.0-release+91202 user ADD press sorting by date
+1.62.4-release+91128 admin FIX create artist without photo
+1.62.3-release+91128 user FIX media about us date for press-release page
+1.62.2-release+91127 user FIX promoted events spacing
+1.62.1-release+91114 admin FIX books list
+1.62.0-release+91114 user ADD gallery to books
+1.61.0-release+91114 admin ADD gallery to books
+1.60.0-release+91114 admin ADD books migration
+1.59.0-release+91114 admin ADD gallery to books
+1.58.0-release+91107 user ADD revert images sizes
+1.57.0-release+91107 user ADD images preview sizes
+1.56.0-release+91107 user ADD clean up
+1.55.0-release+91106 user ADD search page images size
+1.54.0-release+91031 user ADD search event text
+1.53.1-release+91031 admin FIX new partner creation
+1.53.0-release+91031 user ADD image full view big and medium screen proportions
+1.52.0-release+91031 user ADD image full view rollback
+1.51.0-release+91031 user ADD image full view
+1.50.1-release+91030 user FIX partner image upload
+1.50.0-release+91011 user ADD unpixel promoted images
+1.49.4-release+91011 admin FIX gallery multiple images upload
+1.49.3-release+91011 admin FIX people edit
+1.49.2-release+91011 user FIX spell date for news at homepage
+1.49.1-release+91011 user FIX books search
+1.49.0-release+91003 admin ADD search results more obvious
+1.48.2-release+91001 admin ADD search media
+1.48.1-release+91001 admin ADD minor clean up
+1.48.0-release+91001 admin ADD unify press upload form
+1.47.0-release+91001 admin ADD unify submit button translation
+1.46.4-release+91001 admin FIX attach pdf to festival
+1.46.3-release+90930 admin FIX unified archive uploader for press
+1.46.2-release+90930 admin FIX unified image uploader for press
+1.46.1-release+90926 user FIX today event in program list
+1.46.0-release+90926 user ADD press gallery loads faster
+1.45.0-release+90925 user ADD filename contains non-ascii characters
+1.44.0-release+90925 user ADD remove credits wording
+1.43.0-release+90925 user ADD download image original filename
+1.42.0-release+90925 user ADD image name below photo on gallery page
+1.41.0-release+90924 user ADD rename presses
+1.40.0-release+90924 admin ADD page slug to model
+1.39.1-release+90924 user FIX impressum page link in cookies consent
+1.39.0-release+90924 user ADD link to impressum at the bottom
+1.38.0-release+90924 user ADD merge English text to German
+1.37.0-release+90924 user ADD show impressum content
+1.36.1-release+90924 admin FIX longer indexes key support for DB
+1.36.0-release+90923 admin ADD page CRUD
+1.35.1-release+90923 admin FIX admin home breadcrumb
+1.35.0-release+90923 admin ADD admin home breadcrumb
+1.34.0-release+90923 admin ADD allow empty book link and api
+1.33.0-release+90920 user ADD buy link on book page opens new window
+1.32.0-release+90920 user ADD validation messages translation in German
+1.31.4-release+90919 admin FIX archive and upload and preview
+1.31.3-release+90919 admin FIX archive and upload and preview
+1.31.2-release+90918 admin FIX revert type for admin list
+1.31.1-release+90918 user FIX press tab, reset calendar and show items specific to tab
+1.31.0-release+90918 admin ADD make book apinand image optional
+1.30.2-release+90918 user FIX switch press types
+1.30.1-release+90918 user FIX show press templates
+1.30.0-release+90918 user ADD homepage faster loading
+1.29.0-release+90917 admin ADD duplicate events
+1.28.2-release+90916 admin FIX hide preview for new event
+1.28.1-release+90916 admin FIX hide upload new image button
+1.28.0-release+90916 admin ADD change slide image
+1.27.4-release+90911 admin FIX professions changes aren't saved
+1.27.3-release+90911 admin FIX user active checkbox
+1.27.2-release+90911 admin FIX new artist festival and vocation disappear
+1.27.1-release+90911 admin FIX new artist no image error
+1.27.0-release+90911 admin ADD filter by vocation
+1.26.0-release+90911 admin ADD filter by festival
+1.25.0-release+90910 user ADD hide one preview photo
+1.24.0-release+90910 admin ADD menu cards and link to admin panel from cabinet
+1.23.0-release+90910 user ADD text description overlap
+1.22.0-release+90910 user ADD validation email unique
+1.21.0-release+90910 user ADD logo order (partners) alphabetically
+1.20.0-release+90909 user ADD show up time ranges
+1.19.0-release+90909 user ADD times with "Uhr" in german and "h" in english
+1.18.0-release+90909 user ADD hide the "ticket" button when no tickets for the event
+1.17.0-release+90909 user ADD remove space from title in emails
+1.16.0-release+90909 user ADD double opt-in for subscribers
+1.15.7-release+90907 user FIX better wording for contact us form sent
+1.15.6-release+90906 admin FIX
+1.15.5-release+90906 admin FIX
+1.15.4-release+90906 admin FIX change new subscriber creation order
+1.15.3-release+90906 admin FIX mailgun to addr
+1.15.2-release+90906 user FIX mailchimp email type
+1.15.1-release+90906 user FIX enable mailchimp double opt-in
+1.15.0-release+90906 user ADD send mailchimp confirmation email
+1.14.2-release+90906 user FIX clean local storage preview
+1.14.1-release+90906 user FIX js version numbering
+1.14.0-release+90906 user ADD event preview with modified text
+1.13.0-release+90906 admin ADD put preview to local storage
+1.12.0-release+90905 user ADD final event main image size
+1.11.0-release+90904 admin ADD preview button opens current page for event
+1.10.0-release+90904 admin ADD preview button and style to admin form
+1.09.0-release+90904 admin ADD link to event at admin list
+1.08.0-release+90904 user ADD smaller image height
+1.07.0-release+90904 user ADD hide social when empty link
+1.06.0-release+90903 user ADD show place name
+1.05.0-release+90903 user ADD link to ticket at event page
+1.04.0-release+90903 user ADD link to artist at event page
+1.03.0-release+90903 admin ADD country to user form
+1.02.1-release+90902 admin FIX active user switch
+1.02.0-release+90821 user ADD google analytics code
+1.01.0-release+90521 user ADD German "Kaufe jetzt" should be "Kaufen"; remove "Herausgeber_in"
+1.00.4-release+90521 user FIX filtering events with past dates when filter reset
+1.00.3-release+90521 user FIX filtering events when no events
+1.00.2-release+90521 user FIX filtering events by end date
+1.00.1-release+90521 user FIX end date month for event holding
+----
+0.73.0-beta+90516 user ADD include "media about us" to "all" tab of "press" page
+0.72.0-beta+90516 user ADD move "media about us" from "about us" page to "press" page
+0.71.0-beta+90516 user ADD unify event date across all pages
+0.70.0-beta+90516 user DEL event duration, ignore_end_time columns
+0.69.0-beta+90516 user ADD hide starting and end time for those multiple day events
+0.68.0-beta+90515 user ADD In "events" we have "artists". Can you change this to German "Mitwirkende"
+0.67.0-beta+90515 user ADD change event date font in the list
+0.66.0-beta+90515 admin ADD hide time from events with checkbox
+0.65.1-beta+90515 admin FIX event with existing image
+0.65.0-beta+90515 user ADD font face for dates
+0.64.0-beta+90515 admin ADD user account active check
+0.63.0-beta+90515 admin ADD user account active check
+0.62.1-beta+90515 admin FIX event with existing image
+0.61.0-beta+90515 user ADD replace Emaile mir
+0.60.0-beta+90515 user ADD safari font issue
+0.59.0-beta+90515 user ADD change event date font in the list
+0.58.0-beta+90515 user ADD DE/EN switch at login/register page
+0.57.0-beta+90515 user ADD change event title font in the list
+0.56.6-beta+90514 admin FIX default DE locale for admin
+0.56.5-beta+90514 admin FIX image upload, create item
+0.56.4-beta+90514 admin FIX image upload, events and books
+0.56.3-beta+90514 admin FIX image upload, gallery and news
+0.56.2-beta+90514 user FIX team and board positions for various years
+0.56.1-beta+90513 user FIX For all the past festivals it still shows the Poland programm
+0.56.0-beta+90513 user ADD team and board positions for various years
+0.55.0-beta+90511 admin ADD team and board positions for various years
+0.54.0-beta+90511 admin ADD professions
+0.53.0-beta+90510 user ADD group admin menu items
+0.52.1-beta+90510 user FIX image attach, show only published events
+0.52.0-beta+90509 admin ADD hide events of the active festival that are in the past
+0.51.0-beta+90509 user ADD lose mouseover effect, change all colors to festival
+0.50.0-beta+90509 user ADD missing DE translations
+0.49.0-beta+90509 user ADD google calendar translation
+0.48.1-beta+90423 admin FIX color changes
+0.48.0-beta+90422 user ADD color changes
+0.47.0-beta+90416 user ADD default language is de
+0.46.0-beta+90416 user ADD new no-logo image
+0.45.0-beta+90416 user ADD cookies reload page after allow cookie click and change bg color
+0.44.1-beta+90415 user FIX disable all cookies without consent at all pages
+0.44.0-beta+90415 user ADD disable all cookies without consent
+0.43.0-beta+90415 user ADD cookies alert
+0.42.2-beta+90415 admin FIX file upload, press
+0.42.1-beta+90415 admin FIX image upload, press photo
+0.42.0-beta+90415 admin ADD image copyright, press gallery
+0.41.0-beta+90415 admin ADD image copyright, refactoring
+0.40.2-beta+90415 admin FIX add and edit category form
+0.40.1-beta+90415 admin FIX add news route
+0.40.0-beta+90414 admin ADD image copyright, refactoring
+0.39.0-beta+90414 user ADD image copyright, press gallery
+0.38.0-beta+90414 master FIX image copyright, css
+0.38.0-beta+90414 user ADD image copyright, news
+0.37.0-beta+90414 admin ADD image copyright, news
+0.36.0-beta+90412 user ADD image copyright, events
+0.35.0-beta+90412 admin ADD image copyright, events
+0.34.0-beta+90411 admin ADD filter partners by URL
+0.33.0-beta+90411 user ADD better circle for team and board members
+0.32.0-beta+90411 user ADD space to buy ticket
+0.31.1-beta+90411 user FIX news tab switch
+0.31.0-beta+90410 admin ADD name and filter by name to partners
+0.30.0-beta+90410 user ADD better download pdf button color
+0.29.0-beta+90410 user ADD download pdf button color
+0.28.2-beta+90410 user FIX dots to dates in de
+0.28.1-beta+90410 user FIX color changes
+0.28.0-beta+90410 user ADD dots to dates in de
+0.27.0-beta+90410 user ADD color changes
+0.26.0-beta+90410 user ADD hide extra underline for links
+0.25.1-beta+90410 admin FIX books,events,news
+0.25.0-beta+90410 user ADD hide triangle
+0.24.0-beta+90410 user ADD capitalize headings
+0.23.0-beta+90409 user ADD capitalize headings
+0.22.0-beta+90409 user ADD board and social link, refactoring
+0.21.0-beta+90409 user ADD save to my festival
+0.20.0-beta+90409 user ADD choose a filter
+0.19.0-beta+90409 user ADD missing images
+0.18.0-beta+90409 user ADD check contact us form
+0.17.1-beta+90409 user FIX 31. Users/susbscribers DB from the old website + connect to MailChimp
+0.17.0-beta+90409 user ADD 31. Users/susbscribers DB from the old website + connect to MailChimp
+0.16.0-beta+90409 user ADD limit register dropdown height
+0.15.1-beta+90409 admin FIX ordering of artists, add new festival to artist
+0.15.0-beta+90409 user ADD stabilizing, user
+0.14.0-beta+90409 user ADD ordering of artists, user
+0.13.0-beta+90408 admin ADD ordering of artists, admin
+0.12.0-beta+90408 user ADD replace PRESS RELEASE for REWIEW
+0.11.1-beta+90408 user FIX news routes
+0.11.0-beta+90408 user ADD correct link to media file download
+0.10.0-beta+90408 user ADD 44 frontend search, new areas
+0.9.1-beta+90408 user FIX build date
+0.9.0-beta+90408 user ADD 44 frontend search, restore events, news, press
+0.8.0-beta+90406 user ADD 44 frontend search, all festivals
+0.7.2-beta+90405 master FIX confirm text variables
+0.7.1-beta+90405 master FIX texts to login and register forms
+0.7.0-beta+90405 user ADD texts to confirmation email
+0.6.0-beta+90405 user ADD texts to login and register forms
+0.5.1-beta+90405 user FIX redirect after confirmation
+0.5.0-beta+90405 user ADD mailgun settings, fix redirect after confirmation, remove test data
+0.4.1-beta+90405 user FIX seeding DB at production
+0.4.0-beta+90405 user ADD user 38 registration all fields
+0.3.4-beta+90403 user FIX user version log format
+0.3.3-beta+90403 user FIX user version log
+0.3.2-beta+90403 master 0.3.2 FIX admin css version id
+0.3.1-beta+90403 master 0.3.1 FIX user version id
+0.3.0-beta+90403 user ADD user versioning on-the-fly
+0.2.0-beta+90402 user ADD css #48 add new font, all titles
+0.1.0-beta+90402 user ADD css #48 add new font, menu titles and site name
