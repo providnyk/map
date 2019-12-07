@@ -197,6 +197,5 @@ class ViewComposerServiceProvider extends ServiceProvider
 					'locales' => array_keys($a_L10N),
 					'names' => $a_L10N,
 				]]);
-/**/
 	}
 }

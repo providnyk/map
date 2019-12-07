@@ -278,8 +278,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
                 <div class="navbar-text sub">
                     <i><u>Other Versions</u></i>
                     <br />
-                    <div class="version ver-name">admin</div>
-                    <div class="version ver-id">{{ $version->admin }}</div>
+                    <div class="version ver-name">guest</div>
+                    <div class="version ver-id">{{ $version->guest }}</div>
                     <br />
                     <div class="version ver-name">user</div>
                     <div class="version ver-id">{{ $version->user }}</div>
