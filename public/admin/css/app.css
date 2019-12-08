@@ -14653,7 +14653,7 @@ body {
 
 .sidebar-dark .nav-sidebar .nav-item > .nav-link.active,
 .sidebar-light .card[class*=bg-]:not(.bg-light):not(.bg-white):not(.bg-transparent) .nav-sidebar .nav-item > .nav-link.active {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 139, 139, 0.45);
   color: #fff; }
 
 .sidebar-dark .nav-sidebar .nav-item-open > .nav-link:not(.disabled),
