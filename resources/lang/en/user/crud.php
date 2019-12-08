@@ -36,26 +36,35 @@ return [
 		'updated_at' => 'updated date',
 	],
 	'table' => [
-		'title' => 'Title',
 		'created_at' => 'Created',
 		'updated_at' => 'Updated',
 		'actions' => 'Actions',
+		'enabled' => 'Yes',
+		'disabled' => 'No',
 	],
 	'hint' => [
 		'input' => 'Enter',
+		'checkbox' => 'Toggle',
+		'enabled' => 'On',
+		'disabled' => 'Off',
+		'dropdown' => 'Choose',
 	],
 	'field' => [
 		'id' => [
 			'label' => 'ID',
-			'rules' => 'required'
+			'rules' => 'required',
 		],
 		'title' => [
 			'label' => 'Title',
-			'rules' => 'required'
+			'rules' => 'required | max 191 chars',
+		],
+		'published' => [
+			'label' => 'Published',
+			'rules' => 'yes or no',
 		],
 		'timezone' => [
 			'label' => 'Select timezone',
-			'rules' => 'required | one from list'
+			'rules' => 'required | one from list',
 		],
 	],
 	'button' => [
@@ -63,5 +72,5 @@ return [
 			'label' => 'Submit',
 			'key' => 'ctrl+S',
 		]
-	]
+	],
 ];

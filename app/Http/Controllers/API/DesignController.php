@@ -7,72 +7,63 @@ use App\DesignTranslation;
 use App\Filters\DesignFilters;
 use App\Http\Requests\DesignRequest;
 use App\Http\Requests\DeleteRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ControllerAPI as Controller;
 use App\Http\Requests\DesignApiRequest;
 
 class DesignController extends Controller
 {
-	protected $a_fields = [];
+/*
 	public function __construct()
 	{
 #		dump($this->translatedAttributes);
 #		$t = new DesignTranslation;
 #		$this->translatedAttributes = $m->getFillable();
 		$m = new Design;
-	    $this->a_fields = array_merge(config('translatable.locales'), $m->getFillable());
+		$this->a_fields = array_merge(config('translatable.locales'), $m->getFillable());
 	}
-/*
 */
-    public function index(DesignApiRequest $request, DesignFilters $filters)
-    {
-        return response([
-            'draw'              => $request->draw,
-            'data'              => Design::filter($filters)->get(),
-            'recordsTotal'      => Design::count(),
-            'qty_filtered'      => $filters->getFilteredCount(),
-        ], 200);
-    }
+	/**
+	 * Prepare data for listing all of items
+	 * @param Request	$request		Data from request
+	 * @param Filters	$filters		Whatever filters applied
+	 *
+	 * @return Response	json instance of
+	 */
+	public function index(DesignApiRequest $request, DesignFilters $filters) : \Illuminate\Http\Response
+	{
+		return $this->indexAPI($request, $filters);
+	}
 
-    public function store(DesignRequest $request)
-    {
-/*
-		$m = new Design;
-		dump($m->translatedAttributes);
-		$t = new DesignTranslation;
-		$m->translatedAttributes = $t->getFillable();
-#	    $this->translatedAttributes = array_merge($this->translatedAttributes, $m->getFillable());
-		dd($m->translatedAttributes);
-*/
-#        $design = Design::create($request->only($m->translatedAttributes));
-#		dd(config('translatable.locales'));
-#		dump($this->a_fields);
-        $design = Design::create($request->only($this->a_fields));
-#        $design->processImages($request, 'image');
+	/**
+	 * Create a new item
+	 * @param Request	$request		Data from request
+	 *
+	 * @return Response	json instance of
+	 */
+	public function store(DesignRequest $request) : \Illuminate\Http\Response
+	{
+		return $this->storeAPI($request);
+	}
 
-        return response([
-            'message' => trans('messages.design_created')
-        ], 200);
-    }
+	/**
+	 * Updated item that is being edited
+	 * @param Request	$request		Data from request
+	 *
+	 * @return Response	json instance of
+	 */
+	public function update(DesignRequest $request, Design $design) : \Illuminate\Http\Response
+	{
+		return $this->updateAPI($request, $design);
+	}
 
-    public function update(DesignRequest $request, Design $design)
-    {
-        $design->update($request->only($this->a_fields));
-#        $design->update($request->only('enabled', 'uk', 'ru', 'en', 'de'));
-#        $design->processImages($request, 'image');
-
-        return response([
-            'message' => trans('messages.design_updated')
-        ], 200);
-    }
-
-    public function destroy(DeleteRequest $request)
-    {
-        Design::destroy($request->ids);
-
-        $number = count($request->ids);
-
-        return response([
-            'message' => trans('common/messages.designs_deleted', ['number' => $number], $number)
-        ], 200);
-    }
+	/**
+	 * Deleted selected item(s)
+	 * @param Request	$request		Data from request
+	 *
+	 * @return Response	json instance of
+	 */
+	public function destroy(DeleteRequest $request) : \Illuminate\Http\Response
+	{
+		return $this->destroyAPI($request);
+	}
 }

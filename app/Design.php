@@ -2,21 +2,17 @@
 
 namespace App;
 
-use App\Traits\GeneralTrait;
-use Dimsav\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
 #use App\DesignTranslation;
 
 class Design extends Model
 {
-	use GeneralTrait;
-	use Translatable;
 
 	protected $connection = 'pr';
 	protected $fillable = [
-		'enabled',
+		'published',
 	];
-	public $translatedAttributes = [];
+#	public $translatedAttributes = [];
 #    protected static function boot()
 /*
 	public function __construct()
@@ -29,8 +25,10 @@ class Design extends Model
 		dump($this->translatedAttributes);
 	}
 */
+/*
 	public function scopeFilter($query, $filters)
 	{
 		return $filters->apply($query);
 	}
+*/
 }

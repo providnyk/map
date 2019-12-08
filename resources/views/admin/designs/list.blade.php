@@ -15,7 +15,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 				@include('admin.common._breadcrumb_home')
                 <span class="breadcrumb-item active">{!! $s_title !!}</span>
             </div>
-            <a href="{!! route('admin.designs') !!}" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            <a href="{!! route('admin.'.$s_category) !!}" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
         </div>
     </div>
 @endsection
@@ -37,8 +37,9 @@ include(getcwd().'/../resources/views/user/crud.php');
     <script>
         $(document).ready(function(){
 
-            let s_route_del = '{!! route("api.designs.delete") !!}';
-            let s_route_add = '{!! route("admin.designs.form") !!}';
+            let s_route_del = '{!! route('api.'.$s_category.'.delete') !!}';
+            let s_route_add = '{!! route('admin.'.$s_category.'.form') !!}';
+            moment.locale('{!! $app->getLocale() !!}');
 
             @include('admin.common.filters.js')
             @include('admin.common.list_js')
@@ -60,6 +61,15 @@ include(getcwd().'/../resources/views/user/crud.php');
                         className: 'text-center'
                     },
                     {
+                        data: 'published',
+                        render: function (data, type, row) {
+                            let status = Number(data) ? '{!! trans('user/crud.table.enabled') !!}' : '{!! trans('user/crud.table.disabled') !!}',
+                                className = Number(data) ? 'success' : 'secondary';
+                            return `<span class="badge badge-${className}">${status}</span>`;
+                        },
+                        className: 'text-center'
+                    },
+                    {
                         data: 'title'
                     },
                     {
@@ -77,12 +87,12 @@ include(getcwd().'/../resources/views/user/crud.php');
                     {
                         sortable: false,
                         data: function(row){
-                            return `<a href="{!! route('admin.designs.form', [':id']) !!}" class="btn btn-sm btn-primary"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
+                            return `<a href="{!! route('admin.'.$s_category.'.form', [':id']) !!}" class="btn btn-sm btn-primary"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
                         }
                     }
                 ],
                 ajax: {
-                    url: '{!! route('api.designs.index') !!}',
+                    url: '{!! route('api.'.$s_category.'.index') !!}',
                     data: function(data){
                         data.filters = filters;
                     }
@@ -126,8 +136,9 @@ include(getcwd().'/../resources/views/user/crud.php');
             <table class="table table-bordered table-striped table-styled">
                 <thead>
                 <tr>
-                    <th width="1px">{!! trans('user/crud.form.field.id.label') !!}</th>
-                    <th width="10%">{!! trans('user/crud.table.title') !!}</th>
+                    <th width="1px">{!! trans('user/crud.field.id.label') !!}</th>
+                    <th width="10%">{!! trans('user/crud.field.published.label') !!}</th>
+                    <th width="10%">{!! trans('user/crud.field.title.label') !!}</th>
                     <th width="20%">{!! trans('user/crud.table.created_at') !!}</th>
                     <th width="20%">{!! trans('user/crud.table.updated_at') !!}</th>
                     <th width="1px">{!! trans('user/crud.table.actions') !!}</th>

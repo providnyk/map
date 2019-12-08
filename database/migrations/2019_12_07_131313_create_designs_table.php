@@ -19,7 +19,7 @@ class CreateDesignsTable extends Migration {
 	{
         Schema::connection(self::DB_CONNECTION)->create(self::DB_NAME_PLR, function (Blueprint $table) {
             $table->increments(self::DB_TABLE_KEY);
-            $table->boolean('enabled')->default(0);
+            $table->boolean('published')->default(0);
             $table->timestamps();
         });
 		$s_fkey = self::DB_NAME_SGL.'_'.self::DB_TABLE_KEY;

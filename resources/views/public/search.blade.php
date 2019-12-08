@@ -128,7 +128,8 @@
 					$('#' + 'all' + '-container').append(getReplaceInTpl(type, item));
 					$('#' + type + '-container').append(getReplaceInTpl(type, item));
                 });
-                updateTotal(type, response.qty_filtered);
+                // qty_filtered
+                updateTotal(type, response.recordsFiltered);
             }
         }
 

@@ -33,6 +33,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 @section('script')
 	<script>
 		s_page_route	= '{!! $s_page_route !!}';
+		s_res_submit	= '{!! trans( 'user/messages.'.($o_item->id ? 'updated' : 'created') ) . ' ' . $s_cat_sgl_u1 !!}';
 		s_text_list		= '{!! $s_btn_primary !!}';
 		s_text_continue	= '{!! $s_btn_secondary !!}';
 		s_list_route	= '{!! $s_list_route !!}';
@@ -58,7 +59,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 					data: form.serialize()
 				}).done((data, status, xhr) => {
 					swal({
-						title: data.message,
+						title: s_res_submit,
 						type: 'success',
 						showCancelButton: true,
 						confirmButtonText: s_text_list,
@@ -142,6 +143,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 						</div>
 						<div class="tab-pane px-2" id="manage">
 							<legend class="text-uppercase font-size-sm font-weight-bold">{!! trans('user/crud.tab.manage.info') !!}</legend>
+							@include('user._form_checkbox', ['name'=>'published',])
 						</div>
 					</div>
 				</form>
