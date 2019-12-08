@@ -28,89 +28,21 @@ include(getcwd().'/../resources/views/user/crud.php');
 @section('js')
 	<script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
 	<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
+    <script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
+	<script src="{{ asset('/admin/js/forms.js') }}"></script>
 @endsection
 
 @section('script')
-	<script>
-		s_page_route	= '{!! $s_page_route !!}';
-		s_res_submit	= '{!! trans( 'user/messages.'.($o_item->id ? 'updated' : 'created') ) . ' ' . $s_cat_sgl_u1 !!}';
-		s_text_list		= '{!! $s_btn_primary !!}';
-		s_text_continue	= '{!! $s_btn_secondary !!}';
-		s_list_route	= '{!! $s_list_route !!}';
-
-		$(document).ready(function(){
-
-			let select = $('.select2');
-
-			select.select2({
-				minimumResultsForSearch: Infinity,
-				placeholder: select.data('placeholder'),
-			});
-
-			$('form').on('submit', function(e){
-				e.preventDefault();
-
-				let data = {},
-					form = $(this);
-
-				$.ajax({
-					url: form.attr('action'),
-					type: 'post',
-					data: form.serialize()
-				}).done((data, status, xhr) => {
-					swal({
-						title: s_res_submit,
-						type: 'success',
-						showCancelButton: true,
-						confirmButtonText: s_text_list,
-						confirmButtonClass: 'btn btn-primary',
-						cancelButtonText: s_text_continue,
-						cancelButtonClass: 'btn btn-light',
-					}).then((confirm) => {
-						if(confirm.value){
-							window.location.href = s_list_route;
-						}else{
-							form.find('fieldset').attr('disabled', false);
-						}
-					});
-
-					form.find('fieldset').attr('disabled', true);
-				}).fail((xhr) => {
-					let data = xhr.responseJSON;
-
-					notify(data.message, 'danger', 3000);
-				}).always((xhr, type, status) => {
-
-					let response = xhr.responseJSON || status.responseJSON,
-						errors = response.errors || [];
-
-					form.find('.field').each((i, el) => {
-						let field = $(el),
-							container = field.find(`.field-body`),
-							elem = $('<label class="message">');
-
-						container.find('label.message').remove();
-
-						if(errors[field.data('name')]){
-							errors[field.data('name')].forEach((msg) => {
-								elem.clone().addClass('validation-invalid-label').html(msg).appendTo(container);
-							});
-						}else{
-							//elem.clone().addClass('validation-valid-label').html('Success').appendTo(container);
-						}
-
-					});
-				})
-			});
-		});
-	</script>
-@endsection
+<script type="text/javascript">
+    @include('admin.common.data2js')
+</script>
+@append
 
 @section('content')
 	<div class="card form">
 		<div class="card-body p-0">
 			<div class="card-body">
-				<form class="form-validate-jquery" action="{!! $s_form_route !!}" method="post">
+				<form class="form-validate-jquery" action="{!! $s_form_route !!}" method="{!! $s_form_method !!}">
 					<ul class="nav nav-tabs nav-tabs-highlight">
 						<li class="nav-item">
 							<a href="#data" class="nav-link active" data-toggle="tab">{!! trans('user/crud.tab.data.name') !!}</a>

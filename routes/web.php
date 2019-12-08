@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
 
+$a_items = [
+		'designs' => 'Design',
+		'points' => 'Point',
+];
+
 Route::group([
     'middleware' => ['language']
 ], function() {
@@ -44,17 +49,21 @@ Route::group([
 // Change language Route
 Route::get('lang/{language}', ['as' => 'change-lang', 'uses' => 'LanguageController@changeLanguage']);
 
+// API Routes
 Route::group([
     'as' => 'api.',
     'prefix' => 'api',
     'namespace' => 'API',
     'middleware' => ['language']
-], function() {
-    // Designs API Routes
-    Route::get('designs', ['as' => 'designs.index', 'uses' => 'DesignController@index']);
-    Route::post('designs', ['as' => 'designs.store', 'uses' => 'DesignController@store']);
-    Route::post('designs/{design}/edit', ['as' => 'designs.update', 'uses' => 'DesignController@update']);
-    Route::post('designs/delete', ['as' => 'designs.delete', 'uses' => 'DesignController@destroy']);
+], function() use ($a_items) {
+
+	foreach ($a_items AS $s_table => $s_model)
+	{
+	    Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_model . 'Controller@index']);
+	    Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_model . 'Controller@store']);
+	    Route::put($s_table . '/{'.strtolower($s_model).'}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
+	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
+	}
 
 
 
@@ -63,9 +72,7 @@ Route::group([
 
 
 
-
-
-
+/*
     // Static Texts API Routes
     Route::get('texts', ['as' => 'texts.index', 'uses' => 'TextController@index']);
     Route::post('texts', ['as' => 'texts.store', 'uses' => 'TextController@store']);
@@ -97,10 +104,10 @@ Route::group([
     Route::post('professions/delete', ['as' => 'professions.delete', 'uses' => 'ProfessionController@destroy']);
 
     // Designs API Routes
-    Route::get('books', ['as' => 'books.index', 'uses' => 'DesignController@index']);
-    Route::post('books', ['as' => 'books.store', 'uses' => 'DesignController@store']);
-    Route::post('books/{book}/edit', ['as' => 'books.update', 'uses' => 'DesignController@update']);
-    Route::post('books/delete', ['as' => 'books.delete', 'uses' => 'DesignController@destroy']);
+    Route::get('books', ['as' => 'books.index', 'uses' => 'BookController@index']);
+    Route::post('books', ['as' => 'books.store', 'uses' => 'BookController@store']);
+    Route::post('books/{book}/edit', ['as' => 'books.update', 'uses' => 'BookController@update']);
+    Route::post('books/delete', ['as' => 'books.delete', 'uses' => 'BookController@destroy']);
 
     // Pages API Routes
     Route::get('pages', ['as' => 'pages.index', 'uses' => 'PageController@index']);
@@ -207,28 +214,29 @@ Route::group([
     Route::post('subscribe/delete', ['as' => 'subscribe.delete', 'uses' => 'SubscribeController@delete']);
 
     Route::post('settings/update', ['as' => 'settings.update', 'uses' => 'SettingsController@update']);
+*/
 });
+
 //Admin Routes
 Route::group([
     'as' => 'admin.',
     'prefix' => 'admin',
     'namespace' => 'Admin',
     'middleware' => ['language', 'auth', 'role:admin']
-], function() {
+], function() use ($a_items) {
     Route::get('', ['as' => 'home', 'uses' => 'DashboardController@index']);
 
-    # Designs administration routes
-    Route::get('designs', ['as' => 'designs', 'uses' => 'DesignController@index']);
-    Route::get('designs/form/{id?}', ['as' => 'designs.form', 'uses' => 'DesignController@form']);
+	foreach ($a_items AS $s_table => $s_model)
+	{
+	    Route::get($s_table, ['as' => $s_table, 'uses' => $s_model . 'Controller@index']);
+	    Route::get($s_table . '/form/{id?}', ['as' => $s_table . '.form', 'uses' => $s_model . 'Controller@form']);
+	}
 
 
 
 
 
-
-
-
-
+/*
     // Static Texts administration routes
     Route::get('texts', ['as' => 'texts', 'uses' => 'TextController@index']);
     Route::get('texts/form/{id?}', ['as' => 'texts.form', 'uses' => 'TextController@form']);
@@ -250,8 +258,8 @@ Route::group([
     Route::get('professions/form/{id?}', ['as' => 'professions.form', 'uses' => 'ProfessionController@form']);
 
     // Designs administration routes
-    Route::get('books', ['as' => 'books', 'uses' => 'DesignController@index']);
-    Route::get('books/form/{id?}', ['as' => 'books.form', 'uses' => 'DesignController@form']);
+    Route::get('books', ['as' => 'books', 'uses' => 'BookController@index']);
+    Route::get('books/form/{id?}', ['as' => 'books.form', 'uses' => 'BookController@form']);
 
     // pages administration routes
     Route::get('pages', ['as' => 'pages', 'uses' => 'PageController@index']);
@@ -304,7 +312,7 @@ Route::group([
     Route::get('press/form/{id?}', ['as' => 'presses.form', 'uses' => 'PressController@form']);
 
     Route::get('settings', ['as' => 'settings', 'uses' => 'SettingsController@index']);
-
+*/
 });
 
 
@@ -314,19 +322,21 @@ Route::group([
     'namespace' => 'Frontend',
     'middleware' => ['language']
 ], function() {
+/*
 #    Route::get('', ['as' => 'home', 'uses' => 'GeneralController@index']);
     Route::get('{festival_slug}/search', ['as' => 'search', 'uses' => 'SearchController@index']);
     Route::post('contact-us', ['as' => 'contact-us', 'uses' => 'GeneralController@contactUs']);
-
+*/
     Route::group(['middleware' => 'auth'], function() {
         Route::get('my-cs', ['as' => 'cabinet', 'uses' => 'ProfileController@cabinet']);
         Route::post('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@updateProfile']);
-
+/*
         Route::post('event/{event}/favorite', ['as' => 'event.favorite', 'uses' => 'ProgramController@favorite']);
         Route::post('event/{event}/unfavorite', ['as' => 'event.unfavorite', 'uses' => 'ProgramController@unfavorite']);
+*/
     });
-
-#    Route::get('book/{book}', ['as' => 'books', 'uses' => 'DesignController@index']);
+/*
+#    Route::get('book/{book}', ['as' => 'books', 'uses' => 'BookController@index']);
     Route::get('about-us', ['as' => 'page.about-us', 'uses' => 'PageController@aboutUs']);
 #    Route::get('about-website', ['as' => 'page.about-website', 'uses' => 'PageController@aboutWebsite']);
 
@@ -338,7 +348,7 @@ Route::group([
 
 
 #    Route::get('artist/{artist_slug}', ['as' => 'artist', 'uses' => 'ArtistController@index']);
-    Route::get('book/{book_slug}', ['as' => 'book', 'uses' => 'DesignController@index']);
+    Route::get('book/{book_slug}', ['as' => 'book', 'uses' => 'BookController@index']);
     Route::get('event/{event_slug}', ['as' => 'event', 'uses' => 'EventController@index']);
     Route::get('gallery/{gallery_slug}', ['as' => 'gallery', 'uses' => 'GalleryController@index']);
     Route::get('media/{media_slug}', ['as' => 'media', 'uses' => 'MediaController@index']);
@@ -407,13 +417,13 @@ Route::group([
         'as' => 'page',
         'uses' => 'PageController@showStaticPage']
     );
-
+*/
     //Eugene Buchinsky
     Route::get('', [
         'as' => 'home',
         'uses' => 'FestivalController@index']
     );
-
+/*
     Route::get('{festival_slug}', [
         'as' => 'festival.index',
         'uses' => 'FestivalController@index'
@@ -477,16 +487,17 @@ Route::group([
         'as' => 'cabinet.favorite-events',
         'uses' => 'ProfileController@favoriteEvents'
     ]);
-/*
+/ *
 	Route::get('image/{image_id}/{show_marker}', [
 		'as' => 'image.download',
 		'uses' => 'GeneralController@downloadImage'
 	]);
-*/
+* /
 	Route::get('image/{image_id}/{show_marker?}/{image_size?}', [
 		'as' => 'image.show',
 		'uses' => 'GeneralController@showImage'
 	]);
+*/
 });
 
 //Route::get('admin/clean', function(){

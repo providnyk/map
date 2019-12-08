@@ -240,7 +240,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
             <ul class="nav" id="festival-menu">
                 @foreach($festivals as $fest)
                     <li class="nav-item">
-                        <a class="nav-link {!! $fest->id === $festival->id ? 'active' : '' !!}" href="{{ route('public.festival.index', $fest->slug) }}">
+                        <a class="nav-link {!! $fest->id === $festival->id ? 'active' : '' !!}" href="{{-- route('public.festival.index', $fest->slug) --}}">
                             {{ $fest->name }}<br>{{ $fest->year }}
                         </a>
                     </li>
@@ -272,8 +272,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
     <div class="stick-line"></div>
     <div class="navi-wrap">
         <nav class="navbar navbar-expand-sm navbar-light">
-            <!--a class="navbar-brand" href="{{ route('public.festival.index', $festival->slug) }}"><img src="/img/logo.png" height="46" width="113" alt="logo"/></a-->
-            <a class="navbar-brand" href="{{ route('public.festival.index', $festival->slug) }}">CULTURE<br>SCAPES</a>
+            <!--a class="navbar-brand" href="{{-- route('public.festival.index', $festival->slug) --}}"><img src="/img/logo.png" height="46" width="113" alt="logo"/></a-->
+            <a class="navbar-brand" href="{{-- route('public.festival.index', $festival->slug) --}}">CULTURE<br>SCAPES</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -281,34 +281,34 @@ $version = include_once( __DIR__ . '/../../../version.php');
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto" id="main-menu">
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.festival.program' ? 'active' : '' }}" href="{{ route('public.festival.program', $festival->slug) }}">
+                        <a class="nav-link {{-- $current_route_name == 'public.festival.program' ? 'active' : '' --}}" href="{{-- route('public.festival.program', $festival->slug) --}}">
                             {{ trans('general.program') }}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.festival.posts' ? 'active' : '' }}" href="{{ route('public.festival.posts', $festival->slug) }}">
+                        <a class="nav-link {{-- $current_route_name == 'public.festival.posts' ? 'active' : '' --}}" href="{{-- route('public.festival.posts', $festival->slug) --}}">
                             {{ trans('general.news') }}
                         </a>
                     </li>
                     @if($festival->book)
                         <li class="nav-item">
-                            <a class="nav-link {{ $current_route_name == 'public.festival.book' ? 'active' : '' }}" href="{{ route('public.festival.book', [$festival->slug, $festival->book->slug]) }}">
+                            <a class="nav-link {{-- $current_route_name == 'public.festival.book' ? 'active' : '' --}}" href="{{-- route('public.festival.book', [$festival->slug, $festival->book->slug]) --}}">
                                 {{ trans('general.book') }}
                             </a>
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.festival.partners' ? 'active' : '' }}" href="{{ route('public.festival.partners', $festival->slug) }}">
+                        <a class="nav-link {{-- $current_route_name == 'public.festival.partners' ? 'active' : '' --}}" href="{{-- route('public.festival.partners', $festival->slug) --}}">
                             {{ trans('general.partners') }}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.festival.about' ? 'active' : '' }}" href="{{ route('public.festival.about', $festival->slug) }}">
+                        <a class="nav-link {{-- $current_route_name == 'public.festival.about' ? 'active' : '' --}}" href="{{-- route('public.festival.about', $festival->slug) }}">
                             {{ trans('general.about-us') }}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.festival.presses' ? 'active' : '' }}" href="{{ route('public.festival.presses', $festival->slug) }}">
+                        <a class="nav-link {{-- $current_route_name == 'public.festival.presses' ? 'active' : '' --}}" href="{{-- route('public.festival.presses', $festival->slug) --}}">
                             {{ trans('general.press') }}
                         </a>
                     </li>
@@ -342,7 +342,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
         </nav>
         <div id="search-wrap">
             <div class="container-fluid">
-                <form action="{{ route('public.search', $festival->slug) }}" id="search-form" method="get">
+                <form action="{{-- route('public.search', $festival->slug) --}}" id="search-form" method="get">
                     <div class="form-group">
                         <div class="glass-icon">
                             <svg width="33" height="33" viewBox="0 0 33 33" fill="none"
@@ -409,7 +409,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
             </div>
             <div class="col-lg-9 col-sm-8">
                 <h3 class="form-title">{{ trans('general.subscribe') }}</h3>
-                <form action="{{ route('api.subscribe') }}" class="newsletter-form" id="subscribe-form" method="POST">
+                <form action="{{-- route('api.subscribe') --}}" class="newsletter-form" id="subscribe-form" method="POST">
                     @csrf
                     <div class="form-group">
                         <input type="email" class="form-control" id="email" placeholder="Email" name="email" required>
@@ -463,22 +463,22 @@ $version = include_once( __DIR__ . '/../../../version.php');
             <div class="col-lg-3 col-sm-6 col-12 footer-block-2">
                 <ul class="nav">
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.page.about-us' ? 'active' : '' }}" href="{{ route('public.festival.about', $festival->slug) }}">
+                        <a class="nav-link {{-- $current_route_name == 'public.page.about-us' ? 'active' : '' --}}" href="{{-- route('public.festival.about', $festival->slug) --}}">
                             {{ trans('general.about-us') }}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.presses' ? 'active' : '' }}" href="{{ route('public.festival.presses', $festival->slug )}}">
+                        <a class="nav-link {{-- $current_route_name == 'public.presses' ? 'active' : '' --}}" href="{{-- route('public.festival.presses', $festival->slug) --}}">
                             {{ trans('general.press') }}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ $current_route_name == 'public.partners' ? 'active' : '' }}" href="{{ route('public.festival.partners', $festival->slug) }}">
+                        <a class="nav-link {{-- $current_route_name == 'public.partners' ? 'active' : '' --}}" href="{{-- route('public.festival.partners', $festival->slug) --}}">
                             {{ trans('general.partners') }}
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('public.page', 'impressum') }}">
+                        <a class="nav-link active" href="{{-- route('public.page', 'impressum') --}}">
                             {{ trans('general.impressum') }}
                         </a>
                     </li>
@@ -495,7 +495,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
             </div>
             <div class="col-lg-3 col-sm-6 col-12 footer-block-4">
                 <h5 class="form-title">{{ trans('general.contact-us') }}</h5>
-                <form action="{{ route('public.contact-us') }}" method="POST" id="contact-form">
+                <form action="{{-- route('public.contact-us') --}}" method="POST" id="contact-form">
                     @csrf
                     <div class="form-group">
                         <textarea class="form-control" id="message" rows="3" name="message"></textarea>

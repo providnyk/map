@@ -33,8 +33,8 @@
 
         $(document).on('click', '.bookmark',  (e) => {
             let target = $(e.currentTarget),
-                favorite = '{!! route('public.event.favorite', ':event') !!}',
-                unfavorite = '{!! route('public.event.unfavorite', ':event') !!}';
+                favorite = '{{--{!! route('public.event.favorite', ':event') !!}--}}',
+                unfavorite = '{{--{!! route('public.event.unfavorite', ':event') !!}--}}';
 
             $.ajax({
                 type: 'post',
@@ -88,7 +88,7 @@
             e.preventDefault();
 
             $.ajax({
-                url: '{!! route('public.cabinet.favorite-events') !!}',
+                url: '{{--{!! route('public.cabinet.favorite-events') !!}--}}',
                 type: 'get',
                 data: $(e.target).serialize(),
                 success: viewEntries
@@ -196,7 +196,7 @@
 									.replace('<!--', '')
 									.replace('-->', '')
             						,
-                route = "{{ route('public.event', ':slug') }}";
+                route = "{{-- route('public.event', ':slug') --}}";
 
             $('#results').empty();
 
@@ -471,7 +471,7 @@
                     <div class="row">
                         <div class="col-lg-9 col-md-8 col-12 single-content form-page-wrap">
                             <div class="inner">
-                                <form action="{{ route('public.profile.update') }}" method="POST" class="form-page" id="profile-form">
+                                <form action="{{-- route('public.profile.update') --}}" method="POST" class="form-page" id="profile-form">
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">

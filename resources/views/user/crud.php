@@ -29,6 +29,11 @@ if (isset($$s_cat_sgl_low))
 	                            ? route('admin.' . $s_category . '.form', $o_item->id)
 	                            : route('admin.' . $s_category . '.form')
 	                        );
+	$s_form_method      = ($o_item->id
+	                            ? 'put'
+	                            : 'post'
+	                        );
+
 	$s_form_route       = ($o_item->id
 	                            ? route('api.' . $s_category . '.update', $o_item->id)
 	                            : route('api.' . $s_category . '.store')
