@@ -1,6 +1,6 @@
                 @foreach($menu_title AS $i_idx => $menu_name)
                 <li class="nav-item nav-item-submenu {!! in_array(request()->segment(2), $menu_list[$i_idx]) ? 'nav-item-open' : '' !!}">
-                    <a href="#" class="nav-link"><i class="{!! trans('user/' . $menu_name . '.names.ico') !!}"></i><span>{!! trans('menu.' . $menu_name) !!}</span></a>
+                    <a href="#" class="nav-link"><i class="{{ $menu_icon[$i_idx] }}"></i><span>{!! trans('menu.' . $menu_name) !!}</span></a>
                     <ul class="nav nav-group-sub" data-submenu-title="Layouts">
                         @foreach($menu_list[$i_idx] AS $i_cnt => $menu_item)
                         <li class="nav-item">
