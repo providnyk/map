@@ -30,11 +30,11 @@ class DesignRequest extends FormRequest
             'en'       => 'required|array',
             'de'       => 'required|array',
             'uk'       => 'required|array',
-            'uk.name'			=> 'required|string|max:255',
+            'uk.title'			=> 'required|string|max:255',
             'uk.description'  => 'string|max:255',
-            'en.name'			=> 'required|string|max:255',
+            'en.title'			=> 'required|string|max:255',
             'en.description'  => 'string|max:255',
-            'de.name'			=> 'required|string|max:255',
+            'de.title'			=> 'required|string|max:255',
             'de.description'  => 'string|max:255',
         ];
     }

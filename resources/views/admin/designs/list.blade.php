@@ -60,7 +60,7 @@ include(getcwd().'/../resources/views/user/crud.php');
                         className: 'text-center'
                     },
                     {
-                        data: 'name'
+                        data: 'title'
                     },
                     {
                         data: 'created_at',
@@ -98,10 +98,8 @@ include(getcwd().'/../resources/views/user/crud.php');
         <div class="card-body p-0">
             <div class="container-fluid">
                 <div class="row filters px-4 pt-3">
-                    <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="name" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('user/crud.list.filters.name') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('user/crud.list.filters.name') !!}">
-                    </div>
+
+			        @include('user._filter_title')
 
                     @include('admin.common.filters.created_at')
                     @include('admin.common.filters.updated_at')
@@ -128,11 +126,11 @@ include(getcwd().'/../resources/views/user/crud.php');
             <table class="table table-bordered table-striped table-styled">
                 <thead>
                 <tr>
-                    <th width="1px">{!! trans('app/designs.list.table.columns.id') !!}</th>
-                    <th width="10%">{!! trans('app/designs.list.table.columns.name') !!}</th>
-                    <th width="20%">{!! trans('app/designs.list.table.columns.created_at') !!}</th>
-                    <th width="20%">{!! trans('app/designs.list.table.columns.updated_at') !!}</th>
-                    <th width="1px">{!! trans('app/designs.list.table.columns.actions') !!}</th>
+                    <th width="1px">{!! trans('user/crud.form.field.id.label') !!}</th>
+                    <th width="10%">{!! trans('user/crud.table.title') !!}</th>
+                    <th width="20%">{!! trans('user/crud.table.created_at') !!}</th>
+                    <th width="20%">{!! trans('user/crud.table.updated_at') !!}</th>
+                    <th width="1px">{!! trans('user/crud.table.actions') !!}</th>
                 </tr>
                 </thead>
             </table>

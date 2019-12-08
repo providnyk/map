@@ -1,3 +1,4 @@
+0.07.0+a342:5 user ADD form split by templates and simplify tranlations tree
 0.06.0+a342:4 user ADD flags
 0.05.0+a342:3 user ADD active menu color
 0.04.0+a342:2 user ADD missing menu ico
@@ -5,3 +6,4 @@
 0.02.0+a341:2 user ADD admin to guest branch versioning
 0.01.0+a341:1 user ADD save design item with translation
 ADD map point
+ADD enabled switch to design form

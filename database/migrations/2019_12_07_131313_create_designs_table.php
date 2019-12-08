@@ -27,7 +27,7 @@ class CreateDesignsTable extends Migration {
             $table->increments(self::DB_TABLE_KEY);
             $table->unsignedInteger($s_fkey);
             $table->string('locale')->index();
-            $table->string('name');
+            $table->string('title');
             $table->string('description');
 
             $table->unique([$s_fkey, 'locale']);

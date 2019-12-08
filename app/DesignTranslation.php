@@ -9,7 +9,7 @@ class DesignTranslation extends Model
 	public $timestamps = false;
 
 	protected $fillable = [
-		'name',
+		'title',
 		'description',
 	];
 }

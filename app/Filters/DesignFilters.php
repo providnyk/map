@@ -10,21 +10,21 @@ class DesignFilters extends Filters
 {
     protected $filters = [
         'id',
-        'name',
+        'title',
         'created_at',
         'updated_at',
     ];
 
-    protected function name($name)
+    protected function title($title)
     {
-        return $this->builder->whereTranslationLike('name', '%' . $name . '%', $this->appLocale);
+        return $this->builder->whereTranslationLike('title', '%' . $title . '%', $this->appLocale);
     }
 
     protected function getQuery()
     {
         return $this->builder->select(
                 'designs.*',
-                'design_translations.name as name'
+                'design_translations.title as title'
             )
             ->offset($this->request->start)
             ->limit($this->limit)

@@ -19,23 +19,24 @@ $s_title         	= trans('user/' . $s_category . '.names.plr');
 
 if (isset($$s_cat_sgl_low))
 {
-	$s_page_action      = ($$s_cat_sgl_low->id
+	$o_item         	= $$s_cat_sgl_low;
+	$s_page_action      = ($o_item->id
 	                            ? trans('common/form.actions.edit')
 	                            : trans('common/form.actions.create')
 	                        )
 	                        . ' ' . $s_cat_sgl_low;
-	$s_page_route       = ($$s_cat_sgl_low->id
-	                            ? route('admin.' . $s_category . '.form', $$s_cat_sgl_low->id)
+	$s_page_route       = ($o_item->id
+	                            ? route('admin.' . $s_category . '.form', $o_item->id)
 	                            : route('admin.' . $s_category . '.form')
 	                        );
-	$s_form_route       = ($$s_cat_sgl_low->id
-	                            ? route('api.' . $s_category . '.update', $$s_cat_sgl_low->id)
+	$s_form_route       = ($o_item->id
+	                            ? route('api.' . $s_category . '.update', $o_item->id)
 	                            : route('api.' . $s_category . '.store')
 	                        );
 
 	$s_btn_primary		= trans("common/form.actions.view") . ' ' . trans("common/form.breadcrumbs.list");
 
-	$s_btn_secondary	= ($$s_cat_sgl_low->id
+	$s_btn_secondary	= ($o_item->id
 	                            ? trans("common/form.actions.continue") . ' ' . trans('common/form.actions.edit')
 	                            : trans("common/form.actions.create_more")
 	                        );
