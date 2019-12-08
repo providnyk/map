@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Design;
-use App\DesignTranslation;
 use App\Filters\DesignFilters;
 use App\Http\Requests\DesignRequest;
 use App\Http\Requests\DeleteRequest;
