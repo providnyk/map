@@ -124,7 +124,7 @@ include(getcwd().'/../resources/views/user/crud.php');
                                 @foreach($localizations as $code => $localization)
                                     <li class="nav-item">
                                         <a href="#{!! $code !!}" class="nav-link {!! $app->getLocale() === $code ? 'active' : ''!!}" data-toggle="tab">
-                                            <img src="{!! asset('admin/images/lang/' . $code . '.png') !!}" width="30rem" class="mr-1">
+                                            <img src="{!! asset('images/flags/' . $code . '.png') !!}" width="30rem" class="mr-1">
                                             {!! $localization !!}
                                         </a>
                                     </li>
