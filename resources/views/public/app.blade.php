@@ -54,7 +54,7 @@
             <div class="row">
                 @foreach($promoting_up_events as $event)
                     <div class="{{ $promoting_up_events->count() == 1 ? 'offset-md-3' : '' }} col-md-6">
-                        <div class="event-box d-flex flex-column" onclick="window.location.href='{{ route('public.festival.event', [$festival->slug, $event->slug]) }}';
+                        <div class="event-box d-flex flex-column" onclick="window.location.href='{{-- route('public.festival.event', [$festival->slug, $event->slug]) --}}';
                                 return false;">
                             <div class="main-event mb-auto">
                                 <img src="{{ $event->image->medium_image_url ? $event->image->medium_image_url : '/admin/images/no-image-logo.jpg'}}" alt="{{ $event->image->name ? $event->image->name : 'no image'}}">

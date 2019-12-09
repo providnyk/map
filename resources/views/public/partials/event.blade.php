@@ -23,12 +23,12 @@
                         </div>
                     @endif
                 {{--@endauth--}}
-                <a href="{{ route('public.festival.event', [$festival->slug, $event->slug]) }}"><img src="{{ $event->image->small_image_url ? $event->image->small_image_url : '/admin/images/no-image-logo.jpg'}}" alt="{{ $event->image->name ? $event->image->name : 'no image'}}"></a>
+                <a href="{{-- route('public.festival.event', [$festival->slug, $event->slug]) --}}"><img src="{{ $event->image->small_image_url ? $event->image->small_image_url : '/admin/images/no-image-logo.jpg'}}" alt="{{ $event->image->name ? $event->image->name : 'no image'}}"></a>
             </div>
         </div>
         <div class="col-lg-8 col-12">
             <div class="descr">
-                <h5 class="event-title"><a href="{{ route('public.festival.event', [$festival->slug, $event->slug]) }}">{{ $event->title }}</a></h5>
+                <h5 class="event-title"><a href="{{-- route('public.festival.event', [$festival->slug, $event->slug]) --}}">{{ $event->title }}</a></h5>
                 <div class="short small-text">{!! $event->description !!}</div>
                 <div class="box">
                     <a class="label">{{ $event->category->name }}</a>
@@ -48,7 +48,7 @@
                      data-timezone="{!! $holding->city->timezone !!}"
                      data-place="{!! $holding->place->name !!}"
                 >
-                    <div class="info-box"><a href="{{ route('public.festival.event', [$festival->slug, $event->slug]) }}">
+                    <div class="info-box"><a href="{{-- route('public.festival.event', [$festival->slug, $event->slug]) --}}">
 						@include('public.partials.date_format', ['from' => $holding->date_from, 'to' => $holding->date_to])
                         <div class="name">{{ $holding->city->name }}, {{ $holding->place->name }}</div></a>
                     </div>

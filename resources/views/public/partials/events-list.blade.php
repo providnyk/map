@@ -10,7 +10,7 @@
         //date_end = '{ ! ! $holding_dates["max"] ?? null !!}',
         date_start = '{!! $dates_range->first() ?? null !!}',
         date_end = '{!! $dates_range->last() ?? null !!}';
-        route = "{{ route('public.festival.event', [$festival->slug, ':event_slug']) }}";
+        route = "{{-- route('public.festival.event', [$festival->slug, ':event_slug']) --}}";
 </script>
 
 <script src="{!! asset('/user/js/general.js') !!}"></script>
@@ -203,7 +203,7 @@
             {{--</div>--}}
 
             <aside class="right-sidebar col-lg-3 col-sm-5 col-12">
-                <form action="{!! route('api.events.program') !!}" class="filters-form" id="filters-form">
+                <form action="{{-- {!! route('api.events.program') !!} --}}" class="filters-form" id="filters-form">
                     <input type="hidden" name="offset" id="offset" value="0">
                     <input type="hidden" name="amount" id="amount" value="10">
                     <input type="hidden" name="filters[festivals][]" value="{!! $festival->id !!}">
