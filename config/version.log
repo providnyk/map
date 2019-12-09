@@ -1,3 +1,4 @@
+0.11.0+a343:2 user ADD fit DB migrations with nullable and disable nullable in Kernel
 0.10.0+a343:1 user ADD fit DB migrations with default string values
 0.09.0+a342:8 user ADD automated validation rules for design
 0.08.1+a342:7 user FIX automated routes and forms
@@ -9,4 +10,3 @@
 0.03.0+a342:1 user ADD design and menu translations
 0.02.0+a341:2 user ADD admin to guest branch versioning
 0.01.0+a341:1 user ADD save design item with translation
-ADD map point

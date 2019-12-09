@@ -27,7 +27,7 @@ class CreateGroupsTable extends Migration {
             $table->increments(self::DB_TABLE_KEY);
             $table->unsignedInteger($s_fkey);
             $table->string('locale')->index();
-            $table->string('title')->default('');
+            $table->string('title')->default('')->nullable(false);
 
             $table->unique([$s_fkey, 'locale']);
             $table->foreign($s_fkey)->references(self::DB_TABLE_KEY)->on(self::DB_NAME_PLR)->onDelete('cascade');

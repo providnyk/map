@@ -31,10 +31,10 @@ class CreatePointsTable extends Migration {
             $table->increments(self::DB_TABLE_KEY);
             $table->bigInteger($s_fkey)->unsigned();
             $table->string('locale')->index();
-            $table->string('title')->default('');
-            $table->string('annotation')->default('');
-            $table->string('description')->default('');
-            $table->string('address')->default('');
+            $table->string('title')->default('')->nullable(false);
+            $table->string('annotation')->default('')->nullable(false);
+            $table->string('description')->default('')->nullable(false);
+            $table->string('address')->default('')->nullable(false);
 
             $table->unique([$s_fkey, 'locale']);
             $table->foreign($s_fkey)->references(self::DB_TABLE_KEY)->on(self::DB_NAME_PLR)->onDelete('cascade');
