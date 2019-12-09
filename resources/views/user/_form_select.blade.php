@@ -30,12 +30,18 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 		<span class="badge badge-primary tooltip-helper d-block float-right my-2 px-1" data-toggle="tooltip" title="{!! $s_rules !!}"><i class="icon-info3"></i></span>
 	</div>
 	@php
-	$o_collection = $$name->keyBy('id');
-	$s_selected_title = $o_collection[$o_item->$s_id]->translate($app->getLocale())->title;
+	$s_selected_title = '';
+	$s_selected_id = NULL;
+	if($o_item->$s_id)
+	{
+		$o_collection = $$name->keyBy('id');
+		$s_selected_id = $o_item->$s_id;
+		$s_selected_title = $o_collection[$o_item->$s_id]->translate($app->getLocale())->title;
+	}
 	@endphp
 	<div class="col-lg-9 field-body">
 		<select name="{!! $s_id !!}" class="form-control select2-dropdown" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_label !!}" data-url="{!! route('api.'.$name.'.index') !!}">
-			@if($o_item->$s_id)
+			@if($s_selected_id)
 				<option value="{!! $o_item->$s_id !!}">{!! $s_selected_title !!}</option>
 			@else
 				<option value="">{!! $s_label !!}</option>

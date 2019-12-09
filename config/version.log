@@ -1,3 +1,4 @@
+0.12.1+a343:4 user FIX create item for selected select value
 0.12.0+a343:3 user ADD map point form and link to design
 0.11.0+a343:2 user ADD fit DB migrations with nullable and disable nullable in Kernel
 0.10.0+a343:1 user ADD fit DB migrations with default string values
