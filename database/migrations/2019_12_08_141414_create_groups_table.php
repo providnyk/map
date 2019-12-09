@@ -3,12 +3,12 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateDesignsTable extends Migration {
+class CreateGroupsTable extends Migration {
 
     const DB_CONNECTION = 'pr';
     const DB_TABLE_KEY = 'id';
-    const DB_NAME_SGL = 'design';
-    const DB_NAME_PLR = 'designs';
+    const DB_NAME_SGL = 'group';
+    const DB_NAME_PLR = 'groups';
     const DB_TABLE_TRAN = '_translations';
 	/**
 	 * Run the migrations.
@@ -28,7 +28,6 @@ class CreateDesignsTable extends Migration {
             $table->unsignedInteger($s_fkey);
             $table->string('locale')->index();
             $table->string('title')->default('');
-            $table->string('description')->default('');
 
             $table->unique([$s_fkey, 'locale']);
             $table->foreign($s_fkey)->references(self::DB_TABLE_KEY)->on(self::DB_NAME_PLR)->onDelete('cascade');

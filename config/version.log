@@ -1,3 +1,4 @@
+0.10.0+a343:1 user ADD fit DB migrations with default string values
 0.09.0+a342:8 user ADD automated validation rules for design
 0.08.1+a342:7 user FIX automated routes and forms
 0.08.0+a342:6 user ADD enabled switch to design form
