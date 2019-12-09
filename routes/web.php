@@ -19,8 +19,9 @@ use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
 
 $a_items = [
-		'designs' => 'Design',
-		'points' => 'Point',
+		'points'		=> 'Point',
+		'groups'		=> 'Group',
+		'designs'		=> 'Design',
 ];
 
 Route::group([
@@ -61,7 +62,7 @@ Route::group([
 	{
 	    Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_model . 'Controller@index']);
 	    Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_model . 'Controller@store']);
-	    Route::put($s_table . '/{'.strtolower($s_model).'}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
+	    Route::put($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
 	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
 	}
 

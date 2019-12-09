@@ -58,8 +58,6 @@ include(getcwd().'/../resources/views/user/crud.php');
 							<legend class="text-uppercase font-size-sm font-weight-bold">
 								{!! trans('user/crud.tab.data.info') !!}
 							</legend>
-							@include('user._form_select', ['name'=>'designs', 'id'=>'design_id'])
-							@include('user._form_select', ['name'=>'groups', 'id'=>'group_id', 'many'=>TRUE])
 							<ul class="nav nav-tabs nav-tabs-highlight">
 								@foreach($localizations as $code => $localization)
 									<li class="nav-item">
@@ -76,9 +74,6 @@ include(getcwd().'/../resources/views/user/crud.php');
 								<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
 									<fieldset class="mb-3">
 									@include('user._form_input', ['name'=>'title',])
-									@include('user._form_input', ['name'=>'annotation',])
-									@include('user._form_input', ['name'=>'description',])
-									@include('user._form_input', ['name'=>'address',])
 									</fieldset>
 								</div>
 								@endforeach
@@ -89,8 +84,6 @@ include(getcwd().'/../resources/views/user/crud.php');
 								{!! trans('user/crud.tab.manage.info') !!}
 							</legend>
 							@include('user._form_checkbox', ['name'=>'published',])
-							@include('user._form_input', ['name'=>'lat',])
-							@include('user._form_input', ['name'=>'lng',])
 						</div>
 					</div>
 				</form>

@@ -50,9 +50,9 @@ class DesignController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(DesignRequest $request, Design $design) : \Illuminate\Http\Response
+	public function update(DesignRequest $request, Design $item) : \Illuminate\Http\Response
 	{
-		return $this->updateAPI($request, $design);
+		return $this->updateAPI($request, $item);
 	}
 
 	/**

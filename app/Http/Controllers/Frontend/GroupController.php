@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-#use App\Design;
+#use App\Group;
 use App\Http\Controllers\ControllerGuest as Controller;
 
-class DesignController extends Controller
+class GroupController extends Controller
 {
 }

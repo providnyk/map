@@ -9,6 +9,7 @@ class Point extends Model
 	protected $connection = 'pr';
 	protected $fillable = [
 		'design_id',
+		'group_id',
 		'published',
 		'lat',
 		'lng',
@@ -16,7 +17,7 @@ class Point extends Model
 
 	public function designs()
 	{
-		return $this->belongsToMany('App\Design');
+		return $this->belongsTo('App\Design');
 	}
 
 	public function groups()

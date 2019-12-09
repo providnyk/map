@@ -25,6 +25,12 @@ class Design extends Model
 		dump($this->translatedAttributes);
 	}
 */
+	public function points()
+	{
+		return $this->hasMany('App\Point');
+	}
+
+
 /*
 	public function scopeFilter($query, $filters)
 	{

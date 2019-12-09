@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Point;
-use App\Filters\PointFilters;
-use App\Http\Requests\PointRequest;
+use App\Group;
+use App\Filters\GroupFilters;
+use App\Http\Requests\GroupRequest;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Controllers\ControllerAPI as Controller;
-use App\Http\Requests\PointApiRequest;
+use App\Http\Requests\GroupApiRequest;
 
-class PointController extends Controller
+class GroupController extends Controller
 {
 	/**
 	 * Prepare data for listing all of items
@@ -18,7 +18,7 @@ class PointController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function index(PointApiRequest $request, PointFilters $filters) : \Illuminate\Http\Response
+	public function index(GroupApiRequest $request, GroupFilters $filters) : \Illuminate\Http\Response
 	{
 		return $this->indexAPI($request, $filters);
 	}
@@ -29,7 +29,7 @@ class PointController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function store(PointRequest $request) : \Illuminate\Http\Response
+	public function store(GroupRequest $request) : \Illuminate\Http\Response
 	{
 #		dd($request->all());
 /*
@@ -49,11 +49,9 @@ $request->validate([
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(PointRequest $request, Point $item) : \Illuminate\Http\Response
+	public function update(GroupRequest $request, Group $item) : \Illuminate\Http\Response
 	{
-		$item->groups()->sync($request->group_ids);
-		$a_res = $this->updateAPI($request, $item);
-		return $a_res;
+		return $this->updateAPI($request, $item);
 	}
 
 	/**

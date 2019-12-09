@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Design;
+use App\Group;
 use App\Http\Controllers\ControllerUser as Controller;
 use Illuminate\Http\Request;
 
@@ -18,7 +19,8 @@ class PointController extends Controller
 	{
         \View::composer('admin.*', function ($view) {
             $view->with([
-                'designs' => Design::all(),
+                'designs'	=> Design::all()->sortBy('name'),
+                'groups'	=> Group::all()->sortBy('name'),
             ]);
         });
 		return parent::form($request);

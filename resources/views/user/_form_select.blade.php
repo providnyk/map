@@ -1,6 +1,7 @@
 @php
 $s_label = '';
 $s_rules = '';
+$b_many = (isset($many) ? $many : FALSE);
 if (!isset($id)) # direct/simple value
 	$s_id = $name;
 else # expected to be a foreign key *_id
@@ -39,12 +40,20 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 		$s_selected_title = $o_collection[$o_item->$s_id]->translate($app->getLocale())->title;
 	}
 	@endphp
+
 	<div class="col-lg-9 field-body">
-		<select name="{!! $s_id !!}" class="form-control select2-dropdown" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_label !!}" data-url="{!! route('api.'.$name.'.index') !!}">
+		<select name="{!! $s_id !!}{!! $b_many ? 's[]' : '' !!}" class="form-control select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_label !!}" data-url="{!! route('api.'.$name.'.index') !!}" {!! $b_many ? 'multiple' : '' !!}>
 			@if($s_selected_id)
-				<option value="{!! $o_item->$s_id !!}">{!! $s_selected_title !!}</option>
-			@else
-				<option value="">{!! $s_label !!}</option>
+				<option value="{!! $o_item->$s_id !!}">
+					{!! $s_selected_title !!}
+				</option>
+			@elseif ($b_many && $$name)
+				 @foreach($$name as $o_tmp)
+				 @php $b_selected = (in_array($o_tmp->id, $o_item->$name->pluck('id')->toArray())); @endphp
+				<option value="{!! $o_tmp->id !!}" {!! $b_selected ? 'selected="selected"' : '' !!}>
+					{!! $o_tmp->translate($app->getLocale())->title !!}
+				</option>
+				@endforeach
 			@endif
 		</select>
 	</div>
