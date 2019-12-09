@@ -1,23 +1,16 @@
 $(document).ready(() => {
 
-    moment().locale('{!! $app->getLocale() !!}');
+	moment().locale('{!! $app->getLocale() !!}');
 
-    // Ctrl-s pressed
-    $(document).keydown(function(e) {
-        if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
-        {
-            e.preventDefault();
-            $('form').submit();
-            return false;
-        }
-        return true;
-    });
-
-	let select = $('.select2');
-
-	select.select2({
-		minimumResultsForSearch: Infinity,
-		placeholder: select.data('placeholder'),
+	// Ctrl+s, Cmd+s pressed
+	$(document).keydown(function(e) {
+		if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
+		{
+			e.preventDefault();
+			$('form').submit();
+			return false;
+		}
+		return true;
 	});
 
 	$('form').on('submit', function(e){

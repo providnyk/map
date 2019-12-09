@@ -47,7 +47,7 @@ return [
 		'checkbox' => 'Toggle',
 		'enabled' => 'On',
 		'disabled' => 'Off',
-		'dropdown' => 'Choose',
+		'select' => 'Choose a',
 	],
 	'field' => [
 		'id' => [
@@ -56,7 +56,11 @@ return [
 		],
 		'title' => [
 			'label' => 'Title',
-			'rules' => 'required | max 191 chars',
+			'rules' => 'max 191 chars',
+		],
+		'description' => [
+			'label' => 'Description',
+			'rules' => 'max 191 chars',
 		],
 		'published' => [
 			'label' => 'Published',

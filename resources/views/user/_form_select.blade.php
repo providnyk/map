@@ -21,7 +21,7 @@ elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.r
 
 $b_required = (stripos($s_rules, 'required') !== FALSE);
 @endphp
-<div class="form-group row field" data-name="{!! $code !!}.{!! $name !!}">
+<div class="form-group row field" data-name="{!! $s_id !!}">
 	<div class="col-lg-3">
 		<label class="d-block float-left py-2 m-0">
 			{!! $s_label !!}
@@ -29,7 +29,17 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 		</label>
 		<span class="badge badge-primary tooltip-helper d-block float-right my-2 px-1" data-toggle="tooltip" title="{!! $s_rules !!}"><i class="icon-info3"></i></span>
 	</div>
+	@php
+	$o_collection = $$name->keyBy('id');
+	$s_selected_title = $o_collection[$o_item->$s_id]->translate($app->getLocale())->title;
+	@endphp
 	<div class="col-lg-9 field-body">
-		<input type="text" name="{!! $code !!}[{!! $name !!}]" class="form-control" placeholder="{!! trans('user/crud.hint.input') !!} {!! $s_label !!}" autocomplete="off" value="{{ $o_item->id ? $o_item->translate($code)->$name : '' }}">
+		<select name="{!! $s_id !!}" class="form-control select2-dropdown" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_label !!}" data-url="{!! route('api.'.$name.'.index') !!}">
+			@if($o_item->$s_id)
+				<option value="{!! $o_item->$s_id !!}">{!! $s_selected_title !!}</option>
+			@else
+				<option value="">{!! $s_label !!}</option>
+			@endif
+		</select>
 	</div>
 </div>

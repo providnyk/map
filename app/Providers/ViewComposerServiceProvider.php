@@ -29,8 +29,9 @@ class ViewComposerServiceProvider extends ServiceProvider
             }
 
             $view->with([
-                'localizations' => config('translatable.names'),
-                'current_route_name' => $current_route_name,
+                'localizations'			=> config('translatable.names'),
+                'current_route_name'	=> $current_route_name,
+                'settings'				=> app('App\Settings'),
             ]);
         });
 
@@ -59,7 +60,6 @@ class ViewComposerServiceProvider extends ServiceProvider
                 //'festival' => $festival,
                 #'promoting_partners' => Partner::promoting()->inRandomOrder()->take(4)->get(),
                 'texts_footer'          => $this->getTextsFooter(),
-                'settings'              => app('App\Settings')
             ]);
         });
 

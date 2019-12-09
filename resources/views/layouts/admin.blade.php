@@ -27,7 +27,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
     <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
         <div class="navbar-brand navbar-brand-md">
             <a href="{!! route('public.home') !!}" class="d-inline-block" target="_blank">
-                <span style="font-size: .8rem; color: #ff6a5f; font-weight: bold; font-family: Tahoma; letter-spacing: .1rem">CULTURESCAPES</span>
+                <span style="font-size: .8rem; color: #ff6a5f; font-weight: bold; font-family: Tahoma; letter-spacing: .1rem">{!! $settings->title !!}</span>
                 {{--<img src="/img/logo.png" alt="">--}}
             </a>
         </div>
@@ -310,8 +310,6 @@ $version = include_once( __DIR__ . '/../../../version.php');
 <script src="{!! asset('/admin/js/plugins/loaders/blockui.min.js') !!}"></script>
 <script src="{!! asset('/admin/js/plugins/ui/ripple.min.js') !!}"></script>
 
-@yield('js')
-
 <script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/notifications/sweet_alert.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/forms/styling/uniform.min.js') }}"></script>
@@ -319,8 +317,12 @@ $version = include_once( __DIR__ . '/../../../version.php');
 <script src="{{ asset('/admin/js/plugins/forms/styling/switchery.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
+
 <script src="{{ mix('/admin/js/app.js') }}"></script>
 <script src="{{ mix('/admin/js/common.js') }}"></script>
+
 @yield('script')
+@yield('js')
+
 </body>
 </html>

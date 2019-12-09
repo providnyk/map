@@ -8,6 +8,7 @@ class ControllerAPI		extends BaseController
 {
 	/**
 	 * Prepare data for listing all of items
+	 * this is also used by dynamic dropdowns
 	 * @param Request	$request		Data from request
 	 * @param Filters	$filters		Whatever filters applied
 	 *
@@ -16,7 +17,7 @@ class ControllerAPI		extends BaseController
 	public function indexAPI($request, $filters) : \Illuminate\Http\Response
 	{
 		$this->setEnv();
-		$o_items = $this->_env->s_model::orderBy('id', 'DESC')->filter($filters);
+		$o_items = $this->_env->s_model::orderBy('title')->filter($filters);
 		return response([
 			'draw'				=> $request->draw,
 			'data'				=> $o_items->get(),
@@ -46,7 +47,7 @@ class ControllerAPI		extends BaseController
 #        $design = Design::create($request->only($m->translatedAttributes));
 #		dd(config('translatable.locales'));
 #		dump($this->a_fields);
-		$design = $this->_env->s_model::create($request->only($this->a_fields));
+		$item = $this->_env->s_model::create($request->only($this->a_fields));
 #        $design->processImages($request, 'image');
 
 		return response([], 200);
@@ -58,11 +59,11 @@ class ControllerAPI		extends BaseController
 	 *
 	 * @return Response	json instance of
 	 */
-	public function updateAPI($request, $design) : \Illuminate\Http\Response
+	public function updateAPI($request, $item) : \Illuminate\Http\Response
 	{
 		$this->setEnv();
 		$this->_env->s_model::_addBoolsValuesFromForm($request);
-		$design->update($request->only($this->a_fields));
+		$item->update($request->only($this->a_fields));
 #        $design->update($request->only('enabled', 'uk', 'ru', 'en', 'de'));
 #        $design->processImages($request, 'image');
 
