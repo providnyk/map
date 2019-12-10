@@ -424,6 +424,7 @@ Route::group([
         'as' => 'home',
         'uses' => 'FestivalController@index']
     );
+
 /*
     Route::get('{festival_slug}', [
         'as' => 'festival.index',

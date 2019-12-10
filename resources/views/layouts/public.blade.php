@@ -28,7 +28,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
     @yield('css')
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146132445-1"></script>
+    {{--
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-146132445-1"></script>
     <script>
      window.dataLayer = window.dataLayer || [];
      function gtag(){dataLayer.push(arguments);}
@@ -36,6 +37,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
 
      gtag('config', 'UA-146132445-1');
     </script>
+    --}}
 
 </head>
 <body class="no-front">
@@ -234,13 +236,13 @@ $version = include_once( __DIR__ . '/../../../version.php');
     {{--@endforeach--}}
 {{--</div>--}}
 
-<div id="festival-menu-wrap" style="position: absolute; width: 100%; top: -200px;">
+{{--<div id="festival-menu-wrap" style="position: absolute; width: 100%; top: -200px;">
     <div class="container-fluid">
         <div class="d-flex align-items-center">
             <ul class="nav" id="festival-menu">
                 @foreach($festivals as $fest)
                     <li class="nav-item">
-                        <a class="nav-link {!! $fest->id === $festival->id ? 'active' : '' !!}" href="{{-- route('public.festival.index', $fest->slug) --}}">
+                        <a class="nav-link {!! $fest->id === $festival->id ? 'active' : '' !!}" href="{{ -- route('public.festival.index', $fest->slug) -- }}">
                             {{ $fest->name }}<br>{{ $fest->year }}
                         </a>
                     </li>
@@ -251,7 +253,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
             </div>
         </div>
     </div>
-</div>
+</div>--}}
 
 {{--<div id="festival-menu-wrap" id="festival-menu-wrap">--}}
     {{--<div class="container-fluid">--}}
@@ -273,13 +275,15 @@ $version = include_once( __DIR__ . '/../../../version.php');
     <div class="navi-wrap">
         <nav class="navbar navbar-expand-sm navbar-light">
             <!--a class="navbar-brand" href="{{-- route('public.festival.index', $festival->slug) --}}"><img src="/img/logo.png" height="46" width="113" alt="logo"/></a-->
-            <a class="navbar-brand" href="{{-- route('public.festival.index', $festival->slug) --}}">CULTURE<br>SCAPES</a>
+            <a class="navbar-brand" href="{{-- route('public.festival.index', $festival->slug) --}}">{!! $settings->title !!}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto" id="main-menu">
+            	@php
+            	/*
                     <li class="nav-item">
                         <a class="nav-link {{-- $current_route_name == 'public.festival.program' ? 'active' : '' --}}" href="{{-- route('public.festival.program', $festival->slug) --}}">
                             {{ trans('general.program') }}
@@ -312,6 +316,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
                             {{ trans('general.press') }}
                         </a>
                     </li>
+                */
+                @endphp
                 </ul>
                 <div class="form-inline my-2 my-lg-0">
                     <a href="{{ route('public.cabinet') }}" id="user-icon" class="theme-icon">
@@ -365,7 +371,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
 
 <!-- Bottom section -->
 
-@if($festival->translate(app()->getLocale())->file->url)
+{{--@if($festival->translate(app()->getLocale())->file->url)
     <div class="download-block red-block">
         <div class="container-fluid">
             <div class="row d-flex align-items-center">
@@ -389,9 +395,10 @@ $version = include_once( __DIR__ . '/../../../version.php');
             </div>
         </div>
     </div>
-@endif
+@endif--}}
 
-
+@php
+/*
 <div class="newsletter-subscr bg-grey">
     <div class="container-fluid">
         <div class="row d-flex align-items-center">
@@ -444,6 +451,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
         </div>
     </div>
 </div>
+*/
+@endphp
 
 <footer id="footer">
     <div class="container-fluid">
@@ -462,6 +471,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
             </div>
             <div class="col-lg-3 col-sm-6 col-12 footer-block-2">
                 <ul class="nav">
+                	@php
+                	/*
                     <li class="nav-item">
                         <a class="nav-link {{-- $current_route_name == 'public.page.about-us' ? 'active' : '' --}}" href="{{-- route('public.festival.about', $festival->slug) --}}">
                             {{ trans('general.about-us') }}
@@ -482,6 +493,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
                             {{ trans('general.impressum') }}
                         </a>
                     </li>
+                    */
+                    @endphp
                     {{-- <li class="nav-item">
                         <a class="nav-link disabled" href="#">Site notice</a>
                     </li> --}}
@@ -491,9 +504,11 @@ $version = include_once( __DIR__ . '/../../../version.php');
                 @if(isset($texts_footer['footer_contacts']))
                 {!! $texts_footer['footer_contacts'] !!}
                 @endif
-                <a class="noline" href="{!! $settings->domain !!}">&copy;&nbsp;{!! $settings->established !!}&nbsp;&mdash;&nbsp;<?php echo date('Y') ?></a>
+                <a class="noline" href="{!! $settings->domain !!}">&copy;&nbsp;{!! $settings->established !!}{{-- &nbsp;&mdash;&nbsp;< ? php echo date('Y') ? > --}}</a>
             </div>
             <div class="col-lg-3 col-sm-6 col-12 footer-block-4">
+            @php
+            /*
                 <h5 class="form-title">{{ trans('general.contact-us') }}</h5>
                 <form action="{{-- route('public.contact-us') --}}" method="POST" id="contact-form">
                     @csrf
@@ -502,6 +517,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
                     </div>
                     <button type="submit" class="btn btn-primary">{{ trans('general.write-us') }}</button>
                 </form>
+            */
+            @endphp
             </div>
         </div>
     </div>

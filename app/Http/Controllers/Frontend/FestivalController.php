@@ -36,6 +36,8 @@ class FestivalController extends Controller
     }
 
     public function index(Request $request){
+    	return redirect(route('login'));
+
         $a_res = $this->getEventsList($request);
 
         return view('public.app', [

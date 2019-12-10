@@ -81,7 +81,7 @@
 
                 <div class="tab-content section-tab" id="pressTabContent">
                     <div class="result-text-title">
-                        Sign in or create a new account to keep track of all CULTURESCAPES events you are interested in. You can also get all our news and updates.
+                        Sign in or create a new account.
                     </div>
                     <div class="tab-pane fade show active" id="sign-text-tab" role="tabpanel"
                          aria-labelledby="sign-tab">
