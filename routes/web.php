@@ -329,7 +329,7 @@ Route::group([
     Route::post('contact-us', ['as' => 'contact-us', 'uses' => 'GeneralController@contactUs']);
 */
     Route::group(['middleware' => 'auth'], function() {
-        Route::get('my-cs', ['as' => 'cabinet', 'uses' => 'ProfileController@cabinet']);
+        Route::get('miy-pr', ['as' => 'cabinet', 'uses' => 'ProfileController@cabinet']);
         Route::post('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@updateProfile']);
 /*
         Route::post('event/{event}/favorite', ['as' => 'event.favorite', 'uses' => 'ProgramController@favorite']);

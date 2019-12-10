@@ -65,7 +65,7 @@ class ViewComposerServiceProvider extends ServiceProvider
             ]);
         });
 
-        \View::composer(['public.partials.events-list', 'public.profile.my-cs', 'public.press.list'], function ($view) {
+        \View::composer(['public.partials.events-list', 'public.profile.miy-pr', 'public.press.list'], function ($view) {
 
 //            $festivals = \App\Festival::all();
 //

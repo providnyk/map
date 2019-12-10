@@ -31,7 +31,7 @@ return array (
   'email-me' => 'Email me',
   'email' => 'Email',
   'english' => 'English',
-  'event-location' => 'Event location',
+  'event-location' => 'locations',
   'event' => 'Event',
   'events-not-found' => 'Events not found',
   'events' => 'events',
@@ -81,6 +81,6 @@ return array (
   'team' => 'team',
   'user-profile' => 'user profile',
   'volume' => 'Publisher',
-  'want-recieve-updates' => 'I want to receive CULTURESCAPES news and program updates',
+  'want-recieve-updates' => 'I want to receive PROVIDNYK news and cities updates',
   'write-us' => 'write us'
 );

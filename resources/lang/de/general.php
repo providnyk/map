@@ -82,6 +82,6 @@ return array (
   'team' => 'Team',
   'user-profile' => 'Profil',
   'volume' => 'Verlag',
-  'want-recieve-updates' => 'Ich möchte CULTURESCAPES Neuigkeiten und Programmaktualisierungen erhalten',
+  'want-recieve-updates' => 'Ich möchte PROVIDNYK-Nachrichten und Städte-Updates erhalten',
   'write-us' => 'Senden'
 );

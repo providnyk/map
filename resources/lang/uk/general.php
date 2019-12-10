@@ -31,7 +31,7 @@ return array (
   'email-me' => 'Email me',
   'email' => 'Email',
   'english' => 'English',
-  'event-location' => 'Event location',
+  'event-location' => 'Locations',
   'event' => 'Event',
   'events-not-found' => 'Events not found',
   'events' => 'events',
@@ -81,6 +81,6 @@ return array (
   'team' => 'team',
   'user-profile' => 'user profile',
   'volume' => 'Publisher',
-  'want-recieve-updates' => 'I want to receive CULTURESCAPES news and program updates',
+  'want-recieve-updates' => 'Я хочу отримувати новини про оновлення PROVIDNYK та міста',
   'write-us' => 'write us'
 );

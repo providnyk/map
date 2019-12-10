@@ -58,12 +58,12 @@ class ProfileController extends Controller
             return $event->day;
         });
 
-        return view('public.profile.my-cs', [
+        return view('public.profile.miy-pr', [
             'user' => $user,
             'b_admin' => $user->checkAdmin(),
-            'subscribe' => Subscriber::where('email', $user->email)->exists(),
-            'event_dates' => $events,
-            'dates' => $this->getFavoriteDates(),
+            #'subscribe' => Subscriber::where('email', $user->email)->exists(),
+            #'event_dates' => $events,
+            #'dates' => $this->getFavoriteDates(),
             'cities' => $this->getCities()
         ]);
     }

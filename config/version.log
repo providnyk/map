@@ -1,3 +1,4 @@
+0.17.0+a344:4 user ADD rename my-cs into miy-pr
 0.16.0+a344:3 user ADD clean login page and re-route to login from home
 0.15.0+a344:2 user ADD better locale detection and switch
 0.14.0+a344:1 user ADD group form and link to point

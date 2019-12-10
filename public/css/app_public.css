@@ -5596,7 +5596,7 @@ a.nav-link {
     margin-top: 15px !important;
 }
 
-.my-cs-page .filter-content .right-sidebar {
+.miy-pr-page .filter-content .right-sidebar {
     margin-top: 0 !important;
 }
 
@@ -5639,7 +5639,7 @@ a.nav-link {
     display: block;
     position: relative;
     background: #fff;
-    max-width: 672px;
+    max-width: 772px;
     margin: 0 auto;
     padding: 22px 42px 38px 42px;
 }
@@ -5678,7 +5678,7 @@ a.nav-link {
 
 /****/
 .sign-in-page,
-.my-cs-page,
+.miy-pr-page,
 .about-us-page,
 .book-page,
 .event-page,
