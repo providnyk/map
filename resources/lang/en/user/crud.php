@@ -11,29 +11,12 @@ return [
 			'info'	=> 'Item Management',
 		],
 	],
-	'list' => [
-		'buttons' => [
-			'add' => 'Add new',
-			'reset' => 'Reset filters',
-			'apply' => 'Apply filter',
-			'delete' => 'Deleted selected'
-		],
-		'table' => [
-			'columns' => [
-				'id' => 'ID',
-				'name' => 'Name',
-				'url' => 'Url',
-				'created_at' => 'Created at',
-				'updated_at' => 'Updated at',
-				'actions' => 'Actions'
-			],
-		],
-	],
 	'filter' => [
 		'label' => 'Filter by',
-		'title' => 'title',
+		'title' => 'Title',
 		'created_at' => 'created date',
 		'updated_at' => 'updated date',
+		'perpage' => 'Entries per page',
 	],
 	'table' => [
 		'created_at' => 'Created',
@@ -55,8 +38,10 @@ return [
 			'rules' => 'required',
 		],
 		'title' => [
-			'label' => 'Title',
-			'rules' => 'max 191 chars',
+			'label'		=> 'Title',
+			'filterby'	=> 'Title',
+			'typein'	=> 'Title',
+			'rules'		=> 'max 191 chars',
 		],
 		'description' => [
 			'label' => 'Description',
@@ -72,9 +57,29 @@ return [
 		],
 	],
 	'button' => [
+		'add' => [
+			'label' => 'Add new',
+			'key' => 'ctrl+A',
+		],
+		'apply' => [
+			'label' => 'Search (Apply filter)',
+			'key' => 'ctrl+S',
+		],
+		'delete' => [
+			'label' => 'Delete selected',
+			'key' => 'ctrl+D',
+		],
+		'edit' => [
+			'label' => 'Edit this',
+			'key' => '',
+		],
+		'reset' => [
+			'label' => 'Blank (Reset) filters',
+			'key' => 'ctrl+B',
+		],
 		'submit' => [
 			'label' => 'Submit',
 			'key' => 'ctrl+S',
-		]
+		],
 	],
 ];

@@ -1,7 +1,8 @@
 $(document).ready(() => {
 
 	moment().locale('{!! $app->getLocale() !!}');
-
+/*
+    // https://css-tricks.com/snippets/javascript/javascript-keycodes/
 	// Ctrl+s, Cmd+s pressed
 	$(document).keydown(function(e) {
 		if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
@@ -12,7 +13,7 @@ $(document).ready(() => {
 		}
 		return true;
 	});
-
+*/
 	$('form').on('submit', function(e){
 		e.preventDefault();
 

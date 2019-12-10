@@ -3,9 +3,9 @@
 return [
     'names' =>
     [
-        'sgl'		=> 'Design',
-        'plr'		=> 'Designs',
-        'ico'		=> 'icon-design',
+        'sgl'   => 'Конструкція',
+        'plr'   => 'Конструкції',
+        'ico'	=> 'icon-design',
     ],
 	'field' => [
 		'title' => [

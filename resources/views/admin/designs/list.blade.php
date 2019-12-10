@@ -87,7 +87,7 @@ include(getcwd().'/../resources/views/user/crud.php');
                     {
                         sortable: false,
                         data: function(row){
-                            return `<a href="{!! route('admin.'.$s_category.'.form', [':id']) !!}" class="btn btn-sm btn-primary"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
+                            return `<a href="{!! route('admin.'.$s_category.'.form', [':id']) !!}" class="btn btn-sm btn-primary  tooltip-helper" data-toggle="tooltip" data-placement="top" title="{!! trans('user/crud.button.edit.label') !!} {!! trans('user/' . $s_category . '.names.sgl') !!}" data-trigger="hover"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
                         }
                     }
                 ],
@@ -109,35 +109,22 @@ include(getcwd().'/../resources/views/user/crud.php');
             <div class="container-fluid">
                 <div class="row filters px-4 pt-3">
 
-			        @include('user._filter_title')
+					@include('user._filter_text', ['name' => 'title'])
 
                     @include('admin.common.filters.created_at')
                     @include('admin.common.filters.updated_at')
 
                 </div>
                 <div class="row my-3 px-3">
-                    <div class="col-md-12 col-lg-4 col-xl-3 mb-2 lg-mb-0 text-left">
-                        <select class="form-control multi-select" id="page-length" data-placeholder="Entries per page">
-                            <option>20 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>40 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>60 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>80 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>100 {!! trans('app/common.entries_per_page') !!}</option>
-                        </select>
-                    </div>
-                    <div class="buttons col-md-12 col-lg-8 col-xl-9 text-right">
-                        <button type="button" class="btn btn-sm btn-success tooltip-helper" id="btn-add" data-toggle="tooltip" data-placement="top" title="add new" data-trigger="hover"><i class="icon-plus3"></i><span class="text"></span></button>
-                        <button type="button" class="btn btn-sm btn-info tooltip-helper" id="btn-reset" data-toggle="tooltip" data-placement="top" title="reset filters" data-trigger="hover"><i class="icon-reset"></i><span class="text"></span></button>
-                        <button type="button" class="btn btn-sm btn-primary tooltip-helper" id="btn-filter" data-toggle="tooltip" data-placement="top" title="apply filters" data-trigger="hover"><i class="icon-filter3"></i><span class="text"></span></button>
-                        <button type="button" class="btn btn-sm btn-danger tooltip-helper" id="btn-delete" data-toggle="tooltip" data-placement="top" title="delete selected" data-trigger="hover"><i class="icon-trash"></i><span class="text"></span></button>
-                    </div>
+					@include('user._filter_perpage')
+					@include('user._filter_buttons')
                 </div>
             </div>
             <table class="table table-bordered table-striped table-styled">
                 <thead>
                 <tr>
                     <th width="1px">{!! trans('user/crud.field.id.label') !!}</th>
-                    <th width="10%">{!! trans('user/crud.field.published.label') !!}</th>
+                    <th width="10%">{!! trans('user/crud.table.published') !!}</th>
                     <th width="10%">{!! trans('user/crud.field.title.label') !!}</th>
                     <th width="20%">{!! trans('user/crud.table.created_at') !!}</th>
                     <th width="20%">{!! trans('user/crud.table.updated_at') !!}</th>

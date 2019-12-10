@@ -321,8 +321,8 @@ $version = include_once( __DIR__ . '/../../../version.php');
 <script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
 
-<script src="{{ mix('/admin/js/app.js') }}"></script>
-<script src="{{ mix('/admin/js/common.js') }}"></script>
+<script src="{{ asset('/admin/js/app.js?v=' . $version->js) }}"></script>
+<script src="{{ asset('/admin/js/common.js?v=' . $version->js) }}"></script>
 
 @yield('script')
 @yield('js')
