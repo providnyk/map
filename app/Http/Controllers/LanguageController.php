@@ -8,7 +8,7 @@ class LanguageController extends Controller
 {
     public function changeLanguage(Request $request, $language)
     {
-        if (array_key_exists($language, config('translatable.locales'))) {
+        if (in_array($language, config('translatable.locales'))) {
             session(['lang' => $language]);
         }
         return back();

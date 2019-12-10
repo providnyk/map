@@ -22,7 +22,7 @@ class CreatePointsTable extends Migration {
             $table->unsignedInteger('design_id')->nullable();
             $table->boolean('published')->default(0);
             $table->decimal('lat', 9, 7)->nullable();
-            $table->decimal('lng', 9, 7)->nullable();
+            $table->decimal('lng', 10, 7)->nullable();
             $table->timestamps();
             $table->foreign('design_id')->references('id')->on('designs')->onDelete('set null');
         });

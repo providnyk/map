@@ -51,7 +51,7 @@ return array (
   'media-about-us' => 'Media about us',
   'more-to-see-events' => 'More to see events',
   'more-to-see' => 'More to see',
-  'my-festival' => 'My Providnyk',
+  'my-festival' => 'Мій Провідник',
   'new-password-again' => 'New Password Again',
   'new-password' => 'New password',
   'news' => 'News',
