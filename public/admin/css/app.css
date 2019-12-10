@@ -12539,7 +12539,7 @@ select[size] {
   position: relative;
   display: block;
   cursor: pointer;
-  padding: 0.875rem 1rem;
+  padding: 0.975rem 1rem;
   outline: 0;
   -webkit-transition: all ease-in-out 0.15s;
   transition: all ease-in-out 0.15s; }
@@ -13027,7 +13027,7 @@ select[size] {
 
 .dropdown-user .navbar-nav-link,
 .dropdown-user .navbar-nav-link > span {
-  padding-top: 0.4375rem;
+  padding-top: 0.5175rem;
   padding-bottom: 0.4375rem; }
 
 .dropdown-user .navbar-nav-link > span {
@@ -13039,8 +13039,9 @@ select[size] {
   vertical-align: top; }
 
 .img-flag {
-  height: 0.875rem;
-  margin-top: 0.18752rem;
+  height: 1.4rem;
+  /*height: 0.875rem;
+ margin-top: 0.18752rem;*/
   vertical-align: top;
   -ms-flex-item-align: start;
       align-self: flex-start; }

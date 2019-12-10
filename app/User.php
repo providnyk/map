@@ -76,7 +76,7 @@ class User extends Authenticatable
     public function checkAdmin($i_user_id = NULL)
     {
     	if (is_null($i_user_id)) $i_user_id = $this->id;
-    	$i_admin_role_id = 4;
+    	$i_admin_role_id = 1;
     	return in_array($i_admin_role_id, $this->getRoles($i_user_id)->pluck('id')->toArray());
     }
 

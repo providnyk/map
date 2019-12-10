@@ -49,13 +49,13 @@ class UserController extends Controller
         ], 200);
     }
 
-    public function update(UserUpdateRequest $request, User $user)
+    public function update(UserUpdateRequest $request, User $item)
     {
     	$data = $request->only('country_id', 'email', 'first_name', 'last_name', 'active');
     	$data['active'] = $request->active ? 1 : 0 ?? 0;
 
-        $user->update($data);
-        $user->syncRoles($request->role);
+        $item->update($data);
+        $item->syncRoles($request->role);
 
         return response([
             'message' => trans('messages.user_updated'),

@@ -22,6 +22,7 @@ $a_items = [
 		'points'		=> 'Point',
 		'groups'		=> 'Group',
 		'designs'		=> 'Design',
+		'users'			=> 'User',
 ];
 
 Route::group([
@@ -65,13 +66,6 @@ Route::group([
 	    Route::put($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
 	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
 	}
-
-
-
-
-
-
-
 
 /*
     // Static Texts API Routes
@@ -204,8 +198,9 @@ Route::group([
     Route::post('users', ['as' => 'users.store', 'uses' => 'UserController@store']);
     Route::post('users/{user}/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
     Route::post('users/delete', ['as' => 'users.delete', 'uses' => 'UserController@destroy']);
+*/
     Route::post('users/{id}/password-change', ['as' => 'users.password-change', 'uses' => 'UserController@passwordChange']);
-
+/*
     Route::post('file', ['as' => 'upload.file', 'uses' => 'UploadController@file']);
     Route::post('image', ['as' => 'upload.image', 'uses' => 'UploadController@image']);
 
