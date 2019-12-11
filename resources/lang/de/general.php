@@ -51,7 +51,7 @@ return array (
   'media-about-us' => 'Medienspiegel',
   'more-to-see-events' => 'Weitere Veranstaltungen zu sehen',
   'more-to-see' => 'Ausserdem',
-  'my-festival' => 'Mein Providnyk',
+  'my-area' => 'Mein Providnyk',
   'new-password-again' => 'Neues Passwort wiederholen',
   'new-password' => 'Neues Passwort',
   'news' => 'Aktuell',

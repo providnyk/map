@@ -10,14 +10,14 @@ return [
     'confirm_delete_confirm_button_text' => 'Yes, delete it!',
     'confirm_delete_cancel_button_text' => 'Cancel',
     'email' => [
-		'link_sent' => 'The activation link has been sent to the specified mailbox',
-		'subject' => 'Confirm registration on CULTURESCAPES',
+#		'link_sent' => 'The activation link has been sent to the specified mailbox',
+		'subject' => 'Confirm registration on PROVIDNYK',
 	    'confirm' => [
-			'title' => 'Confirm your email address on CULTURESCAPES',
+			'title' => 'Confirm your email address on PROVIDNYK',
 			'open' => 'Hello! We just need to verify that',
-			'close' => 'is your email address, and then we’ll help you login to you personal CULTURESCAPES cabinet.',
+			'close' => 'is your email address, and then we’ll help you login to you personal PROVIDNYK cabinet.',
 			'link' => 'Confirm Email Address',
-			'thanks' => 'Thanks for signing up to CULTURESCAPES.',
+			'thanks' => 'Thanks for signing up to PROVIDNYK.',
 	    ],
 	    'disclaimer' => [
 			'title' => 'Didn’t request this email?',

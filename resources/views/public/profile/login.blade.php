@@ -1,87 +1,37 @@
 @extends('layouts.public')
 
 @section('meta')
-    <title>{!! mb_strtoupper(trans('general.my-festival') . ' | ' . config('app.name')) !!}</title>
+    <title>{!! mb_strtoupper(trans('general.my-area') . ' | ' . config('app.name')) !!}</title>
 @endsection
 
-@section('script')
-<!-- http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm -->
-@if (Cookie::get( config('cookie-consent.cookie_name') ) !== null)
-<script src="https://www.google.com/recaptcha/api.js?render={{ config('services.google.recaptcha.key') }}"></script>
-@endif
-<script>
-    reCAPTCHA_site_key = '{{ config('services.google.recaptcha.key') }}';
-    $(document).ready(() => {
-
-        function reCAPTCHA_execute () {
-          grecaptcha.execute(reCAPTCHA_site_key, {action: 'login'}).then(function(token) {
-             $('[name="g-recaptcha-response"]').val(token);
-            }, function (reason) {
-              console.log(reason);
-          });
-        }
-
-        if (typeof grecaptcha !== 'undefined' && typeof reCAPTCHA_site_key !== 'undefined') {
-            grecaptcha.ready(reCAPTCHA_execute);
-            setInterval(reCAPTCHA_execute, 1000 * 60 * 2); // seconds 1 * 60 = minutes 1 * 2
-        }
-
-        $('#register-form').on('submit', (e) => {
-            e.preventDefault();
-
-            let form = $(e.currentTarget);
-
-            $.ajax({
-                'type': 'post',
-                'data': form.serialize(),
-                'url': form.attr('action'),
-                'success': (data) => {
-                    swal({
-                        title: 'Success',
-                        text: data.message,
-                        type: 'success',
-                        confirmButtonText: 'Ok',
-                        confirmButtonClass: 'btn btn-primary',
-                    });
-                },
-                'error': (xhr) => {
-                    let response = xhr.responseJSON;
-
-                    form.find('.error').remove();
-
-                    $.each(response.errors, (field, message) => {
-                        form.find(`[data-field="${field}"] .field-body`).append($('<div class="error pt-2">').html(message));
-                    });
-                }
-            });
-        });
-    });
-</script>
-@endsection
+@include('public.partials._profile', ['s_id' => '#register-form, #sign-in-form'])
 
 @section('content')
+
 <div class="content sign-in-page">
     <div class="container-fluid">
         <div class="single-form-block-wrap">
             <div class="single-form-block">
                 <div class="title-box">
-                    <h1 class="title-block">{{ trans('general.my-festival') }}</h1>
+                    <h1 class="title-block">
+                    	{{ trans('general.my-area') }}
+                    </h1>
                     <ul class="nav nav-tabs" id="pressTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="sign-tab" data-toggle="tab" href="#sign-text-tab"
                                role="tab"
-                               aria-controls="sign-text-tab" aria-selected="true">{{ trans('user/auth.text.signin') }}</a>
+                               aria-controls="sign-text-tab" aria-selected="true">{{ trans('user/form.text.signin') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="register-tab" data-toggle="tab" href="#register-text-tab" role="tab"
-                               aria-controls="register-text-tab" aria-selected="false">{!! trans('user/auth.text.signup') !!}</a>
+                               aria-controls="register-text-tab" aria-selected="false">{!! trans('user/form.text.signup') !!}</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="tab-content section-tab" id="pressTabContent">
                     <div class="result-text-title">
-                        {{ trans('user/auth.text.hint') }}
+                        {{ trans('user/form.text.hint') }}
                     </div>
                     <div class="tab-pane fade show active" id="sign-text-tab" role="tabpanel"
                          aria-labelledby="sign-tab">
@@ -89,21 +39,21 @@
                             <div class="inner">
                                 <form action="/login" method="POST" class="form-page" id="sign-in-form">
                                     @csrf
-                                    <div class="form-group row">
+                                    <div class="form-group row field" data-field="email">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="sign_email">{!! trans('user/auth.field.email') !!}</label>
+                                            <label for="sign_email">{!! trans('user/form.field.email') !!}</label>
                                         </div>
-                                        <div class="col-md-9 col-sm-8 col-12 control-wrap">
+                                        <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="text" class="form-control" id="sign_email"
                                                    placeholder="" name="email">
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
+                                    <div class="form-group row field" data-field="password">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="sign_pass">{!! trans('user/auth.field.password') !!}</label>
+                                            <label for="sign_pass">{!! trans('user/form.field.password') !!}</label>
                                         </div>
-                                        <div class="col-md-9 col-sm-8 col-12 control-wrap">
+                                        <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="password" class="form-control" id="sign_pass"
                                                    placeholder="" name="password">
                                         </div>
@@ -111,14 +61,18 @@
 
                                     <div class="sub-text-wrap row">
                                         <div class="offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
-                                            <a href="{!! route('password.reset-form') !!}">{!! trans('user/auth.button.forgot') !!}</a>
+                                            <a href="{!! route('password.reset-form') !!}">{!! trans('user/form.button.forgot') !!}</a>
                                         </div>
                                     </div>
+
+                                    <input type="hidden" id="recap_response_signin" placeholder="" name="g-recaptcha-response">
+
+                                    <div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
 
                                     <div class="btn-wrap row form-group">
                                         <div class="btn-inner offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
                                             <button type="submit" class="btn btn-primary">
-                                                {!! trans('user/auth.button.signin') !!}
+                                                {!! trans('user/form.button.signin') !!}
                                             </button>
                                         </div>
                                     </div>
@@ -135,7 +89,7 @@
 {{--
                                     <div class="form-group row field" data-field="first_name">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="register_first_name">{!! trans('user/auth.field.name') !!}</label>
+                                            <label for="register_first_name">{!! trans('user/form.field.name') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="text" class="form-control" id="register_first_name" placeholder="" name="first_name">
@@ -144,7 +98,7 @@
 
                                     <div class="form-group row field" data-field="last_name">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="register_last_name">{!! trans('user/auth.field.last') !!}</label>
+                                            <label for="register_last_name">{!! trans('user/form.field.last') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="text" class="form-control" id="register_last_name" placeholder="" name="last_name">
@@ -153,7 +107,7 @@
 --}}
                                     <div class="form-group row field" data-field="email">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="email">{!! trans('user/auth.field.email') !!}</label>
+                                            <label for="email">{!! trans('user/form.field.email') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="email" class="form-control"  placeholder="" name="email">
@@ -162,7 +116,7 @@
 
                                     <div class="form-group row field" data-field="password">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="password">{!! trans('user/auth.field.password') !!}</label>
+                                            <label for="password">{!! trans('user/form.field.password') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="password" class="form-control" id="password" placeholder="" name="password">
@@ -171,7 +125,7 @@
 
                                     <div class="form-group row field" data-field="password_confirmation">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="password_confirmation">{!! trans('user/auth.field.confirm') !!}</label>
+                                            <label for="password_confirmation">{!! trans('user/form.field.password_confirmation') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="password" class="form-control" id="password_confirmation" placeholder="" name="password_confirmation">
@@ -194,14 +148,14 @@
                                         </div>
                                     </div>
 --}}
-                                    <input type="hidden" id="g_recaptcha_response" placeholder="" name="g-recaptcha-response">
+                                    <input type="hidden" id="recap_response_signup" placeholder="" name="g-recaptcha-response">
 
                                     <div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
 
                                     <div class="btn-wrap row form-group">
                                         <div class="btn-inner offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
                                             <button type="submit" class="btn btn-primary">
-                                                {!! trans('user/auth.button.signup') !!}
+                                                {!! trans('user/form.button.signup') !!}
                                             </button>
                                         </div>
                                     </div>

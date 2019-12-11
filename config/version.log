@@ -1,3 +1,4 @@
+0.21.0+a345:2 user ADD signin,up,out refactoring
 0.20.0+a345:1 user ADD missing translations related to signin
 0.19.0+a344:6 user ADD unify list filters and tables
 0.18.0+a344:5 user ADD profile and management
@@ -22,3 +23,4 @@
 0.01.0+a341:1 user ADD save design item with translation
 
 Я дозволяю Організатору Програми Fishka, як Володільцю персональних даних, здійснювати обробку моїх персональних даних згідно з умовами надання згоди на обробку персональних даних і погоджуюся з усіма https://myfishka.com/rules Правилами Програми.
+PR, logout resets locale

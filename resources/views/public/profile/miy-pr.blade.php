@@ -358,7 +358,7 @@
 <div class="content miy-pr-page" id="test">
 	<div class="container-fluid">
 		<div class="title-box">
-			<h1 class="title-block">{{ trans('general.my-festival') }}</h1>
+			<h1 class="title-block">{{ trans('general.my-area') }}</h1>
 			<ul class="nav nav-tabs" id="pressTab" role="tablist">
 				<li class="nav-item">
 					<a class="nav-link" id="bookmarks-tab" data-toggle="tab" href="#bookmarks-text-tab" role="tab" aria-controls="bookmarks-text-tab" aria-selected="false">{{ trans('general.bookmarks') }}</a>
@@ -376,7 +376,7 @@
 						@csrf
 						<button class="nav-link">
 							<i class="icon-switch2"></i>
-							{!! trans('user/auth.button.signout') !!}
+							{!! trans('user/form.button.signout') !!}
 						</button>
 					</form>
 				</li>

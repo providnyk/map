@@ -1,56 +1,10 @@
 @extends('layouts.public')
 
 @section('meta')
-    <title>{!! mb_strtoupper(' reset password | ' . config('app.name')) !!}</title>
+    <title>{!! mb_strtoupper(trans('user/form.text.reset') . ' | ' . config('app.name')) !!}</title>
 @endsection
 
-@section('script')
-    <script>
-
-        $(document).ready(() => {
-
-            $('#password-reset-form').on('submit', (e) => {
-
-                e.preventDefault();
-
-                let form = $(e.currentTarget);
-
-                $.ajax({
-                    'url': form.attr('action'),
-                    'type': 'post',
-                    'data': form.serialize(),
-                    'always': () => {
-                        form.find('error').remove();
-                    },
-                    'success': (data) => {
-
-                        swal({
-                            title: 'Success',
-                            text: data.message,
-                            type: 'success',
-                            confirmButtonText: 'Ok',
-                            confirmButtonClass: 'btn btn-primary',
-                        });
-
-                    },
-                    'error': (xhr, status) => {
-
-                        let response = xhr.responseJSON;
-
-                        $.each(response.errors, (field, message) => {
-                            form.find(`[data-field=${field}] .field-body`).append($('<div class="error pt-2">').html(message));
-                        });
-
-                        console.log(response);
-                    }
-                });
-
-            });
-
-        });
-
-    </script>
-@endsection
+@include('public.partials._profile', ['s_id' => '#password-reset-form'])
 
 @section('content')
 
@@ -60,7 +14,7 @@
             <div class="single-form-block">
                 <div class="title-box">
                     <h1 class="w-100">
-                    	{!! trans('user/auth.text.reset') !!}
+                    	{!! trans('user/form.text.reset') !!}
                     </h1>
                 </div>
 
@@ -73,7 +27,7 @@
                                     <div class="form-group row field" data-field="email">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
                                             <label for="sign_email">
-                                            	{!! trans('user/auth.field.email') !!}
+                                            	{!! trans('user/form.field.email') !!}
                                         	</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
@@ -84,7 +38,7 @@
                                     <div class="btn-wrap row form-group">
                                         <div class="btn-inner offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
                                             <button type="submit" class="btn btn-primary">
-                                                {!! trans('user/auth.button.reset') !!}
+                                                {!! trans('user/form.button.reset') !!}
                                             </button>
                                         </div>
                                     </div>

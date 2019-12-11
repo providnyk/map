@@ -14,6 +14,8 @@ $(document).ready(() => {
 		return true;
 	});
 */
+	// TODO: refactoring
+	// loook at _profile.blade.php
 	$('form').on('submit', function(e){
 		e.preventDefault();
 
