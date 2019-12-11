@@ -1,5 +1,6 @@
+0.23.0+a345:4 user ADD profile form
+ADD keep selected locale after logout
 0.22.0+a345:3 user ADD reference new tranlation for signout
-FIX logout resets locale
 0.21.0+a345:2 user ADD signin,up,out refactoring
 0.20.0+a345:1 user ADD missing translations related to signin
 0.19.0+a344:6 user ADD unify list filters and tables

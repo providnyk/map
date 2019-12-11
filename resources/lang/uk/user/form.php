@@ -16,6 +16,7 @@ return [
 		'new'						=> 'Новий пароль',
 		'password'					=> 'Пароль',
 		'password_confirmation'		=> 'Підтвердження паролю',
+		'repeat'					=> 'Повторення нового паролю',
 		'g-recaptcha-response'		=> 'Google reCaptcha',
 	],
 	'button' => [
