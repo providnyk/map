@@ -358,9 +358,9 @@ $version = include_once( __DIR__ . '/../../../version.php');
                                 <path d="M32.7146 31.3171L24.6933 23.2976C26.845 20.8244 28.1477 17.5976 28.1477 14.0707C28.1477 6.30732 21.8317 0 14.0739 0C6.30872 0 0 6.31464 0 14.0707C0 21.8268 6.31603 28.1415 14.0739 28.1415C17.6015 28.1415 20.829 26.839 23.3027 24.6878L31.324 32.7073C31.5143 32.8976 31.7705 33 32.0193 33C32.2681 33 32.5243 32.9049 32.7146 32.7073C33.0951 32.3268 33.0951 31.6976 32.7146 31.3171ZM1.96873 14.0707C1.96873 7.39756 7.3992 1.97561 14.0665 1.97561C20.7412 1.97561 26.1643 7.40488 26.1643 14.0707C26.1643 20.7366 20.7412 26.1732 14.0665 26.1732C7.3992 26.1732 1.96873 20.7439 1.96873 14.0707Z" fill="#0E293C"/>
                             </svg>
                         </div>
-                        <input type="text" class="form-control" id="search-text" placeholder="{!! $settings->title !!} Search" name="q" value="{{ app('request')->input('q') }}">
+                        <input type="text" class="form-control" id="search-text" placeholder="{{ trans('general.search-hint') }} {!! $settings->title !!}" name="q" value="{{ app('request')->input('q') }}">
                     </div>
-                    <button type="submit" class="btn btn-primary">{{ trans('general.search') }}</button>
+                    <button type="submit" class="btn btn-primary">{{ trans('general.search-btn') }}</button>
                 </form>
             </div>
         </div>

@@ -70,18 +70,18 @@
                         <li class="nav-item">
                             <a class="nav-link active" id="sign-tab" data-toggle="tab" href="#sign-text-tab"
                                role="tab"
-                               aria-controls="sign-text-tab" aria-selected="true">{{ trans('general.sign-in') }}</a>
+                               aria-controls="sign-text-tab" aria-selected="true">{{ trans('user/auth.text.signin') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="register-tab" data-toggle="tab" href="#register-text-tab" role="tab"
-                               aria-controls="register-text-tab" aria-selected="false">{{ trans('general.register') }}</a>
+                               aria-controls="register-text-tab" aria-selected="false">{!! trans('user/auth.text.signup') !!}</a>
                         </li>
                     </ul>
                 </div>
 
                 <div class="tab-content section-tab" id="pressTabContent">
                     <div class="result-text-title">
-                        Sign in or create a new account.
+                        {{ trans('user/auth.text.hint') }}
                     </div>
                     <div class="tab-pane fade show active" id="sign-text-tab" role="tabpanel"
                          aria-labelledby="sign-tab">
@@ -91,7 +91,7 @@
                                     @csrf
                                     <div class="form-group row">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="sign_email">{{ trans('general.email') }}</label>
+                                            <label for="sign_email">{!! trans('user/auth.field.email') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap">
                                             <input type="text" class="form-control" id="sign_email"
@@ -101,7 +101,7 @@
 
                                     <div class="form-group row">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="sign_pass">{{ trans('general.password') }}</label>
+                                            <label for="sign_pass">{!! trans('user/auth.field.password') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap">
                                             <input type="password" class="form-control" id="sign_pass"
@@ -109,16 +109,17 @@
                                         </div>
                                     </div>
 
+                                    <div class="sub-text-wrap row">
+                                        <div class="offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
+                                            <a href="{!! route('password.reset-form') !!}">{!! trans('user/auth.button.forgot') !!}</a>
+                                        </div>
+                                    </div>
+
                                     <div class="btn-wrap row form-group">
                                         <div class="btn-inner offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ trans('general.sign-in') }}
+                                                {!! trans('user/auth.button.signin') !!}
                                             </button>
-                                        </div>
-                                    </div>
-                                    <div class="sub-text-wrap row">
-                                        <div class="offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
-                                            <a href="{!! route('password.reset-form') !!}">{{ trans('general.password-forgot') }}</a>
                                         </div>
                                     </div>
                                 </form>
@@ -131,9 +132,10 @@
                             <div class="inner">
                                 <form action="{!! route('register') !!}" method="POST" class="form-page" id="register-form">
                                     @csrf
+{{--
                                     <div class="form-group row field" data-field="first_name">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="register_first_name">{{ trans('general.first-name') }}</label>
+                                            <label for="register_first_name">{!! trans('user/auth.field.name') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="text" class="form-control" id="register_first_name" placeholder="" name="first_name">
@@ -142,15 +144,16 @@
 
                                     <div class="form-group row field" data-field="last_name">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="register_last_name">{{ trans('general.last-name') }}</label>
+                                            <label for="register_last_name">{!! trans('user/auth.field.last') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="text" class="form-control" id="register_last_name" placeholder="" name="last_name">
                                         </div>
                                     </div>
+--}}
                                     <div class="form-group row field" data-field="email">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="email">{{ trans('general.email') }}</label>
+                                            <label for="email">{!! trans('user/auth.field.email') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="email" class="form-control"  placeholder="" name="email">
@@ -159,7 +162,7 @@
 
                                     <div class="form-group row field" data-field="password">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="password">{{ trans('general.password') }}</label>
+                                            <label for="password">{!! trans('user/auth.field.password') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="password" class="form-control" id="password" placeholder="" name="password">
@@ -168,13 +171,13 @@
 
                                     <div class="form-group row field" data-field="password_confirmation">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
-                                            <label for="password_confirmation">{{ trans('general.password-confirmation') }}</label>
+                                            <label for="password_confirmation">{!! trans('user/auth.field.confirm') !!}</label>
                                         </div>
                                         <div class="col-md-9 col-sm-8 col-12 control-wrap field-body">
                                             <input type="password" class="form-control" id="password_confirmation" placeholder="" name="password_confirmation">
                                         </div>
                                     </div>
-
+{{--
                                     <div class="form-group row field" data-field="register_country">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
                                             <label for="register_country">{{ trans('general.country') }}</label>
@@ -190,7 +193,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+--}}
                                     <input type="hidden" id="g_recaptcha_response" placeholder="" name="g-recaptcha-response">
 
                                     <div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
@@ -198,7 +201,7 @@
                                     <div class="btn-wrap row form-group">
                                         <div class="btn-inner offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
                                             <button type="submit" class="btn btn-primary">
-                                                {{ trans('general.create-account') }}
+                                                {!! trans('user/auth.button.signup') !!}
                                             </button>
                                         </div>
                                     </div>

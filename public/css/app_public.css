@@ -5659,6 +5659,7 @@ a.nav-link {
 }
 
 .single-form-block .sub-text-wrap {
+	padding-top: 33px;
     text-align: center;
     font-size: 14px;
 }

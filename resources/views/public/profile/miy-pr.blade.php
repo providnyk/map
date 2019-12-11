@@ -374,7 +374,10 @@
 				<li class="nav-item">
 					<form action="{!! route('logout') !!}" method="post">
 						@csrf
-						<button class="nav-link"><i class="icon-switch2"></i> {{ trans('general.log-out') }}</button>
+						<button class="nav-link">
+							<i class="icon-switch2"></i>
+							{!! trans('user/auth.button.signout') !!}
+						</button>
 					</form>
 				</li>
 			</ul>
@@ -483,7 +486,7 @@
 									@csrf
 									<div class="form-group row">
 										<div class="col-md-3 col-sm-4 col-12 label-wrap">
-											<label for="profile_first_name">{{ trans('general.first-name') }}</label>
+											<label for="profile_first_name">{!! trans('user/auth.field.name') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
 											<input type="text" class="form-control" id="profile_first_name" placeholder="Piter Smith" name="first_name" value="{{ old('first_name') ? old('first_name') : $user->first_name }}">
@@ -492,7 +495,7 @@
 
 									<div class="form-group row">
 										<div class="col-md-3 col-sm-4 col-12 label-wrap">
-											<label for="profile_last_name">{{ trans('general.last-name') }}</label>
+											<label for="profile_last_name">{!! trans('user/auth.field.last') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
 											<input type="text" class="form-control" id="profile_last_name" placeholder="" name="last_name" value="{{ old('last_name') ? old('last_name') : $user->last_name }}">
@@ -500,7 +503,7 @@
 									</div>
 									<div class="form-group row">
 										<div class="col-md-3 col-sm-4 col-12 label-wrap">
-											<label for="profile_email">{{ trans('general.email') }}</label>
+											<label for="profile_email">{!! trans('user/auth.field.email') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
 											<input type="email" class="form-control" id="profile_email" name="email" placeholder="" value="{{ old('email') ? old('email') : $user->email }}">
@@ -521,7 +524,7 @@
 									</div> --}}
 									<div class="form-group row">
 										<div class="col-md-3 col-sm-4 col-12 label-wrap">
-											<label for="profile_old_pass">{{ trans('general.old-password') }}</label>
+											<label for="profile_old_pass">{!! trans('user/auth.field.old') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
 											<input type="password" class="form-control" id="profile_old_pass" name="old_password">
@@ -529,7 +532,7 @@
 									</div>
 									<div class="form-group row">
 										<div class="col-md-3 col-sm-4 col-12 label-wrap">
-											<label for="profile_new_pass">{{ trans('general.new-password') }}</label>
+											<label for="profile_new_pass">{!! trans('user/auth.field.new') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
 											<input type="password" class="form-control" id="profile_new_pass" name="password">
@@ -537,7 +540,7 @@
 									</div>
 									<div class="form-group row">
 										<div class="col-md-3 col-sm-4 col-12 label-wrap">
-											<label for="profile_again_pass">{{ trans('general.new-password-again') }}</label>
+											<label for="profile_again_pass">{!! trans('user/auth.field.repeat') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
 											<input type="password" class="form-control" id="profile_again_pass" name="password_confirmation">

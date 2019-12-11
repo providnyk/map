@@ -2,10 +2,8 @@
 
 namespace App\Providers;
 
-#use App\Festival;
 use App\Text;
 use App\Traits\LocaleTrait;
-#use App\Partner;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,69 +36,9 @@ class ViewComposerServiceProvider extends ServiceProvider
         });
 
         \View::composer('public.*', function ($view) {
-//           $festivals = Festival::orderBy('active', 'desc')->get();
-//
-//            dd($festivals);
-//
-//            if ($festivals->isNotEmpty()) {
-//                $festival = $festivals->pull($festivals->search(function($festival) {
-//                    $festival_slug = request()->festival_slug;
-//
-//                    if ($festival_slug) {
-//                        return $festival->slug == $festival_slug;
-//                    }
-//
-//                    return $festival->active == 1;
-//                }));
-//            } else {
-//                $festival = new \App\Festival;
-//            }
-#                'promoting_partners' => Festival::getPromotingPartners(),
-
             $view->with([
-                //'festivals' => $festivals,
-                //'festival' => $festival,
-                #'promoting_partners' => Partner::promoting()->inRandomOrder()->take(4)->get(),
                 'texts_footer'          => $this->getTextsFooter(),
             ]);
-        });
-
-        \View::composer(['public.partials.events-list', 'public.profile.miy-pr', 'public.press.list'], function ($view) {
-
-//            $festivals = \App\Festival::all();
-//
-//            if ($festivals->isNotEmpty()) {
-//                $festival = $festivals->pull($festivals->search(function($festival) {
-//                    $festival_slug = request()->festival_slug;
-//
-//                    if ($festival_slug) {
-//                        return $festival->slug == $festival_slug;
-//                    }
-//
-//                    return $festival->active == 1;
-//                }));
-//
-//                $holding_dates = [
-//                    'min' => $festival->holdings()->min('date_from'),
-//                    'max' => $festival->holdings()->max('date_from')
-//                ];
-//            } else {
-//                $festival = new \App\Festival;
-//
-//                $holding_dates = [
-//                    'min' => null,
-//                    'max' => null
-//                ];
-//            }
-
-            //dd($festival->current()->toArray());
-
-            $this->_setCategoriesToView($view, 'events');
-
-        });
-
-        \View::composer(['public.press.list'], function ($view) {
-            $this->_setCategoriesToView($view, 'presses');
         });
     }
 
@@ -121,30 +59,6 @@ class ViewComposerServiceProvider extends ServiceProvider
             $texts[$text->codename] = $text->description;
         }
         return $texts;
-    }
-
-    /**
-    * Send categories and their translations directly to the view
-    *
-    * @param view $view current view
-    * @param String $s_cat_type category slug
-    *
-    * @return void
-    */
-    private function _setCategoriesToView($view, $s_cat_type) {
-        $categories = DB::table('categories as c')
-            ->select('c.*', 'ct.name', 'ct.slug')
-            ->join('category_translations as ct', 'c.id', '=', 'ct.category_id')
-            ->where([
-                'ct.locale' => app()->getLocale(),
-                'c.type'    => $s_cat_type
-            ])
-            ->groupBy('c.id')
-            ->orderBy('ct.name');
-
-        $view->with([
-            $s_cat_type . '_categories' => $categories->get()
-        ]);
     }
 
     /**
