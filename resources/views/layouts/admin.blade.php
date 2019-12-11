@@ -193,7 +193,10 @@ $version = include_once( __DIR__ . '/../../../version.php');
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{!! route('public.cabinet') !!}" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
+                    <a href="{!! route('public.cabinet') !!}" class="dropdown-item">
+                    	<i class="icon-user-plus"></i>
+                    	{!! trans('general.user-profile') !!}
+                	</a>
                     {{--
                     <a href="#" class="dropdown-item"><i class="icon-coins"></i> My balance</a>
                     <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-indigo-400 ml-auto">58</span></a>
@@ -204,7 +207,10 @@ $version = include_once( __DIR__ . '/../../../version.php');
                     --}}
 					<form action="{!! route('logout') !!}" method="post">
 						@csrf
-						<button class="dropdown-item"><i class="icon-switch2"></i> {{ trans('general.log-out') }}</button>
+						<button class="dropdown-item">
+							<i class="icon-switch2"></i>
+							{!! trans('user/form.button.signout') !!}
+						</button>
 					</form>
 
                 </div>
