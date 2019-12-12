@@ -51,7 +51,7 @@
 
                 $.ajax({
                     url: form.attr('action'),
-                    type: 'put',
+                    type: form.attr('method'),
                     data: data
                 }).done((data, status, xhr) => {
 
@@ -113,7 +113,7 @@
                 <div class="tab-content">
                     <div class="tab-pane px-2 active" id="main">
                         <legend class="text-uppercase font-size-sm font-weight-bold">{!! trans('app/users.form.legends.main') !!}</legend>
-                        <form class="form-validate-jquery" action="{!! $user->id ? route('api.users.update', $user->id) : route('api.users.store') !!}" method="put">
+                        <form class="form-validate-jquery" action="{!! $user->id ? route('api.users.update', $user->id) : route('api.users.store') !!}" method="post">
                             <fieldset class="mb-3">
                                 <div class="form-group row field" data-name="first_name">
                                     <div class="col-lg-3">

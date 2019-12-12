@@ -30,7 +30,7 @@ if (isset($$s_category))
 	                            : route('admin.' . $s_category . '.form')
 	                        );
 	$s_form_method      = ($o_item->id
-	                            ? 'put'
+	                            ? 'post'
 	                            : 'post'
 	                        );
 

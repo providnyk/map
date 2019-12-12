@@ -63,7 +63,7 @@ Route::group([
 	{
 	    Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_model . 'Controller@index']);
 	    Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_model . 'Controller@store']);
-	    Route::put($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
+	    Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
 	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
 	}
 
@@ -325,6 +325,7 @@ Route::group([
 */
     Route::group(['middleware' => 'auth'], function() {
         Route::get('miy-pr', ['as' => 'cabinet', 'uses' => 'ProfileController@cabinet']);
+        Route::post('miy-pr', ['as' => 'profile.update', 'uses' => 'ProfileController@updateProfile']);
         Route::post('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@updateProfile']);
 /*
         Route::post('event/{event}/favorite', ['as' => 'event.favorite', 'uses' => 'ProgramController@favorite']);
