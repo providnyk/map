@@ -16,6 +16,7 @@ return [
 		'new'						=> 'New password',
 		'password'					=> 'Password',
 		'password_confirmation'		=> 'Password confirmation',
+		'repeat'					=> 'Repeat new password',
 		'g-recaptcha-response'		=> 'Google reCaptcha',
 	],
 	'button' => [

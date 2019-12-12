@@ -23,7 +23,7 @@ class ControllerUser	extends BaseController
 		]);
 
 		return view('admin.'.$this->_env->s_plr.'.form', [
-			$this->_env->s_sgl		=> $fn_find($request->id),
+			$this->_env->s_plr		=> $fn_find($request->id),
 		]);
 	}
 

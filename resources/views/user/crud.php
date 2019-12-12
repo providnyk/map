@@ -17,9 +17,9 @@ $s_list_name        = $s_cat_plr_u1 . ' ' . trans('common/form.breadcrumbs.list'
 
 $s_title         	= trans('user/' . $s_category . '.names.plr');
 
-if (isset($$s_cat_sgl_low))
+if (isset($$s_category))
 {
-	$o_item         	= $$s_cat_sgl_low;
+	$o_item         	= $$s_category;
 	$s_page_action      = ($o_item->id
 	                            ? trans('common/form.actions.edit')
 	                            : trans('common/form.actions.create')
