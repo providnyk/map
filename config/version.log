@@ -1,3 +1,4 @@
+0.26.0+a346:4 user ADD better uk L10N dupport for forms and breadcrumbs
 0.25.0+a346:3 user ADD form field with l10n support
 0.24.0+a346:2 user ADD when saving forms use post instead of put
 0.23.1+a346:1 user FIX vendor versioning dependencies and form editing for uk locale

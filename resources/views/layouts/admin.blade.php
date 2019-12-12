@@ -258,7 +258,6 @@ $version = include_once( __DIR__ . '/../../../version.php');
                             <h5><span class="font-weight-semibold">@yield('title-icon')@yield('title')</span></h5>
                         </div>
                     </div>
-
                     @yield('breadcrumbs')
                 </div>
             </div>

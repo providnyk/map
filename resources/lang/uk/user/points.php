@@ -5,6 +5,9 @@ return [
     [
         'sgl'   => 'Точка',
         'plr'   => 'Точки',
+		'list'	=> 'точок',
+		'form'	=> 'точки',
+		'saved'	=> 'точку',
         'ico'	=> 'icon-location3',
     ],
 	'field' => [

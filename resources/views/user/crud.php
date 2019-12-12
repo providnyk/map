@@ -13,7 +13,7 @@ $s_cat_plr_up       = mb_strtoupper($s_cat_plr_low);
 $s_cat_plr_u1       = ucfirst($s_cat_plr_low);
 
 $s_list_route       = route('admin.' . $s_category);
-$s_list_name        = $s_cat_plr_u1 . ' ' . trans('common/form.breadcrumbs.list');
+$s_list_name        = trans('common/form.breadcrumbs.list') . ' ' . trans('user/' . $s_category . '.names.list');
 
 $s_title         	= trans('user/' . $s_category . '.names.plr');
 
@@ -24,7 +24,7 @@ if (isset($$s_category))
 	                            ? trans('common/form.actions.edit')
 	                            : trans('common/form.actions.create')
 	                        )
-	                        . ' ' . $s_cat_sgl_low;
+	                        . ' ' . trans('user/' . $s_category . '.names.form');
 	$s_page_route       = ($o_item->id
 	                            ? route('admin.' . $s_category . '.form', $o_item->id)
 	                            : route('admin.' . $s_category . '.form')
