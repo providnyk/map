@@ -1,4 +1,5 @@
 @php
+
 $s_label = '';
 $s_rules = '';
 $b_many = (isset($many) ? $many : FALSE);
@@ -9,6 +10,13 @@ else # expected to be a foreign key *_id
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
 }
+
+$s_dataname = ($code ? $code .'.' : '') . $s_id;
+$s_fieldname = ($code ? $code .'[' : '') . $s_id . ($code ? ']' : '');
+$s_value = $o_item->id
+				? ($code ? $o_item->translate($code)->$name : $o_item->$name)
+				: ''
+			;
 
 if (trans('user/'.$s_category.'.field.'.$s_id.'.label') != 'user/'.$s_category.'.field.'.$s_id.'.label')
 	$s_label = trans('user/'.$s_category.'.field.'.$s_id.'.label');
@@ -22,7 +30,7 @@ elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.r
 
 $b_required = (stripos($s_rules, 'required') !== FALSE);
 @endphp
-<div class="form-group row field" data-name="{!! $s_id !!}">
+<div class="form-group row field" data-name="{!! $s_dataname !!}">
 	<div class="col-lg-3">
 		<label class="d-block float-left py-2 m-0">
 			{!! $s_label !!}

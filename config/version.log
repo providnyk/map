@@ -1,6 +1,6 @@
+0.25.0+a346:3 user ADD form field with l10n support
 0.24.0+a346:2 user ADD when saving forms use post instead of put
 0.23.1+a346:1 user FIX vendor versioning dependencies and form editing for uk locale
-ADD keep selected locale after logout
 0.23.0+a345:4 user ADD profile form
 0.22.0+a345:3 user ADD reference new tranlation for signout
 0.21.0+a345:2 user ADD signin,up,out refactoring
@@ -30,3 +30,5 @@ ADD keep selected locale after logout
 Я дозволяю Організатору Програми Fishka, як Володільцю персональних даних, здійснювати обробку моїх персональних даних згідно з умовами надання згоди на обробку персональних даних і погоджуюся з усіма https://myfishka.com/rules Правилами Програми.
 
 ~/.fsync/notifyloop /Volumes/ssd/Dropbox/projects/web/pr.max rsync -pahize "ssh -p 22" --progress --delete --exclude={'testing','assets'} --exclude={'cache','/vendor','storage','tmp'} --exclude=composer.lock --exclude={'.git/*','.git*','*.sql*','*.zip','.*'} /Volumes/ssd/Dropbox/projects/web/pr.max/ provodam@91.195.53.16:/home/provodam/public_html/ | grep -E '^[^.]|^$'
+
+ADD keep selected locale after logout

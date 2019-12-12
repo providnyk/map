@@ -1,6 +1,8 @@
 @php
+$s_type = 'checkbox';
 $s_label = '';
 $s_rules = '';
+
 if (!isset($id)) # direct/simple value
 	$s_id = $name;
 else # expected to be a foreign key *_id
@@ -8,6 +10,13 @@ else # expected to be a foreign key *_id
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
 }
+
+$s_dataname = ($code ? $code .'.' : '') . $s_id;
+$s_fieldname = ($code ? $code .'[' : '') . $s_id . ($code ? ']' : '');
+$s_value = $o_item->id
+				? ($code ? $o_item->translate($code)->$name : $o_item->$name)
+				: ''
+			;
 
 if (trans('user/'.$s_category.'.field.'.$s_id.'.label') != 'user/'.$s_category.'.field.'.$s_id.'.label')
 	$s_label = trans('user/'.$s_category.'.field.'.$s_id.'.label');
@@ -21,7 +30,7 @@ elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.r
 
 $b_required = (stripos($s_rules, 'required') !== FALSE);
 @endphp
-<div class="form-group row field" data-name="{!! $code !!}.{!! $name !!}">
+<div class="form-group row field" data-name="{!! $s_dataname !!}">
 	<div class="col-lg-3">
 		<label class="d-block float-left py-2 m-0">
 			{!! $s_label !!}
@@ -30,6 +39,6 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 		<span class="badge badge-primary tooltip-helper d-block float-right my-2 px-1" data-toggle="tooltip" title="{!! $s_rules !!}"><i class="icon-info3"></i></span>
 	</div>
 	<div class="col-lg-9 field-body">
-		<input type="text" name="{!! $code !!}[{!! $name !!}]" class="form-control" placeholder="{!! trans('user/crud.hint.input') !!} {!! $s_label !!}" autocomplete="off" value="{{ $o_item->id ? $o_item->translate($code)->$name : '' }}">
+		<input type="text" name="{!! $s_fieldname !!}" class="form-control" placeholder="{!! trans('user/crud.hint.input') !!} {!! $s_label !!}" autocomplete="off" value="{{ $s_value }}">
 	</div>
 </div>

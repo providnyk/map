@@ -54,6 +54,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 
 					<div class="tab-content">
 						@include('user._form_submit')
+						@php ($code = NULL) @endphp
 						<div class="tab-pane px-2 active" id="data">
 							<legend class="text-uppercase font-size-sm font-weight-bold">
 								{!! trans('user/crud.tab.data.info') !!}
@@ -68,6 +69,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 											{!! $localization !!}
 										</a>
 									</li>
+								@php ($code = NULL) @endphp
 								@endforeach
 							</ul>
 
@@ -81,6 +83,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 									@include('user._form_input', ['name'=>'address',])
 									</fieldset>
 								</div>
+								@php ($code = NULL) @endphp
 								@endforeach
 							</div>
 						</div>
