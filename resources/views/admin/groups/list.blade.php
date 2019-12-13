@@ -56,34 +56,11 @@ include(getcwd().'/../resources/views/user/crud.php');
                     selector: 'td:not(:last-child)'
                 },
                 columns: [
-                    {
-                        data: 'id',
-                        className: 'text-center'
-                    },
-                    {
-                        data: 'published',
-                        render: function (data, type, row) {
-                            let status = Number(data) ? '{!! trans('user/crud.table.enabled') !!}' : '{!! trans('user/crud.table.disabled') !!}',
-                                className = Number(data) ? 'success' : 'secondary';
-                            return `<span class="badge badge-${className}">${status}</span>`;
-                        },
-                        className: 'text-center'
-                    },
-                    {
-                        data: 'title'
-                    },
-                    {
-                        data: 'created_at',
-                        render: function(data){
-                            return moment(data).format('LLL');
-                        }
-                    },
-                    {
-                        data: 'updated_at',
-                        render: function(data){
-                            return moment(data).format('LLL');
-                        }
-                    },
+					@include('user._list_id')
+					@include('user._list_checkbox', ['s_name' => 'published', ])
+					@include('user._list_text', ['s_name' => 'title', ])
+					@include('user._list_date', ['s_name' => 'created_at', ])
+					@include('user._list_date', ['s_name' => 'updated_at', ])
 					@include('user._list_actions')
                 ],
                 ajax: {
