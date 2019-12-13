@@ -220,7 +220,7 @@ Route::group([
     'namespace' => 'Admin',
     'middleware' => [/*'language', */'auth', 'role:admin']
 ], function() use ($a_items) {
-    Route::get('', ['as' => 'home', 'uses' => 'DashboardController@index']);
+    Route::get('dashboard', ['as' => 'home', 'uses' => 'DashboardController@index']);
 
 	foreach ($a_items AS $s_table => $s_model)
 	{

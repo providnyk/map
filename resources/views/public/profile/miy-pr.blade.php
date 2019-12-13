@@ -368,7 +368,7 @@
 				</li>
 				@if($b_admin)
 				<li class="nav-item">
-					<a class="nav-link" href="/admin" aria-controls="profile-text-tab" aria-selected="false">{{ trans('general.admin-profile') }}</a>
+					<a class="nav-link" href="{!! route('admin.home') !!}" aria-controls="profile-text-tab" aria-selected="false">{{ trans('general.admin-profile') }}</a>
 				</li>
 				@endif
 				<li class="nav-item">
