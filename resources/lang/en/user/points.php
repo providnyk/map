@@ -1,12 +1,18 @@
 <?php
 
 return [
-    'names' =>
-    [
-        'sgl'   => 'Point',
-        'plr'   => 'Points',
-        'ico'	=> 'icon-location3',
-    ],
+	'names' =>
+	[
+		'sgl'			=> 'Point',
+		'plr'			=> 'Points',
+		'list'			=> 'of Points',
+		'btn_create'	=> 'a Point',
+		'btn_edit'		=> 'the Point',
+		'txt_create'	=> 'a Point',
+		'txt_edit'		=> 'the Point',
+		'saved'			=> 'the Point',
+		'ico'			=> 'icon-location3',
+	],
 	'field' => [
 		'lat' => [
 			'label' => 'Latitude',

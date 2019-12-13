@@ -59,7 +59,7 @@ return [
 	],
 	'button' => [
 		'add' => [
-			'label' => 'Додати новий запис',
+			'label' => 'Додати',
 			'key' => 'ctrl+A',
 		],
 		'apply' => [
@@ -71,7 +71,7 @@ return [
 			'key' => 'ctrl+D',
 		],
 		'edit' => [
-			'label' => 'Редагувати цій запис',
+			'label' => 'Редагувати',
 			'key' => '',
 		],
 		'reset' => [

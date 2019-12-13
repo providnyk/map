@@ -3,13 +3,15 @@
 return [
     'names' =>
     [
-        'sgl'	=> 'Design',
-        'plr'	=> 'Designs',
-		'list'	=> 'of Designs',
-		'create'=> 'a Design',
-		'edit'	=> 'the Design',
-		'saved'	=> 'the Design',
-        'ico'	=> 'icon-design',
+		'sgl'			=> 'Design',
+		'plr'			=> 'Designs',
+		'list'			=> 'of Designs',
+		'btn_create'	=> 'a Design',
+		'btn_edit'		=> 'the Design',
+		'txt_create'	=> 'a Design',
+		'txt_edit'		=> 'the Design',
+		'saved'			=> 'The Design',
+		'ico'			=> 'icon-design',
     ],
 	'field' => [
 		'title' => [

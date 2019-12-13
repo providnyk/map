@@ -26,8 +26,8 @@ if (isset($$s_category))
 	                        )
 	                        . ' '
 	                        . ($o_item->id
-	                            ? trans('user/' . $s_category . '.names.edit')
-	                            : trans('user/' . $s_category . '.names.create')
+	                            ? trans('user/' . $s_category . '.names.txt_edit')
+	                            : trans('user/' . $s_category . '.names.txt_create')
 	                        )
 	                        ;
 	$s_page_route       = ($o_item->id

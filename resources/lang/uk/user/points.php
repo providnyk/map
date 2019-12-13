@@ -1,23 +1,26 @@
 <?php
 
 return [
-    'names' =>
-    [
-        'sgl'   => 'Точка',
-        'plr'   => 'Точки',
-		'list'	=> 'точок',
-		'form'	=> 'точки',
-		'saved'	=> 'Точку',
-        'ico'	=> 'icon-location3',
-    ],
+	'names' =>
+	[
+		'sgl'			=> 'Точка',
+		'plr'			=> 'Точки',
+		'list'			=> 'точок',
+		'btn_create'	=> 'точку',
+		'btn_edit'		=> 'точку',
+		'txt_create'	=> 'точки',
+		'txt_edit'		=> 'точки',
+		'saved'			=> 'точку',
+		'ico'			=> 'icon-location3',
+	],
 	'field' => [
 		'lat' => [
 			'label' => 'Широта',
-			'rules'	=> 'numeric | regex:/^[+-]?\d+\.\d+$/',
+			'rules'	=> 'required | numeric | regex:/^[+-]?\d+\.\d+$/',
 		],
 		'lng' => [
 			'label' => 'Довгота',
-			'rules'	=> 'numeric | regex:/^-?\d{1,2}\.\d{6,}$/',
+			'rules'	=> 'required | numeric | regex:/^-?\d{1,2}\.\d{6,}$/',
 		],
 		'title' => [
 			#'label' => '', #is taken from general "crud" fields description

@@ -12,7 +12,7 @@ return [
         'list' => 'List',
     ],
     'actions' => [
-        'create'    	=> 'Create',
+        'create'    	=> 'Creating',
         'create_more'  	=> 'Create More',
         'edit'      	=> 'Edit',
         'view'      	=> 'View',

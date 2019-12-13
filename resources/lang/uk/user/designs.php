@@ -1,16 +1,18 @@
 <?php
 
 return [
-    'names' =>
-    [
-        'sgl'   => 'Конструкція',
-        'plr'   => 'Конструкції',
-		'list'	=> 'конструкцій',
-		'create'=> 'конструкцію',
-		'edit'	=> 'конструкції',
-		'saved'	=> 'Конструкцію',
-        'ico'	=> 'icon-design',
-    ],
+	'names' =>
+	[
+		'sgl'			=> 'Конструкція',
+		'plr'			=> 'Конструкції',
+		'list'			=> 'конструкцій',
+		'btn_create'	=> 'конструкцію',
+		'btn_edit'		=> 'конструкцію',
+		'txt_create'	=> 'конструкції',
+		'txt_edit'		=> 'конструкції',
+		'saved'			=> 'Конструкцію',
+		'ico'			=> 'icon-design',
+	],
 	'field' => [
 		'title' => [
 			#'label' => '', #is taken from general "crud" fields description

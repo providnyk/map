@@ -84,12 +84,7 @@ include(getcwd().'/../resources/views/user/crud.php');
                             return moment(data).format('LLL');
                         }
                     },
-                    {
-                        sortable: false,
-                        data: function(row){
-                            return `<a href="{!! route('admin.'.$s_category.'.form', [':id']) !!}" class="btn btn-sm btn-primary  tooltip-helper" data-toggle="tooltip" data-placement="top" title="{!! trans('user/crud.button.edit.label') !!} {!! trans('user/' . $s_category . '.names.sgl') !!}" data-trigger="hover"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
-                        }
-                    }
+					@include('user._list_actions')
                 ],
                 ajax: {
                     url: '{!! route('api.'.$s_category.'.index') !!}',

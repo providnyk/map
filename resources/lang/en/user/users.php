@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'names' =>
-    [
-        'sgl'   => 'User',
-        'plr'   => 'Users',
-        'ico'	=> 'icon-users2',
-    ],
+	'names' =>
+	[
+		'sgl'	=> 'User',
+		'plr'	=> 'Users',
+		'ico'	=> 'icon-users2',
+	],
 ];

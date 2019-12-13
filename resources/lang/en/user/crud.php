@@ -70,7 +70,7 @@ return [
 			'key' => 'ctrl+D',
 		],
 		'edit' => [
-			'label' => 'Edit this',
+			'label' => 'Edit',
 			'key' => '',
 		],
 		'reset' => [
