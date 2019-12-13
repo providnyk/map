@@ -52,7 +52,7 @@ class EventController extends Controller
         $groups = $this->dispatchArtists($request->artists);
 
         $event = Event::create($request->only('festival_id', 'category_id', 'gallery_id', 'en', 'de', 'facebook', 'promoting_up', 'promoting', 'published'));
-dd($event);
+
         $event->processImages($request, 'image');
         #$event->attachImage($request);
         $event->directors()->sync($groups['director']);

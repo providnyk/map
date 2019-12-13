@@ -3,10 +3,10 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\File;
+use Cookie;
 
 trait LocaleTrait
 {
-
     /**
      * Update configs with actual data of available locales basing on translations present in directoris of "lang" folder
      *
@@ -23,28 +23,35 @@ trait LocaleTrait
 		foreach ($a_files as $o_file)
 		{
 			$s_abbr = $o_file->getRelativePath();
+
 			if (strlen($s_abbr) != 2)
-				$s_abbr = '';
-			if (!empty($s_abbr))
+				continue;
+
+			if ($o_file->getFilename() == 'app.php')
 			{
-				if ($o_file->getFilename() == 'app.php')
-				{
 				$a_tmp = include($o_file->getPathname());
-				if (isset($a_tmp['lang']['this']))
-					$a_dirs[$s_abbr] = $a_tmp['lang']['this'];
-				}
-				if(!isset($a_dirs[$s_abbr]))
-					$a_dirs[$s_abbr] = NULL;
+				if (isset($a_tmp['lang']))
+					$a_dirs[$s_abbr] = $a_tmp['lang'];
 			}
+			if(!isset($a_dirs[$s_abbr]))
+				$a_dirs[$s_abbr] = NULL;
 		}
+
+        $locale = Cookie::get('lang');
+
+        if (is_null($locale))
+        	$locale = app()->getLocale();
+        if (is_null($locale))
+        	$locale = session('lang', config('app.fallback_locale'));
+		if (!array_key_exists($locale, $a_dirs))
+			$locale = config('app.fallback_locale');
+
+		app()->setLocale($locale);
+		setlocale(LC_TIME, $locale);
 
 		foreach ($a_dirs as $s_abbr => $s_name)
 		{
-			if (app()->getLocale() == $s_abbr)
-				$a_L10N[$s_abbr] = trans('app.lang.this');
-			elseif (trans('app.lang.'.$s_abbr) != 'app.lang.'.$s_abbr)
-				$a_L10N[$s_abbr] = trans('app.lang.'.$s_abbr);
-			elseif (!is_null($a_dirs[$s_abbr]))
+			if (!is_null($a_dirs[$s_abbr]))
 				$a_L10N[$s_abbr] = $a_dirs[$s_abbr];
 			else
 				$a_L10N[$s_abbr] = mb_strtoupper($s_abbr);
@@ -55,5 +62,4 @@ trait LocaleTrait
 					'names' => $a_L10N,
 				]]);
 	}
-
 }

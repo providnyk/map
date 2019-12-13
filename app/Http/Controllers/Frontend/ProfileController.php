@@ -11,7 +11,8 @@ use App\User;
 use Validator;
 use App\Subscriber;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+#use App\Http\Controllers\Controller;
+use App\Http\Controllers\ControllerGuest as Controller;
 
 class ProfileController extends Controller
 {

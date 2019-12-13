@@ -3,16 +3,15 @@
 namespace App\Providers;
 
 use App\Text;
-use App\Traits\LocaleTrait;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use App\Traits\LocaleTrait;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {
 	use LocaleTrait;
-
     /**
      * Bootstrap services.
      *
@@ -21,6 +20,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
     	$this->_L10N2config();
+
         \View::composer('*', function ($view) {
             if ($route = \Request::route()) {
                 $current_route_name = $route->getName();

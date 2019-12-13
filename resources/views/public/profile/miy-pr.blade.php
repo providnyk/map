@@ -350,7 +350,7 @@
 		});
 	}
 
-	document.getElementById('gapi').addEventListener('load', handleClientLoad);
+//	document.getElementById('gapi').addEventListener('load', handleClientLoad);
 </script>
 @endsection
 

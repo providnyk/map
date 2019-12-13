@@ -3824,16 +3824,19 @@ textarea {
     align-items: center;
     cursor: pointer;
     min-width: 38px;
+    letter-spacing: 0.8px;
 }
 
 .lang-menu .current-lang .fa {
     color: #8C999E;
     margin-left: 6px;
+    letter-spacing: 0.7px;
 }
 
 .lang-menu .current-lang:hover,
 .lang-menu .current-lang.show_menu {
     font-weight: bold;
+    letter-spacing: 0px;
 }
 
 .lang-menu .current-lang:hover .fa,
@@ -3865,11 +3868,13 @@ textarea {
     position: relative;
     cursor: pointer;
     font-size: 16px;
+    letter-spacing: 0.8px;
 }
 
 .lang-menu .lang-box .lang-item:hover {
     color: #E94234;
     font-weight: bold;
+    letter-spacing: 0px;
 }
 
 .lang-item a {

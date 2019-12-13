@@ -25,7 +25,7 @@ trait FestivalTrait{
         elseif(($festival = Festival::current())->count())
             $this->festival = $festival;
         else
-            $this->festival = Festival::where('published', 1)->get()->first();
+            $this->festival = Festival::where('published', 1)->orderBy('year', 'desc')->get()->first();
 
         if( ! $this->festival) abort(404);
 

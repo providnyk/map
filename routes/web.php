@@ -26,7 +26,7 @@ $a_items = [
 ];
 
 Route::group([
-    'middleware' => ['language']
+    'middleware' => []#'language']
 ], function() {
     Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
     Route::post('login', ['as' => '', 'uses' => 'Auth\LoginController@login']);
@@ -56,7 +56,7 @@ Route::group([
     'as' => 'api.',
     'prefix' => 'api',
     'namespace' => 'API',
-    'middleware' => ['language']
+    'middleware' => []#'language']
 ], function() use ($a_items) {
 
 	foreach ($a_items AS $s_table => $s_model)
@@ -218,7 +218,7 @@ Route::group([
     'as' => 'admin.',
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'middleware' => ['language', 'auth', 'role:admin']
+    'middleware' => [/*'language', */'auth', 'role:admin']
 ], function() use ($a_items) {
     Route::get('', ['as' => 'home', 'uses' => 'DashboardController@index']);
 
@@ -316,7 +316,7 @@ Route::group([
 Route::group([
     'as' => 'public.',
     'namespace' => 'Frontend',
-    'middleware' => ['language']
+    'middleware' => []#'language']
 ], function() {
 /*
 #    Route::get('', ['as' => 'home', 'uses' => 'GeneralController@index']);

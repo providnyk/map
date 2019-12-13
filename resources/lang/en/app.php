@@ -1,12 +1,7 @@
 <?php
 
 return [
-	'lang'				=> [
-								'this'	=> 'English',
-								'uk'	=> 'Ukrainian',
-								'de'	=> 'German',
-								'ru'	=> 'Russian',
-							],
+	'lang'				=> 'English',
 	'name'				=> 'Providnyk',
 	'slogan'			=> '',
 ];

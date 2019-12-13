@@ -336,10 +336,16 @@ $version = include_once( __DIR__ . '/../../../version.php');
                         @if ($settings->instagram)<a href="https://www.instagram.com/{!! $settings->instagram !!}" class="im" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a>@endif
                     </div>
                     <div class="lang-menu">
-                        <div class="current-lang" data-lang="en"><span class="lang-text">{{ app()->getLocale() }}</span><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+                        <div class="current-lang" data-lang="en"><span class="lang-text">{{ $localizations[app()->getLocale()] }}</span><i class="fa fa-angle-down" aria-hidden="true"></i></div>
                         <div class="lang-box">
                             @foreach($localizations as $code => $localization)
-                                <div class="lang-item" data-lang="{{ $code }}"><a href="{{ route('change-lang', $code) }}">{{ $code }}</a></div>
+                            	@if (app()->getLocale() != $code)
+                                <div class="lang-item" data-lang="{{ $code }}">
+                                	<a href="{{ route('change-lang', $code) }}">
+                                		{{ $localization }}
+                                	</a>
+                                </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
