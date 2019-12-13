@@ -24,7 +24,12 @@ if (isset($$s_category))
 	                            ? trans('common/form.actions.edit')
 	                            : trans('common/form.actions.create')
 	                        )
-	                        . ' ' . trans('user/' . $s_category . '.names.form');
+	                        . ' '
+	                        . ($o_item->id
+	                            ? trans('user/' . $s_category . '.names.edit')
+	                            : trans('user/' . $s_category . '.names.create')
+	                        )
+	                        ;
 	$s_page_route       = ($o_item->id
 	                            ? route('admin.' . $s_category . '.form', $o_item->id)
 	                            : route('admin.' . $s_category . '.form')
@@ -39,10 +44,10 @@ if (isset($$s_category))
 	                            : route('api.' . $s_category . '.store')
 	                        );
 
-	$s_btn_primary		= trans("common/form.actions.view") . ' ' . trans("common/form.breadcrumbs.list");
+	$s_btn_primary		= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
 
 	$s_btn_secondary	= ($o_item->id
-	                            ? trans("common/form.actions.continue") . ' ' . trans('common/form.actions.edit')
-	                            : trans("common/form.actions.create_more")
+	                            ? trans('common/form.actions.continue') . ' ' . trans('common/form.actions.edit')
+	                            : trans('common/form.actions.create_more')
 	                        );
 }

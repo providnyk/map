@@ -2,8 +2,8 @@
 
 return [
 	'text'		=> [
-		'created'   => 'Created new record of',
-		'updated'   => 'Updated exisiting record of',
+		'created'   => 'Created',
+		'updated'   => 'Updated',
 		'success'   => 'Success',
 	],
 	'button'	=> [

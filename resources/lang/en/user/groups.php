@@ -5,6 +5,10 @@ return [
     [
         'sgl'   => 'Group',
         'plr'   => 'Groups',
+		'list'	=> 'of Groups',
+		'create'=> 'a Group',
+		'edit'	=> 'the Group',
+		'saved'	=> 'the Group',
         'ico'	=> 'icon-bike',
     ],
 	'field' => [

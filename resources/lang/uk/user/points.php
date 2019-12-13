@@ -7,7 +7,7 @@ return [
         'plr'   => 'Точки',
 		'list'	=> 'точок',
 		'form'	=> 'точки',
-		'saved'	=> 'точку',
+		'saved'	=> 'Точку',
         'ico'	=> 'icon-location3',
     ],
 	'field' => [

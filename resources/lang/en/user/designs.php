@@ -3,9 +3,13 @@
 return [
     'names' =>
     [
-        'sgl'		=> 'Design',
-        'plr'		=> 'Designs',
-        'ico'		=> 'icon-design',
+        'sgl'	=> 'Design',
+        'plr'	=> 'Designs',
+		'list'	=> 'of Designs',
+		'create'=> 'a Design',
+		'edit'	=> 'the Design',
+		'saved'	=> 'the Design',
+        'ico'	=> 'icon-design',
     ],
 	'field' => [
 		'title' => [

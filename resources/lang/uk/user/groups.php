@@ -6,8 +6,9 @@ return [
 		'sgl'	=> 'Група',
 		'plr'	=> 'Групи',
 		'list'	=> 'груп',
-		'form'	=> 'групу',
-		'saved'	=> 'групу',
+		'create'=> 'групу',
+		'edit'	=> 'групи',
+		'saved'	=> 'Групу',
 		'ico'	=> 'icon-bike',
 	],
 	'field' => [

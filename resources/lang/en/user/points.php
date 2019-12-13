@@ -10,11 +10,11 @@ return [
 	'field' => [
 		'lat' => [
 			'label' => 'Latitude',
-			'rules'	=> 'numeric | regex:/^[+-]?\d+\.\d+$/',
+			'rules'	=> 'required | numeric | regex:/^[+-]?\d+\.\d+$/',
 		],
 		'lng' => [
 			'label' => 'Longtitude',
-			'rules'	=> 'numeric | regex:/^-?\d{1,2}\.\d{6,}$/',
+			'rules'	=> 'required | numeric | regex:/^-?\d{1,2}\.\d{6,}$/',
 		],
 		'title' => [
 			#'label' => '', #is taken from general "crud" fields description
