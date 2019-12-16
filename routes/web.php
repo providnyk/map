@@ -22,7 +22,12 @@ $a_items = [
 		'points'		=> 'Point',
 		'groups'		=> 'Group',
 		'designs'		=> 'Design',
+		'ownerships'	=> 'Ownership',
 		'users'			=> 'User',
+];
+
+$a_modules = [
+		'companies'		=> 'Company',
 ];
 
 Route::group([
@@ -66,6 +71,15 @@ Route::group([
 	    Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
 	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
 	}
+/*
+	foreach ($a_modules AS $s_table => $s_model)
+	{
+	    Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_model . 'Controller@index']);
+	    Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_model . 'Controller@store']);
+	    Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
+	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
+	}
+*/
 
 /*
     // Static Texts API Routes

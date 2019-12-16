@@ -9,6 +9,7 @@ else # expected to be a foreign key *_id
 {
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
+	$s_typein = trans('user/'.$name.'.names.typein');
 }
 
 $s_dataname = ($code ? $code .'.' : '') . $s_id;
@@ -19,9 +20,16 @@ $s_value = $o_item->id
 			;
 
 if (trans('user/'.$s_category.'.field.'.$s_id.'.label') != 'user/'.$s_category.'.field.'.$s_id.'.label')
+{
 	$s_label = trans('user/'.$s_category.'.field.'.$s_id.'.label');
+	$s_typein = trans('user/'.$s_category.'.field.'.$s_id.'.typein');
+
+}
 elseif (trans('user/crud.field.'.$name.'.label') != 'user/crud.field.'.$name.'.label')
+{
 	$s_label = trans('user/crud.field.'.$name.'.label');
+	$s_typein = trans('user/crud.field.'.$name.'.typein');
+}
 
 if (trans('user/'.$s_category.'.field.'.$s_id.'.rules') != 'user/'.$s_category.'.field.'.$s_id.'.rules')
 	$s_rules = trans('user/'.$s_category.'.field.'.$s_id.'.rules');
@@ -50,7 +58,7 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 	@endphp
 
 	<div class="col-lg-9 field-body">
-		<select name="{!! $s_id !!}{!! $b_many ? 's[]' : '' !!}" class="form-control select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_label !!}" data-url="{!! route('api.'.$name.'.index') !!}" {!! $b_many ? 'multiple' : '' !!}>
+		<select name="{!! $s_id !!}{!! $b_many ? 's[]' : '' !!}" class="form-control select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_typein !!}" data-url="{!! route('api.'.$name.'.index') !!}" {!! $b_many ? 'multiple' : '' !!}>
 			@if($s_selected_id)
 				<option value="{!! $o_item->$s_id !!}">
 					{!! $s_selected_title !!}

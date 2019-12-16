@@ -10,6 +10,8 @@ return [
 		'btn_edit'		=> 'the Group',
 		'txt_create'	=> 'a Group',
 		'txt_edit'		=> 'the Group',
+		'filterby'		=> 'точкою',
+		'typein'		=> 'точку',
 		'saved'			=> 'The Group',
 		'ico'			=> 'icon-bike',
 	],

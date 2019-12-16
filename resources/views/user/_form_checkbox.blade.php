@@ -9,6 +9,7 @@ else # expected to be a foreign key *_id
 {
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
+	$s_typein = trans('user/'.$name.'.names.typein');
 }
 
 $s_dataname = ($code ? $code .'.' : '') . $s_id;
@@ -19,9 +20,16 @@ $s_value = $o_item->id
 			;
 
 if (trans('user/'.$s_category.'.field.'.$s_id.'.label') != 'user/'.$s_category.'.field.'.$s_id.'.label')
+{
 	$s_label = trans('user/'.$s_category.'.field.'.$s_id.'.label');
+	$s_typein = trans('user/'.$s_category.'.field.'.$s_id.'.typein');
+
+}
 elseif (trans('user/crud.field.'.$name.'.label') != 'user/crud.field.'.$name.'.label')
+{
 	$s_label = trans('user/crud.field.'.$name.'.label');
+	$s_typein = trans('user/crud.field.'.$name.'.typein');
+}
 
 if (trans('user/'.$s_category.'.field.'.$s_id.'.rules') != 'user/'.$s_category.'.field.'.$s_id.'.rules')
 	$s_rules = trans('user/'.$s_category.'.field.'.$s_id.'.rules');

@@ -13,12 +13,18 @@ $menu_list = ['festivals' => 'icon-music', 'partners' => 'fa fa-handshake-o', 'e
 $menu_title[] = 'materials';
 $menu_color[] = '#5933d6';
 $menu_icon[] = 'fa fa-file-image-o';
-$menu_list[] = ['points', 'groups', 'designs', ];#, 'books', 'galleries', 'sliders', 'media'];
+$menu_list[] = ['points', 'groups', 'designs', 'ownerships', ];
 
 $menu_title[] = 'people';
 $menu_color[] = '#33d669';
 $menu_icon[] = 'fa fa-address-book';
 $menu_list[] = ['users', ];#, 'artists' => 'icon-mic2'];
+/*
+$menu_title[] = 'petitions';
+$menu_color[] = '#f5ad42';
+$menu_icon[] = 'fa fa-envelope';
+$menu_list[] = ['companies', ];
+*/
 /*
 {{--@ include('admin.common._card_group')--}}
 

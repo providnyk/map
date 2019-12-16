@@ -10,6 +10,8 @@ return [
 		'btn_edit'		=> 'the Point',
 		'txt_create'	=> 'a Point',
 		'txt_edit'		=> 'the Point',
+		'filterby'		=> 'точкою',
+		'typein'		=> 'точку',
 		'saved'			=> 'the Point',
 		'ico'			=> 'icon-location3',
 	],

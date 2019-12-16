@@ -10,6 +10,8 @@ return [
 		'btn_edit'		=> 'the Design',
 		'txt_create'	=> 'a Design',
 		'txt_edit'		=> 'the Design',
+		'filterby'		=> 'точкою',
+		'typein'		=> 'точку',
 		'saved'			=> 'The Design',
 		'ico'			=> 'icon-design',
     ],

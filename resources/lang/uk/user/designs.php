@@ -10,6 +10,8 @@ return [
 		'btn_edit'		=> 'конструкцію',
 		'txt_create'	=> 'конструкції',
 		'txt_edit'		=> 'конструкції',
+		'filterby'		=> 'конструкціею',
+		'typein'		=> 'конструкцію',
 		'saved'			=> 'Конструкцію',
 		'ico'			=> 'icon-design',
 	],

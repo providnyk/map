@@ -20,7 +20,7 @@ class DesignRequest extends Request
         ];
 
     	return $this->rulesLng($a_rules);
-
+/*
         return [
             'enabled'			=> 'boolean',
             'uk.title'			=> 'required|string|max:255',
@@ -30,5 +30,6 @@ class DesignRequest extends Request
             'de.title'			=> 'required|string|max:255',
             'de.description'  => 'string|max:255',
         ];
+*/
     }
 }

@@ -46,10 +46,14 @@ return [
 		],
 		'description' => [
 			'label' => 'Опис',
+			'filterby'	=> 'описом',
+			'typein'	=> 'опис',
 			'rules' => 'max 191 chars',
 		],
 		'published' => [
 			'label' => 'Опублікувати',
+			'filterby'	=> 'опублікуванні',
+			'typein'	=> 'опублікуванне',
 			'rules' => 'yes or no',
 		],
 		'timezone' => [
