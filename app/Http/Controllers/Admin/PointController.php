@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Building;
 use App\Design;
 use App\Group;
+use App\Ownership;
 use App\Http\Controllers\ControllerUser as Controller;
 use Illuminate\Http\Request;
 
@@ -17,12 +19,14 @@ class PointController extends Controller
 	 */
 	public function form(Request $request) : \Illuminate\View\View
 	{
-        \View::composer('admin.*', function ($view) {
-            $view->with([
-                'designs'	=> Design::all()->sortBy('name'),
-                'groups'	=> Group::all()->sortBy('name'),
-            ]);
-        });
+		\View::composer('admin.*', function ($view) {
+			$view->with([
+				'buildings'		=> Building::all()->sortBy('name'),
+				'designs'		=> Design::all()->sortBy('name'),
+				'groups'		=> Group::all()->sortBy('name'),
+				'ownerships'	=> Ownership::all()->sortBy('name'),
+			]);
+		});
 		return parent::form($request);
 	}
 }

@@ -150,7 +150,7 @@ $(document).ready(function () {
     };
 
     $('.switcher').bootstrapSwitch();
-
+/*
     // https://css-tricks.com/snippets/javascript/javascript-keycodes/
 	// Ctrl+a, Cmd+A pressed
 	$(document).keydown(function(e) {
@@ -162,6 +162,7 @@ $(document).ready(function () {
 		}
 		return true;
 	});
+*/
 	// Ctrl+r, Cmd+R pressed
 	$(document).keydown(function(e) {
 		if ((e.key == 'b' || e.key == 'B' ) && (e.ctrlKey || e.metaKey))
@@ -172,6 +173,7 @@ $(document).ready(function () {
 		}
 		return true;
 	});
+/*
 	// Ctrl+s, Cmd+S pressed
 	$(document).keydown(function(e) {
 		if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
@@ -182,6 +184,7 @@ $(document).ready(function () {
 		}
 		return true;
 	});
+*/
 	// Ctrl+d, Cmd+D pressed
 	$(document).keydown(function(e) {
 		if ((e.key == 'd' || e.key == 'D' ) && (e.ctrlKey || e.metaKey))

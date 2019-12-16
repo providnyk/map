@@ -19,10 +19,11 @@ use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
 
 $a_items = [
-		'points'		=> 'Point',
-		'groups'		=> 'Group',
+		'buildings'		=> 'Building',
 		'designs'		=> 'Design',
+		'groups'		=> 'Group',
 		'ownerships'	=> 'Ownership',
+		'points'		=> 'Point',
 		'users'			=> 'User',
 ];
 

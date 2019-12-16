@@ -28,13 +28,13 @@ include(getcwd().'/../resources/views/user/crud.php');
 @section('js')
 	<script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
 	<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
-	<script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
+    <script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
 	<script src="{{ asset('/admin/js/forms.js') }}"></script>
-@append
+@endsection
 
 @section('script')
 <script type="text/javascript">
-	@include('admin.common.data2js')
+    @include('admin.common.data2js')
 </script>
 @append
 
@@ -51,18 +51,12 @@ include(getcwd().'/../resources/views/user/crud.php');
 							<a href="#manage" class="nav-link" data-toggle="tab">{!! trans('user/crud.tab.manage.name') !!}</a>
 						</li>
 					</ul>
-
 					<div class="tab-content">
 						@include('user._form_submit')
-						@php ($code = NULL) @endphp
 						<div class="tab-pane px-2 active" id="data">
 							<legend class="text-uppercase font-size-sm font-weight-bold">
 								{!! trans('user/crud.tab.data.info') !!}
 							</legend>
-							@include('user._form_select', ['name'=>'designs', 'id'=>'design_id'])
-							@include('user._form_select', ['name'=>'buildings', 'id'=>'building_id'])
-							@include('user._form_select', ['name'=>'ownerships', 'id'=>'ownership_id'])
-							@include('user._form_select', ['name'=>'groups', 'id'=>'group_id', 'many'=>TRUE])
 							<ul class="nav nav-tabs nav-tabs-highlight">
 								@foreach($localizations as $code => $localization)
 									<li class="nav-item">
@@ -71,21 +65,13 @@ include(getcwd().'/../resources/views/user/crud.php');
 											{!! $localization !!}
 										</a>
 									</li>
-								@php ($code = NULL) @endphp
 								@endforeach
 							</ul>
-
 							<div class="tab-content">
 								@foreach($localizations as $code => $localization)
-								<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
-									<fieldset class="mb-3">
+									<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
 									@include('user._form_input', ['name'=>'title',])
-									@include('user._form_input', ['name'=>'annotation',])
-									@include('user._form_input', ['name'=>'description',])
-									@include('user._form_input', ['name'=>'address',])
-									</fieldset>
-								</div>
-								@php ($code = NULL) @endphp
+									</div>
 								@endforeach
 							</div>
 						</div>
@@ -94,8 +80,6 @@ include(getcwd().'/../resources/views/user/crud.php');
 								{!! trans('user/crud.tab.manage.info') !!}
 							</legend>
 							@include('user._form_checkbox', ['name'=>'published',])
-							@include('user._form_input', ['name'=>'lat',])
-							@include('user._form_input', ['name'=>'lng',])
 						</div>
 					</div>
 				</form>

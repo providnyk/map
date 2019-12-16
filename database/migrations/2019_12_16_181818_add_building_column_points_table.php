@@ -3,12 +3,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddOwnershipColumnDesignsTable extends Migration
+class AddBuildingColumnPointsTable extends Migration
 {
     const DB_CONNECTION = 'pr';
-    const TABLE_MIGRATION = 'designs';
-    const TABLE_HASONE = 'ownerships';
-    const HASONE_TABLE = 'ownership';
+    const TABLE_MIGRATION = 'points';
+    const TABLE_AFTER = 'id';
+    const TABLE_HASONE = 'buildings';
+    const HASONE_TABLE = 'building';
     const HASONE_KEY = 'id';
 
     /**

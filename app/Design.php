@@ -7,10 +7,8 @@ use App\Model;
 
 class Design extends Model
 {
-
 	protected $connection = 'pr';
 	protected $fillable = [
-		'ownership_id',
 		'published',
 	];
 #	public $translatedAttributes = [];
@@ -30,13 +28,6 @@ class Design extends Model
 	{
 		return $this->hasMany('App\Point');
 	}
-
-	public function ownerships()
-	{
-		return $this->belongsTo('App\Ownership');
-	}
-
-
 /*
 	public function scopeFilter($query, $filters)
 	{
