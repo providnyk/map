@@ -10,9 +10,9 @@ class Point extends Model
 	protected $fillable = [
 		'building_id',
 		'design_id',
-		'group_id',
 		'ownership_id',
 		'user_id',
+		'target_id',
 		'published',
 		'lat',
 		'lng',
@@ -25,9 +25,9 @@ class Point extends Model
 	{
 		return $this->belongsTo('App\Design');
 	}
-	public function groups()
+	public function targets()
 	{
-		return $this->belongsToMany('App\Group');
+		return $this->belongsToMany('App\Target');
 	}
 	public function ownerships()
 	{

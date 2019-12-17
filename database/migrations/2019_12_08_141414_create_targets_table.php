@@ -3,12 +3,12 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateGroupsTable extends Migration {
+class CreateTargetsTable extends Migration {
 
     const DB_CONNECTION = 'pr';
     const DB_TABLE_KEY = 'id';
-    const DB_NAME_SGL = 'group';
-    const DB_NAME_PLR = 'groups';
+    const DB_NAME_SGL = 'target';
+    const DB_NAME_PLR = 'targets';
     const DB_TABLE_TRAN = '_translations';
 	/**
 	 * Run the migrations.

@@ -62,7 +62,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 							@include('user._form_select', ['name'=>'designs', 'id'=>'design_id'])
 							@include('user._form_select', ['name'=>'buildings', 'id'=>'building_id'])
 							@include('user._form_select', ['name'=>'ownerships', 'id'=>'ownership_id'])
-							@include('user._form_select', ['name'=>'groups', 'id'=>'group_id', 'many'=>TRUE])
+							@include('user._form_select', ['name'=>'targets', 'id'=>'target_id', 'many'=>TRUE])
 							<ul class="nav nav-tabs nav-tabs-highlight">
 								@foreach($localizations as $code => $localization)
 									<li class="nav-item">

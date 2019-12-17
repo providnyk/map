@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Group;
-use App\Filters\GroupFilters;
-use App\Http\Requests\GroupRequest;
+use App\Target;
+use App\Filters\TargetFilters;
+use App\Http\Requests\TargetRequest;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Controllers\ControllerAPI as Controller;
-use App\Http\Requests\GroupApiRequest;
+use App\Http\Requests\TargetApiRequest;
 
-class GroupController extends Controller
+class TargetController extends Controller
 {
 	/**
 	 * Prepare data for listing all of items
@@ -18,7 +18,7 @@ class GroupController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function index(GroupApiRequest $request, GroupFilters $filters) : \Illuminate\Http\Response
+	public function index(TargetApiRequest $request, TargetFilters $filters) : \Illuminate\Http\Response
 	{
 		return $this->indexAPI($request, $filters);
 	}
@@ -29,7 +29,7 @@ class GroupController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function store(GroupRequest $request) : \Illuminate\Http\Response
+	public function store(TargetRequest $request) : \Illuminate\Http\Response
 	{
 #		dd($request->all());
 /*
@@ -49,7 +49,7 @@ $request->validate([
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(GroupRequest $request, Group $item) : \Illuminate\Http\Response
+	public function update(TargetRequest $request, Target $item) : \Illuminate\Http\Response
 	{
 		return $this->updateAPI($request, $item);
 	}

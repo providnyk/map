@@ -6,7 +6,7 @@ use DB;
 use App\Filters\Filters;
 use Illuminate\Http\Request;
 
-class GroupFilters extends Filters
+class TargetFilters extends Filters
 {
 	protected $filters = [
 		'id',
@@ -23,13 +23,13 @@ class GroupFilters extends Filters
 	protected function getQuery()
 	{
 		return $this->builder->select(
-				'groups.*',
-				'group_translations.title as title'
+				'targets.*',
+				'target_translations.title as title'
 			)
 			->offset($this->request->start)
 			->limit($this->limit)
-			->leftJoin('group_translations', function($query) {
-				$query->on('group_translations.group_id', '=', 'groups.id')
+			->leftJoin('target_translations', function($query) {
+				$query->on('target_translations.target_id', '=', 'targets.id')
 					->where('locale', '=', $this->appLocale);
 			})
 			->orderBy($this->orderColumn, $this->orderDirection);

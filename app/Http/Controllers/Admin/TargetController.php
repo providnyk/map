@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Building;
-use App\Design;
-use App\Target;
-use App\Ownership;
+use App\Point;
 use App\Http\Controllers\ControllerUser as Controller;
 use Illuminate\Http\Request;
 
-class PointController extends Controller
+class TargetController extends Controller
 {
 	/**
 	 * Open CRUD form for authenticated user (aka "Admin" previously and now "User")
@@ -21,10 +18,7 @@ class PointController extends Controller
 	{
 		\View::composer('admin.*', function ($view) {
 			$view->with([
-				'buildings'		=> Building::all()->sortBy('name'),
-				'designs'		=> Design::all()->sortBy('name'),
-				'targets'		=> Target::all()->sortBy('name'),
-				'ownerships'	=> Ownership::all()->sortBy('name'),
+				'points'		=> Point::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

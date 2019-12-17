@@ -4,7 +4,7 @@ namespace App;
 
 use App\Model;
 
-class Group extends Model
+class Target extends Model
 {
 	protected $connection = 'pr';
 	protected $fillable = [

@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-class GroupRequest extends Request
+class TargetRequest extends Request
 {
 
     /**

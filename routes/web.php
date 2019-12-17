@@ -21,9 +21,10 @@ use Spatie\Permission\Models\Role;
 $a_items = [
 		'buildings'		=> 'Building',
 		'designs'		=> 'Design',
-		'groups'		=> 'Group',
+		'issues'		=> 'Issue',
 		'ownerships'	=> 'Ownership',
 		'points'		=> 'Point',
+		'targets'		=> 'Target',
 		'users'			=> 'User',
 ];
 

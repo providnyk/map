@@ -45,7 +45,7 @@ class PointController extends Controller
 	 */
 	public function update(PointRequest $request, Point $item) : \Illuminate\Http\Response
 	{
-		$item->groups()->sync($request->group_ids);
+		$item->targets()->sync($request->target_ids);
 		$a_res = $this->updateAPI($request, $item);
 		return $a_res;
 	}
