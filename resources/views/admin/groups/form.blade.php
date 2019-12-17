@@ -42,7 +42,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 	<div class="card form">
 		<div class="card-body p-0">
 			<div class="card-body">
-				<form class="form-validate-jquery" action="{!! $s_form_route !!}" method="{!! $s_form_method !!}">
+				<form class="form-validate-jquery item-form" action="{!! $s_form_route !!}" method="{!! $s_form_method !!}">
 					<ul class="nav nav-tabs nav-tabs-highlight">
 						<li class="nav-item">
 							<a href="#data" class="nav-link active" data-toggle="tab">{!! trans('user/crud.tab.data.name') !!}</a>

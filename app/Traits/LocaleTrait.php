@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\File;
 use Cookie;
 
@@ -48,6 +49,7 @@ trait LocaleTrait
 
 		app()->setLocale($locale);
 		setlocale(LC_TIME, $locale);
+		Carbon::setLocale($locale);
 
 		foreach ($a_dirs as $s_abbr => $s_name)
 		{

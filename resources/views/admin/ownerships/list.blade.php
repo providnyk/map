@@ -31,6 +31,7 @@ include(getcwd().'/../resources/views/user/crud.php');
     <script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
     <script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
     <script src="{{ asset('/admin/js/plugins/pickers/daterangepicker.js') }}"></script>
+	<script src="{{ asset('/admin/js/lists.js') }}"></script>
 @endsection
 
 @section('script')
@@ -39,10 +40,9 @@ include(getcwd().'/../resources/views/user/crud.php');
 
             let s_route_del = '{!! route('api.'.$s_category.'.delete') !!}';
             let s_route_add = '{!! route('admin.'.$s_category.'.form') !!}';
-            moment.locale('{!! $app->getLocale() !!}');
 
-            @include('admin.common.filters.js')
             @include('admin.common.list_js')
+            @include('admin.common.filters.js')
 
             let dt = $('.table').DataTable({
                 dom: 'tip',

@@ -1,22 +1,22 @@
 $(document).ready(() => {
 
 	moment().locale('{!! $app->getLocale() !!}');
-/*
+
     // https://css-tricks.com/snippets/javascript/javascript-keycodes/
 	// Ctrl+s, Cmd+s pressed
 	$(document).keydown(function(e) {
 		if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
 		{
 			e.preventDefault();
-			$('form').submit();
+			$('form.item-form').submit();
 			return false;
 		}
 		return true;
 	});
-*/
+
 	// TODO: refactoring
 	// loook at _profile.blade.php
-	$('form').on('submit', function(e){
+	$('form.item-form').on('submit', function(e){
 		e.preventDefault();
 
 		let data = {},

@@ -1,10 +1,12 @@
-moment.locale('{!! $app->getLocale() !!}');
+let filters				= {}
+	,s_locale			= '{!! $app->getLocale() !!}'
+	;
+
+moment.locale(s_locale);
 
 $('#page-length').on('change', function(){
     dt.page.len($(this).val()).draw(false);
 });
-
-let filters = {};
 
 $('#btn-delete').on('click', function(){
     swal({

@@ -130,8 +130,6 @@ function applyFilters(message = true){
         }
     });
 
-    console.log(dt);
-
     dt.draw(true);
 
     if(message)
