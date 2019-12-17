@@ -31,15 +31,9 @@ class PointController extends Controller
 	 */
 	public function store(PointRequest $request) : \Illuminate\Http\Response
 	{
-#		dd($request->all());
-/*
-$request->validate([
-    'annotation' => 'nullable',
-    'uk.annotation' => 'nullable',
-    'de.annotation' => 'nullable',
-    'en.annotation' => 'nullable',
-]);
-*/
+		$request->merge([
+			'user_id' => \Auth::user()->id,
+		]);
 		return $this->storeAPI($request);
 	}
 

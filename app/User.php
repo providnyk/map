@@ -15,6 +15,7 @@ class User extends Authenticatable
     use Notifiable;
     use GeneralTrait;
 
+#	protected $connection = 'pr';
     /**
      * The attributes that are mass assignable.
      *
@@ -59,6 +60,10 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Country');
     }
+	public function points()
+	{
+		return $this->hasMany('App\Point');
+	}
 
     public function getRoles($i_user_id = NULL)
     {

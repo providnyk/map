@@ -12,6 +12,7 @@ class Point extends Model
 		'design_id',
 		'group_id',
 		'ownership_id',
+		'user_id',
 		'published',
 		'lat',
 		'lng',
@@ -31,5 +32,9 @@ class Point extends Model
 	public function ownerships()
 	{
 		return $this->belongsTo('App\Ownership');
+	}
+	public function users()
+	{
+		return $this->belongsTo('App\User');
 	}
 }

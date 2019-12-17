@@ -3,13 +3,13 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddBuildingColumnPointsTable extends Migration
+class AddUserColumnPointsTable extends Migration
 {
     const DB_CONNECTION = 'pr';
     const TABLE_MIGRATION = 'points';
-    const TABLE_AFTER = 'id';
-    const TABLE_HASONE = 'buildings';
-    const HASONE_TABLE = 'building';
+    const TABLE_AFTER = 'ownership_id';
+    const TABLE_HASONE = 'users';
+    const HASONE_TABLE = 'user';
     const HASONE_KEY = 'id';
 
     /**
@@ -23,8 +23,8 @@ class AddBuildingColumnPointsTable extends Migration
             $table->integer(self::HASONE_TABLE.'_'.self::HASONE_KEY)->unsigned()->nullable()->default(NULL)->after(self::TABLE_AFTER);
         });
 
-        Schema::connection(self::DB_CONNECTION)->table(self::TABLE_MIGRATION, function (Blueprint $table) {
-            $table->foreign(self::HASONE_TABLE.'_'.self::HASONE_KEY)->references(self::HASONE_KEY)->on(self::TABLE_HASONE)->onDelete('set null');
+        Schema::table(self::DB_CONNECTION.'_'.self::TABLE_MIGRATION, function (Blueprint $table) {
+            $table->foreign(self::HASONE_TABLE.'_'.self::HASONE_KEY)->references(self::HASONE_KEY)->on(self::TABLE_HASONE)->onDelete('cascade');
         });
     }
 
@@ -35,7 +35,7 @@ class AddBuildingColumnPointsTable extends Migration
      */
     public function down()
     {
-        Schema::connection(self::DB_CONNECTION)->table(self::TABLE_MIGRATION, function (Blueprint $table) {
+        Schema::table(self::DB_CONNECTION.'_'.self::TABLE_MIGRATION, function (Blueprint $table) {
             $table->dropForeign([self::HASONE_TABLE.'_'.self::HASONE_KEY]);
             $table->dropColumn(self::HASONE_TABLE.'_'.self::HASONE_KEY);
         });
