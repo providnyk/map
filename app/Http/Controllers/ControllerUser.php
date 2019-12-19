@@ -37,6 +37,7 @@ class ControllerUser	extends BaseController
     public function index() : \Illuminate\View\View
     {
 		$this->setEnv();
+#dd('ControllerUser', $this->_env->s_model);
         return view('admin.'.$this->_env->s_plr.'.list', [
             'dates'             => $this->_env->s_model::getTimestampDates(),
         ]);

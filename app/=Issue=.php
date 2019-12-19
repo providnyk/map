@@ -1,0 +1,36 @@
+<?php
+
+namespace App;
+
+use App\Model;
+
+class Issue_1 extends Model
+{
+	protected $connection = 'pr';
+	protected $fillable = [
+		'published',
+	];
+#	public $translatedAttributes = [];
+#    protected static function boot()
+/*
+	public function __construct()
+#	public function store()
+	{
+		dump($this->translatedAttributes);
+		$m = new IssueTranslation;
+#		$this->translatedAttributes = $m->getFillable();
+	    $this->translatedAttributes = array_merge($this->translatedAttributes, $m->getFillable());
+		dump($this->translatedAttributes);
+	}
+*/
+	public function points()
+	{
+		return $this->hasMany('App\Point');
+	}
+/*
+	public function scopeFilter($query, $filters)
+	{
+		return $filters->apply($query);
+	}
+*/
+}

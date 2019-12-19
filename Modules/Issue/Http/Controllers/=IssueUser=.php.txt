@@ -1,0 +1,10 @@
+<?php
+
+namespace Modules\Issue\Http\Controllers;
+
+#use Modules\Issue\Http\Controllers\IssueController as Controller;
+use App\Http\Controllers\ControllerUser as Controller;
+
+class IssueUser_2 extends Controller
+{
+}

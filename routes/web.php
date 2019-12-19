@@ -17,11 +17,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
+#use Issue\Http\Controllers\IssueController;
+#use Module\Issue\Http\Controllers\IssueController;
 
-$a_items = [
+$a_parts = [
 		'buildings'		=> 'Building',
 		'designs'		=> 'Design',
-		'issues'		=> 'Issue',
+#		'issues'		=> 'Issue',
 		'ownerships'	=> 'Ownership',
 		'points'		=> 'Point',
 		'targets'		=> 'Target',
@@ -29,8 +31,13 @@ $a_items = [
 ];
 
 $a_modules = [
-		'companies'		=> 'Company',
+#		'companies'		=> 'Company',
+		'issues'		=> 'Issue',
 ];
+
+$a_items = array_merge($a_parts, $a_modules);
+asort($a_items);
+
 
 Route::group([
     'middleware' => []#'language']
@@ -57,6 +64,54 @@ Route::group([
 
 // Change language Route
 Route::get('lang/{language}', ['as' => 'change-lang', 'uses' => 'LanguageController@changeLanguage']);
+/*
+// API Routes
+Route::group([
+    'as' => 'api.',
+    'prefix' => 'api',
+    'namespace' => 'API',
+#    'namespace' => 'Modules',
+    'middleware' => []#'language']
+], function() use ($a_items, $a_modules, $a_parts) {
+	foreach ($a_modules AS $s_table => $s_model)
+	{
+
+	Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_ctrl . '@index']);
+	Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_ctrl . '@store']);
+	Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_ctrl . '@update']);
+	Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_ctrl . '@destroy']);
+	}
+});
+*/
+#dd(class_exists('Module'), class_exists('Modules\\Issue\\Http\\Controllers\\IssueController'));
+# 	Route::get('issues', ['as' => 'issues.index', 'uses' => '\Modules\Issue\Http\Controllers\IssueController@index']);
+
+
+//API Routes
+Route::group([
+    'as' => 'api.',
+    'prefix' => 'api',
+    'namespace' => 'API',
+    'middleware' => [],
+], function() use ($a_items, $a_modules, $a_parts) {
+	foreach ($a_items AS $s_table => $s_model)
+	{
+		$s_ctrl = '';
+		if (array_key_exists($s_table, $a_parts))
+			$s_ctrl = $s_model;
+		if (array_key_exists($s_table, $a_modules)){
+			$s_ctrl = '\Modules\\' . $s_model . '\API\\' . $s_model ;
+		}
+		if (!empty($s_ctrl))
+		{
+			$s_ctrl .= 'Controller';
+			Route::get($s_table,					['as' => $s_table . '.index',	'uses' => $s_ctrl . '@index']);
+			Route::post($s_table,					['as' => $s_table . '.store',	'uses' => $s_ctrl . '@store']);
+			Route::post($s_table . '/{item}/edit',	['as' => $s_table . '.update',	'uses' => $s_ctrl . '@update']);
+			Route::post($s_table . '/delete',		['as' => $s_table . '.delete',	'uses' => $s_ctrl . '@destroy']);
+		}
+	}
+});
 
 // API Routes
 Route::group([
@@ -64,22 +119,29 @@ Route::group([
     'prefix' => 'api',
     'namespace' => 'API',
     'middleware' => []#'language']
-], function() use ($a_items) {
-
+], function() use ($a_items, $a_modules, $a_parts) {
+/*
 	foreach ($a_items AS $s_table => $s_model)
 	{
-	    Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_model . 'Controller@index']);
-	    Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_model . 'Controller@store']);
-	    Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
-	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
+		if (array_key_exists($s_table, $a_parts))
+			$s_ctrl = $s_model . 'Controller';
+		if (array_key_exists($s_table, $a_modules))
+			$s_ctrl = '\Modules\\' . $s_model . '\Http\Controllers\\' . $s_model . 'API';
+		Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_ctrl . '@index']);
+		Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_ctrl . '@store']);
+		Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_ctrl . '@update']);
+		Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_ctrl . '@destroy']);
 	}
+*/
 /*
 	foreach ($a_modules AS $s_table => $s_model)
 	{
-	    Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_model . 'Controller@index']);
-	    Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_model . 'Controller@store']);
-	    Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_model . 'Controller@update']);
-	    Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_model . 'Controller@destroy']);
+#	$s_ctrl = '\\Modules\\' . $s_model . '\\Object\\' . $s_model . 'API';
+	$s_ctrl = '\\Modules\\' . $s_model . '\\Http\\Controllers\\' . $s_model . 'API';
+	Route::get($s_table, ['as' => $s_table . '.index', 'uses' => $s_ctrl . '@index']);
+	Route::post($s_table, ['as' => $s_table . '.store', 'uses' => $s_ctrl . '@store']);
+	Route::post($s_table . '/{item}/edit', ['as' => $s_table . '.update', 'uses' => $s_ctrl . '@update']);
+	Route::post($s_table . '/delete', ['as' => $s_table . '.delete', 'uses' => $s_ctrl . '@destroy']);
 	}
 */
 
@@ -234,17 +296,66 @@ Route::group([
     'as' => 'admin.',
     'prefix' => 'admin',
     'namespace' => 'Admin',
-    'middleware' => [/*'language', */'auth', 'role:admin']
-], function() use ($a_items) {
+    'middleware' => ['auth', 'role:admin']
+], function() use ($a_items, $a_modules, $a_parts) {
     Route::get('dashboard', ['as' => 'home', 'uses' => 'DashboardController@index']);
 
 	foreach ($a_items AS $s_table => $s_model)
 	{
-	    Route::get($s_table, ['as' => $s_table, 'uses' => $s_model . 'Controller@index']);
-	    Route::get($s_table . '/form/{id?}', ['as' => $s_table . '.form', 'uses' => $s_model . 'Controller@form']);
+		$s_ctrl = '';
+		if (array_key_exists($s_table, $a_parts))
+			$s_ctrl = $s_model;
+		if (array_key_exists($s_table, $a_modules)){
+			$s_ctrl = '\Modules\\' . $s_model . '\User\\' . $s_model ;
+		}
+		if (!empty($s_ctrl))
+		{
+			$s_ctrl .= 'Controller';
+			Route::get($s_table,					['as' => $s_table,				'uses' => $s_ctrl . '@index']);
+			Route::get($s_table . '/form/{id?}',	['as' => $s_table . '.form',	'uses' => $s_ctrl . '@form']);
+		}
+	}
+});
+
+//Admin Routes
+Route::group([
+    'as' => 'admin.',
+    'prefix' => 'admin',
+    'namespace' => 'Admin',
+    'middleware' => [/*'language', */'auth', 'role:admin']
+], function() use ($a_items, $a_modules, $a_parts) {
+/*
+    Route::get('dashboard', ['as' => 'home', 'uses' => 'DashboardController@index']);
+	foreach ($a_items AS $s_table => $s_model)
+	{
+		$s_ctrl = '';
+		if (array_key_exists($s_table, $a_parts))
+			$s_ctrl = $s_model . 'Controller';
+#		if (array_key_exists($s_table, $a_modules)){
+#			$s_ctrl = '\Modules\\' . $s_model . '\\' . 'User';
+#dd($s_ctrl);
+#		}
+		if (!empty($s_ctrl))
+		{
+#			$s_ctrl .= 'Controller';
+			Route::get($s_table, ['as' => $s_table, 'uses' => $s_ctrl . '@index']);
+			Route::get($s_table . '/form/{id?}', ['as' => $s_table . '.form', 'uses' => $s_ctrl . '@form']);
+		}
+	}
+	*/
+/*
+	foreach ($a_parts AS $s_table => $s_model)
+	{
+	Route::get($s_table, ['as' => $s_table, 'uses' => $s_model . 'Controller@index']);
+	Route::get($s_table . '/form/{id?}', ['as' => $s_table . '.form', 'uses' => $s_model . 'Controller@form']);
 	}
 
-
+	foreach ($a_modules AS $s_table => $s_model)
+	{
+	Route::get($s_table, ['as' => $s_table, 'uses' => $s_model . 'Controller@index']);
+	Route::get($s_table . '/form/{id?}', ['as' => $s_table . '.form', 'uses' => $s_model . 'Controller@form']);
+	}
+*/
 
 
 

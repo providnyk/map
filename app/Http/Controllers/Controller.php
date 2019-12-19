@@ -16,9 +16,20 @@ class Controller extends BaseController
 	public function setEnv()
 	{
 		$this->_env = (object) [];
-		$a_tmp = explode('\\', get_called_class());
-		$this->_env->s_name = str_replace('Controller', '', $a_tmp[4]);
-		$this->_env->s_model = '\\App\\'.$this->_env->s_name;
+		$s_tmp = get_called_class();
+		$a_tmp = explode('\\', $s_tmp);
+#dd($a_tmp);
+		if ($a_tmp[0] == 'Modules')
+		{
+			$this->_env->s_name = $a_tmp[1];
+			$this->_env->s_model = '\Modules\\' . $this->_env->s_name . '\\' . $a_tmp[2] . '\\' . $this->_env->s_name ;
+		}
+		else
+		{
+			$this->_env->s_name = str_replace('Controller', '', $a_tmp[4]);
+			$this->_env->s_model = '\App\\'.$this->_env->s_name;
+		}
+
 		$this->_env->s_sgl = strtolower($this->_env->s_name);
 		$this->_env->fn_find = $this->_env->s_model.'::findOrNew';
 		$this->_env->s_plr = request()->segment(2);

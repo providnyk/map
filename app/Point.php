@@ -25,6 +25,10 @@ class Point extends Model
 	{
 		return $this->belongsTo('App\Design');
 	}
+	public function issues()
+	{
+		return $this->belongsToMany('Modules\Issue\Object\Issue');
+	}
 	public function targets()
 	{
 		return $this->belongsToMany('App\Target');

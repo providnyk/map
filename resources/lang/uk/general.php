@@ -1,6 +1,15 @@
 <?php
 
 return array (
+
+  'bookmarks'				=> 'Обране',
+  'my-area'					=> 'Мій Провідник',
+  'search-results'			=> 'Результати пошуку',
+  'search-btn'				=> 'Шукати',
+  'search-hint'				=> 'Пошук у',
+  'user-profile'			=> 'Мій профіль',
+  'want-recieve-updates'	=> 'Я хочу отримувати новини про оновлення PROVIDNYK та міста',
+
   'impressum' => 'About this Website',
   'about-us' => 'About us',
   'admin-profile' => 'Admin',
@@ -10,7 +19,6 @@ return array (
   'board' => 'board',
 #  'book-editors' => 'Book editors',
   'book' => 'Book',
-  'bookmarks' => 'Обране',
   'browse-book' => 'Browse the book',
   'buy-now' => 'Buy now',
   'buy-ticket' => 'Buy ticket',
@@ -48,7 +56,6 @@ return array (
   'media-about-us' => 'Media about us',
   'more-to-see-events' => 'More to see events',
   'more-to-see' => 'More to see',
-  'my-area' => 'Мій Провідник',
   'new-password-again' => 'New Password Again',
   'new-password' => 'New password',
   'news' => 'News',
@@ -63,9 +70,6 @@ return array (
   'results-for' => ':count results for ":query"',
   'save-changes' => 'Save changes',
   'save-to-my-festival' => 'Save to My Festival',
-  'search-results' => 'Результати пошуку',
-  'search-btn' => 'Шукати',
-  'search-hint' => 'Пошук у',
   'see-all-category-events' => 'See all :category events',
   'see-all-news' => 'See all news',
   'see-also' => 'See also',
@@ -74,8 +78,6 @@ return array (
   'sign-in' => 'Sign in',
   'subscribe' => 'Subscribe to our Newsletter',
   'team' => 'team',
-  'user-profile' => 'Мій профіль',
   'volume' => 'Publisher',
-  'want-recieve-updates' => 'Я хочу отримувати новини про оновлення PROVIDNYK та міста',
   'write-us' => 'write us'
 );

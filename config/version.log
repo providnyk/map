@@ -1,11 +1,9 @@
+0.37.0+a353:1 user ADD issue module, table, routes, menu, and link to points
 0.36.0+a351:3 user ADD change name group to target
-ADD issue table, routes, menu, and link to points
 0.35.0+a351:2 user ADD relation u s e r to points and save with new point
 0.34.0+a351:1 user ADD separate list and form related hotkeys js from common
 0.33.0+a350:2 user ADD building table, routes, menu, and link to points
 0.32.0+a350:1 user ADD ownership table, routes, menu, and link to points
-
-ADD company module
 0.31.0+a347:5 user ADD admin panel home page
 0.30.0+a347:4 user ADD unify list table columns
 0.29.0+a347:3 user ADD more L10N for list and form
@@ -43,9 +41,9 @@ ADD company module
 
 Я дозволяю Організатору Програми Fishka, як Володільцю персональних даних, здійснювати обробку моїх персональних даних згідно з умовами надання згоди на обробку персональних даних і погоджуюся з усіма https://myfishka.com/rules Правилами Програми.
 
+php artisan module:make Company
 php artisan module:migrate Company
 php artisan module:migrate-rollback Company
-php artisan module:make Company
 
 up local->acceptance
 
@@ -54,4 +52,4 @@ up local->acceptance
 
 down modules<-vmware
 
-rsync -pahize 'ssh -p 30307' --progress --delete --exclude={'cache','/vendor','storage','tmp'} --exclude=composer.lock --exclude={'.git/*','.git*'} maximax@pr.max:/usr/share/nginx/www/max.pr/Modules /Volumes/ssd/Dropbox/projects/web/pr.max/Modules
+rsync -pahize 'ssh -p 30307' --progress --delete --exclude={'cache','/vendor','storage','tmp'} --exclude=composer.lock --exclude={'.git/*','.git*'} maximax@pr.max:/usr/share/nginx/www/max.pr/Modules/Issue /Volumes/ssd/Dropbox/projects/web/pr.max/Modules
