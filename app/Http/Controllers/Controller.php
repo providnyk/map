@@ -15,10 +15,11 @@ class Controller extends BaseController
 	protected $a_fields = [];
 	public function setEnv()
 	{
-		$this->_env = (object) [];
-		$s_tmp = get_called_class();
-		$a_tmp = explode('\\', $s_tmp);
-#dd($a_tmp);
+		$this->_env				= (object) [];
+		$s_tmp					= get_called_class();
+		$a_tmp					= explode('\\', $s_tmp);
+
+#dd($a_tmp, request()->segment(2));
 		if ($a_tmp[0] == 'Modules')
 		{
 			$this->_env->s_name = $a_tmp[1];
@@ -30,9 +31,14 @@ class Controller extends BaseController
 			$this->_env->s_model = '\App\\'.$this->_env->s_name;
 		}
 
-		$this->_env->s_sgl = strtolower($this->_env->s_name);
-		$this->_env->fn_find = $this->_env->s_model.'::findOrNew';
-		$this->_env->s_plr = request()->segment(2);
+		$this->_env->s_sgl		= strtolower($this->_env->s_name);
+		$this->_env->fn_find	= $this->_env->s_model.'::findOrNew';
+		$this->_env->s_plr		= request()->segment(2);
+
+		if ($a_tmp[0] == 'Modules')
+			$this->_env->s_view = $this->_env->s_sgl . '::' . strtolower($a_tmp[2]) . '.';
+		else
+			$this->_env->s_view = 'admin.' . $this->_env->s_plr . '.';
 
 		$m = new $this->_env->s_model;
 		$this->a_fields = array_merge(config('translatable.locales'), $m->getFillable());

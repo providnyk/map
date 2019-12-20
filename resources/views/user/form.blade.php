@@ -71,7 +71,6 @@ include(getcwd().'/../resources/views/user/crud.php');
 								@foreach($localizations as $code => $localization)
 									<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
 									@include('user._form_input', ['name'=>'title',])
-									@include('user._form_input', ['name'=>'description',])
 									</div>
 								@endforeach
 							</div>

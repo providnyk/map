@@ -1,7 +1,7 @@
-0.39.0+a354:1 user ADD enable issue module
-ADD issue form into module location
-0.38.0+a353:2 user ADD issue clean up
+0.40.0+a354:2 user ADD issue form into module location
 ADD issue link to points
+0.39.0+a354:1 user ADD enable issue module
+0.38.0+a353:2 user ADD issue clean up
 0.37.0+a353:1 user ADD issue module, table, routes, menu
 0.36.0+a351:3 user ADD change name group to target
 0.35.0+a351:2 user ADD relation u s e r to points and save with new point
