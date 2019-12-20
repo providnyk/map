@@ -1,3 +1,5 @@
+0.39.0+a354:1 user ADD enable issue module
+ADD issue form into module location
 0.38.0+a353:2 user ADD issue clean up
 ADD issue link to points
 0.37.0+a353:1 user ADD issue module, table, routes, menu
