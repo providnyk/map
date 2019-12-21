@@ -17,6 +17,8 @@ class Point extends Model
 		'lat',
 		'lng',
 	];
+	public $a_form = [
+	];
 	public function buildings()
 	{
 		return $this->belongsTo('App\Building');
@@ -24,10 +26,6 @@ class Point extends Model
 	public function designs()
 	{
 		return $this->belongsTo('App\Design');
-	}
-	public function issues()
-	{
-		return $this->belongsToMany('Modules\Issue\Object\Issue');
 	}
 	public function targets()
 	{

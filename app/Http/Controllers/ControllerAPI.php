@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller as BaseController;
 
 class ControllerAPI		extends BaseController
 {
+	protected $o_item = [];
 	/**
 	 * Prepare data for listing all of items
 	 * this is also used by dynamic dropdowns
@@ -47,10 +48,10 @@ class ControllerAPI		extends BaseController
 #        $design = Design::create($request->only($m->translatedAttributes));
 #		dd(config('translatable.locales'));
 #		dump($this->a_fields);
-		$item = $this->_env->s_model::create($request->only($this->a_fields));
+		$this->o_item = $this->_env->s_model::create($request->only($this->a_fields));
 #        $design->processImages($request, 'image');
 
-		return response([], 200);
+		return response(['id' => $this->o_item->id,], 200);
 	}
 
 	/**
@@ -67,7 +68,7 @@ class ControllerAPI		extends BaseController
 #        $design->update($request->only('enabled', 'uk', 'ru', 'en', 'de'));
 #        $design->processImages($request, 'image');
 
-		return response([], 200);
+		return response(['id' => $item->id,], 200);
 	}
 
 	/**

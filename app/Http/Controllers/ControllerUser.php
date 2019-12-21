@@ -25,6 +25,11 @@ class ControllerUser	extends BaseController
 
 		return view($this->_env->s_view . 'form', [
 			$this->_env->s_plr		=> $fn_find($request->id),
+			'form'					=> [
+										'tabs'		=> $this->_env->a_tab,
+										'fields'	=> $this->_env->a_field,
+										'rules'		=> $this->_env->a_rule,
+										],
 		]);
 	}
 

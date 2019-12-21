@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
+#use Illuminate\Database\Eloquent\Model;
 
 class DesignTranslation extends Model
 {
@@ -11,5 +12,8 @@ class DesignTranslation extends Model
 	protected $fillable = [
 		'title',
 		'description',
+	];
+
+	public $a_form = [
 	];
 }

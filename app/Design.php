@@ -9,7 +9,11 @@ class Design extends Model
 {
 	protected $connection = 'pr';
 	protected $fillable = [
+		'issue_id',
 		'published',
+	];
+
+	public $a_form = [
 	];
 #	public $translatedAttributes = [];
 #    protected static function boot()
@@ -24,9 +28,13 @@ class Design extends Model
 		dump($this->translatedAttributes);
 	}
 */
+	public function issues()
+	{
+		return $this->belongsToMany('Modules\Issue\Database\Issue');
+	}
 	public function points()
 	{
-		return $this->hasMany('App\Point');
+		return $this->belongsToMany('App\Point');
 	}
 /*
 	public function scopeFilter($query, $filters)

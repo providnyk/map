@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Model;
+#use Illuminate\Database\Eloquent\Model;
 
 class PointTranslation extends Model
 {
@@ -13,5 +14,7 @@ class PointTranslation extends Model
 		'annotation',
 		'description',
 		'address',
+	];
+	public $a_form = [
 	];
 }

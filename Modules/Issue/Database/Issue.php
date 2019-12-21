@@ -8,10 +8,23 @@ class Issue extends Model
 {
 	protected $connection = 'pr';
 	protected $fillable = [
+		'design_id',
 		'published',
 	];
-	public function points()
+	protected $a_form = [
+		'design_ids'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'select',
+			'rules'		=> '',
+		],
+		'published'		=> [
+			'tab'		=> 'manage',
+			'field'		=> 'checkbox',
+			'rules'		=> '',
+		],
+	];
+	public function designs()
 	{
-		return $this->hasMany('App\Point');
+		return $this->belongsToMany('App\Design');
 	}
 }

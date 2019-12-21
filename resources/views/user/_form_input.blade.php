@@ -1,7 +1,19 @@
 @php
-$s_type = 'checkbox';
+
 $s_label = '';
 $s_rules = '';
+$s_label = '';
+$s_typein = '';
+
+
+
+
+
+
+
+
+
+
 
 if (!isset($id)) # direct/simple value
 	$s_id = $name;

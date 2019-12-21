@@ -38,49 +38,28 @@ include(getcwd().'/../resources/views/user/crud.php');
 </script>
 @append
 
+@php ($code = NULL) @endphp
+
 @section('content')
 	<div class="card form">
 		<div class="card-body p-0">
 			<div class="card-body">
 				<form class="form-validate-jquery item-form" action="{!! $s_form_route !!}" method="{!! $s_form_method !!}">
 					<ul class="nav nav-tabs nav-tabs-highlight">
-						<li class="nav-item">
-							<a href="#data" class="nav-link active" data-toggle="tab">{!! trans('user/crud.tab.data.name') !!}</a>
-						</li>
-						<li class="nav-item">
-							<a href="#manage" class="nav-link" data-toggle="tab">{!! trans('user/crud.tab.manage.name') !!}</a>
-						</li>
+						@include('user._tab_loop', ['tpl' => 'user._tab_title'])
 					</ul>
 					<div class="tab-content">
 						@include('user._form_submit')
-						<div class="tab-pane px-2 active" id="data">
-							<legend class="text-uppercase font-size-sm font-weight-bold">
-								{!! trans('user/crud.tab.data.info') !!}
-							</legend>
-							<ul class="nav nav-tabs nav-tabs-highlight">
-								@foreach($localizations as $code => $localization)
-									<li class="nav-item">
-										<a href="#{!! $code !!}" class="nav-link {!! $app->getLocale() === $code ? 'active' : ''!!}" data-toggle="tab">
-											<img src="{!! asset('images/flags/' . $code . '.png') !!}" width="30rem" class="mr-1">
-											{!! $localization !!}
-										</a>
-									</li>
-								@endforeach
-							</ul>
-							<div class="tab-content">
-								@foreach($localizations as $code => $localization)
-									<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
-									@include('user._form_input', ['name'=>'title',])
-									</div>
-								@endforeach
-							</div>
-						</div>
+
+						@include('user._tab_loop', ['tpl' => 'user._tab_content'])
+{{--
 						<div class="tab-pane px-2" id="manage">
 							<legend class="text-uppercase font-size-sm font-weight-bold">
 								{!! trans('user/crud.tab.manage.info') !!}
 							</legend>
 							@include('user._form_checkbox', ['name'=>'published',])
 						</div>
+--}}
 					</div>
 				</form>
 			</div>

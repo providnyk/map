@@ -10,6 +10,8 @@ class Target extends Model
 	protected $fillable = [
 		'published',
 	];
+	public $a_form = [
+	];
 
 	public function points()
 	{

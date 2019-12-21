@@ -3,14 +3,14 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateIssuePointTable extends Migration {
+class CreateDesignIssueTable extends Migration {
 
     const DB_CONNECTION = 'pr';
     const DB_TABLE_KEY = 'id';
-    const DB_NAME_SGL1 = 'issue';
-    const DB_NAME_SGL2 = 'point';
-    const DB_NAME_PLR1 = 'issues';
-    const DB_NAME_PLR2 = 'points';
+    const DB_NAME_SGL1 = 'design';
+    const DB_NAME_SGL2 = 'issue';
+    const DB_NAME_PLR1 = 'designs';
+    const DB_NAME_PLR2 = 'issues';
 	/**
 	 * Run the migrations.
 	 *
@@ -23,7 +23,7 @@ class CreateIssuePointTable extends Migration {
 		$s_tkey2	= self::DB_NAME_SGL2.'_'.self::DB_TABLE_KEY;
         Schema::connection(self::DB_CONNECTION)->create($s_tname, function (Blueprint $table)  use ($s_tname, $s_tkey1, $s_tkey2) {
             $table->unsignedInteger($s_tkey1);
-            $table->bigInteger($s_tkey2)->unsigned();
+            $table->unsignedInteger($s_tkey2);
 
             $table->primary([$s_tkey1, $s_tkey2]);
             $table->foreign($s_tkey1)->references(self::DB_TABLE_KEY)->on(self::DB_NAME_PLR1)->onDelete('cascade');

@@ -18,6 +18,11 @@ class Model extends BaseModel
 		return $filters->apply($query);
 	}
 
+	public function getFields()
+	{
+		return $this->a_form;
+	}
+
 	/**
 	 * check possible boolean values in submitted form and set them to request
 	 * so that checkboxes can be saved correctly

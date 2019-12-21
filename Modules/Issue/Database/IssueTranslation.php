@@ -2,8 +2,8 @@
 
 namespace Modules\Issue\Database;
 
-use Illuminate\Database\Eloquent\Model;
-#use App\Model;
+use App\Model;
+#use Illuminate\Database\Eloquent\Model;
 
 class IssueTranslation extends Model
 {
@@ -12,5 +12,18 @@ class IssueTranslation extends Model
 	protected $fillable = [
 		'title',
 		'description',
+	];
+
+	public $a_form = [
+		'title'			=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> '',
+		],
+		'description'	=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> '',
+		],
 	];
 }

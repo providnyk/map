@@ -11,5 +11,7 @@ class Ownership extends Model
 	protected $fillable = [
 		'published',
 	];
+	public $a_form = [
+	];
 
 }

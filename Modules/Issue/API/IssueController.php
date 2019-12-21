@@ -46,7 +46,9 @@ class IssueController extends Controller
 	 */
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
-		return $this->storeAPI($request);
+		$a_res = $this->storeAPI($request);
+		$this->o_item->designs()->sync($request->design_ids);
+		return $a_res;
 	}
 
 	/**
@@ -57,7 +59,9 @@ class IssueController extends Controller
 	 */
 	public function update(SaveRequest $request, Issue $item) : \Illuminate\Http\Response
 	{
-		return $this->updateAPI($request, $item);
+		$item->designs()->sync($request->design_ids);
+		$a_res = $this->updateAPI($request, $item);
+		return $a_res;
 	}
 
 	/**

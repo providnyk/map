@@ -1,5 +1,5 @@
+0.41.0+a355:1 user ADD issue link to designs
 0.40.0+a354:2 user ADD issue form into module location
-ADD issue link to points
 0.39.0+a354:1 user ADD enable issue module
 0.38.0+a353:2 user ADD issue clean up
 0.37.0+a353:1 user ADD issue module, table, routes, menu
@@ -45,9 +45,13 @@ ADD issue link to points
 
 Я дозволяю Організатору Програми Fishka, як Володільцю персональних даних, здійснювати обробку моїх персональних даних згідно з умовами надання згоди на обробку персональних даних і погоджуюся з усіма https://myfishka.com/rules Правилами Програми.
 
-php artisan module:make Company
-php artisan module:migrate Company
-php artisan module:migrate-rollback Company
+https://nwidart.com/laravel-modules/v6/advanced-tools/artisan-commands
+php artisan module:use Issue
+php artisan module:unuse Issue
+php artisan module:make
+php artisan module:migrate
+php artisan module:migrate-rollback
+php artisan module:enable
 
 up local->acceptance
 
