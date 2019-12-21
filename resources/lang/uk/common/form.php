@@ -10,13 +10,19 @@ define('BOOL_YES_NO', 'yes or no');
 */
 return [
     'breadcrumbs' => [
-        'list' => 'Спісок',
+        'list' => 'Список',
     ],
-    'actions' => [
+	'title' => [
         'create'    	=> 'Створення',
-        'create_more'  	=> 'Створити ще один запіс',
+        'create_more'  	=> 'Створення ще одного запісу',
         'edit'      	=> 'Редагування',
-        'view'      	=> 'Дивіться',
-        'continue'  	=> 'Протягнуть',
+        'view'      	=> 'Прогляд',
+	],
+    'actions' => [
+        'create'    	=> 'Створити',
+        'create_more'  	=> 'Створити ще один запис',
+        'edit'      	=> 'Редагувати',
+        'view'      	=> 'Подивитись',
+        'continue'  	=> 'Продовжити',
     ],
 ];
