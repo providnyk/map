@@ -34,7 +34,7 @@ return [
 		],
 		'design_id' => [
 			#'label' => '', #is taken from "designs" name sgl
-			'rules'	=> 'required | one from list',
+			'rules'		=> 'required | one from list',
 		],
 		'address' => [
 			'label'		=> 'Адреса',

@@ -12,7 +12,7 @@ return [
     'breadcrumbs' => [
         'list' => 'Список',
     ],
-	'title' => [
+	'text' => [
         'create'    	=> 'Створення',
         'create_more'  	=> 'Створення ще одного запісу',
         'edit'      	=> 'Редагування',

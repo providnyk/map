@@ -21,8 +21,8 @@ if (isset($$s_category))
 {
 	$o_item         	= $$s_category;
 	$s_page_action      = ($o_item->id
-	                            ? trans('common/form.title.edit')
-	                            : trans('common/form.title.create')
+	                            ? trans('common/form.text.edit')
+	                            : trans('common/form.text.create')
 	                        )
 	                        . ' '
 	                        . ($o_item->id
