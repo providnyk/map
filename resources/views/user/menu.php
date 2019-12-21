@@ -18,7 +18,7 @@ $menu_list[] = ['points', 'targets', 'designs', 'buildings', 'ownerships', ];
 $menu_title[] = 'improvements';
 $menu_color[] = '#f5ad42';
 $menu_icon[] = 'fa fa-envelope';
-$menu_list[] = ['issues', ];
+$menu_list[] = ['reports', 'issues', ];
 #$menu_list[] = ['issues', 'reports', ]; theater
 
 $menu_title[] = 'people';

@@ -59,10 +59,10 @@ include(getcwd().'/../resources/views/user/crud.php');
 							<legend class="text-uppercase font-size-sm font-weight-bold">
 								{!! trans('user/crud.tab.data.info') !!}
 							</legend>
-							@include('user._form_select', ['name'=>'designs', 'id'=>'design_id'])
-							@include('user._form_select', ['name'=>'buildings', 'id'=>'building_id'])
-							@include('user._form_select', ['name'=>'ownerships', 'id'=>'ownership_id'])
-							@include('user._form_select', ['name'=>'targets', 'id'=>'target_id', 'many'=>TRUE])
+							@include('user._form_select', ['name'=>'design_id'])
+							@include('user._form_select', ['name'=>'building_id'])
+							@include('user._form_select', ['name'=>'ownership_id'])
+							@include('user._form_select', ['name'=>'target_ids'])
 							<ul class="nav nav-tabs nav-tabs-highlight">
 								@foreach($localizations as $code => $localization)
 									<li class="nav-item">

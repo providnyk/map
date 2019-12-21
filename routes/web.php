@@ -15,29 +15,33 @@ use App\Api\EventApi;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Pluralizer;
 use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
-#use Issue\Http\Controllers\IssueController;
-#use Module\Issue\Http\Controllers\IssueController;
 
 $a_parts = [
 		'buildings'		=> 'Building',
 		'designs'		=> 'Design',
-#		'issues'		=> 'Issue',
 		'ownerships'	=> 'Ownership',
 		'points'		=> 'Point',
 		'targets'		=> 'Target',
 		'users'			=> 'User',
 ];
 
-$a_modules = [
-#		'companies'		=> 'Company',
-		'issues'		=> 'Issue',
-];
+$a_modules = [];
+$a_res = file_get_contents(base_path().'/modules_statuses.json');
+$a_res = json_decode($a_res, TRUE);
+foreach ($a_res AS $s_name => $b_status)
+{
+	if ($b_status)
+	{
+		$s_table				= strtolower(Pluralizer::plural($s_name, 2));
+		$a_modules[$s_table]	= $s_name;
+	}
+}
 
 $a_items = array_merge($a_parts, $a_modules);
 asort($a_items);
-
 
 Route::group([
     'middleware' => []#'language']
