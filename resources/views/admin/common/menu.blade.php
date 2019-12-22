@@ -9,7 +9,7 @@
                 <li class="nav-item-header"><div class="text-uppercase font-size-xs line-height-xs">{!! trans('menu.menu') !!}</div> <i class="icon-menu" title="Main"></i></li>
 
 @php
-include(getcwd().'/../resources/views/user/menu.php');
+include(base_path().'/resources/views/user/menu.php');
 @endphp
 @include('admin.common._menu_group')
 

@@ -15,33 +15,8 @@ use App\Api\EventApi;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Pluralizer;
 use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
-
-$a_parts = [
-		'buildings'		=> 'Building',
-		'designs'		=> 'Design',
-		'ownerships'	=> 'Ownership',
-		'points'		=> 'Point',
-		'targets'		=> 'Target',
-		'users'			=> 'User',
-];
-
-$a_modules = [];
-$a_res = file_get_contents(base_path().'/modules_statuses.json');
-$a_res = json_decode($a_res, TRUE);
-foreach ($a_res AS $s_name => $b_status)
-{
-	if ($b_status)
-	{
-		$s_table				= strtolower(Pluralizer::plural($s_name, 2));
-		$a_modules[$s_table]	= $s_name;
-	}
-}
-
-$a_items = array_merge($a_parts, $a_modules);
-asort($a_items);
 
 Route::group([
     'middleware' => []#'language']
@@ -97,15 +72,14 @@ Route::group([
     'prefix' => 'api',
     'namespace' => 'API',
     'middleware' => [],
-], function() use ($a_items, $a_modules, $a_parts) {
-	foreach ($a_items AS $s_table => $s_model)
+], function() {
+	foreach (config('elements.list') AS $s_table => $s_model)
 	{
 		$s_ctrl = '';
-		if (array_key_exists($s_table, $a_parts))
-			$s_ctrl = $s_model;
-		if (array_key_exists($s_table, $a_modules)){
+		if (in_array($s_table, config('elements.modules')))
 			$s_ctrl = '\Modules\\' . $s_model . '\API\\' . $s_model ;
-		}
+		else
+			$s_ctrl = $s_model;
 		if (!empty($s_ctrl))
 		{
 			$s_ctrl .= 'Controller';
@@ -123,7 +97,7 @@ Route::group([
     'prefix' => 'api',
     'namespace' => 'API',
     'middleware' => []#'language']
-], function() use ($a_items, $a_modules, $a_parts) {
+], function() {
 /*
 	foreach ($a_items AS $s_table => $s_model)
 	{
@@ -301,17 +275,16 @@ Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
     'middleware' => ['auth', 'role:admin']
-], function() use ($a_items, $a_modules, $a_parts) {
+], function() {
     Route::get('dashboard', ['as' => 'home', 'uses' => 'DashboardController@index']);
 
-	foreach ($a_items AS $s_table => $s_model)
+	foreach (config('elements.list') AS $s_table => $s_model)
 	{
 		$s_ctrl = '';
-		if (array_key_exists($s_table, $a_parts))
-			$s_ctrl = $s_model;
-		if (array_key_exists($s_table, $a_modules)){
+		if (in_array($s_table, config('elements.modules')))
 			$s_ctrl = '\Modules\\' . $s_model . '\User\\' . $s_model ;
-		}
+		else
+			$s_ctrl = $s_model;
 		if (!empty($s_ctrl))
 		{
 			$s_ctrl .= 'Controller';
@@ -327,7 +300,7 @@ Route::group([
     'prefix' => 'admin',
     'namespace' => 'Admin',
     'middleware' => [/*'language', */'auth', 'role:admin']
-], function() use ($a_items, $a_modules, $a_parts) {
+], function() {
 /*
     Route::get('dashboard', ['as' => 'home', 'uses' => 'DashboardController@index']);
 	foreach ($a_items AS $s_table => $s_model)
