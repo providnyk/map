@@ -8,7 +8,15 @@ use App\Filters\FiltersAPI;
 #use Illuminate\Http\Request;
 
 class IssueFilters extends FiltersAPI
-{/*
+{
+
+	protected function points($ids)
+	{
+		return $this->builder->whereIn('point_id', $ids);
+	}
+
+
+/*
 	protected $filters = [
 		'id',
 		'title',

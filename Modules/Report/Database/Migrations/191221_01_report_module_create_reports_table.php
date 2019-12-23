@@ -19,6 +19,7 @@ class CreateReportsTable extends Migration
 	{
 		Schema::connection(self::DB_CONNECTION)->create(self::DB_NAME_PLR, function (Blueprint $table) {
 			$table->bigIncrements(self::DB_TABLE_KEY);
+            $table->unsignedInteger('issue_id')->nullable()->default(NULL);
             $table->bigInteger('point_id')->unsigned()->nullable()->default(NULL);
 			$table->integer('user_id')->unsigned()->nullable()->default(NULL);
 			$table->boolean('published')->default(0);

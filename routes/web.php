@@ -65,7 +65,6 @@ Route::group([
 #dd(class_exists('Module'), class_exists('Modules\\Issue\\Http\\Controllers\\IssueController'));
 # 	Route::get('issues', ['as' => 'issues.index', 'uses' => '\Modules\Issue\Http\Controllers\IssueController@index']);
 
-
 //API Routes
 Route::group([
     'as' => 'api.',
@@ -73,6 +72,16 @@ Route::group([
     'namespace' => 'API',
     'middleware' => [],
 ], function() {
+
+	$s_table	= 'points';
+	$s_model	= 'Point';
+	$s_ctrl		= '\Modules\\' . $s_model . '\API\\' . $s_model ;
+	$s_ctrl		= 'PointController';
+	$s_method	= 'issues';
+	Route::get($s_table.'/{id}/'.$s_method,			['as' => $s_table . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+	$s_method	= 'reports';
+	Route::get($s_table.'/{id}/'.$s_method,			['as' => $s_table . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
 	foreach (config('elements.list') AS $s_table => $s_model)
 	{
 		$s_ctrl = '';

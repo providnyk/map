@@ -34,7 +34,7 @@ include(base_path().'/resources/views/user/crud.php');
 
 @section('script')
 <script type="text/javascript">
-    @include('admin.common.data2js')
+@include('admin.common.data2js')
 </script>
 @append
 

@@ -80,7 +80,7 @@ class Controller extends BaseController
 
 		$this->_env->a_field		= $this->a_field;
 		$this->_env->a_rule			= $this->a_rule;
-		$this->_env->a_tab			= array_unique($this->a_tab);
+		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
 #dump($this->_env->a_field, $this->_env->a_rule);
 	}
 }

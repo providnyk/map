@@ -3,14 +3,27 @@
 namespace App\Http\Controllers\API;
 
 use App\Point;
+use Illuminate\Http\Request;
 use App\Filters\PointFilters;
 use App\Http\Requests\PointRequest;
 use App\Http\Requests\DeleteRequest;
 use App\Http\Controllers\ControllerAPI as Controller;
 use App\Http\Requests\PointApiRequest;
+use Modules\Issue\Database\Issue;
 
 class PointController extends Controller
 {
+	/**
+	 * Deleted selected item(s)
+	 * @param Request	$request		Data from request
+	 *
+	 * @return Response	json instance of
+	 */
+	public function destroy(DeleteRequest $request) : \Illuminate\Http\Response
+	{
+		return $this->destroyAPI($request);
+	}
+
 	/**
 	 * Prepare data for listing all of items
 	 * @param Request	$request		Data from request
@@ -21,6 +34,17 @@ class PointController extends Controller
 	public function index(PointApiRequest $request, PointFilters $filters) : \Illuminate\Http\Response
 	{
 		return $this->indexAPI($request, $filters);
+	}
+
+	/**
+	 * Get list of issues specific to this point
+	 * @param Integer	$id				point id
+	 *
+	 * @return Response	json instance of
+	 */
+	protected function issues(Request $request, $id) : String
+	{
+		return Point::getSpecificIssues($request, $id);
 	}
 
 	/**
@@ -50,14 +74,5 @@ class PointController extends Controller
 		return $a_res;
 	}
 
-	/**
-	 * Deleted selected item(s)
-	 * @param Request	$request		Data from request
-	 *
-	 * @return Response	json instance of
-	 */
-	public function destroy(DeleteRequest $request) : \Illuminate\Http\Response
-	{
-		return $this->destroyAPI($request);
-	}
+
 }
