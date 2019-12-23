@@ -1,3 +1,5 @@
+0.48.0+a357:2 user ADD link to parent list within form
+ADD link issue to specific type when creating a report
 0.47.0+a357:1 user ADD comment out redundant scripts
 0.46.0+a356:1 user ADD overall stats to Dashboard
 0.45.0+a355:5 user ADD report module, table, routes, menu

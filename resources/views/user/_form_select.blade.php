@@ -4,6 +4,7 @@ $s_label = '';
 $s_rules = '';
 $s_label = '';
 $s_typein = '';
+$s_route = '';
 
 if (stristr($name, '_id'))
 {
@@ -22,6 +23,7 @@ else # expected to be a foreign key *_id
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
 	$s_typein = trans('user/'.$name.'.names.typein');
+	$s_route = 'admin.'.$name;
 }
 
 $s_dataname = ($code ? $code .'.' : '') . $s_id;
@@ -53,7 +55,13 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 <div class="form-group row field" data-name="{!! $s_dataname !!}">
 	<div class="col-lg-3">
 		<label class="d-block float-left py-2 m-0">
+			@if ($s_route)
+			<a href="{!! route($s_route) !!}" target="_blank">
+			@endif
 			{!! $s_label !!}
+			@if ($s_route)
+			</a>
+			@endif
 			{!! $b_required ? '<span class="text-danger">*</span>' : '' !!}
 		</label>
 		<span class="badge badge-primary tooltip-helper d-block float-right my-2 px-1" data-toggle="tooltip" title="{!! $s_rules !!}"><i class="icon-info3"></i></span>

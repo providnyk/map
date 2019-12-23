@@ -15,6 +15,7 @@ $s_typein = '';
 
 
 
+
 if (!isset($id)) # direct/simple value
 	$s_id = $name;
 else # expected to be a foreign key *_id
@@ -22,6 +23,7 @@ else # expected to be a foreign key *_id
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
 	$s_typein = trans('user/'.$name.'.names.typein');
+
 }
 
 $s_dataname = ($code ? $code .'.' : '') . $s_id;
