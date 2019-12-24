@@ -14,13 +14,13 @@
             <div class="single-form-block">
                 <div class="title-box">
                     <h1 class="title-block">
-                    	{{ trans('general.my-area') }}
+                    	{!! trans('general.my-area') !!}
                     </h1>
                     <ul class="nav nav-tabs" id="pressTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="sign-tab" data-toggle="tab" href="#sign-text-tab"
                                role="tab"
-                               aria-controls="sign-text-tab" aria-selected="true">{{ trans('user/form.text.signin') }}</a>
+                               aria-controls="sign-text-tab" aria-selected="true">{!! trans('user/form.text.signin') !!}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="register-tab" data-toggle="tab" href="#register-text-tab" role="tab"

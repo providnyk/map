@@ -17,7 +17,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\StartSessionMiddleware::class,
         \App\Http\Middleware\TrimStrings::class,
         \App\Http\Middleware\TrustProxies::class,
-		\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+#		\Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \Spatie\CookieConsent\CookieConsentMiddleware::class,
@@ -33,7 +33,7 @@ class Kernel extends HttpKernel
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
-#            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,

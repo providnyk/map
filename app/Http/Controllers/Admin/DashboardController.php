@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -37,5 +38,18 @@ class DashboardController extends Controller
     	[
     		'cnt' => $a_cnt,
     	]);
+    }
+
+	/**
+	 * Validate user access to admin area
+	 * and active session still in progress
+	 * @param void
+	 *
+	 * @return String	json data
+	 */
+    public function session() : String
+    {
+        $user = Auth::user();
+    	return json_encode(['active' => (Auth::user() !== NULL), 'acl' => $user->checkAdmin(), ]);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 return array (
+  'admin-profile' => 'Адмін',
   'bookmarks' => 'Обране',
 #  'date' => ':day :month :year',
   'my-area' => 'Мій Провідник',

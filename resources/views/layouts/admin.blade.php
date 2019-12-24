@@ -17,6 +17,13 @@ $version = include_once( __DIR__ . '/../../../version.php');
     <link href="{!! asset('/admin/css/app.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
     @yield('css')
+
+@section('script')
+<script type="text/javascript">
+@include('user.var2js')
+</script>
+@append
+
 </head>
 <body>
 
@@ -312,7 +319,6 @@ $version = include_once( __DIR__ . '/../../../version.php');
 <!-- /page content -->
 {{--<script src="/admin/js/manifest.js"></script>--}}
 {{--<script src="/admin/js/vendor.js"></script>--}}
-{{--<script src="/admin/js/app.js"></script>--}}
 <script src="{!! asset('/admin/js/main/jquery.min.js') !!}"></script>
 <script src="{!! asset('/admin/js/main/bootstrap.bundle.min.js') !!}"></script>
 <script src="{!! asset('/admin/js/plugins/loaders/blockui.min.js') !!}"></script>
@@ -326,8 +332,9 @@ $version = include_once( __DIR__ . '/../../../version.php');
 <script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
 
-<script src="{{ asset('/admin/js/app.js?v=' . $version->js) }}"></script>
-<script src="{{ asset('/admin/js/common.js?v=' . $version->js) }}"></script>
+<script src="{!! asset('/admin/js/app.js?v=' . $version->js) !!}"></script>
+<script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
+<script src="{!! asset('/admin/js/session.js?v=' . $version->js) !!}"></script>
 
 @yield('script')
 @yield('js')
