@@ -1,3 +1,5 @@
+0.50.0+a359:1 user DEL other languages en de
+ADD detect page focus and check logout for admin panel
 0.49.0+a358:1 user ADD link issue to specific type when creating a report
 0.48.0+a357:2 user ADD link to parent list within form
 0.47.0+a357:1 user ADD comment out redundant scripts
