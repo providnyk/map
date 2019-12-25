@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('meta')
-    <title>{!! mb_strtoupper(trans('general.my-area') . ' | ' . config('app.name')) !!}</title>
+    <title>{!! mb_strtoupper(trans('general.my-area') . ' | ' . trans('app.name')) !!}</title>
 @endsection
 
 @include('public.partials._profile', ['s_id' => '#register-form, #sign-in-form'])

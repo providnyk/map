@@ -1,7 +1,7 @@
 @extends('layouts.public')
 
 @section('meta')
-	<title>{!! trans('meta.cabinet') !!}</title>
+	<title>{!! mb_strtoupper(trans('general.my-area') . ' | ' . trans('app.name')) !!}</title>
 	<meta name="title" content="{!! trans('meta.cabinet') !!}">
 	<meta name="description" content="{!! trans('meta.cabinet') !!}">
 	<meta name="keywords" content="{!! trans('meta.cabinet') !!}">
