@@ -13,7 +13,8 @@ class Model extends BaseModel
 
 	public $translatedAttributes = [];
 
-	public function __construct()
+#	public function __construct()
+	public static function setTrans()
 	{
 		$s_basename					= class_basename(__CLASS__);
 #		$this->_env					= (object) [];
@@ -21,37 +22,38 @@ class Model extends BaseModel
 #dd($s_tmp);
 		$a_tmp						= explode('\\', $s_tmp);
 #dump(stripos($a_tmp[1],'Translation') === FALSE);
-		if (stripos($s_tmp,'Translation') !== FALSE)
-			return TRUE;
+		if (stripos($s_tmp,'Translation') === FALSE)
+		{
+			$s_name						= $a_tmp[1];
+	#dump($s_name);
+			if ($a_tmp[0] == 'Modules')
+			{
+	#			$s_name					= $a_tmp[1];
+	#			$s_model	= '\Modules\\' . $s_name . '\\' . $a_tmp[2] . '\\' . $s_name ;
+				$s_trans				= '\Modules\\' . $s_name . '\\' . 'Database' . '\\' . $s_name ;
+			}
+			else
+			{
+				$s_name					= str_replace($s_basename, '', $s_name);
+				$s_model				= '\App\\'.$s_name;
+				$s_trans				= $s_model ;
+			}
+
+	#		$m							= new $s_model;
+			$s_tmp						= $s_trans.'Translation';
+
+			if (class_exists($s_tmp))
+			{
+#				$t							= new $s_tmp;
+				$a_trans					= $t->getFillable();
+		#dd($a_trans, $this->translatedAttributes);
+		#		$a_form_main				= $m->getFields();
+		#		$a_form_trans				= $t->getFields();
+				$this->translatedAttributes = $a_trans;
+#dump($this);
+			}
+		}
 #dd(		$a_tmp);
-
-		$s_name						= $a_tmp[1];
-#dump($s_name);
-		if ($a_tmp[0] == 'Modules')
-		{
-#			$s_name					= $a_tmp[1];
-#			$s_model	= '\Modules\\' . $s_name . '\\' . $a_tmp[2] . '\\' . $s_name ;
-			$s_trans				= '\Modules\\' . $s_name . '\\' . 'Database' . '\\' . $s_name ;
-		}
-		else
-		{
-			$s_name					= str_replace($s_basename, '', $s_name);
-			$s_model				= '\App\\'.$s_name;
-			$s_trans				= $s_model ;
-		}
-
-#		$m							= new $s_model;
-		$s_tmp						= $s_trans.'Translation';
-
-		if (!class_exists($s_tmp))
-			return TRUE;
-
-		$t							= new $s_tmp;
-		$a_trans					= $t->getFillable();
-#		$a_form_main				= $m->getFields();
-#		$a_form_trans				= $t->getFields();
-
-		$this->translatedAttributes = $a_trans;
 	}
 
 	public function scopeFilter($query, $filters)

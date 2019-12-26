@@ -47,7 +47,7 @@ class ControllerAPI		extends BaseController
 */
 #        $design = Design::create($request->only($m->translatedAttributes));
 #		dd(config('translatable.locales'));
-#		dump($this->a_fields);
+		dump($this->a_fields);
 		$this->o_item = $this->_env->s_model::create($request->only($this->a_fields));
 #        $design->processImages($request, 'image');
 
