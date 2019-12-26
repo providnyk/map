@@ -11,7 +11,7 @@ class Report extends Model
 
 	protected $connection = 'pr';
 	protected $fillable = [
-		'gallery_id',
+#		'gallery_id',
 		'issue_id',
 		'point_id',
 		'user_id',
@@ -27,12 +27,12 @@ class Report extends Model
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
-		],
+		],/*
 		'gallery_id'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
-		],
+		],*/
 		'published'		=> [
 			'tab'		=> 'manage',
 			'field'		=> 'checkbox',
