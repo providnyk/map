@@ -25,12 +25,6 @@ class Issue extends Model
 		],
 	];
 
-#	public function __construct()
-#	{
-#		parent::__construct();
-#		$this->setTrans();
-#	}
-
 	public function design()
 	{
 		return $this->belongsToMany('App\Design');
