@@ -25,4 +25,13 @@ return [
         'view'      	=> 'Подивитись',
         'continue'  	=> 'Продовжити',
     ],
+    'fields' => [
+		'country_id' => [
+			'label' => 'Country',
+		],
+		'active' => [
+			'label' => 'Active',
+		],
+    ],
+
 ];
