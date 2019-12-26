@@ -1,3 +1,4 @@
+0.54.1+a360:3 user FIX model translate detection
 0.54.0+a360:2 user ADD keep dependent issue dropdrown selection if new parent point has such issue as well
 0.53.0+a360:1 user ADD simpler routing
 0.52.0+a359:3 user ADD better names for admin panel page titles
