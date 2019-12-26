@@ -69,7 +69,7 @@ $(document).ready(function () {
 					data: function (params) {
 						var query = {
 						search: params.term,
-						point: i_point_id,
+//						point: i_point_id,
 						}
 						// Query parameters will be ?search=[term]&point=[id]
 						return query;

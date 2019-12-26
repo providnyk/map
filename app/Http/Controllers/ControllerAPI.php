@@ -47,8 +47,15 @@ class ControllerAPI		extends BaseController
 */
 #        $design = Design::create($request->only($m->translatedAttributes));
 #		dd(config('translatable.locales'));
-		dump($this->a_fields);
-		$this->o_item = $this->_env->s_model::create($request->only($this->a_fields));
+#		dump($this->a_fields);
+
+		# ATTN
+		# can't call create with params at one
+		 $this->o_item = $this->_env->s_model::create($request->only($this->a_fields));
+		# because __construct breaks *Translation and locale specific recoreds are not created
+		# so have to create empty record first and then update with form data
+		#$this->o_item = $this->_env->s_model::create();
+		#$this->o_item->update($request->only($this->a_fields));
 #        $design->processImages($request, 'image');
 
 		return response(['id' => $this->o_item->id,], 200);

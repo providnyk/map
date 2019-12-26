@@ -33,7 +33,7 @@ class Design extends Model
 		dump($this->translatedAttributes);
 	}
 */
-	public function issues()
+	public function issue()
 	{
 		return $this->belongsToMany('Modules\Issue\Database\Issue');
 	}

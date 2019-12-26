@@ -13,9 +13,13 @@ class Model extends BaseModel
 
 	public $translatedAttributes = [];
 
-#	public function __construct()
-	public static function setTrans()
+	# https://stackoverflow.com/questions/30502922/a-construct-on-an-eloquent-laravel-model#30503372
+	# The first line (parent::__construct()) will run the Eloquent Model's own construct method
+	# before your code runs, which will set up all the attributes for you.
+	public function __construct(array $attributes = array())
 	{
+		parent::__construct($attributes);
+
 		$s_basename					= class_basename(__CLASS__);
 #		$this->_env					= (object) [];
 		$s_tmp						= get_called_class();
@@ -44,12 +48,12 @@ class Model extends BaseModel
 
 			if (class_exists($s_tmp))
 			{
-#				$t							= new $s_tmp;
+				$t							= new $s_tmp;
 				$a_trans					= $t->getFillable();
-		#dd($a_trans, $this->translatedAttributes);
 		#		$a_form_main				= $m->getFields();
 		#		$a_form_trans				= $t->getFields();
 				$this->translatedAttributes = $a_trans;
+#dd($a_trans, $this->translatedAttributes);
 #dump($this);
 			}
 		}

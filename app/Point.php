@@ -58,8 +58,9 @@ class Point extends Model
 	public static function getSpecificIssues($request, $id) : String
 	{
 		$i_design_id = Point::findOrFail($id)->design_id;
-		$a_issue_ids = Design::findOrFail($i_design_id)->issues()->get()->pluck('id')->toArray();
+		$a_issue_ids = Design::findOrFail($i_design_id)->issue()->get()->pluck('id')->toArray();
 		$a_issues = Issue::whereIn('id', $a_issue_ids);
+
 		if (!is_null($request->search))
 			 $a_issues = $a_issues->whereTranslationLike('title', '%' . $request->search .'%', app()->getLocale());
 

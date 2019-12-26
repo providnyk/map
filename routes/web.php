@@ -79,7 +79,7 @@ Route::group([
 	$s_model	= 'Point';
 	$s_path		= strtolower($s_model);
 	$s_ctrl		= '\Modules\\' . $s_model . '\API\\' . $s_model ;
-	$s_ctrl		= 'PointController';
+	$s_ctrl		= $s_model . 'Controller';
 	$s_method	= 'issue';
 	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 	$s_method	= 'report';
