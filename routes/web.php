@@ -269,7 +269,7 @@ Route::group([
 	Route::post('users/{user}/update', ['as' => 'users.update', 'uses' => 'UserController@update']);
 	Route::post('users/delete', ['as' => 'users.delete', 'uses' => 'UserController@destroy']);
 */
-	Route::post('users/{id}/password-change', ['as' => 'users.password-change', 'uses' => 'UserController@passwordChange']);
+	Route::post('users/{id}/password-change', ['as' => 'user.password-change', 'uses' => 'UserController@passwordChange']);
 /*
 	Route::post('file', ['as' => 'upload.file', 'uses' => 'UploadController@file']);
 	Route::post('image', ['as' => 'upload.image', 'uses' => 'UploadController@image']);

@@ -2,16 +2,16 @@
 
 @section('title-icon')<i class="icon-users2 mr-2"></i>@endsection
 
-@section('title'){!! trans('app/users.list.title') !!}@endsection
+@section('title'){!! trans('app/user.list.title') !!}@endsection
 
 @section('breadcrumbs')
     <div class="breadcrumb-line breadcrumb-line-light header-elements-md-inline">
         <div class="d-flex">
             <div class="breadcrumb">
 				@include('admin.common._breadcrumb_home')
-                <span class="breadcrumb-item active">{!! trans('app/users.breadcrumbs.list') !!}</span>
+                <span class="breadcrumb-item active">{!! trans('app/user.breadcrumbs.list') !!}</span>
             </div>
-            <a href="{!! route('admin.users') !!}" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            <a href="{!! route('admin.user.index') !!}" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
         </div>
     </div>
 @endsection
@@ -75,12 +75,12 @@
                     {
                         sortable: false,
                         data: function(row){
-                            return `<a href="{!! route('admin.users.form', [':id']) !!}" class="btn btn-sm btn-primary"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
+                            return `<a href="{!! route('admin.user.form', [':id']) !!}" class="btn btn-sm btn-primary"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
                         }
                     }
                 ],
                 ajax: {
-                    url: '{!! route('api.users.index') !!}',
+                    url: '{!! route('api.user.index') !!}',
                     data: function(data){
                         data.filters = filters;
                     }
@@ -291,7 +291,7 @@
 
                 $.ajax({
                     type: 'post',
-                    url: '{!! route('api.users.delete') !!}',
+                    url: '{!! route('api.user.destroy') !!}',
                     data: {
                         'ids': ids
                     },
@@ -328,7 +328,7 @@
             });
 
             $('#btn-add').on('click', (e) => {
-                window.location.href = '{!! route("admin.users.form") !!}';
+                window.location.href = '{!! route('admin.user.form') !!}';
             });
 
         });
@@ -341,36 +341,36 @@
             <div class="container-fluid">
                 <div class="row filters px-4 pt-3">
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="first_name" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('app/users.list.filters.first_name') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/users.list.filters.first_name') !!}">
+                        <label>{!! trans('app/user.list.filters.first_name') !!}</label>
+                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/user.list.filters.first_name') !!}">
                     </div>
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="last_name" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('app/users.list.filters.last_name') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/users.list.filters.last_name') !!}">
+                        <label>{!! trans('app/user.list.filters.last_name') !!}</label>
+                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/user.list.filters.last_name') !!}">
                     </div>
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="email" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('app/users.list.filters.email') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/users.list.filters.email') !!}">
+                        <label>{!! trans('app/user.list.filters.email') !!}</label>
+                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/user.list.filters.email') !!}">
                     </div>
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="created_at" data-filter-type="date-range" data-default-value="{!! $dates['min_created_at'] . '|' . $dates['max_created_at'] !!}">
-                        <label>{!! trans('app/users.list.filters.created_at') !!}</label>
+                        <label>{!! trans('app/user.list.filters.created_at') !!}</label>
                         <div class="form-group form-group-feedback form-group-feedback-left">
-                            <input class="form-control input-sm date-range" placeholder="{!! trans('app/users.list.filters.created_at') !!}">
+                            <input class="form-control input-sm date-range" placeholder="{!! trans('app/user.list.filters.created_at') !!}">
                             <div class="form-control-feedback form-control-feedback-lg"><i class="icon-calendar2"></i></div>
                         </div>
                     </div>
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="updated_at" data-filter-type="date-range" data-default-value="{!! $dates['min_updated_at'] . '|' . $dates['max_updated_at'] !!}">
-                        <label>{!! trans('app/users.list.filters.updated_at') !!}</label>
+                        <label>{!! trans('app/user.list.filters.updated_at') !!}</label>
                         <div class="form-group form-group-feedback form-group-feedback-left">
-                            <input class="form-control input-sm date-range" placeholder="{!! trans('app/users.list.filters.updated_at') !!}">
+                            <input class="form-control input-sm date-range" placeholder="{!! trans('app/user.list.filters.updated_at') !!}">
                             <div class="form-control-feedback form-control-feedback-lg"><i class="icon-calendar2"></i></div>
                         </div>
                     </div>
 
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="roles" data-filter-type="select" data-default-value="">
-                        <label>{!! trans('app/users.list.filters.roles') !!}</label>
+                        <label>{!! trans('app/user.list.filters.roles') !!}</label>
                         <div>
-                            <select name="roles" class="form-control multi-select" data-placeholder="{!! trans('app/users.list.filters.roles') !!}" multiple>
+                            <select name="roles" class="form-control multi-select" data-placeholder="{!! trans('app/user.list.filters.roles') !!}" multiple>
                                 @foreach($roles as $role)
                                     <option value="{!! $role->id !!}">{!! $role->name !!}</option>
                                 @endforeach
@@ -400,12 +400,12 @@
             <table class="table table-bordered table-striped table-styled">
                 <thead>
                     <tr>
-                        <th width="1px">{!! trans('app/users.list.table.columns.id') !!}</th>
-                        <th width="10%">{!! trans('app/users.list.table.columns.role') !!}</th>
-                        <th width="30%">{!! trans('app/users.list.table.columns.first_name') !!}</th>
-                        <th width="30%">{!! trans('app/users.list.table.columns.last_name') !!}</th>
-                        <th width="30%">{!! trans('app/users.list.table.columns.email') !!}</th>
-                        <th width="1px">{!! trans('app/users.list.table.columns.actions') !!}</th>
+                        <th width="1px">{!! trans('app/user.list.table.columns.id') !!}</th>
+                        <th width="10%">{!! trans('app/user.list.table.columns.role') !!}</th>
+                        <th width="30%">{!! trans('app/user.list.table.columns.first_name') !!}</th>
+                        <th width="30%">{!! trans('app/user.list.table.columns.last_name') !!}</th>
+                        <th width="30%">{!! trans('app/user.list.table.columns.email') !!}</th>
+                        <th width="1px">{!! trans('app/user.list.table.columns.actions') !!}</th>
                     </tr>
                 </thead>
             </table>
