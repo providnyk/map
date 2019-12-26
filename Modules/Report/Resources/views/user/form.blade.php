@@ -5,23 +5,26 @@
 let s_route = '{!! route('api.point.issue', ':point_id') !!}'
 	,i_previous = null;
 
-function checkRestoreInitialValue()
+function checkRestoreInitialValue(a_results)
 {
-//	if (i_previous == null) return true;
-	$('#issue_id').change( function() {
-		if (i_previous != null && $('#issue_id').find("option[value='" + i_previous + "']").length) {
-//			console.log(i_previous);
-    		$('#issue_id').val(i_previous);//.trigger('change');
-    		i_previous = null;
-		}
+	// reset dependent dropdown on "parent" change
+	// or keep the selection if on of dependent elements
+	// has the value that was pre-selected or re-selected
+	var i_selected_value = null;
+	a_results.forEach((item) => {
+		if (item.id == i_previous)
+			i_selected_value = item.id;
 	});
+	$("#issue_id").val(i_selected_value).trigger('change');
 }
 
 $(document).ready(function () {
-
 	// reset dependent dropdown on page initialization
 	$("#issue_id").select2({
-//		placeholder: $('#point_id').data('placeholder'),
+		placeholder: {
+			id: '-1', // the value of the option
+			text: $('#point_id').data('placeholder')
+		},
 		data: {},
 	});
 
@@ -32,9 +35,32 @@ $(document).ready(function () {
 			if ($("#issue_id").val() != null)
 				i_previous = $("#issue_id").val();
 
-	console.log($('#issue_id').select2('data'));
-			// reset dependent dropdown on "parent" change
-			$("#issue_id").val(null).trigger('change');
+			// check dependent dropdown new values
+			// if there is dependent selected value already
+			// then keep it selected otherwise clear dependent selection
+			// also notify about errors
+			$.ajax({
+				'type': 'get',
+				'data': {},
+				'url': s_route.replace(':point_id', i_point_id),
+				success: (data, status, xhr) => {
+					if (xhr.readyState == 4 && xhr.status == 200)
+						try {
+							// Do JSON handling here
+							tmp = JSON.parse(xhr.responseText);
+							checkRestoreInitialValue(tmp.results);
+
+						} catch(e) {
+							//JSON parse error, this is not json (or JSON isn't in the browser)
+							notify(s_servererror_info, 'danger', 3000);
+						}
+					else
+						notify(s_servererror_info, 'danger', 3000);
+				},
+				'error': (xhr) => {
+					notify(s_servererror_info, 'danger', 3000);
+				}
+			});
 
 			$("#issue_id").select2({
 				ajax: {
@@ -48,22 +74,11 @@ $(document).ready(function () {
 						// Query parameters will be ?search=[term]&point=[id]
 						return query;
 					},
-
-processResults: function (data) {
-	console.log(data.results);
-      // Transforms the top-level key of the response object from 'items' to 'results'
-      return {
-      	results: data.results
-//        results: data.items
-      };
-    }
 				},
 			});
 
 		});
 	});
-
-	//setInterval(checkRestoreInitialValue, 200);
 
 });
 
