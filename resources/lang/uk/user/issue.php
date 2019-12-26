@@ -13,7 +13,6 @@ return [
 		'filterby'		=> 'незручністю',
 		'typein'		=> 'незручність',
 		'saved'			=> 'Незручність',
-		'ico'			=> 'icon-construction',
 	],
 	'field' => [
 		'title' => [

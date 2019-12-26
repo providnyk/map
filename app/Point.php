@@ -69,27 +69,27 @@ class Point extends Model
 		return json_encode(['results'=>$a_issues]);
 	}
 
-	public function buildings()
+	public function building()
 	{
 		return $this->belongsTo('App\Building');
 	}
-	public function designs()
+	public function design()
 	{
 		return $this->belongsTo('App\Design');
 	}
-	public function targets()
-	{
-		return $this->belongsToMany('App\Target');
-	}
-	public function ownerships()
+	public function ownership()
 	{
 		return $this->belongsTo('App\Ownership');
 	}
-	public function reports()
+	public function report()
 	{
 		return $this->belongsToMany('App\Report');
 	}
-	public function users()
+	public function target()
+	{
+		return $this->belongsToMany('App\Target');
+	}
+	public function user()
 	{
 		return $this->belongsTo('App\User');
 	}

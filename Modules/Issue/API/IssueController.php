@@ -26,6 +26,17 @@ use Modules\Issue\API\SaveRequest;
 class IssueController extends Controller
 {
 	/**
+	 * Deleted selected item(s)
+	 * @param Request	$request		Data from request
+	 *
+	 * @return Response	json instance of
+	 */
+	public function destroy(DeleteRequest $request) : \Illuminate\Http\Response
+	{
+		return $this->destroyAPI($request);
+	}
+
+	/**
 	 * Prepare data for listing all of items
 	 * @param Request	$request		Data from request
 	 * @param Filters	$filters		Whatever filters applied
@@ -47,7 +58,7 @@ class IssueController extends Controller
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
 		$a_res = $this->storeAPI($request);
-		$this->o_item->designs()->sync($request->design_ids);
+		$this->o_item->design()->sync($request->design_ids);
 		return $a_res;
 	}
 
@@ -59,19 +70,8 @@ class IssueController extends Controller
 	 */
 	public function update(SaveRequest $request, Issue $item) : \Illuminate\Http\Response
 	{
-		$item->designs()->sync($request->design_ids);
+		$item->design()->sync($request->design_ids);
 		$a_res = $this->updateAPI($request, $item);
 		return $a_res;
-	}
-
-	/**
-	 * Deleted selected item(s)
-	 * @param Request	$request		Data from request
-	 *
-	 * @return Response	json instance of
-	 */
-	public function destroy(DeleteRequest $request) : \Illuminate\Http\Response
-	{
-		return $this->destroyAPI($request);
 	}
 }

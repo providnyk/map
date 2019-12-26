@@ -12,7 +12,6 @@ if (stristr($name, '_id'))
 	if (stristr($name, '_ids'))
 		$many = (stristr($name, '_ids'));
 	$name = str_replace(['_ids','_id',], '', $name);
-	$name = Illuminate\Support\Pluralizer::plural($name, 2);
 }
 
 $b_many = (isset($many) ? $many : FALSE);
@@ -23,8 +22,9 @@ else # expected to be a foreign key *_id
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
 	$s_typein = trans('user/'.$name.'.names.typein');
-	$s_route = 'admin.'.$name;
+	$s_route_list = 'admin.'.$name.'.index';
 }
+$s_route_api = 'api.'.$name.'.index';
 
 $s_dataname = ($code ? $code .'.' : '') . $s_id;
 $s_fieldname = ($code ? $code .'[' : '') . $s_id . ($code ? ']' : '');
@@ -55,11 +55,11 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 <div class="form-group row field" data-name="{!! $s_dataname !!}">
 	<div class="col-lg-3">
 		<label class="d-block float-left py-2 m-0">
-			@if ($s_route)
-			<a href="{!! route($s_route) !!}" target="_blank">
+			@if ($s_route_list)
+			<a href="{!! route($s_route_list) !!}" target="_blank">
 			@endif
 			{!! $s_label !!}
-			@if ($s_route)
+			@if ($s_route_list)
 			</a>
 			@endif
 			{!! $b_required ? '<span class="text-danger">*</span>' : '' !!}
@@ -78,7 +78,7 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 	@endphp
 
 	<div class="col-lg-9 field-body">
-		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="form-control select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_typein !!}" data-url="{!! route('api.'.$name.'.index') !!}" {!! $b_many ? 'multiple' : '' !!}>
+		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="form-control select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}" {!! $b_many ? 'multiple' : '' !!}>
 			@if($s_selected_id)
 				<option value="{!! $o_item->$s_id !!}">
 					{!! $s_selected_title !!}

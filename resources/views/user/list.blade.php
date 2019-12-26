@@ -15,7 +15,7 @@ include(base_path().'/resources/views/user/crud.php');
 				@include('admin.common._breadcrumb_home')
                 <span class="breadcrumb-item active">{!! $s_title !!}</span>
             </div>
-            <a href="{!! route('admin.'.$s_category) !!}" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
+            <a href="{!! route('admin.'.$s_category.'.index') !!}" class="header-elements-toggle text-default d-md-none"><i class="icon-more"></i></a>
         </div>
     </div>
 @endsection
@@ -38,7 +38,7 @@ include(base_path().'/resources/views/user/crud.php');
     <script>
         $(document).ready(function(){
 
-            let s_route_del = '{!! route('api.'.$s_category.'.delete') !!}';
+            let s_route_del = '{!! route('api.'.$s_category.'.destroy') !!}';
             let s_route_add = '{!! route('admin.'.$s_category.'.form') !!}';
 
             @include('admin.common.list_js')

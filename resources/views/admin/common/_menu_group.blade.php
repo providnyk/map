@@ -4,8 +4,11 @@
 	<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 		@foreach($menu_list[$i_idx] AS $i_cnt => $menu_item)
 		<li class="nav-item">
-			<a href="{!! route('admin.' . $menu_item) !!}" class="nav-link {!! in_array(request()->segment(2), [$menu_item]) ? 'active' : '' !!}">
-				<i class="{!! trans('user/' . $menu_item . '.names.ico') !!}"></i><span>{!! trans('user/' . $menu_item . '.names.plr') !!}</span>
+			<a href="{!! route('admin.' . $menu_item . '.index') !!}" class="nav-link {!! in_array(request()->segment(2), [$menu_item]) ? 'active' : '' !!}">
+				<i class="{!! Config::get($menu_item.'.ico') !!} {!! config('icons.'.$menu_item) !!}"></i>
+				<span>
+				{!! trans('user/' . $menu_item . '.names.plr') !!}
+				</span>
 			</a>
 		</li>
 		@endforeach

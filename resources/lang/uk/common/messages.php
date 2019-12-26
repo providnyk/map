@@ -6,11 +6,10 @@ return [
     'delete_entries_success' => 'Entries were successfully deleted',
     'delete_entries_error' => 'An error occurred while deleting records',
     'confirm_delete_title' => 'Are you sure?',
-    'confirm_delete_description' => 'You will not be able to recover this records!',
-    'confirm_delete_confirm_button_text' => 'Yes, delete it!',
+    'confirm_delete_description' => 'You will not be able to recover the record(s)',
+    'confirm_delete_confirm_button_text' => 'Yes, delete',
     'confirm_delete_cancel_button_text' => 'Cancel',
     'email' => [
-#		'link_sent' => 'The activation link has been sent to the specified mailbox',
 		'subject' => 'Confirm registration on PROVIDNYK',
 	    'confirm' => [
 			'title' => 'Confirm your email address on PROVIDNYK',

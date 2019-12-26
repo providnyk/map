@@ -4,6 +4,7 @@ namespace Modules\Report\User;
 
 use App\Http\Controllers\ControllerUser as Controller;
 use App\Point;
+use Modules\Issue\Database\Issue;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -18,7 +19,8 @@ class ReportController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'points'		=> Point::all()->sortBy('name'),
+				'issue'			=> Issue::all()->sortBy('title'),
+				'point'			=> Point::all()->sortBy('title'),
 			]);
 		});
 		return parent::form($request);

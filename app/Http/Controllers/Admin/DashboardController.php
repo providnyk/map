@@ -11,12 +11,15 @@ class DashboardController extends Controller
 
     public function index()
     {
+		$a_list = config('elements.list');
+		$a_modules = config('elements.modules');
 
     	$a_cnt = [];
-		foreach (config('elements.list') AS $s_table => $s_model)
+		for ($i = 0; $i < count($a_list); $i++)
 		{
 			$s_ctrl = '';
-			if (in_array($s_table, config('elements.modules')))
+			$s_model = $a_list[$i];
+			if (in_array($s_model, config('elements.modules')))
 				$s_ctrl = '\Modules\\' . $s_model . '\Database\\' . $s_model ;
 			else
 				$s_ctrl = 'App\\'.$s_model;

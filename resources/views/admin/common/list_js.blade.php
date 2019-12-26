@@ -1,5 +1,4 @@
 let filters				= {}
-	,s_locale			= '{!! $app->getLocale() !!}'
 	;
 
 moment.locale(s_locale);
@@ -10,13 +9,13 @@ $('#page-length').on('change', function(){
 
 $('#btn-delete').on('click', function(){
     swal({
-        title: '{!! trans('app/common.messages.confirm_delete_title') !!}',
-        text: '{!! trans('app/common.messages.confirm_delete_description') !!}',
+        title: '{!! trans('common/messages.confirm_delete_title') !!}',
+        text: '{!! trans('common/messages.confirm_delete_description') !!}',
         type: 'warning',
         showCancelButton: true,
-        confirmButtonText: '{!! trans('app/common.messages.confirm_delete_confirm_button_text') !!}',
+        confirmButtonText: '{!! trans('common/messages.confirm_delete_confirm_button_text') !!}',
         confirmButtonClass: 'btn btn-primary',
-        cancelButtonText: '{!! trans('app/common.messages.confirm_delete_cancel_button_text') !!}',
+        cancelButtonText: '{!! trans('common/messages.confirm_delete_cancel_button_text') !!}',
         cancelButtonClass: 'btn btn-light',
     }).then((confirm) => {
         if(confirm.value){
@@ -24,7 +23,6 @@ $('#btn-delete').on('click', function(){
         }
     });
 });
-
 
 $('#btn-add').on('click', (e) => {
     window.location.href = s_route_add;
@@ -43,10 +41,10 @@ function deleteEntries(){
         success: function (data, status, xhr){
 
             if(xhr.status === 200){
-                notify('{!! trans('app/common.messages.delete_entries_success') !!}', 'success', 2000);
+                notify('{!! trans('common/messages.delete_entries_success') !!}', 'success', 2000);
                 dt.draw(false);
             }else{
-                notify('{!! trans('app/common.messages.delete_entries_error') !!}', 'danger', 2000);
+                notify('{!! trans('common/messages.delete_entries_error') !!}', 'danger', 2000);
             }
 
             applyFilters(false);

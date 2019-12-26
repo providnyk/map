@@ -30,11 +30,11 @@ class Report extends Model
 			'rules'		=> '',
 		],
 	];
-	public function issues()
+	public function issue()
 	{
-		return $this->belongsTo('App\Issue');
+		return $this->belongsTo('Modules\Issue\Database\Issue');
 	}
-	public function points()
+	public function point()
 	{
 		return $this->belongsTo('App\Point');
 	}

@@ -13,7 +13,6 @@ return [
 		'filterby'		=> 'точкою',
 		'typein'		=> 'точку',
 		'saved'			=> 'точку',
-		'ico'			=> 'icon-location3',
 	],
 	'field' => [
 		'lat' => [

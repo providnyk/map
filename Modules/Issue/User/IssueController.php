@@ -19,7 +19,7 @@ class IssueController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'designs'		=> Design::all()->sortBy('name'),
+				'design'		=> Design::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

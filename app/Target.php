@@ -13,7 +13,7 @@ class Target extends Model
 	public $a_form = [
 	];
 
-	public function points()
+	public function point()
 	{
 		return $this->belongsToMany('App\Point');
 	}

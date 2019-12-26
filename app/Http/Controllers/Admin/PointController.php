@@ -21,10 +21,10 @@ class PointController extends Controller
 	{
 		\View::composer('admin.*', function ($view) {
 			$view->with([
-				'buildings'		=> Building::all()->sortBy('name'),
-				'designs'		=> Design::all()->sortBy('name'),
-				'targets'		=> Target::all()->sortBy('name'),
-				'ownerships'	=> Ownership::all()->sortBy('name'),
+				'building'		=> Building::all()->sortBy('name'),
+				'design'		=> Design::all()->sortBy('name'),
+				'target'		=> Target::all()->sortBy('name'),
+				'ownership'		=> Ownership::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

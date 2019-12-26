@@ -42,7 +42,7 @@ class PointController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	protected function issues(Request $request, $id) : String
+	protected function issue(Request $request, $id) : String
 	{
 		return Point::getSpecificIssues($request, $id);
 	}
@@ -69,7 +69,7 @@ class PointController extends Controller
 	 */
 	public function update(PointRequest $request, Point $item) : \Illuminate\Http\Response
 	{
-		$item->targets()->sync($request->target_ids);
+		$item->target()->sync($request->target_ids);
 		$a_res = $this->updateAPI($request, $item);
 		return $a_res;
 	}

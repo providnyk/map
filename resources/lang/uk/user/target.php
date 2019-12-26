@@ -13,7 +13,6 @@ return [
 		'filterby'		=> 'групою',
 		'typein'		=> 'групу',
 		'saved'			=> 'Групу',
-		'ico'			=> 'icon-bike',
 	],
 	'field' => [
 		'title' => [

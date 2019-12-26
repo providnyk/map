@@ -13,7 +13,6 @@ return [
 		'filterby'		=> 'будовою',
 		'typein'		=> 'будову',
 		'saved'			=> 'Будову',
-		'ico'			=> 'icon-road',
 	],
 	'field' => [
 		'title' => [

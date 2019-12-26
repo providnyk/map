@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
 
+$a_list = config('elements.list');
+$a_modules = config('elements.modules');
+
 Route::group([
 	'middleware' => []#'language']
 ], function() {
@@ -71,31 +74,33 @@ Route::group([
 	'prefix' => 'api',
 	'namespace' => 'API',
 	'middleware' => [],
-], function() {
+], function() use ($a_list, $a_modules) {
 
-	$s_table	= 'points';
 	$s_model	= 'Point';
+	$s_path		= strtolower($s_model);
 	$s_ctrl		= '\Modules\\' . $s_model . '\API\\' . $s_model ;
 	$s_ctrl		= 'PointController';
-	$s_method	= 'issues';
-	Route::get($s_table.'/{id}/'.$s_method,			['as' => $s_table . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-	$s_method	= 'reports';
-	Route::get($s_table.'/{id}/'.$s_method,			['as' => $s_table . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+	$s_method	= 'issue';
+	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+	$s_method	= 'report';
+	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 
-	foreach (config('elements.list') AS $s_table => $s_model)
+	for ($i = 0; $i < count($a_list); $i++)
 	{
 		$s_ctrl = '';
-		if (in_array($s_table, config('elements.modules')))
+		$s_model = $a_list[$i];
+		if (in_array($s_model, $a_modules))
 			$s_ctrl = '\Modules\\' . $s_model . '\API\\' . $s_model ;
 		else
 			$s_ctrl = $s_model;
+		$s_path = strtolower($s_model);
 		if (!empty($s_ctrl))
 		{
 			$s_ctrl .= 'Controller';
-			Route::get($s_table,					['as' => $s_table . '.index',	'uses' => $s_ctrl . '@index']);
-			Route::post($s_table,					['as' => $s_table . '.store',	'uses' => $s_ctrl . '@store']);
-			Route::post($s_table . '/{item}/edit',	['as' => $s_table . '.update',	'uses' => $s_ctrl . '@update']);
-			Route::post($s_table . '/delete',		['as' => $s_table . '.delete',	'uses' => $s_ctrl . '@destroy']);
+			Route::get($s_path . '/list',			['as' => $s_path . '.index',	'uses' => $s_ctrl . '@index']);
+			Route::post($s_path,					['as' => $s_path . '.store',	'uses' => $s_ctrl . '@store']);
+			Route::post($s_path . '/{item}/edit',	['as' => $s_path . '.update',	'uses' => $s_ctrl . '@update']);
+			Route::post($s_path . '/delete',		['as' => $s_path . '.destroy',	'uses' => $s_ctrl . '@destroy']);
 		}
 	}
 });
@@ -284,22 +289,25 @@ Route::group([
 	'prefix' => 'admin',
 	'namespace' => 'Admin',
 	'middleware' => ['auth', 'role:admin']
-], function() {
+], function() use ($a_list, $a_modules) {
 	Route::get('dashboard', ['as' => 'home', 'uses' => 'DashboardController@index']);
 	Route::get('session', ['as' => 'session', 'uses' => 'DashboardController@session']);
 
-	foreach (config('elements.list') AS $s_table => $s_model)
+	for ($i = 0; $i < count($a_list); $i++)
 	{
 		$s_ctrl = '';
-		if (in_array($s_table, config('elements.modules')))
+		$s_model = $a_list[$i];
+		if (in_array($s_model, $a_modules))
 			$s_ctrl = '\Modules\\' . $s_model . '\User\\' . $s_model ;
 		else
 			$s_ctrl = $s_model;
+		$s_path = strtolower($s_model);
 		if (!empty($s_ctrl))
 		{
 			$s_ctrl .= 'Controller';
-			Route::get($s_table,					['as' => $s_table,				'uses' => $s_ctrl . '@index']);
-			Route::get($s_table . '/form/{id?}',	['as' => $s_table . '.form',	'uses' => $s_ctrl . '@form']);
+			Route::get($s_path . '/list',		['as' => $s_path . '.index',	'uses' => $s_ctrl . '@index']);
+#			Route::get($s_path . '/list',		['as' => $s_path,				'uses' => $s_ctrl . '@index']);
+			Route::get($s_path . '/form/{id?}',	['as' => $s_path . '.form',		'uses' => $s_ctrl . '@form']);
 		}
 	}
 });

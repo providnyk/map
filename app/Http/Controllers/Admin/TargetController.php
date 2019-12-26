@@ -18,7 +18,7 @@ class TargetController extends Controller
 	{
 		\View::composer('admin.*', function ($view) {
 			$view->with([
-				'points'		=> Point::all()->sortBy('name'),
+				'point'			=> Point::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

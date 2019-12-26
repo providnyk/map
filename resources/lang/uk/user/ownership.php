@@ -13,7 +13,6 @@ return [
 		'filterby'		=> 'власністю',
 		'typein'		=> 'власність',
 		'saved'			=> 'Власність',
-		'ico'			=> 'icon-office',
 	],
 	'field' => [
 		'title' => [

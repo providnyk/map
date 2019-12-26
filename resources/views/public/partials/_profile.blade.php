@@ -20,7 +20,7 @@
 		}
 
 		// TODO: refactoring
-		// loook at forms.js
+		// look at forms.js
 		$('{!! $s_id !!}').on('submit', (e) => {
 			e.preventDefault();
 

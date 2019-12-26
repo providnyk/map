@@ -2,5 +2,5 @@
 
 return [
 	'name'			=> 'Issue',
-	'ico'			=> 'icon-bike',
+	'ico'			=> 'icon-construction',
 ];

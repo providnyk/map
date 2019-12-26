@@ -1,29 +1,15 @@
 <?php
 
-use Illuminate\Support\Pluralizer;
-
-$a_parts = [
-		'buildings'		=> 'Building',
-		'designs'		=> 'Design',
-		'ownerships'	=> 'Ownership',
-		'points'		=> 'Point',
-		'targets'		=> 'Target',
-		'users'			=> 'User',
-];
+include(base_path().'/resources/views/user/menu.php');
+$a_parts = [];
+foreach ($menu_list AS $k => $a_items)
+	for ($i = 0; $i < count($a_items); $i++)
+		$a_parts[] = ucfirst($a_items[$i]);
+sort($a_parts);
 
 $a_modules = [];
 $a_res = file_get_contents(base_path().'/modules_statuses.json');
-$a_res = json_decode($a_res, TRUE);
-foreach ($a_res AS $s_name => $b_status)
-{
-	if ($b_status)
-	{
-		$s_table				= strtolower(Pluralizer::plural($s_name, 2));
-		$a_modules[$s_table]	= $s_name;
-	}
-}
+$a_modules = array_keys(json_decode($a_res, TRUE));
+sort($a_modules);
 
-$a_items = array_merge($a_parts, $a_modules);
-asort($a_items);
-
-return ['list' => $a_items, 'modules' => array_keys($a_modules)];
+return ['list' => $a_parts, 'modules' => $a_modules];

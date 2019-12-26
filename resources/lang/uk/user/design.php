@@ -13,7 +13,6 @@ return [
 		'filterby'		=> 'конструкціею',
 		'typein'		=> 'конструкцію',
 		'saved'			=> 'Конструкцію',
-		'ico'			=> 'icon-design',
 	],
 	'field' => [
 		'title' => [
