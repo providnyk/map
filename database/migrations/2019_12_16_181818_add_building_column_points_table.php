@@ -1,11 +1,11 @@
 <?php
-use Illuminate\Support\Facades\Schema;
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
 class AddBuildingColumnPointsTable extends Migration
 {
-    const DB_CONNECTION = 'pr';
+    const DB_CONNECTION = 'psc';
     const TABLE_MIGRATION = 'points';
     const TABLE_AFTER = 'id';
     const TABLE_HASONE = 'buildings';

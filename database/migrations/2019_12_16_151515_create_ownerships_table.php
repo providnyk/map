@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateOwnershipsTable extends Migration {
 
-    const DB_CONNECTION = 'pr';
+    const DB_CONNECTION = 'psc';
     const DB_TABLE_KEY = 'id';
     const DB_NAME_SGL = 'ownership';
     const DB_NAME_PLR = 'ownerships';

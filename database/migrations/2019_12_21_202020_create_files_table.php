@@ -5,7 +5,7 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateFilesTable extends Migration
 {
-	const DB_CONNECTION = 'pr';
+	const DB_CONNECTION = 'usu';
     /**
      * Run the migrations.
      *
@@ -15,8 +15,8 @@ class CreateFilesTable extends Migration
     {
         Schema::connection(self::DB_CONNECTION)->create('files', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('filable_id')->unsigned()->nullable()->index();
-            $table->string('filable_type')->nullable()->index();
+            $table->integer('fileable_id')->unsigned()->nullable()->index();
+            $table->string('fileable_type')->nullable()->index();
             $table->string('title');
             $table->string('original')->nullable();
             $table->string('type')->nullable();

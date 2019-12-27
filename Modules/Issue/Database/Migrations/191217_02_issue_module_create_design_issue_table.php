@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateDesignIssueTable extends Migration {
 
-    const DB_CONNECTION = 'pr';
+    const DB_CONNECTION = 'psc';
     const DB_TABLE_KEY = 'id';
     const DB_NAME_SGL1 = 'design';
     const DB_NAME_SGL2 = 'issue';

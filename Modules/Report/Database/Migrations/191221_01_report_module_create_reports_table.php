@@ -1,11 +1,12 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateReportsTable extends Migration
 {
-	const DB_CONNECTION = 'pr';
+	const DB_CONNECTION = 'psc';
+	const DB_PREFIX = 'pr';
 	const DB_TABLE_KEY = 'id';
 	const DB_NAME_SGL = 'report';
 	const DB_NAME_PLR = 'reports';
@@ -29,7 +30,7 @@ class CreateReportsTable extends Migration
 		Schema::connection(self::DB_CONNECTION)->table(self::DB_NAME_PLR, function (Blueprint $table) {
 			$table->foreign('point_id')->references(self::DB_TABLE_KEY)->on('points')->onDelete('cascade');
 		});
-		Schema::table(self::DB_CONNECTION.'_'.self::DB_NAME_PLR, function (Blueprint $table) {
+		Schema::table(self::DB_PREFIX.'_'.self::DB_NAME_PLR, function (Blueprint $table) {
 			$table->foreign('user_id')->references(self::DB_TABLE_KEY)->on('users')->onDelete('cascade');
 		});
 
@@ -57,7 +58,7 @@ class CreateReportsTable extends Migration
 		Schema::connection(self::DB_CONNECTION)->table(self::DB_NAME_PLR, function (Blueprint $table) {
 			$table->dropForeign(['point_id']);
 		});
-		Schema::table(self::DB_CONNECTION.'_'.self::DB_NAME_PLR, function (Blueprint $table) {
+		Schema::table(self::DB_PREFIX.'_'.self::DB_NAME_PLR, function (Blueprint $table) {
 			$table->dropForeign(['user_id']);
 		});
 		Schema::connection(self::DB_CONNECTION)->dropIfExists(self::DB_NAME_SGL.self::DB_TABLE_TRAN);
