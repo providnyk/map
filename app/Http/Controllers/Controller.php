@@ -46,7 +46,6 @@ class Controller extends BaseController
 
 		$this->_env->s_sgl			= strtolower($this->_env->s_name);
 		$this->_env->fn_find		= $this->_env->s_model.'::findOrNew';
-		$this->_env->fn_with		= $this->_env->s_model.'::with';
 		$this->_env->s_plr			= Pluralizer::plural($this->_env->s_sgl, 2);
 
 		if ($a_tmp[0] == 'Modules')

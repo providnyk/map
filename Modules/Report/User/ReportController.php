@@ -18,17 +18,6 @@ class ReportController extends Controller
 	 */
 	public function form(Request $request) : \Illuminate\View\View
 	{
-/*
-dd(
-#	$this->_env->s_model,
-	$request->id,
-	Report::with('images')->findOrNew($request->id)->images->count(),
-	Report::with('images')->findOrNew($request->id),
-#	Report::with('image')->findOrNew($request->id)->image->name,
-#	$fn_with('image')->findOrNew($request->id)
-	''
-);
-*/
 		\View::composer('user.*', function ($view) {
 			$view->with([
 				'issue'			=> Issue::all()->sortBy('title'),
