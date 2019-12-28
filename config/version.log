@@ -1,3 +1,4 @@
+0.60.1+a363:2 user FIX checkbox being reset to off position when editing
 0.60.0+a363:1 user ADD replace dimsav translatable with astrotomic
 0.60.0+a362:8 user ADD unify u s e r form and list and also all lists with sorting
 0.60.0+a362:7 user ADD sortable to images uploaded for report

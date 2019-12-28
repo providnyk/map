@@ -22,6 +22,7 @@ unset($a_fields_regular['trans']);
 				</a>
 			</li>
 		@endforeach
+		@php ($code = NULL) @endphp
 	</ul>
 	<div class="tab-content">
 		@foreach($localizations as $code => $localization)
@@ -29,6 +30,7 @@ unset($a_fields_regular['trans']);
 			@include('user._tab_fields', ['a_fields' => $a_fields_trans,])
 			</div>
 		@endforeach
+		@php ($code = NULL) @endphp
 	</div>
 	@endif
 

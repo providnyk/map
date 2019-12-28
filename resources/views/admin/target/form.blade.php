@@ -67,6 +67,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 										</a>
 									</li>
 								@endforeach
+								@php ($code = NULL) @endphp
 							</ul>
 
 							<div class="tab-content">
@@ -78,6 +79,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 									</fieldset>
 								</div>
 								@endforeach
+								@php ($code = NULL) @endphp
 							</div>
 						</div>
 						<div class="tab-pane px-2" id="manage">

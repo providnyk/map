@@ -22,14 +22,14 @@ include(base_path().'/resources/views/user/crud.php');
 @endsection
 
 @section('css')
-	<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}">
+<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}">
 @endsection
 
 @section('js')
-	<script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
-	<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
-    <script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
-	<script src="{{ asset('/admin/js/forms.js') }}"></script>
+<script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
+<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
+<script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
+<script src="{{ asset('/admin/js/forms.js') }}"></script>
 @endsection
 
 @section('script')
@@ -50,16 +50,7 @@ include(base_path().'/resources/views/user/crud.php');
 					</ul>
 					<div class="tab-content">
 						@include('user._form_submit')
-
 						@include('user._tab_loop', ['tpl' => 'user._tab_content'])
-{{--
-						<div class="tab-pane px-2" id="manage">
-							<legend class="text-uppercase font-size-sm font-weight-bold">
-								{!! trans('user/crud.tab.manage.info') !!}
-							</legend>
-							@include('user._form_checkbox', ['name'=>'published',])
-						</div>
---}}
 					</div>
 				</form>
 			</div>

@@ -66,6 +66,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 										</a>
 									</li>
 								@endforeach
+								@php ($code = NULL) @endphp
 							</ul>
 							<div class="tab-content">
 								@foreach($localizations as $code => $localization)
@@ -73,6 +74,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 									@include('user._form_input', ['name'=>'title',])
 									</div>
 								@endforeach
+								@php ($code = NULL) @endphp
 							</div>
 						</div>
 						<div class="tab-pane px-2" id="manage">
