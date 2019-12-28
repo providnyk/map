@@ -56,11 +56,18 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 @section('script')
 <script>
 b_{!! $s_type !!}_single = {!! $b_many ? 0 : 1 !!};
+$(document).ready(function(){
+	new Sortable(document.getElementById('previews'), {
+		animation: 300,
+		delay: 0
+	});
+});
 </script>
 @append
 
 @section('js')
-    <script src="{!! asset('/admin/js/plugins/templates/jquery.tmpl.js') !!}"></script>
+<script src="{!! asset('/admin/js/plugins/templates/jquery.tmpl.js') !!}"></script>
+<script src="{!! asset('/admin/js/plugins/ui/sortable.js') !!}"></script>
 @append
 
 <div class="form-group row field image_id" data-name="{!! $s_dataname !!}">
@@ -74,16 +81,10 @@ b_{!! $s_type !!}_single = {!! $b_many ? 0 : 1 !!};
 	<div class="col-lg-9 field-body">
 		<div class="file-preview-thumbnails previews" id="previews">
 		@if($o_item->images && $o_item->images->count())
-			@foreach($o_item->images as $image)
-				@include('user._form_image_item', ['image' => $image])
-			@endforeach
-		{{--
-@dump($o_item->image, $o_item->images->count())
-		@elseif($o_item->image)
-			@include('user._form_image_item', ['image' => $o_item->image])
-		--}}
+		@foreach($o_item->images as $image)
+			@include('user._form_image_item', ['image' => $image])
+		@endforeach
 		@endif
-
 		</div>
 		<div class="uniform-uploader image-uploader" data-type="image">
 			<input type="file" class="form-control-uniform"{!! $b_many ? ' multiple' : '' !!}>
