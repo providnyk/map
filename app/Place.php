@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\Filable;
+use App\Traits\Fileable;
 
 use App\Traits\GeneralTrait;
 
@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Place extends Model
 {
-    use Filable;
+    use Fileable;
 
     use Translatable;
     use GeneralTrait;

@@ -5,14 +5,19 @@ namespace App\Traits;
 use App\File;
 use Carbon\Carbon;
 
-trait Imagable
+trait Imageable
 {
     private $_file;
 
     public function image()
     {
-        return $this->morphOne('App\File', 'filable')->where('type', 'image')->withDefault();
+        return $this->morphOne('App\File', 'fileable')->where('type', 'image')->withDefault();
     }
+
+	public function images()
+	{
+		return $this->morphMany('App\File', 'fileable');
+	}
 
     private function _getImageFile($image_id)
     {
@@ -26,28 +31,22 @@ trait Imagable
 
     public function processImages($request, $s_image_type = 'image')
     {
-#        dd($request->image_ids, $this->images, $this->image->id);
+#        dd($request->image_ids, $this->images, $this->image);#->id);
 
         $a_img = array();
 
         # garbage collector
         # clean up uploaded files but yet not attached to any item in DB
         # older than 1 week ago
-        $res = File::where('filable_id', '=', NULL)->where('created_at', '<', Carbon::today()->subWeek())->get();
+        $res = File::where('fileable_id', '=', NULL)->where('created_at', '<', Carbon::today()->subWeek())->get();
         if ($res->count() > 0)
-        {
             $a_img = array_merge($a_img, $res->map->id->toArray());
-        }
 
-        if ($this->image->id)
-        {
-            $a_img = array_merge( $a_img, array($this->image->id) );
-        }
+#        if ($this->image->id)
+#            $a_img = array_merge( $a_img, array($this->image->id) );
 
         if ($this->images)
-        {
             $a_img = array_merge($a_img, $this->images->map->id->toArray());
-        }
 
         if (count($a_img) > 0)
         {
@@ -77,7 +76,7 @@ trait Imagable
                 $request->image_copyright = $request->image_copyrights[$file->id];
                 $this->attachImage($request, $s_image_type, $positions[$file->id]);
 /*
-                $file->filable()->associate($this);
+                $file->fileable()->associate($this);
                 $file->position = $positions[$file->id];
                 $file->type = $s_image_type;
                 $file->save();
@@ -88,7 +87,7 @@ trait Imagable
         return $this;
     }
 
-    public function updateImage($request, $s_image_type = 'image', $position = 0, $role = null)
+    public function updateImage($request, $s_image_type = 'image', $position = 0)
     {
         $b_del = FALSE;
         $b_upd = FALSE;
@@ -98,14 +97,13 @@ trait Imagable
         #$this->_setImageFile($request->image_id);
 
         $b_upd = $b_upd || ($this->image->id != $request->image_id);
-        $b_upd = $b_upd || ($this->image->role != $role);
         $b_upd = $b_upd || ($this->image->copyright != $request->image_copyright);
 #        dd($b_upd, $request->image_id);
         #$b_upd = $b_upd && (!is_null($this->_file));
 #dd($request->image_id);
         if ($b_upd)
         {
-            $this->attachImage($request, $s_image_type, $position, $role);
+            $this->attachImage($request, $s_image_type, $position);
         }
 
         $b_del = $b_del || ($curr_image && !$request->image_id);
@@ -118,7 +116,7 @@ trait Imagable
         return $this;
     }
 
-    public function attachImage($request, $s_image_type = 'image', $position = 0, $role = null)
+    public function attachImage($request, $s_image_type = 'image', $position = 0)
     {
         #if (! $this->_file)
         #{
@@ -126,9 +124,8 @@ trait Imagable
         #}
 
         if ($this->_file) {
-            $this->_file->filable()->associate($this);
+            $this->_file->fileable()->associate($this);
             $this->_file->type = $s_image_type;
-            $this->_file->role = $role;
             $this->_file->position = $position;
             $this->_file->copyright = $request->image_copyright;
             $this->_file->save();

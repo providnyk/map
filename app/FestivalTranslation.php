@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\Filable;
+use App\Traits\Fileable;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -10,7 +10,7 @@ use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class FestivalTranslation extends Model
 {
-    use Filable;
+    use Fileable;
     use Sluggable;
 
     public $timestamps = false;

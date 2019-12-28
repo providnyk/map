@@ -39,7 +39,7 @@ class SliderController extends Controller
 
         foreach ($slider->slides as $slide) {
             if ($image = $slide->image) {
-                $image->filable()->dissociate();
+                $image->fileable()->dissociate();
                 $image->save();
             }
             $slide->delete();
@@ -68,7 +68,7 @@ class SliderController extends Controller
             ]);
 
             if ($image = File::find($slide_data['image_id'])) {
-                $image->filable()->associate($slide);
+                $image->fileable()->associate($slide);
                 $image->save();
             }
         }

@@ -6,6 +6,7 @@ namespace Modules\Issue\API;
 
 #use App\Issue;
 use Modules\Issue\API\Issue;
+use Modules\Issue\Database\Issue as DBIssue;
 
 #use App\Filters\IssueFilters;
 use Modules\Issue\Filters\IssueFilters;
@@ -68,7 +69,7 @@ class IssueController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(SaveRequest $request, Issue $item) : \Illuminate\Http\Response
+	public function update(SaveRequest $request, DBIssue $item) : \Illuminate\Http\Response
 	{
 		$item->design()->sync($request->design_ids);
 		$a_res = $this->updateAPI($request, $item);

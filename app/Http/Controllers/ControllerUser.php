@@ -18,13 +18,15 @@ class ControllerUser	extends BaseController
 	{
 		$this->setEnv();
 		$fn_find = $this->_env->fn_find;
+		$fn_with = $this->_env->fn_with;
 
 		$this->validate($request, [
 			'id' => 'integer'
 		]);
 
 		return view($this->_env->s_view . 'form', [
-			$this->_env->s_plr		=> $fn_find($request->id),
+			$this->_env->s_sgl		=> $fn_find($request->id),
+#			$this->_env->s_sgl		=> $fn_with('image')->findOrNew($request->id),
 			'form'					=> [
 										'tabs'		=> $this->_env->a_tab,
 										'fields'	=> $this->_env->a_field,

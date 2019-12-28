@@ -270,10 +270,10 @@ Route::group([
 	Route::post('users/delete', ['as' => 'users.delete', 'uses' => 'UserController@destroy']);
 */
 	Route::post('users/{id}/password-change', ['as' => 'user.password-change', 'uses' => 'UserController@passwordChange']);
-/*
+
 	Route::post('file', ['as' => 'upload.file', 'uses' => 'UploadController@file']);
 	Route::post('image', ['as' => 'upload.image', 'uses' => 'UploadController@image']);
-
+/*
 	Route::get('events/program', ['as' => 'events.program', 'uses' => 'EventController@program']);
 	Route::get('events/favorited-events', ['as' => 'events.favorited-events', 'uses' => 'EventController@favoritedEvents']);
 	Route::post('subscribe', ['as' => 'subscribe', 'uses' => 'SubscribeController@store']);
@@ -627,12 +627,12 @@ Route::group([
 //    foreach($empty_files as $file){
 //        Storage::delete($file->path);
 //
-//        if($file->medium_image_path){
-//            Storage::delete($file->medium_image_path);
+//        if($file->path_medium){
+//            Storage::delete($file->path_medium);
 //        }
 //
-//        if($file->small_image_path){
-//            Storage::delete($file->small_image_path);
+//        if($file->path_small){
+//            Storage::delete($file->path_small);
 //        }
 //
 //        $file->delete();
@@ -665,11 +665,11 @@ Route::group([
 //
 //        $db_files_total += 1;
 //
-//        if($file->medium_image_path){
+//        if($file->path_medium){
 //            $db_files_total += 1;
 //        }
 //
-//        if($file->small_image_path){
+//        if($file->path_small){
 //            $db_files_total += 1;
 //        }
 //

@@ -9,68 +9,69 @@ use Illuminate\Database\Eloquent\Builder;
 
 class File extends Model
 {
-    protected $fillable = [
-        'type',
-        'path',
-        'medium_image_url',
-        'medium_image_path',
-        'small_image_url',
-        'small_image_path',
-        'name',
-        'size',
-        'url',
-        'alt',
-        'position',
-        'original',
-    ];
+	protected $connection = 'usu';
+	protected $fillable = [
+		'alt',
+		'title',
+		'type',
+		'path',
+		'path_medium',
+		'path_small',
+		'position',
+		'size',
+		'savedname',
+		'url',
+		'url_medium',
+		'url_small',
+	];
 
-    protected $hidden = [
-        'filable_type',
-        'filable_id'
-    ];
+	protected $hidden = [
+		'fileable_type',
+		'fileable_id'
+	];
 
-    protected static function boot()
-    {
-        parent::boot();
+	protected static function boot()
+	{
+		parent::boot();
 
-        static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('position');
-        });
+		static::addGlobalScope('order', function (Builder $builder) {
+			$builder->orderBy('position');
+		});
 
-        static::deleted(function($model) {
-            Storage::delete($model->path);
+		static::deleted(function($model) {
+			Storage::delete($model->path);
 
-            if($model->medium_image_path){
-                Storage::delete($model->medium_image_path);
-            }
+			if($model->path_medium){
+				Storage::delete($model->path_medium);
+			}
 
-            if($model->small_image_path){
-                Storage::delete($model->small_image_path);
-            }
-        });
-    }
+			if($model->path_small){
+				Storage::delete($model->path_small);
+			}
+		});
+	}
 
-    public function filable()
-    {
-        return $this->morphTo();
-    }
+	public function fileable()
+	{
+		return $this->morphTo();
+	}
 
-    public function scopeType($query, $type)
-    {
-        return $query->where('type', $type);
-    }
+	public function scopeType($query, $type)
+	{
+		return $query->where('type', $type);
+	}
 
-    public static function getRelativeStoragePath($today)
-    {
-        return 'public/' . $today->year . '/' . $today->month . '/';
-    }
+	public static function getRelativeStoragePath($today)
+	{
+		return 'public/' . $today->year . '/' . $today->month . '/';
+	}
 
-    public static function getFilePath($today)
-    {
-        return '/storage/' . $today->year . '/' . $today->month . '/';
-    }
+	public static function getFilePath($today)
+	{
+		return '/storage/' . $today->year . '/' . $today->month . '/';
+	}
 
-	public function showImage($image_size)
+	public function showImage(String $image_size)
 	{
 		# https://stackoverflow.com/questions/29300331/laravel-responsedownload-to-show-images-in-laravel
 		/*
@@ -82,21 +83,21 @@ class File extends Model
 		/*
 		# Overwrite the annoying header
 		*/
-		$s_path = '';
+		$s_path = 'path';
 		if ($image_size != '')
-			$s_path = $image_size . '_image_';
+			$s_path .= '_' . $image_size;
 		$headers = array(
 			'Content-Disposition' => 'inline',
 		);
-		return Storage::download($this->{$s_path . 'path'}, Str::ascii($this->original['original']), $headers);
+		return Storage::download($this->{$s_path}, Str::ascii($this->savedname['savedname']), $headers);
 	}
 
 	public function downloadImage()
 	{
-		return response()->download(getcwd() . $this->url, $this->original['original'], [ 'Content-Type' => Storage::getMimeType($this->path) ]);
+		return response()->download(getcwd() . $this->url, $this->savedname['savedname'], [ 'Content-Type' => Storage::getMimeType($this->path) ]);
 	}
 
-    function getSmallImageUrlAttribute($value){
-        return $value ? $value : '/admin/images/no-image-logo.jpg';
-    }
+	function getSmallImageUrlAttribute($value){
+		return $value ? $value : '/admin/images/no-image-logo.jpg';
+	}
 }

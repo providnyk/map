@@ -6,7 +6,7 @@ use App\Model;
 
 class Issue extends Model
 {
-	protected $connection = 'pr';
+	protected $connection = 'psc';
 	protected $fillable = [
 		'design_id',
 		'published',

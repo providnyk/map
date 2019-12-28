@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Pluralizer;
 
 class Controller extends BaseController
 {
@@ -24,7 +25,9 @@ class Controller extends BaseController
 		if ($a_tmp[0] == 'Modules')
 		{
 			$this->_env->s_name		= $a_tmp[1];
-			$this->_env->s_model	= '\Modules\\' . $this->_env->s_name . '\\' . $a_tmp[2] . '\\' . $this->_env->s_name ;
+#			$this->_env->s_model	= '\Modules\\' . $this->_env->s_name . '\\' . $a_tmp[2] . '\\' . $this->_env->s_name ;
+			$this->_env->s_model	= '\Modules\\' . $this->_env->s_name . '\\' . 'Database' . '\\' . $this->_env->s_name ;
+
 			$this->_env->s_trans	= '\Modules\\' . $this->_env->s_name . '\\' . 'Database' . '\\' . $this->_env->s_name ;
 		}
 		else
@@ -43,12 +46,13 @@ class Controller extends BaseController
 
 		$this->_env->s_sgl			= strtolower($this->_env->s_name);
 		$this->_env->fn_find		= $this->_env->s_model.'::findOrNew';
-		$this->_env->s_plr			= request()->segment(2);
+		$this->_env->fn_with		= $this->_env->s_model.'::with';
+		$this->_env->s_plr			= Pluralizer::plural($this->_env->s_sgl, 2);
 
 		if ($a_tmp[0] == 'Modules')
 			$this->_env->s_view		= $this->_env->s_sgl . '::' . strtolower($a_tmp[2]) . '.';
 		else
-			$this->_env->s_view		= 'admin.' . $this->_env->s_plr . '.';
+			$this->_env->s_view		= 'admin.' . $this->_env->s_sgl . '.';
 
 		$a_tmp						= config('translatable.locales');
 		$this->a_fields				= array_merge(config('translatable.locales'), $m->getFillable());

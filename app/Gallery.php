@@ -27,7 +27,7 @@ class Gallery extends Model
 
     public function images()
     {
-        return $this->morphMany('App\File', 'filable');
+        return $this->morphMany('App\File', 'fileable');
     }
 
     public function scopeFilter($query, $filters)

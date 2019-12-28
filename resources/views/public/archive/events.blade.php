@@ -15,7 +15,7 @@
                             @include('public.partials.event')
                         @endforeach
                     </div>
-                    
+
                     @if($festival->promotedEvents)
                         <div class="program-line">
                             <div class="block-title">{{ trans('general.more-to-see') }}</div>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="sidebar-item filter-location">
-                            <h5 class="sidebar-title">{{ trans('general.event-location') }}</h5>
+                            <h5 class="sidebar-title">{{ trans('general.my-location') }}</h5>
                             <div class="sidebar-item-content">
                                 <select name="local_sort" id="local-sort" class="full-width">
                                     @foreach($cities as $city)

@@ -2,6 +2,8 @@ let
 	s_locale					= '{!! $app->getLocale() !!}'
 	,s_route_auth				= '{!! route('public.cabinet') !!}'
 	,s_route_session			= '{!! route('admin.session') !!}'
+	,s_route_file				= '{!! route('api.upload.file') !!}'
+	,s_route_image				= '{!! route('api.upload.image') !!}'
 	,s_btn_ok					= '{!! trans('user/messages.button.ok') !!}'
 	,s_session_acl_head			= '{!! trans('user/session.text.acl_head') !!}'
 	,s_session_acl_info			= '{!! trans('user/session.text.acl_info', ['username' => Auth::user()->first_name]) !!}'

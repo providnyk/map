@@ -442,7 +442,7 @@
 											--}}
 										</div>
 										<div class="sidebar-item filter-city" id="filter-city">
-											<h5 class="sidebar-title">{{ trans('general.event-location') }}</h5>
+											<h5 class="sidebar-title">{{ trans('general.my-city') }}</h5>
 											<div class="sidebar-item-content">
 												<input type="hidden" name="filters[cities][]" id="city-id" disabled="disabled">
 												<select class="full-width" id="cities">

@@ -10,123 +10,132 @@ use Illuminate\Support\Facades\Storage;
 
 class UploadController extends Controller
 {
-    public function file(Request $request)
-    {
-        $this->validate($request, [
-            'file' => 'required|file'
-        ]);
+	public function file(Request $request) : Array
+	{
+		$this->validate($request, [
+			'file' => 'required|file'
+		]);
 
-        $types = [
-            'archive' => [
-                'zip',
-                'rar',
-                '7z'
-            ],
-            'doc' => [
-                'pdf',
-                'doc',
-                'docx',
-            ],
-        ];
+		$a_types = [
+			'archive' => [
+				'7z',
+				'rar',
+				'zip',
+			],
+			'doc' => [
+				'doc',
+				'docx',
+				'pdf',
+			],
+		];
 
-        $file = $request->file;
+		$o_file			= $request->file;
+		$s_file_ext		= $o_file->guessExtension(); #getClientOriginalExtension
+		$s_type			= 'doc';
 
-        foreach($types as $file_type => $extensions) {
-            if (array_search($file->getClientOriginalExtension(), $extensions) !== false) {
-                $type = $file_type;
-                break;
-            } else {
-                $type = 'doc';
-            }
-        }
+		foreach($a_types as $s_file_type => $a_extensions) {
+			if (array_search(strtolower($s_file_ext), $a_extensions) !== FALSE) {
+				$s_type = $s_file_type;
+				break;
+			}
+		}
 
-        $today = today();
-        $file_path = File::getRelativeStoragePath($today);
-        $file_name = Storage::putFile($file_path, $file);
-        $file_name = collect(explode('/', $file_name))->last();
+		$today			= today();
+		$s_file_url		= File::getFilePath($today);
+		$s_file_path	= File::getRelativeStoragePath($today);
+		$s_full_path	= Storage::putFile($s_file_path, $o_file);
+		$s_file_name	= collect(explode('/', $s_full_path))->last();
 
-        $file = File::create([
-            'url'           => File::getFilePath($today) . $file_name,
-            'path'          => $file_path . $file_name,
-            'type'          => $type,
-            'alt'           => $request->alt,
-            'name'          => $file_name,
-            'copyright'     => ($request->copyright ? $request->copyright : ''),
-            'original'      => $file->getClientOriginalName(),
-            'size'          => round($file->getSize() / 1024, 2)
-        ]);
+		$a_file_data =
+		[
+			'type'						=> $s_type,
+			'url'						=> $s_file_url . $s_file_name,
+			'path'						=> $s_file_path . $s_file_name,
+			'savedname'					=> $s_file_name,
+			'title'						=> $o_file->getClientOriginalName(),
+			'size'						=> $o_file->getSize(), #round($o_file->getSize() / 1024, 2)
+		];
 
-        return [
-            'file'    => $file
-        ];
-    }
+		if ($request->alt)
+			$a_file_data['alt']			= $request->alt;
+		if ($request->copyright)
+			$a_file_data['copyright']	= $request->copyright;
 
-    public function image(Request $request)
-    {
-        $this->validate($request, [
-            'image' => 'required|image'
-        ]);
+		$a_file = File::create($a_file_data);
+		$a_file['size'] = round($a_file['size']/1024, 2);
 
-        $sizes = [
-            'small' => [
-                'width' => 320,
-                'height' => 240,
-            ],
-            'medium' => [
-                'width' => 1024,
-                'height' => 768,
-            ]
-        ];
+		return [
+			'file'    => $a_file
+		];
+	}
 
-        $original_image = $request->image;
+	public function image(Request $request) : Array
+	{
+		$this->validate($request, [
+			'image' => 'required|image'
+		]);
 
-        $today = today();
-        $image_path = File::getRelativeStoragePath($today);
+		$sizes = [
+			'small' => [
+				'width' => 320,
+				'height' => 240,
+			],
+			'medium' => [
+				'width' => 1024,
+				'height' => 768,
+			],
+		];
 
-        $original_image_name = collect(explode('/',
-                Storage::putFile($image_path, $original_image)
-            ))
-            ->last();
+		$o_file			= $request->image;
+		$s_image_ext	= $o_file->guessExtension();
+		$s_type			= 'image';
 
-        $strings = explode('.', $original_image_name);
+		$today			= today();
+		$s_file_url		= File::getFilePath($today);
+		$s_image_path	= File::getRelativeStoragePath($today);
 
-        $image_hash = $strings[0];
-        $image_extension = $original_image->guessExtension();#$strings[1];
+		$s_full_path	= Storage::putFile($s_image_path, $o_file);
+		$s_file_name	= collect(explode('/', $s_full_path))->last();
 
-        $image_manipulator = SpatieImage::load($original_image);
+		$a_tmp			= explode('.', $s_file_name);
+		$s_image_hash	= $a_tmp[0];
+		$image_manipulator = SpatieImage::load($o_file);
 
-        foreach ($sizes as $size => $dimensions) {
-            $image_name = $image_hash . '-' . $size . '.' . $image_extension;
-            $images[$size] = $image_name;
+		foreach ($sizes as $size => $dimensions) {
+			$image_name = $s_image_hash . '-' . $size . '.' . $s_image_ext;
+			$images[$size] = $image_name;
 
-            $image_manipulator->width($dimensions['width'])
-                ->height($dimensions['height'])
-                ->save(
-                    storage_path() . '/app/' . $image_path . $image_name
-                );
-        }
+			$image_manipulator->width($dimensions['width'])
+				->height($dimensions['height'])
+				->save(
+					storage_path() . '/app/' . $s_image_path . $image_name
+				);
+		}
 
-        $image_url = File::getFilePath($today);
+		$a_file_data =
+		[
+			'type'						=> 'image',
+			'url'						=> $s_file_url . $s_file_name,
+			'url_medium'				=> $s_file_url . $images['medium'],
+			'url_small'					=> $s_file_url . $images['small'],
+			'path'						=> $s_image_path . $s_file_name,
+			'path_medium'				=> $s_image_path . $images['medium'],
+			'path_small'				=> $s_image_path . $images['small'],
+			'savedname'					=> $s_file_name,
+			'title'						=> $o_file->getClientOriginalName(),
+			'size'						=> $o_file->getSize(), #round($o_file->getSize() / 1024, 2)
+		];
 
-        $image = File::create([
-            'url'               => $image_url . $original_image_name,
-            'path'              => $image_path . $original_image_name,
-            'medium_image_url'  => $image_url . $images['medium'],
-            'medium_image_path' => $image_path . $images['medium'],
-            'small_image_url'   => $image_url . $images['small'],
-            'small_image_path'  => $image_path . $images['small'],
-            'type'              => 'image',
-            'alt'               => $request->alt,
-            'name'              => $original_image_name,
-            'copyright'         => ($request->copyright ? $request->copyright : ''),
-            'original'          => $original_image->getClientOriginalName(),
-            'size'              => round($original_image->getSize() / 1024, 2),
-        ]);
+		if ($request->alt)
+			$a_file_data['alt']			= $request->alt;
+		if ($request->copyright)
+			$a_file_data['copyright']	= $request->copyright;
 
-		$image['size'] = round($image['size']/1024, 2);
+		$a_file = File::create($a_file_data);
+		$a_file['size'] = round($a_file['size']/1024, 2);
 
-        return [
-            'image'    => $image
-        ];
-    }
+		return [
+			'image'    => $a_file
+		];
+	}
 }

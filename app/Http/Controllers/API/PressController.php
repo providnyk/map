@@ -58,7 +58,7 @@ class PressController extends Controller
             ;
 
 //        if($file = File::find($request->image_id))
-//            $file->filable()->associate($press)->save();
+//            $file->fileable()->associate($press)->save();
 
 
         return response([

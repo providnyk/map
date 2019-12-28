@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\Filable;
+use App\Traits\Fileable;
 use App\Traits\GeneralTrait;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 
 class Media extends Model
 {
-    use Filable;
+    use Fileable;
     use GeneralTrait;
     use Translatable;
 

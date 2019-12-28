@@ -3,20 +3,22 @@
 namespace Modules\Report\Database;
 
 use App\Model;
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 
 class Report extends Model
 {
-	use Imagable;
+	use Imageable;
 
-	protected $connection = 'pr';
+	protected $connection = 'psc';
 	protected $fillable = [
-#		'gallery_id',
 		'issue_id',
 		'point_id',
 		'user_id',
 		'published',
 	];
+#	protected $with = [
+#		'images',
+#	];
 	protected $a_form = [
 		'point_id'		=> [
 			'tab'		=> 'data',
@@ -27,12 +29,12 @@ class Report extends Model
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
-		],/*
-		'gallery_id'	=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
+		],
+		'image_ids'	=> [
+			'tab'		=> 'photo',
+			'field'		=> 'image',
 			'rules'		=> '',
-		],*/
+		],
 		'published'		=> [
 			'tab'		=> 'manage',
 			'field'		=> 'checkbox',
@@ -45,15 +47,17 @@ class Report extends Model
 		parent::boot();
 
 		static::deleted(function($model) {
-			if($model->images)
-				File::destroy($model->images->pluck('id')->toArray());
+			if($model->image)
+				File::destroy($model->image->pluck('id')->toArray());
 		});
 	}
-
-	public function image()
+/*
+	public function images()
 	{
-		return $this->morphMany('App\File', 'filable');
+		return $this->morphMany('App\File', 'fileable');
 	}
+*/
+
 	public function issue()
 	{
 		return $this->belongsTo('Modules\Issue\Database\Issue');

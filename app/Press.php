@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\Filable;
+use App\Traits\Fileable;
 use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Carbon\Carbon;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Press extends Model
 {
-    use Filable;
+    use Fileable;
     use Imageable;
     use Translatable;
     use GeneralTrait;

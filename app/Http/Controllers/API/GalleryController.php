@@ -41,7 +41,7 @@ class GalleryController extends Controller
 
         File::whereIn('id', $request->image_ids)->get()
             ->each(function($file, $position) use ($gallery, $positions) {
-                $file->filable()->associate($gallery);
+                $file->fileable()->associate($gallery);
                 $file->position = $positions[$file->id];
                 $file->type = 'gallery_item';
                 $file->save();
@@ -72,7 +72,7 @@ class GalleryController extends Controller
 
         File::whereIn('id', $request->image_ids)->get()
             ->each(function($file, $position) use ($gallery, $positions) {
-                $file->filable()->associate($gallery);
+                $file->fileable()->associate($gallery);
                 $file->position = $positions[$file->id];
                 $file->type = 'gallery_item';
                 $file->save();

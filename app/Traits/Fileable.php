@@ -4,16 +4,16 @@ namespace App\Traits;
 
 use App\File;
 
-trait Filable
+trait Fileable
 {
     public function file()
     {
-        return $this->morphOne('App\File', 'filable')->where('type', 'doc')->withDefault();
+        return $this->morphOne('App\File', 'fileable')->where('type', 'doc')->withDefault();
     }
 
     public function archive()
     {
-        return $this->morphOne('App\File', 'filable')->where('type', 'archive')->withDefault();
+        return $this->morphOne('App\File', 'fileable')->where('type', 'archive')->withDefault();
     }
 
     public function updateFile($file_id)
@@ -28,7 +28,7 @@ trait Filable
         if ($old_file && ! $file_id) {
             $old_file->delete();
         } elseif ($new_file) {
-            $new_file->filable()->associate($this);
+            $new_file->fileable()->associate($this);
             $new_file->save();
 
             if ($old_file) {
@@ -51,7 +51,7 @@ trait Filable
         if ($old_file && ! $file_id) {
             $old_file->delete();
         } elseif ($new_file) {
-            $new_file->filable()->associate($this);
+            $new_file->fileable()->associate($this);
             $new_file->save();
 
             if ($old_file) {
@@ -66,7 +66,7 @@ trait Filable
     public function attachFile($file_id)
     {
         if ($file_id && $file = File::find($file_id)) {
-            $file->filable()->associate($this);
+            $file->fileable()->associate($this);
             $file->save();
         }
 

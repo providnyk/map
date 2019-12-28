@@ -3,6 +3,7 @@
 namespace Modules\Report\API;
 
 use Modules\Report\API\Report;
+use Modules\Report\Database\Report as DBReport;
 use Modules\Report\Filters\ReportFilters;
 use App\Http\Controllers\ControllerAPI as Controller;
 use App\Http\Requests\DeleteRequest;
@@ -11,6 +12,17 @@ use Modules\Report\Http\ReportRequest;
 
 class ReportController extends Controller
 {
+	/**
+	 * Deleted selected item(s)
+	 * @param Request	$request		Data from request
+	 *
+	 * @return Response	json instance of
+	 */
+	public function destroy(DeleteRequest $request) : \Illuminate\Http\Response
+	{
+		return $this->destroyAPI($request);
+	}
+
 	/**
 	 * Prepare data for listing all of items
 	 * @param Request	$request		Data from request
@@ -34,7 +46,9 @@ class ReportController extends Controller
 		$request->merge([
 			'user_id' => \Auth::user()->id,
 		]);
-		return $this->storeAPI($request);
+		$a_res = $this->storeAPI($request);
+		$this->o_item->processImages($request);
+		return $a_res;
 	}
 
 	/**
@@ -43,19 +57,11 @@ class ReportController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(SaveRequest $request, Report $item) : \Illuminate\Http\Response
+	public function update(SaveRequest $request, DBReport $item) : \Illuminate\Http\Response
 	{
-		return $this->updateAPI($request, $item);
+		$a_res = $this->updateAPI($request, $item);
+		$item->processImages($request);
+		return $a_res;
 	}
 
-	/**
-	 * Deleted selected item(s)
-	 * @param Request	$request		Data from request
-	 *
-	 * @return Response	json instance of
-	 */
-	public function destroy(DeleteRequest $request) : \Illuminate\Http\Response
-	{
-		return $this->destroyAPI($request);
-	}
 }
