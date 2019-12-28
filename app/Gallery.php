@@ -2,14 +2,14 @@
 
 namespace App;
 
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Gallery extends Model
 {
-    use Imagable;
+    use Imageable;
     use GeneralTrait;
 
     protected $fillable = [

@@ -3,7 +3,7 @@
 namespace App;
 
 use DB;
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +12,7 @@ class Artist extends Model
 {
     use GeneralTrait;
     use Translatable;
-    use Imagable;
+    use Imageable;
 
     protected $fillable = [
         'festival_id',

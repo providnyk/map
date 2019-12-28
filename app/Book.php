@@ -3,14 +3,14 @@
 namespace App;
 
 use App\Festival;
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
-    use Imagable;
+    use Imageable;
     use GeneralTrait;
     use Translatable;
 

@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 class Slide extends Model
 {
-    use Imagable;
+    use Imageable;
     use Translatable;
     use GeneralTrait;
 

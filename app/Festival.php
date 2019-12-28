@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use \App\Traits\DatesTrait;
 use Dimsav\Translatable\Translatable;
@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Festival extends Model
 {
-    use Imagable;
+    use Imageable;
     use GeneralTrait;
     use Translatable;
 

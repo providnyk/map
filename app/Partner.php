@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model
 {
-    use Imagable;
+    use Imageable;
     use GeneralTrait;
 
     protected $with = [
@@ -35,7 +35,7 @@ class Partner extends Model
     {
         return $this->belongsTo('App\Category');
     }
-    
+
     public function festivals()
     {
         return $this->belongsToMany('App\Festival', 'festival_partner');

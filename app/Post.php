@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Festival;
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Dimsav\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +12,7 @@ use Illuminate\Support\Carbon;
 
 class Post extends Model
 {
-    use Imagable;
+    use Imageable;
     use GeneralTrait;
     use Translatable;
 

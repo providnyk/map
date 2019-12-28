@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Traits\Filable;
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Carbon\Carbon;
 use Dimsav\Translatable\Translatable;
@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Press extends Model
 {
     use Filable;
-    use Imagable;
+    use Imageable;
     use Translatable;
     use GeneralTrait;
 

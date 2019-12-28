@@ -4,7 +4,7 @@ namespace App;
 
 use App\Festival;
 use App\EventCategory;
-use App\Traits\Imagable;
+use App\Traits\Imageable;
 use App\Traits\Favoritable;
 use App\Traits\GeneralTrait;
 use Dimsav\Translatable\Translatable;
@@ -14,7 +14,7 @@ use Illuminate\Support\Carbon;
 
 class Event extends Model
 {
-    use Imagable;
+    use Imageable;
     use Favoritable;
     use GeneralTrait;
     use Translatable;
