@@ -13,7 +13,7 @@
         <div class="file-thumbnail-footer">
             <div class="file-footer-caption" title="{{ $image->original }}">
                 <div class="file-caption-info">{{ $image->original }}</div>
-                <div class="file-size-info"> <samp>({{ round($image->size / 1024, 2) }} MB)</samp></div>
+                <div class="file-size-info"> <samp>({{ round($image->size / 1024 / 1024, 2) }} MB)</samp></div>
             </div>
             <div class="file-thumb-progress kv-hidden">
                 <div class="progress">

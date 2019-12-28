@@ -10,11 +10,16 @@ $(document).ready(function(){
                             .replace('-->', '');
 */
 	function options(ext, field){
-		let route = routes[field];
+		let route = routes[field],
+			s_single_var = 'b_' + field + '_single'
+			;
+
+		if (typeof(window[s_single_var]) == 'undefined')
+			return {};
 
 		return {
 			url:        route,
-			multiple:   false,
+			multiple:   (window[s_single_var] == 0),
 			fieldName:  field,
 			dataType:   'json',
 			extraData:  {},

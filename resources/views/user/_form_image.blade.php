@@ -73,7 +73,7 @@ b_{!! $s_type !!}_single = {!! $b_many ? 0 : 1 !!};
 	</div>
 	<div class="col-lg-9 field-body">
 		<div class="file-preview-thumbnails previews" id="previews">
-		@if($o_item->image && $o_item->image->count())
+		@if($o_item->images && $o_item->images->count())
 			@foreach($o_item->images as $image)
 				@include('user._form_image_item', ['image' => $image])
 			@endforeach
