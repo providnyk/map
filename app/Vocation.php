@@ -3,7 +3,8 @@
 namespace App;
 
 use App\Traits\GeneralTrait;
-use Dimsav\Translatable\Translatable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Vocation extends Model

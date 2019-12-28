@@ -6,7 +6,8 @@ use App\Traits\Fileable;
 use App\Traits\Imageable;
 use App\Traits\GeneralTrait;
 use Carbon\Carbon;
-use Dimsav\Translatable\Translatable;
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 

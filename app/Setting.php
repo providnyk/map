@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Dimsav\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Model;
+use         Illuminate\Database\Eloquent\Model;
+use    Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use              Astrotomic\Translatable\Translatable;
 
 class Setting extends Model
 {

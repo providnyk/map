@@ -2,10 +2,11 @@
 
 namespace App;
 
-use App\Traits\GeneralTrait;
-use Dimsav\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
+use                           App\Traits\GeneralTrait;
+use         Illuminate\Database\Eloquent\Model;
+use    Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use              Astrotomic\Translatable\Translatable;
+use          Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class Page extends Model

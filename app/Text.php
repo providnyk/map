@@ -2,9 +2,10 @@
 
 namespace App;
 
-use App\Traits\GeneralTrait;
-use Dimsav\Translatable\Translatable;
-use Illuminate\Database\Eloquent\Model;
+use                           App\Traits\GeneralTrait;
+use         Illuminate\Database\Eloquent\Model;
+use    Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use              Astrotomic\Translatable\Translatable;
 
 class Text extends Model
 {

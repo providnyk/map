@@ -151,7 +151,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Dimsav\Translatable\TranslatableServiceProvider::class,
+#        Dimsav\Translatable\TranslatableServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
