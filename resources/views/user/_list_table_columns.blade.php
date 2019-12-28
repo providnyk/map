@@ -1,0 +1,6 @@
+@include('user._list_actions')
+@include('user._list_checkbox', ['s_name' => 'published', ])
+@include('user._list_text', ['s_name' => 'title', ])
+@include('user._list_date', ['s_name' => 'created_at', ])
+@include('user._list_date', ['s_name' => 'updated_at', ])
+@include('user._list_id')

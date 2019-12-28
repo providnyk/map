@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'entries_per_page' => 'entries per page',
     'empty' => 'empty',
     'all' => 'all',
     'messages' => [
@@ -18,12 +17,4 @@ return [
         'active' => 'active',
         'inactive' => 'inactive',
     ],
-    'published' => [
-        'published' => 'published',
-        'unpublished' => 'unpublished',
-    ],
-    'states' => [
-        'yes' => 'yes',
-        'no' => 'no'
-    ]
 ];

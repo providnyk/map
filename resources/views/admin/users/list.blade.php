@@ -29,6 +29,10 @@
     <script src="{{ asset('/admin/js/plugins/pickers/daterangepicker.js') }}"></script>
 @endsection
 
+@php
+$s_category = 'user';
+@endphp
+
 @section('script')
     <script>
         $(document).ready(function(){
@@ -52,10 +56,15 @@
                     style: 'os',
                     selector: 'td:not(:last-child)'
                 },
+                order: [[ 2, "asc" ]],
                 columns: [
+                	@include('user._list_actions')
+					@include('user._list_checkbox', ['s_name' => 'active', ])
                     {
-                        data: 'id',
-                        className: 'text-center'
+                        data: 'first_name',
+                        render: function(data, type, row){
+                            return row.first_name + ' ' + row.last_name;
+                        }
                     },
                     {
                         data: 'roles',
@@ -64,20 +73,12 @@
                         }
                     },
                     {
-                        data: 'first_name',
-                    },
-                    {
-                        data: 'last_name',
-                    },
-                    {
                         data: 'email'
                     },
                     {
-                        sortable: false,
-                        data: function(row){
-                            return `<a href="{!! route('admin.user.form', [':id']) !!}" class="btn btn-sm btn-primary"><i class="icon-pencil"></i></a>`.replace(':id', row.id);
-                        }
-                    }
+                        data: 'id',
+                        className: 'text-center'
+                    },
                 ],
                 ajax: {
                     url: '{!! route('api.user.index') !!}',
@@ -340,37 +341,17 @@
         <div class="card-body p-0">
             <div class="container-fluid">
                 <div class="row filters px-4 pt-3">
-                    <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="first_name" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('app/user.list.filters.first_name') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/user.list.filters.first_name') !!}">
-                    </div>
-                    <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="last_name" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('app/user.list.filters.last_name') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/user.list.filters.last_name') !!}">
-                    </div>
-                    <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="email" data-filter-type="text" data-default-value="">
-                        <label>{!! trans('app/user.list.filters.email') !!}</label>
-                        <input type="text" class="form-control input-sm" placeholder="{!! trans('app/user.list.filters.email') !!}">
-                    </div>
-                    <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="created_at" data-filter-type="date-range" data-default-value="{!! $dates['min_created_at'] . '|' . $dates['max_created_at'] !!}">
-                        <label>{!! trans('app/user.list.filters.created_at') !!}</label>
-                        <div class="form-group form-group-feedback form-group-feedback-left">
-                            <input class="form-control input-sm date-range" placeholder="{!! trans('app/user.list.filters.created_at') !!}">
-                            <div class="form-control-feedback form-control-feedback-lg"><i class="icon-calendar2"></i></div>
-                        </div>
-                    </div>
-                    <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="updated_at" data-filter-type="date-range" data-default-value="{!! $dates['min_updated_at'] . '|' . $dates['max_updated_at'] !!}">
-                        <label>{!! trans('app/user.list.filters.updated_at') !!}</label>
-                        <div class="form-group form-group-feedback form-group-feedback-left">
-                            <input class="form-control input-sm date-range" placeholder="{!! trans('app/user.list.filters.updated_at') !!}">
-                            <div class="form-control-feedback form-control-feedback-lg"><i class="icon-calendar2"></i></div>
-                        </div>
-                    </div>
+
+					@include('user._filter_text', ['name' => 'first_name'])
+					@include('user._filter_text', ['name' => 'last_name'])
+					@include('user._filter_text', ['name' => 'email'])
+					@include('admin.common.filters.created_at')
+					@include('admin.common.filters.updated_at')
 
                     <div class="filter col-md-12 col-lg-6 col-xl-4 py-2" data-name="roles" data-filter-type="select" data-default-value="">
-                        <label>{!! trans('app/user.list.filters.roles') !!}</label>
+                        <label>{!! trans('user/crud.filter.label') !!} {!! trans('user/crud.field.role.filterby') !!}</label>
                         <div>
-                            <select name="roles" class="form-control multi-select" data-placeholder="{!! trans('app/user.list.filters.roles') !!}" multiple>
+                            <select name="roles" class="form-control multi-select" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! trans('user/crud.field.role.typein') !!}" multiple>
                                 @foreach($roles as $role)
                                     <option value="{!! $role->id !!}">{!! $role->name !!}</option>
                                 @endforeach
@@ -380,32 +361,19 @@
 
                 </div>
                 <div class="row my-3 px-3">
-                    <div class="col-md-12 col-lg-4 col-xl-3 mb-2 lg-mb-0 text-left">
-                        <select class="form-control multi-select" id="page-length" data-placeholder="Entries per page">
-                            <option>20 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>40 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>60 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>80 {!! trans('app/common.entries_per_page') !!}</option>
-                            <option>100 {!! trans('app/common.entries_per_page') !!}</option>
-                        </select>
-                    </div>
-                    <div class="buttons col-md-12 col-lg-8 col-xl-9 text-right">
-                        <button type="button" class="btn btn-sm btn-success tooltip-helper" id="btn-add" data-toggle="tooltip" data-placement="top" title="add new" data-trigger="hover"><i class="icon-plus3"></i><span class="text"></span></button>
-                        <button type="button" class="btn btn-sm btn-info tooltip-helper" id="btn-reset" data-toggle="tooltip" data-placement="top" title="reset filters" data-trigger="hover"><i class="icon-reset"></i><span class="text"></span></button>
-                        <button type="button" class="btn btn-sm btn-primary tooltip-helper" id="btn-filter" data-toggle="tooltip" data-placement="top" title="apply filters" data-trigger="hover"><i class="icon-filter3"></i><span class="text"></span></button>
-                        <button type="button" class="btn btn-sm btn-danger tooltip-helper" id="btn-delete" data-toggle="tooltip" data-placement="top" title="delete selected" data-trigger="hover"><i class="icon-trash"></i><span class="text"></span></button>
-                    </div>
+					@include('user._filter_perpage')
+					@include('user._filter_buttons')
                 </div>
             </div>
             <table class="table table-bordered table-striped table-styled">
                 <thead>
                     <tr>
-                        <th width="1px">{!! trans('app/user.list.table.columns.id') !!}</th>
-                        <th width="10%">{!! trans('app/user.list.table.columns.role') !!}</th>
-                        <th width="30%">{!! trans('app/user.list.table.columns.first_name') !!}</th>
-                        <th width="30%">{!! trans('app/user.list.table.columns.last_name') !!}</th>
-                        <th width="30%">{!! trans('app/user.list.table.columns.email') !!}</th>
-                        <th width="1px">{!! trans('app/user.list.table.columns.actions') !!}</th>
+                        <th width="1px">{!! trans('user/crud.table.actions') !!}</th>
+						<th width="5%">{!! trans('user/crud.field.active.label') !!}</th>
+                        <th width="50%">{!! trans('user/crud.field.first_name.label') !!} & {!! trans('user/crud.field.last_name.label') !!}</th>
+                        <th width="10%">{!! trans('user/crud.field.role.label') !!}</th>
+                        <th width="30%">{!! trans('user/crud.field.email.label') !!}</th>
+                        <th width="1px">{!! trans('user/crud.field.id.label') !!}</th>
                     </tr>
                 </thead>
             </table>

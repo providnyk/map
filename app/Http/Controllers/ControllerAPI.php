@@ -18,7 +18,7 @@ class ControllerAPI		extends BaseController
 	public function indexAPI($request, $filters) : \Illuminate\Http\Response
 	{
 		$this->setEnv();
-		$o_items = $this->_env->s_model::orderBy('title')->filter($filters);
+		$o_items = $this->_env->s_model::filter($filters);
 		return response([
 			'draw'				=> $request->draw,
 			'data'				=> $o_items->get(),

@@ -8,6 +8,7 @@ return [
 		'list'			=> 'власністей',
 		'btn_create'	=> 'власність',
 		'btn_edit'		=> 'власність',
+		'btn_delete'	=> 'власністи',
 		'txt_create'	=> 'власністі',
 		'txt_edit'		=> 'власністі',
 		'filterby'		=> 'власністю',

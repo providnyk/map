@@ -8,6 +8,7 @@ return [
 		'list'			=> 'скарг',
 		'btn_create'	=> 'скаргу',
 		'btn_edit'		=> 'скаргу',
+		'btn_delete'	=> 'скарги',
 		'txt_create'	=> 'скаргі',
 		'txt_edit'		=> 'скаргі',
 		'filterby'		=> 'скаргою',

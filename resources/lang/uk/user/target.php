@@ -8,6 +8,7 @@ return [
 		'list'			=> 'груп',
 		'btn_create'	=> 'групу',
 		'btn_edit'		=> 'групу',
+		'btn_delete'	=> 'груп',
 		'txt_create'	=> 'групи',
 		'txt_edit'		=> 'групи',
 		'filterby'		=> 'групою',

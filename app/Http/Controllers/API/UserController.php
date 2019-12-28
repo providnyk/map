@@ -20,7 +20,6 @@ class UserController extends Controller
     public function index(UserApiRequest $request, UserFilters $filters)
     {
         $users = User::filter($filters);
-
         return response([
             'draw' => $request->draw,
             'data' => $users->with('roles')->get(),
