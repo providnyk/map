@@ -7,7 +7,7 @@ use App\Model;
 class Ownership extends Model
 {
 
-	protected $connection = 'pr';
+	protected $connection = 'psc';
 	protected $fillable = [
 		'published',
 	];

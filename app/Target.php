@@ -6,7 +6,7 @@ use App\Model;
 
 class Target extends Model
 {
-	protected $connection = 'pr';
+	protected $connection = 'psc';
 	protected $fillable = [
 		'published',
 	];

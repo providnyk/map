@@ -15,7 +15,7 @@ class User extends Authenticatable
     use Notifiable;
     use GeneralTrait;
 
-#	protected $connection = 'pr';
+#	protected $connection = 'psc';
     /**
      * The attributes that are mass assignable.
      *

@@ -7,7 +7,7 @@ use App\Model;
 
 class Design extends Model
 {
-	protected $connection = 'pr';
+	protected $connection = 'psc';
 	protected $fillable = [
 #		'issue_id',
 		'published',

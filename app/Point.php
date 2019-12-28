@@ -8,7 +8,7 @@ use Modules\Issue\API\Issue;
 
 class Point extends Model
 {
-	protected $connection = 'pr';
+	protected $connection = 'psc';
 	protected $fillable = [
 		'building_id',
 		'design_id',
