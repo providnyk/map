@@ -27,10 +27,13 @@ class TextTranslation extends Model
 
     protected static function boot()
     {
+    	parent::boot();
+
         static::saving(function ($model) {
             $model->slug = $model->slug ?: SlugService::createSlug(
                 TextTranslation::class, 'slug', $model->name
             );
         });
     }
+
 }

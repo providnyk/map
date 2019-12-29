@@ -152,6 +152,7 @@ return [
          * Package Service Providers...
          */
 #        Dimsav\Translatable\TranslatableServiceProvider::class,
+#        Astrotomic\Translatable\TranslatableServiceProvider::class,
         Barryvdh\TranslationManager\ManagerServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
