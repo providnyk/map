@@ -4,19 +4,39 @@
 <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.google.recaptcha.key') }}"></script>
 @endif
 <script>
-	reCAPTCHA_site_key = '{{ config('services.google.recaptcha.key') }}';
+	let reCAPTCHA_site_key = '{{ config('services.google.recaptcha.key') }}';
 	$(document).ready(() => {
 
-		function reCAPTCHA_execute () {
-		  grecaptcha.execute(reCAPTCHA_site_key, {action: 'login'}).then(function(token) {
-			 $('[name="g-recaptcha-response"]').val(token);
-			}, function (reason) {
-		  });
+		var	csrfToken					= $('[name="csrf_token"]').attr('content'),
+			i_csrf_update_time			= Date.now(),
+			i_reCAPTCHA_update_time		= 0,
+			i_reCAPTCHA_refresh_time	= 1000 * 60 * 2; // seconds 1 * 60 = minutes 1 * 2
+
+//		setInterval(refreshToken, 3600000); // 1 hour
+//		setInterval(refreshToken, 1000 * 60 * 2); // 1 min
+
+		function refreshToken(){
+			$.get('refresh-csrf').done(function(data){
+				csrfToken = data; // the new token
+				timepassed = Date.now() - i_csrf_update_time;
+				console.log(csrfToken, Math.round(timepassed / 1000) + 's ' + Math.round(timepassed / 1000 / 60) + 'm');
+			});
+		}
+
+		reCAPTCHA_execute = function reCAPTCHA_execute () {
+			i_tmp = Math.round((Date.now() - i_reCAPTCHA_update_time) / 1000) * 1000;
+			if ( i_tmp < i_reCAPTCHA_refresh_time || !b_focus_status) return true;
+			i_reCAPTCHA_update_time		= Date.now();
+			grecaptcha.execute(reCAPTCHA_site_key, {action: 'login'}).then(function(token) {
+				$('[name="g-recaptcha-response"]').val(token);
+				}, function (reason) {
+			});
 		}
 
 		if (typeof grecaptcha !== 'undefined' && typeof reCAPTCHA_site_key !== 'undefined') {
 			grecaptcha.ready(reCAPTCHA_execute);
-			setInterval(reCAPTCHA_execute, 1000 * 60 * 2); // seconds 1 * 60 = minutes 1 * 2
+			a_check_focus.push(reCAPTCHA_execute);
+			setInterval(reCAPTCHA_execute, i_reCAPTCHA_refresh_time / 3);
 		}
 
 		// TODO: refactoring

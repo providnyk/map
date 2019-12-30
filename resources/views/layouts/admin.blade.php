@@ -1,5 +1,5 @@
 @php
-$version = include_once( __DIR__ . '/../../../version.php');
+# $version = include_once( __DIR__ . '/../../../version.php');
 @endphp<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -332,6 +332,7 @@ $version = include_once( __DIR__ . '/../../../version.php');
 <script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/editors/ckeditor/ckeditor.js') }}"></script>
 
+<script src="{!! asset('/js/common.js?v=' . $version->js) !!}"></script>
 <script src="{!! asset('/admin/js/app.js?v=' . $version->js) !!}"></script>
 <script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
 <script src="{!! asset('/admin/js/session.js?v=' . $version->js) !!}"></script>

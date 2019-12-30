@@ -1,5 +1,5 @@
 @php
-$version = include_once( __DIR__ . '/../../../version.php');
+# $version = include_once( __DIR__ . '/../../../version.php');
 @endphp<!doctype html>
 <html lang="en">
 <head>

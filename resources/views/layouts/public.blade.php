@@ -1,5 +1,5 @@
 @php
-$version = include_once( __DIR__ . '/../../../version.php');
+# $version = include_once( __DIR__ . '/../../../version.php');
 @endphp<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -545,7 +545,9 @@ $version = include_once( __DIR__ . '/../../../version.php');
 <script src="{{ asset('js/jquery.formstyler.min.js') }}"></script>
 <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/notifications/sweet_alert.min.js') }}"></script>
-<script src="{{ asset('js/app_public.js?v=' . $version->js) }}"></script>
+<script src="{!! asset('/js/common.js?v=' . $version->js) !!}"></script>
+<script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
+{{--<script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>--}}
 
 @yield('js')
 @yield('script')
