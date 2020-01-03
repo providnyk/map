@@ -50,8 +50,9 @@ class DashboardController extends Controller
 	 *
 	 * @return String	json data
 	 */
-    public function session() : String
+    public function session(Request $request) : String
     {
+    	if (!$request->ajax()) return NULL;
         $user = Auth::user();
     	return json_encode(['active' => (Auth::user() !== NULL), 'acl' => $user->checkAdmin(), ]);
     }

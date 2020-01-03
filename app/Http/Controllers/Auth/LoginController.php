@@ -11,6 +11,7 @@ use App\PasswordResets;
 use App\Traits\FestivalTrait;
 use App\User;
 use Carbon\Carbon;
+use Cookie;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -98,31 +99,61 @@ class LoginController extends Controller
 
 	public function login(SigninRequest $request)
 	{
+
 		$data = $request->post();
 		$validator = Validator::make($data, []);
 
-        if($validator->fails()){
-            return response([
-                'message' => 'Validation fails',
-                'errors' => $validator->errors()
-            ], 422);
-        }
+		if($validator->fails()){
+			return response([
+				'message' => 'Validation fails',
+				'errors' => $validator->errors()
+			], 422);
+		}
 
-		if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1]))
+		if (in_array($request->login_safety, [0,1,2]))
+			$i_safety = $request->login_safety;
+		else
+			$i_safety = NULL;
+
+		session(['safety' => $i_safety]);
+
+		if ($i_safety == 1)
+			$s_email = $request->email;
+		else
+			$s_email = NULL;
+
+		if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1], ($i_safety == 2)))
 		{
-			return back();
-            return response([
-                'action' => 'reload',
-            ], 307);
+			$cookie_name='email';
+			$cookie_value=$s_email;
+			$cookie_expired_in=2629800;//in mins = 5 years
+			$cookie_path='/'; // available to all pages of website.
+			$cookie_host=$request->getHttpHost(); // domain or website you are setting this cookie.
+			$http_only=false;
+			$secure=false;
+			$raw=false;
+			$samesite=null;
+			$my_cookie = cookie($cookie_name, $cookie_value, $cookie_expired_in,$cookie_path,$cookie_host,$http_only);
+			Cookie::queue($my_cookie);
+
+			return back()->withCookie($my_cookie);
+			return response([
+				'action' => 'reload',
+			], 307);
 		}
 		return redirect(route('public.cabinet'));
 	}
 
 	public function showLoginForm()
 	{
+		$s_email	= Cookie::get('email');
+		$i_safety	= (int) (!is_null($s_email) && !empty($s_email));
+
 		return view('public.profile.login',
 					[
-						'countries'    => Country::published()->get()->sortBy('name'),
+						'safety'		=> $i_safety,
+						'email'			=> $s_email,
+#						'countries'		=> Country::published()->get()->sortBy('name'),
 					]);
 	}
 

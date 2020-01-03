@@ -27,27 +27,8 @@ class ProfileController extends Controller
 
     public function cabinet(Request $request)
     {
-//        $closest_holdings = $user->holdings()
-//            ->selectRaw("event_id, min(date_from) as date_from")
-//            //->where('date_from', '>', today()->toDateString())
-//            ->groupBy('event_id')
-//            ->get();
-//
-//        // modifing got event holdings
-//        $event_dates = $closest_holdings
-//            // group event holdings by date into format
-//            ->groupBy(function($holding) {
-//                return $holding->date_from->format('j F Y');
-//            })
-//            // getting holdings with unique event_id and getting events with holdings not to lazy load them from them
-//            ->map(function($date_from) {
-//                return $date_from->unique->event_id->map(function($holding) {
-//                    return $holding->event;
-//                });
-//            });
-
         $user = Auth::user();
-
+/*
         $input = $request->all();
 
         $input['filters']['published'] = 1;
@@ -58,7 +39,7 @@ class ProfileController extends Controller
         $events = $events->get()->groupBy(function($event) use ($request){
             return $event->day;
         });
-
+*/
         return view('public.profile.miy-pr', [
             'user' => $user,
             'b_admin' => $user->checkAdmin(),
@@ -74,12 +55,12 @@ class ProfileController extends Controller
         $user = User::find(Auth::id());
 
         $validator = Validator::make($request->all(), [
-            'first_name'   => 'required|string|max:255',
-            'last_name'    => 'required|string|max:255',
-            'email'        => 'required|string|email|max:255|unique:users,email,' . $user->id,
-            'old_password' => 'nullable|string|min:6',
-            'password'     => 'nullable|string|min:6|confirmed',
-            'subscribe'    => 'nullable|boolean'
+            'first_name'	=> 'required|string|max:255',
+            'last_name'		=> 'required|string|max:255',
+            'email'			=> 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'old_password'	=> 'nullable|string|min:6',
+            'password'		=> 'nullable|string|min:6|confirmed',
+            'subscribe'		=> 'nullable|boolean',
         ]);
 
         $user->first_name = $request->first_name;

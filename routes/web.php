@@ -720,4 +720,6 @@ Route::get('test/role', function(){
 	dd($user->toArray(), $user->hasRole('admin'));
 });
 
-
+Route::get('refresh-csrf', function(){
+    return csrf_token();
+});

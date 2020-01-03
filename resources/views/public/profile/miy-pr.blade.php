@@ -569,7 +569,7 @@
 		</div>
 	</div>
 </div>
-
+{{--
 <div id="program-line-tpl" class="d-none">
 	<div class="program-line">
 		<div class="block-title">${date}</div>
@@ -617,6 +617,7 @@
 		</div>
 	</div>
 </div>
+--}}
 <div id="arrow-left" class="d-none">
 	<li class="page-item prev-page-item" data-current="${current}" data-total="${total}" data-limit="${limit}">
 		<svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">

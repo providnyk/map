@@ -8,11 +8,11 @@ use Cookie;
 
 trait LocaleTrait
 {
-    /**
-     * Update configs with actual data of available locales basing on translations present in directoris of "lang" folder
-     *
-     * @return void
-     */
+	/**
+	 * Update configs with actual data of available locales basing on translations present in directoris of "lang" folder
+	 *
+	 * @return void
+	 */
 	private function _L10N2config() : void
 	{
 		$s_path = base_path().'/resources/lang';
@@ -38,12 +38,12 @@ trait LocaleTrait
 				$a_dirs[$s_abbr] = NULL;
 		}
 
-        $locale = Cookie::get('lang');
+		$locale = Cookie::get('lang');
 
-        if (is_null($locale))
-        	$locale = app()->getLocale();
-        if (is_null($locale))
-        	$locale = session('lang', config('app.fallback_locale'));
+		if (is_null($locale))
+			$locale = app()->getLocale();
+		if (is_null($locale))
+			$locale = session('lang', config('app.fallback_locale'));
 		if (!array_key_exists($locale, $a_dirs))
 			$locale = config('app.fallback_locale');
 

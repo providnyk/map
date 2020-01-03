@@ -11,13 +11,14 @@ return [
 	'field' => [
 		'email'						=> 'Електронна пошта',
 		'first_name'				=> 'Ім’я',
+		'g-recaptcha-response'		=> 'Google reCaptcha',
 		'last_name'					=> 'Фамілія',
 		'old'						=> 'Поточний пароль',
 		'new'						=> 'Новий пароль',
 		'password'					=> 'Пароль',
 		'password_confirmation'		=> 'Підтвердження паролю',
 		'repeat'					=> 'Повторення нового паролю',
-		'g-recaptcha-response'		=> 'Google reCaptcha',
+		'safety_options'			=> 'Безпека',
 	],
 	'button' => [
 		'forgot'					=> 'Я забув(ла) свій пароль',
@@ -25,5 +26,8 @@ return [
 		'signin'					=> 'Увійти',
 		'signup'					=> 'Створіть новий обліковий запис',
 		'signout'					=> 'Вийти',
+		'remember-0'				=> 'Це чужий комп’ютер',
+		'remember-1'				=> 'Запам’ятати тільки е-пошту',
+		'remember-2'				=> 'Пам’ятати е-пошту та пароль',
 	],
 ];
