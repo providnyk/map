@@ -8,7 +8,7 @@
 	$(document).ready(() => {
 
 		var	timepassed					= 0,
-			s_csrf_token				= $('[name="csrf_token"]').attr('content'),
+			s_csrf_token				= $('[name="csrf-token"]').attr('content'),
 			s_reCAPTCHA					= $('[name="g-recaptcha-response"]').val(),
 			i_csrf_update_time			= 0,
 			i_csrf_refresh_time			= 1000 * 60 * 60 * 2, // 2 hours
@@ -22,12 +22,12 @@
 			if (timepassed < i_csrf_refresh_time || !b_focus_status) return true;
 
 			$.get('refresh-csrf').done(function(token){
-				console.log('s_csrf_token updated=' + (s_csrf_token != token), Math.round(timepassed / 1000) + 's ' + Math.round(timepassed / 1000 / 60) + 'm');
+//console.log('s_csrf_token updated=' + (s_csrf_token != token), Math.round(timepassed / 1000) + 's ' + Math.round(timepassed / 1000 / 60) + 'm');
 				// new token received
 				if (s_csrf_token != token)
 				{
 					s_csrf_token = token; // update token with the new token
-					$('[name="csrf_token"]').attr('content', s_csrf_token);
+					$('[name="csrf-token"]').attr('content', s_csrf_token);
 					i_csrf_refresh_time = Date.now();
 				}
 			});
@@ -39,7 +39,7 @@
 			if ( timepassed < i_reCAPTCHA_refresh_time || !b_focus_status) return true;
 
 			grecaptcha.execute(reCAPTCHA_site_key, {action: 'login'}).then(function(token) {
-				console.log('reCAPTCHA updated=' + (s_reCAPTCHA != token), Math.round(timepassed / 1000) + 's ' + Math.round(timepassed / 1000 / 60) + 'm');
+//console.log('reCAPTCHA updated=' + (s_reCAPTCHA != token), Math.round(timepassed / 1000) + 's ' + Math.round(timepassed / 1000 / 60) + 'm');
 				if (s_reCAPTCHA != token)
 				{
 					$('[name="g-recaptcha-response"]').val(token);

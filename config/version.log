@@ -1,3 +1,4 @@
+0.63.0+a004:1 user UPD hide cookie consent without agreeing
 0.62.0+a003:1 user UPD remember me
 0.61.0+a364:1 user ADD refresh recaptcha only on window focus
 0.61.0+a363:1 user UPD migrate to carbon2 and laravel 6
