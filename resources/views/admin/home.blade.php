@@ -1,10 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-    @php /*<link rel="stylesheet" href="{{ mix('/admin/css/core/filters.css') }}">
-    <link rel="stylesheet" href="{{ mix('/admin/css/core/tables.css') }}">*/@endphp
-@endsection
-
 @section('content')
 
 @php

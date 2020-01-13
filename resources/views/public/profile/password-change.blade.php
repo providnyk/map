@@ -11,7 +11,7 @@
 
                 let form = $(e.currentTarget);
 
-                console.log(form);
+//                console.log(form);
 
                 $.ajax({
                     'url': form.attr('action'),
@@ -50,7 +50,7 @@
         });
 
     </script>
-@endsection
+@append
 
 @section('content')
 

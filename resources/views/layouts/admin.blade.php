@@ -1,6 +1,4 @@
-@php
-# $version = include_once( __DIR__ . '/../../../version.php');
-@endphp<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -20,6 +18,7 @@
 
 @section('script')
 <script type="text/javascript">
+@include('common.var2js')
 @include('user.var2js')
 </script>
 @append
@@ -337,8 +336,8 @@
 <script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
 <script src="{!! asset('/admin/js/session.js?v=' . $version->js) !!}"></script>
 
-@yield('script')
 @yield('js')
+@yield('script')
 
 </body>
 </html>

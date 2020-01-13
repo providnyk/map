@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
 
-
     <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
@@ -38,6 +37,12 @@
      gtag('config', 'UA-146132445-1');
     </script>
     --}}
+
+@section('script')
+<script type="text/javascript">
+@include('common.var2js')
+</script>
+@append
 
 </head>
 <body class="no-front">
@@ -532,13 +537,9 @@
 
 <!-- Optional JavaScript -->
 <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>--}}
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm -->
 @if (Cookie::get( config('cookie-consent.cookie_name') ) !== null)
-{{--<script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=5bdf5f3cb789db0011cddb96&product=custom-share-buttons"></script>--}}
 @endif
 <script src="{{ asset('js/slick.min.js') }}"></script>
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
@@ -547,10 +548,9 @@
 <script src="{{ asset('/admin/js/plugins/notifications/sweet_alert.min.js') }}"></script>
 <script src="{!! asset('/js/common.js?v=' . $version->js) !!}"></script>
 <script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
-{{--<script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>--}}
 
 @yield('js')
 @yield('script')
+
 </body>
 </html>
-

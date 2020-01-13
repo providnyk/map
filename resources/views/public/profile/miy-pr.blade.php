@@ -19,7 +19,7 @@
 	<script src="{!! asset('/admin/js/plugins/templates/jquery.tmpl.js') !!}"></script>
 	<script src="{!! asset('/user/js/filter_category.js') !!}"></script>
 	{{--<script src="{{ mix('/admin/js/app.js') }}"></script>--}}
-@endsection
+@append
 
 @section('script')
 
@@ -352,7 +352,7 @@
 
 //	document.getElementById('gapi').addEventListener('load', handleClientLoad);
 </script>
-@endsection
+@append
 
 @section('content')
 <div class="content miy-pr-page" id="test">

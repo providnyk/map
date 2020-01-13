@@ -1,7 +1,5 @@
 let
-	s_locale					= '{!! $app->getLocale() !!}'
-	,s_route_auth				= '{!! route('public.cabinet') !!}'
-	,s_route_session			= '{!! route('admin.session') !!}'
+	s_route_session			= '{!! route('admin.session') !!}'
 	,s_route_file				= '{!! route('api.upload.file') !!}'
 	,s_route_image				= '{!! route('api.upload.image') !!}'
 	,s_btn_ok					= '{!! trans('user/messages.button.ok') !!}'
@@ -15,4 +13,4 @@ let
 	,s_servererror_final		= '{!! trans('user/session.text.server_err_final') !!}'
 	,s_servererror_head			= '{!! trans('user/session.text.server_err_head') !!}'
 	,s_servererror_info			= '{!! trans('user/session.text.server_err_info') !!}'
-	;
+;
