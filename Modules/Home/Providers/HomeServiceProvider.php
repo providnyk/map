@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Report\Providers;
+namespace Modules\Home\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class ReportServiceProvider extends ServiceProvider
+class HomeServiceProvider extends ServiceProvider
 {
     /**
      * Boot the application events.
@@ -18,7 +18,7 @@ class ReportServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->registerFactories();
-        $this->loadMigrationsFrom(module_path('Report', 'Database/Migrations'));
+        $this->loadMigrationsFrom(module_path('Home', 'Database/Migrations'));
     }
 
     /**
@@ -39,10 +39,10 @@ class ReportServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            module_path('Report', 'Config/config.php') => config_path('report.php'),
+            module_path('Home', 'Config/config.php') => config_path('home.php'),
         ], 'config');
         $this->mergeConfigFrom(
-            module_path('Report', 'Config/config.php'), 'report'
+            module_path('Home', 'Config/config.php'), 'home'
         );
     }
 
@@ -53,17 +53,17 @@ class ReportServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = resource_path('views/modules/report');
+        $viewPath = resource_path('views/modules/home');
 
-        $sourcePath = module_path('Report', 'Resources/views');
+        $sourcePath = module_path('Home', 'Resources/views');
 
         $this->publishes([
             $sourcePath => $viewPath
         ],'views');
 
         $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/report';
-        }, \Config::get('view.paths')), [$sourcePath]), 'report');
+            return $path . '/modules/home';
+        }, \Config::get('view.paths')), [$sourcePath]), 'home');
     }
 
     /**
@@ -73,12 +73,12 @@ class ReportServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = resource_path('lang/modules/report');
+        $langPath = resource_path('lang/modules/home');
 
         if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'report');
+            $this->loadTranslationsFrom($langPath, 'home');
         } else {
-            $this->loadTranslationsFrom(module_path('Report', 'Resources/lang'), 'report');
+            $this->loadTranslationsFrom(module_path('Home', 'Resources/lang'), 'home');
         }
     }
 
@@ -90,7 +90,7 @@ class ReportServiceProvider extends ServiceProvider
     public function registerFactories()
     {
         if (! app()->environment('production') && $this->app->runningInConsole()) {
-            app(Factory::class)->load(module_path('Report', 'Database/factories'));
+            app(Factory::class)->load(module_path('Home', 'Database/factories'));
         }
     }
 

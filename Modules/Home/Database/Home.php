@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Report\Database;
+namespace Modules\Home\Database;
 
 use App\Model;
 use App\Traits\Imageable;
 
-class Report extends Model
+class Home extends Model
 {
 	use Imageable;
 

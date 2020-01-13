@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Report\User;
+namespace Modules\Home\User;
 
 use App\Http\Controllers\ControllerUser as Controller;
 use App\Point;
 use Modules\Issue\Database\Issue;
-use Modules\Report\Database\Report;
+use Modules\Home\Database\Home;
 use Illuminate\Http\Request;
 
-class ReportController extends Controller
+class HomeController extends Controller
 {
 	/**
 	 * Open CRUD form for authenticated user (aka "Admin" previously and now "User")

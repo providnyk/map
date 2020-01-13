@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Report\API;
+namespace Modules\Home\API;
 
-use Modules\Report\Http\ReportRequest as BaseRequest;
+use Modules\Home\Http\HomeRequest as BaseRequest;
 
 class SaveRequest extends BaseRequest
 {

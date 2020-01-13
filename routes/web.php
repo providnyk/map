@@ -433,6 +433,19 @@ Route::group([
 */
 });
 
+//Public routes
+Route::group([
+	'as' => 'guest.',
+	'namespace' => 'Guest',
+	'middleware' => []
+], function() {
+
+	Route::get('', [
+		'as' => 'home',
+		'uses' => 'HomeController@index']
+	);
+
+});
 
 //Public routes
 Route::group([

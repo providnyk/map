@@ -1,16 +1,16 @@
 <?php
 
-namespace Modules\Report\API;
+namespace Modules\Home\API;
 
-use Modules\Report\API\Report;
-use Modules\Report\Database\Report as DBReport;
-use Modules\Report\Filters\ReportFilters;
+use Modules\Home\API\Home;
+use Modules\Home\Database\Home as DBHome;
+use Modules\Home\Filters\HomeFilters;
 use App\Http\Controllers\ControllerAPI as Controller;
 use App\Http\Requests\DeleteRequest;
-use Modules\Report\API\SaveRequest;
-use Modules\Report\Http\ReportRequest;
+use Modules\Home\API\SaveRequest;
+use Modules\Home\Http\HomeRequest;
 
-class ReportController extends Controller
+class HomeController extends Controller
 {
 	/**
 	 * Deleted selected item(s)
@@ -30,7 +30,7 @@ class ReportController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function index(ReportRequest $request, ReportFilters $filters) : \Illuminate\Http\Response
+	public function index(HomeRequest $request, HomeFilters $filters) : \Illuminate\Http\Response
 	{
 		return $this->indexAPI($request, $filters);
 	}
@@ -57,7 +57,7 @@ class ReportController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(SaveRequest $request, DBReport $item) : \Illuminate\Http\Response
+	public function update(SaveRequest $request, DBHome $item) : \Illuminate\Http\Response
 	{
 		$a_res = $this->updateAPI($request, $item);
 		$item->processImages($request);

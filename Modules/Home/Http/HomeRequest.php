@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Report\Http;
+namespace Modules\Home\Http;
 
 use App\Http\Requests\Request;
 
-class ReportRequest extends Request
+class HomeRequest extends Request
 {
 	protected $_rules = [
 		'published'			=> 'boolean',

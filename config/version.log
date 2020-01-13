@@ -1,5 +1,6 @@
-0.64.0+a013:2 guest ADD home page module
+0.64.0+a013:3 guest ADD home module renamings
 ADD home page design
+0.64.0+a013:2 guest ADD home page module
 0.64.0+a013:1 user UPD refresh-csrf-token as part of any template and page
 0.63.0+a004:1 user UPD hide cookie consent without agreeing
 0.62.0+a003:1 user UPD remember me

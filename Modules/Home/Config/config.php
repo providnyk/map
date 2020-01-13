@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'name'			=> 'Report',
+	'name'			=> 'Home',
 	'ico'			=> 'icon-bell3',
 ];
