@@ -1,16 +1,16 @@
 <?php
 
-namespace Modules\Home\API;
+namespace Modules\Welcome\API;
 
-use Modules\Home\API\Home;
-use Modules\Home\Database\Home as DBHome;
-use Modules\Home\Filters\HomeFilters;
+use Modules\Welcome\API\Welcome;
+use Modules\Welcome\Database\Welcome as DBWelcome;
+use Modules\Welcome\Filters\WelcomeFilters;
 use App\Http\Controllers\ControllerAPI as Controller;
 use App\Http\Requests\DeleteRequest;
-use Modules\Home\API\SaveRequest;
-use Modules\Home\Http\HomeRequest;
+use Modules\Welcome\API\SaveRequest;
+use Modules\Welcome\Http\WelcomeRequest;
 
-class HomeController extends Controller
+class WelcomeController extends Controller
 {
 	/**
 	 * Deleted selected item(s)
@@ -30,7 +30,7 @@ class HomeController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function index(HomeRequest $request, HomeFilters $filters) : \Illuminate\Http\Response
+	public function index(WelcomeRequest $request, WelcomeFilters $filters) : \Illuminate\Http\Response
 	{
 		return $this->indexAPI($request, $filters);
 	}
@@ -57,7 +57,7 @@ class HomeController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(SaveRequest $request, DBHome $item) : \Illuminate\Http\Response
+	public function update(SaveRequest $request, DBWelcome $item) : \Illuminate\Http\Response
 	{
 		$a_res = $this->updateAPI($request, $item);
 		$item->processImages($request);

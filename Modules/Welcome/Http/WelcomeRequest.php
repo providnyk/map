@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Home\Http;
+namespace Modules\Welcome\Http;
 
 use App\Http\Requests\Request;
 
-class HomeRequest extends Request
+class WelcomeRequest extends Request
 {
 	protected $_rules = [
 		'published'			=> 'boolean',

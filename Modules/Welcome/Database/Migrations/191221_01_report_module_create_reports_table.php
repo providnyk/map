@@ -3,13 +3,13 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHomesTable extends Migration
+class CreateWelcomesTable extends Migration
 {
 	const DB_CONNECTION = 'psc';
 	const DB_PREFIX = 'pr';
 	const DB_TABLE_KEY = 'id';
-	const DB_NAME_SGL = 'home';
-	const DB_NAME_PLR = 'homes';
+	const DB_NAME_SGL = 'welcome';
+	const DB_NAME_PLR = 'welcomes';
 	const DB_TABLE_TRAN = '_translations';
 	/**
 	 * Run the migrations.

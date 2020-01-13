@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Home\User;
+namespace Modules\Welcome\User;
 
 use App\Http\Controllers\ControllerUser as Controller;
 use App\Point;
 use Modules\Issue\Database\Issue;
-use Modules\Home\Database\Home;
+use Modules\Welcome\Database\Welcome;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class WelcomeController extends Controller
 {
 	/**
 	 * Open CRUD form for authenticated user (aka "Admin" previously and now "User")

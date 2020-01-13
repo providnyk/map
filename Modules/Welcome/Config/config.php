@@ -1,6 +1,6 @@
 <?php
 
 return [
-	'name'			=> 'Home',
+	'name'			=> 'Welcome',
 	'ico'			=> 'icon-bell3',
 ];

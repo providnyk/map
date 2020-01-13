@@ -1,10 +1,10 @@
 <?php
 
-namespace Modules\Home\Database;
+namespace Modules\Welcome\Database;
 
 use App\Model;
 
-class HomeTranslation extends Model
+class WelcomeTranslation extends Model
 {
 	public $timestamps = false;
 

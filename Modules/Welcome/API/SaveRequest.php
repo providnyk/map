@@ -1,8 +1,8 @@
 <?php
 
-namespace Modules\Home\API;
+namespace Modules\Welcome\API;
 
-use Modules\Home\Http\HomeRequest as BaseRequest;
+use Modules\Welcome\Http\WelcomeRequest as BaseRequest;
 
 class SaveRequest extends BaseRequest
 {
