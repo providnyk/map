@@ -1,3 +1,5 @@
+0.65.0+a014:3 guest ADD missings for Welcome
+0.65.0+a014:2 guest DEL cleanup for Welcome
 0.65.0+a014:1 guest DEL cleanup for Welcome
 0.64.0+a014:1 guest ADD unify __construct, setEnv, rulesLng for model, controller, request
 0.64.0+a013:4 guest ADD rename h o m e into w e l c o m e as more neutral

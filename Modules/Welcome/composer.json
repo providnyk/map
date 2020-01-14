@@ -1,6 +1,6 @@
 {
-    "name": "maxd/report",
-    "description": "Reports on issues with designs submitted by users",
+    "name": "maxd/welcome",
+    "description": "shows inital page aka homepage",
     "authors": [
         {
             "name": "Maksim Dzmitryew̆",
@@ -10,7 +10,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Modules\\Report\\Providers\\ReportServiceProvider"
+                "Modules\\Welcome\\Providers\\WelcomeServiceProvider"
             ],
             "aliases": {
 
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Modules\\Report\\": ""
+            "Modules\\Welcome\\": ""
         }
     }
 }

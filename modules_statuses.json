@@ -1,4 +1,5 @@
 {
-	"Issue": true,
-	"Report": true
+	"Issue":		true,
+	"Report":		true,
+	"Welcome":		true
 }

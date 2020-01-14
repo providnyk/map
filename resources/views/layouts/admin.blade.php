@@ -32,7 +32,7 @@
     <!-- Header with logos -->
     <div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
         <div class="navbar-brand navbar-brand-md">
-            <a href="{!! route('public.home') !!}" class="d-inline-block" target="_blank">
+            <a href="{!! route('guest.welcome.index') !!}" class="d-inline-block" target="_blank">
                 <span style="font-size: .8rem; color: #ff6a5f; font-weight: bold; font-family: Tahoma; letter-spacing: .1rem">{!! $settings->title !!}</span>
                 {{--<img src="/img/logo.png" alt="">--}}
             </a>
