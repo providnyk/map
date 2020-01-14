@@ -16,7 +16,7 @@ class ControllerGuest	extends BaseController
 	public function index(Request $request) : \Illuminate\View\View
 	{
 		$this->setEnv();
-		return view($this->_env->s_view . 'single', [
+		return view($this->_env->s_view . 'index', [
 #			$this->_env->s_sgl => $this->_env->s_model::all()->sortByDesc('created_at'),
 		]);
 	}

@@ -1,0 +1,25 @@
+{
+	"name": "maxd/providnykV1",
+	"description": "This module is intended only for 'themeing' support",
+	"authors": [
+		{
+			"name": "Maksim Dzmitryew̆",
+			"email": "maksimdzmitryew@gmail.com"
+		}
+	],
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Modules\\ProvidnykV1\\Providers\\ProvidnykV1ServiceProvider"
+			],
+			"aliases": {
+
+			}
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Modules\\ProvidnykV1\\": ""
+		}
+	}
+}
