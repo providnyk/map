@@ -50,10 +50,10 @@ class Model extends BaseModel
 			if (class_exists($s_tmp))
 			{
 				$t							= new $s_tmp;
-				$a_trans					= $t->getFillable();
+				$a_fill_trans				= $t->getFillable();
 #				$a_form_main				= $m->getFields();
 #				$a_form_trans				= $t->getFields();
-				$this->translatedAttributes = $a_trans;
+				$this->translatedAttributes = $a_fill_trans;
 			}
 		}
 	}

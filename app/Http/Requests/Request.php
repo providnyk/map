@@ -46,30 +46,45 @@ class Request extends BaseRequest
 			$this->_env->s_trans	= $this->_env->s_model ;
 		}
 
-		$m							= new $this->_env->s_model;
+		$a_form_main				= [];
+		$a_fill_main				= [];
+		$a_form_trans				= [];
+		$a_fill_trans				= [];
+
+		$s_tmp						= $this->_env->s_model;
+		if (class_exists($s_tmp))
+		{
+			$m						= new $s_tmp;
+#			$a_fill_main			= $m->getFillable();
+#			$a_form_main			= $m->getFields();
+			$a_form_main			= $m->a_form;
+		}
 		$s_tmp						= $this->_env->s_trans.'Translation';
-		$t							= new $s_tmp;
-		$a_trans					= $t->getFillable();
-		$a_form_main				= $m->a_form;
-		$a_form_trans				= $t->a_form;
+		if (class_exists($s_tmp))
+		{
+			$t						= new $s_tmp;
+			$a_fill_trans			= $t->getFillable();
+#			$a_form_trans			= $t->getFields();
+			$a_form_trans			= $t->a_form;
+		}
 
 		$a_rules_all = [];
 		$a_locales = config('translatable.locales');
 		for ($i = 0; $i < count($a_locales); $i++)
 		{
 			$a_rules_all[$a_locales[$i]] = 'required|array';
-			for ($j = 0; $j < count($a_trans); $j++)
+			for ($j = 0; $j < count($a_fill_trans); $j++)
 			{
-				if (array_key_exists($a_trans[$j], $a_rules))
+				if (array_key_exists($a_fill_trans[$j], $a_rules))
 				{
-					$s_tmp = $a_locales[$i].'.'.$a_trans[$j];
-					$a_rules_all[$s_tmp] = $a_rules[$a_trans[$j]];
+					$s_tmp = $a_locales[$i].'.'.$a_fill_trans[$j];
+					$a_rules_all[$s_tmp] = $a_rules[$a_fill_trans[$j]];
 				}
 			}
 		}
 		foreach ($a_rules AS $s_name => $s_rule)
 		{
-			if (!in_array($s_name, $a_trans))
+			if (!in_array($s_name, $a_fill_trans))
 				$a_rules_all[$s_name] = $s_rule;
 		}
 		return $a_rules_all;

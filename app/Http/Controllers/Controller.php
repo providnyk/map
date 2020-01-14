@@ -37,12 +37,25 @@ class Controller extends BaseController
 			$this->_env->s_trans	= $this->_env->s_model ;
 		}
 
-		$m							= new $this->_env->s_model;
-		$s_tmp						= $this->_env->s_trans.'Translation';
-		$t							= new $s_tmp;
-		$a_trans					= $t->getFillable();
-		$a_form_main				= $m->getFields();
-		$a_form_trans				= $t->getFields();
+		$a_form_main				= [];
+		$a_fill_main				= [];
+		$a_form_trans				= [];
+		$a_fill_trans				= [];
+
+		$s_tmp						= $this->_env->s_model;
+		if (class_exists($s_tmp))
+		{
+			$m						= new $s_tmp;
+			$a_fill_main			= $m->getFillable();
+			$a_form_main			= $m->getFields();
+		}
+		$s_tmp					= $this->_env->s_trans.'Translation';
+		if (class_exists($s_tmp))
+		{
+			$t						= new $s_tmp;
+#			$a_fill_trans			= $t->getFillable();
+			$a_form_trans			= $t->getFields();
+		}
 
 		$this->_env->s_sgl			= strtolower($this->_env->s_name);
 		$this->_env->fn_find		= $this->_env->s_model.'::findOrNew';
@@ -54,7 +67,7 @@ class Controller extends BaseController
 			$this->_env->s_view		= 'admin.' . $this->_env->s_sgl . '.';
 
 		$a_tmp						= config('translatable.locales');
-		$this->a_fields				= array_merge(config('translatable.locales'), $m->getFillable());
+		$this->a_fields				= array_merge(config('translatable.locales'), $a_fill_main);
 
 		$this->a_field				= [];
 		$this->a_rule				= [];
