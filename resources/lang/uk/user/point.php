@@ -44,7 +44,7 @@ return [
 		],
 		'annotation' => [
 			'label'		=> 'Анотація',
-			'filterby'	=> 'анотаціею',
+			'filterby'	=> 'анотацією',
 			'typein'	=> 'анотацію',
 			'rules'		=> 'nullable|max 191 chars',
 		],

@@ -1,4 +1,6 @@
-0.65.0+a014:4 guest ADD home page design
+0.66.0+a015:1 guest UPD translations
+ADD home page html,css,js
+0.65.0+a014:4 guest ADD home page design as module
 0.65.0+a014:3 guest ADD missings for Welcome
 0.65.0+a014:2 guest DEL cleanup for Welcome
 0.65.0+a014:1 guest DEL cleanup for Welcome

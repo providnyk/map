@@ -20,7 +20,7 @@ return [
 		'title'			=> 'Назвою',
 		'created_at'	=> 'датою створення',
 		'updated_at'	=> 'датою оновлення',
-		'perpage'		=> 'записів на сторінци',
+		'perpage'		=> 'записами на сторінці',
 	],
 	'table' => [
 		'created_at'	=> 'Створено',
@@ -60,7 +60,7 @@ return [
 		],
 		'first_name' => [
 			'label'		=> 'Ім’я',
-			'filterby'	=> 'ім’ем',
+			'filterby'	=> 'ім’ям',
 			'typein'	=> 'Ім’я',
 			'rules'		=> 'max 191 chars',
 		],
@@ -71,7 +71,7 @@ return [
 		'image' => [
 			'label'		=> 'Зображення',
 			'filterby'	=> 'зображенням',
-			'typein'	=> 'зображенне',
+			'typein'	=> 'зображенні',
 			'rules'		=> '',
 		],
 		'last_name' => [
@@ -88,8 +88,8 @@ return [
 		],
 		'published' => [
 			'label'		=> 'Опублікувати',
-			'filterby'	=> 'опублікуванні',
-			'typein'	=> 'опублікуванне',
+			'filterby'	=> 'опубліковані',
+			'typein'	=> 'опублікуване',
 			'rules'		=> 'yes or no',
 		],
 		'role' => [
