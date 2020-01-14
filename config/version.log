@@ -1,3 +1,4 @@
+0.66.0+a015:2 guest ADD temp redirect to login page from home
 0.66.0+a015:1 guest UPD translations
 ADD home page html,css,js
 0.65.0+a014:4 guest ADD home page design as module

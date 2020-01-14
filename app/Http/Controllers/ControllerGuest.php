@@ -13,7 +13,7 @@ class ControllerGuest	extends BaseController
 	 *
 	 * @return View		instance of
 	 */
-	public function index(Request $request) : \Illuminate\View\View
+	public function index(Request $request) #: \Illuminate\View\View
 	{
 		$this->setEnv();
 		return view($this->_env->s_view . 'index', [
