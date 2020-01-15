@@ -1,4 +1,4 @@
-@extends($theme . $_env->s_utype . '.master')
+@extends($theme . '::' . $_env->s_utype . '.master')
 
 @section('content')
     <h1>Hello World</h1>

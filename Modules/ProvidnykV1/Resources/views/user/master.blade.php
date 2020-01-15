@@ -1,1 +1,1 @@
-@extends($theme . 'layouts.master')
+@extends($theme . '::layouts.master')
