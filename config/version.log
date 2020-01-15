@@ -1,3 +1,4 @@
+0.66.0+a015:5 guest ADD home page images and icons
 0.66.0+a015:4 guest ADD home page html,css,js
 0.66.0+a015:3 guest ADD theme and utype support into templates and _env
 0.66.0+a015:2 guest ADD temp redirect to login page from home

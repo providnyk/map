@@ -31,6 +31,13 @@ class ViewComposerServiceProvider extends ServiceProvider
 				$current_route_name = null;
 			}
 
+			# avoid css&js caching at dev environment
+			if (getenv('APP_ENV') == 'local')
+			{
+				$a_version->css = time();
+				$a_version->js = time();
+			}
+
 			$view->with([
 				'current_route_name'	=> $current_route_name,
 				'localizations'			=> config('translatable.names'),
