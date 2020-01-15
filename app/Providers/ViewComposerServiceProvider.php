@@ -21,9 +21,10 @@ class ViewComposerServiceProvider extends ServiceProvider
 	{
 		$this->_L10N2config();
 
-		$version = include_once( base_path(). '/version.php');
+		$a_version	= include_once( base_path(). '/version.php');
+		$s_theme	= getenv('APP_THEME') ? getenv('APP_THEME') . '::' : '';
 
-		\View::composer('*', function ($view) use ($version) {
+		\View::composer('*', function ($view) use ($a_version, $s_theme) {
 			if ($route = \Request::route()) {
 				$current_route_name = $route->getName();
 			} else {
@@ -31,10 +32,11 @@ class ViewComposerServiceProvider extends ServiceProvider
 			}
 
 			$view->with([
-				'localizations'			=> config('translatable.names'),
 				'current_route_name'	=> $current_route_name,
+				'localizations'			=> config('translatable.names'),
 				'settings'				=> app('App\Settings'),
-				'version'				=> $version,
+				'theme'					=> $s_theme,
+				'version'				=> $a_version,
 			]);
 		});
 

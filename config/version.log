@@ -1,3 +1,4 @@
+0.66.0+a015:3 guest ADD theme and utype support into templates and _env
 0.66.0+a015:2 guest ADD temp redirect to login page from home
 0.66.0+a015:1 guest UPD translations
 ADD home page html,css,js

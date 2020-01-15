@@ -60,9 +60,10 @@ class Controller extends BaseController
 		$this->_env->s_sgl			= strtolower($this->_env->s_name);
 		$this->_env->fn_find		= $this->_env->s_model.'::findOrNew';
 		$this->_env->s_plr			= Pluralizer::plural($this->_env->s_sgl, 2);
+		$this->_env->s_utype		= strtolower($a_tmp[2]);
 
 		if ($a_tmp[0] == 'Modules')
-			$this->_env->s_view		= $this->_env->s_sgl . '::' . strtolower($a_tmp[2]) . '.';
+			$this->_env->s_view		= $this->_env->s_sgl . '::' . $this->_env->s_utype . '.';
 		else
 			$this->_env->s_view		= 'admin.' . $this->_env->s_sgl . '.';
 
@@ -98,5 +99,12 @@ class Controller extends BaseController
 		$this->_env->a_rule			= $this->a_rule;
 		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
 #dump($this->_env->a_field, $this->_env->a_rule);
+		$_env						= $this->_env;
+		\View::composer('*', function ($view) use ($_env) {
+			$view->with([
+				'_env'				=> $this->_env,
+			]);
+		});
+
 	}
 }
