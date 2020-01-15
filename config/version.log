@@ -1,5 +1,5 @@
+0.66.0+a015:7 guest ADD home page top menu links
 0.66.0+a015:6 guest ADD home page header n footer
-ADD home page top menu
 0.66.0+a015:5 guest ADD home page images and icons
 0.66.0+a015:4 guest ADD home page html,css,js
 0.66.0+a015:3 guest ADD theme and utype support into templates and _env
@@ -102,11 +102,6 @@ php artisan module:make
 php artisan module:migrate
 php artisan module:migrate-rollback
 php artisan module:enable
-
-up local->acceptance
-
-~/.fsync/notifyloop /Volumes/ssd/Dropbox/projects/web/pr.max rsync -pahize "ssh -p 22" --progress --delete --exclude={'testing','assets'} --exclude={'cache','/vendor','storage','tmp'} --exclude=composer.lock --exclude={'.git/*','.git*','*.sql*','*.zip','.*'} /Volumes/ssd/Dropbox/projects/web/pr.max/ provodam@91.195.53.16:/home/provodam/public_html/ | grep -E '^[^.]|^$'
-
 
 down modules<-vmware
 

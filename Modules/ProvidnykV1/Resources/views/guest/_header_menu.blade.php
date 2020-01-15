@@ -1,11 +1,13 @@
 			<nav>
 				<ul>
+{{--
 					<li><a href="#">Про нас</a></li>
 					<li><a href="#">Волонтерам</a></li>
 					<li><a href="#">Новости</a></li>
 					<li><a href="#">Контакты</a></li>
-					<li><a class="blue" href="#">Присоединиться</a></li>
-					<li><a class="green" href="#">Вход</a></li>
+--}}
+					<li><a class="blue" href="{!! route('login') !!}">Присоединиться</a></li>
+					<li><a class="green" href="{!! route('login') !!}">Вход</a></li>
 				</ul>
 				<ul class="socials">
 					<li><a href="#"><img src="{!! $theme !!}/img/soc_fb.png" alt=""></a></li>

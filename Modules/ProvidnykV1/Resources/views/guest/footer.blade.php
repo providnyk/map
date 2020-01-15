@@ -1,7 +1,11 @@
 <footer>
 	<div class="container fullwidth">
 		<div class="flexwrap">
-			<p class="copyright">Provodnik &copy; @if (env('APP_EST')!=date("Y")) {{ env('APP_EST') }} &mdash; @endif {!! @date("Y") !!}</p>
+			<p class="copyright">
+				{!! trans('app.name') !!} &copy;
+				@if (env('APP_EST')!=date("Y")) {{ env('APP_EST') }} &mdash; @endif
+				{!! @date("Y") !!}
+			</p>
 {{--
 			<ul class="language">
 				<li><a class="active" href="#">РУССКИЙ</a></li>
