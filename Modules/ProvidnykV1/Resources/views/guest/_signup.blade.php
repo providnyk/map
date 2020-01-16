@@ -4,9 +4,10 @@
 							<div class="name">{!! trans('general.my-area') !!} <span>{{ trans('user/form.text.hint_up') }}</span></div>
 							<div class="divider"></div>
 						</div>
-						<div class="user_fields">
-							<form action="{!! route('register') !!}" method="POST" class="form-page" id="register-form">
-								@csrf
+						<form action="{!! route('register') !!}" method="POST" class="form-page" id="register-form">
+							@csrf
+
+							<div class="user_fields">
 								<div class="item">
 									<span class="label">
 										{!! trans('user/form.field.email') !!}
@@ -23,6 +24,7 @@
 										<input type="password" class="form-control"  placeholder="" name="password">
 									</span>
 								</div>
+
 								<div class="item">
 									<span class="label">
 										{!! trans('user/form.field.password_confirmation') !!}
@@ -31,9 +33,13 @@
 										<input type="password" class="form-control"  placeholder="" name="password_confirmation">
 									</span>
 								</div>
-							</form>
-						</div>
-						<div class="buttons">
-							<button type="submit" class="confirm">{!! trans('user/form.button.signup') !!}</button>
-						</div>
+
+								<input type="hidden" id="recap_response_signup" placeholder="" name="g-recaptcha-response">
+								<div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
+
+							</div>
+							<div class="buttons">
+								<button type="submit" class="confirm">{!! trans('user/form.button.signup') !!}</button>
+							</div>
+						</form>
 					</div>

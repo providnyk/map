@@ -47,9 +47,8 @@
 								<button type="submit" class="confirm">{!! trans('user/form.button.signin') !!}</button>
 							</div>
 
-	                        <div style="padding-left: 223px;">
-	                            <a href="{!! route('password.reset-form') !!}">{!! trans('user/form.button.forgot') !!}</a>
-	                        </div>
+							<div style="padding-left: 223px;">
+								<a href="{!! route('password.reset-form') !!}">{!! trans('user/form.button.forgot') !!}</a>
+							</div>
 						</form>
-
 					</div>

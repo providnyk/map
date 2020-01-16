@@ -175,7 +175,13 @@ class LoginController	extends BaseController
 
 	function resetPasswordForm()
 	{
-		return view('public.profile.password-reset');
+		$this->setEnv();
+
+#		return view('public.profile.password-reset');
+		return view($this->_env->s_view . 'password',
+					[
+						'tab'			=> request()->segment(2),
+					]);
 	}
 
 	function resetPassword(ResetRequest $request)

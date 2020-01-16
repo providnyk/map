@@ -31,7 +31,7 @@
 
                 <div class="tab-content section-tab" id="pressTabContent">
                     <div class="result-text-title">
-                        {{ trans('user/form.text.hint') }}
+                        {{ trans('user/form.text.hint_in') }}
                     </div>
                     <div class="tab-pane fade show active" id="sign-text-tab" role="tabpanel"
                          aria-labelledby="sign-tab">
@@ -74,7 +74,6 @@
                                     </div>
 
                                     <input type="hidden" id="recap_response_signin" placeholder="" name="g-recaptcha-response">
-
                                     <div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
 
                                     <div class="btn-wrap row form-group" style="margin-top: 26px;">
@@ -86,10 +85,9 @@
                                     </div>
                                 </form>
 
-
-                                        <div class="offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
-                                            <a href="{!! route('password.reset-form') !!}">{!! trans('user/form.button.forgot') !!}</a>
-                                        </div>
+                                <div class="offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
+                                    <a href="{!! route('password.reset-form') !!}">{!! trans('user/form.button.forgot') !!}</a>
+                                </div>
 
                             </div>
                         </div>
@@ -163,7 +161,6 @@
                                     </div>
 --}}
                                     <input type="hidden" id="recap_response_signup" placeholder="" name="g-recaptcha-response">
-
                                     <div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
 
                                     <div class="btn-wrap row form-group">
