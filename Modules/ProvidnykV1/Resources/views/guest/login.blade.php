@@ -7,6 +7,49 @@
 @include('public.partials._profile', ['s_id' => '#register-form, #sign-in-form'])
 
 @section('content')
+
+
+
+      <div class="container">
+        <div id="profile_wrap">
+            <div class="profile">
+                <ul class="tabs">
+                    <li data-tab="tab-signin" {!! request()->segment(1) == 'signin' ? ' class="active"' : '' !!}>{!! trans('user/form.text.signin') !!}</li>
+                    <li data-tab="tab-signup" {!! request()->segment(1) == 'signup' ? ' class="active"' : '' !!}>{!! trans('user/form.text.signup') !!}</li>
+                    <div class="divider"></div>
+                </ul>
+                <div class="content">
+
+@include($theme . '::' . $_env->s_utype . '.signin')
+@include($theme . '::' . $_env->s_utype . '.signup')
+
+
+                </div>
+            </div>
+            <div class="infoblocks">
+{{--
+                <div class="block blue">
+                    Выбери место и нанеси его
+                    на карту, следуя инструкциям
+                </div>
+                <div class="block green">
+                    Проверь список запросов
+                    от наших пользователей
+                </div>
+                <div class="block orange">
+                    Cтань инспектором
+                    инклюзивности и проведи аудит
+                    одного из выбранных нами
+                    маршрутов
+                </div>
+--}}
+            </div>
+
+        </div>
+      </div>
+
+
+{{--
 <div class="content sign-in-page">
     <div class="container-fluid">
         <div class="single-form-block-wrap">
@@ -33,8 +76,8 @@
                         {{ trans('user/form.text.hint') }}
                     </div>
 
-@include($theme . '::' . $_env->s_utype . '.signin')
-@include($theme . '::' . $_env->s_utype . '.signup')
+@include($theme . '::' . $_env->s_utype . '.signin_bak')
+@include($theme . '::' . $_env->s_utype . '.signup_bak')
 
 
                 </div>
@@ -42,4 +85,5 @@
         </div>
     </div>
 </div>
+--}}
 @append

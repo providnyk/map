@@ -11,16 +11,12 @@
 
                 let form = $(e.currentTarget);
 
-//                console.log(form);
-
                 $.ajax({
                     'url': form.attr('action'),
                     'type': 'post',
                     'data': form.serialize(),
                 }).done((data) => {
                     form.find('.error').remove();
-
-                    console.log(data);
 
                     swal({
                         title: 'Success',

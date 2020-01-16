@@ -1007,7 +1007,7 @@ footer .open_filter_btn {
 	border-bottom: none;
 }
 #profile_wrap .profile .confirm {
-	width: 180px;
+	width: 330px;
 	height: 52px;
 	border-radius: 25px;
 	background-color: #21cd73;
@@ -1028,12 +1028,12 @@ footer .open_filter_btn {
 	font-weight: 500;
 	color: #495261;
 	padding: 15px 25px;
-	width: 33%;
-	min-width: 33%;
+	width: 36%;
+	min-width: 36%;
 }
 #profile_wrap .profile .user_fields .item .value {
-	width: 67%;
-	min-width: 67%;
+	width: 64%;
+	min-width: 64%;
 	position: relative;
 }
 #profile_wrap .profile .user_fields .item .value input {
@@ -1046,6 +1046,13 @@ footer .open_filter_btn {
 	font-size: 14px;
 	font-weight: 300;
 	color: #495261;
+}
+#profile_wrap .profile .user_fields .item .value input[type="radio"] {
+	height: 13px;
+}
+#profile_wrap .profile .user_fields .item .value label {
+	color: #83878c;
+	margin-bottom: 0;
 }
 #profile_wrap .profile .user_fields .item .value .openpass {
 	display: block;
