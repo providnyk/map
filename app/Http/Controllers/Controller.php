@@ -67,6 +67,15 @@ class Controller extends BaseController
 		else
 			$this->_env->s_view		= 'admin.' . $this->_env->s_sgl . '.';
 
+		////////////////////////////////////////////////////////////////////////////////////////////////////
+		if ($this->_env->s_utype == 'controllers' && in_array($this->_env->s_sgl, ['login']))
+		{
+			$this->_env->s_utype	= 'guest';
+			$this->_env->fn_find	= '';
+			$this->_env->s_view		= (env('APP_THEME') . '::' ?: '') . $this->_env->s_utype . '.' ;
+		}
+		////////////////////////////////////////////////////////////////////////////////////////////////////
+
 		$a_tmp						= config('translatable.locales');
 		$this->a_fields				= array_merge(config('translatable.locales'), $a_fill_main);
 

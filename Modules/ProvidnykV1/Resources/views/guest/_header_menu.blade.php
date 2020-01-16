@@ -6,8 +6,8 @@
 					<li><a href="#">Новости</a></li>
 					<li><a href="#">Контакты</a></li>
 --}}
-					<li><a class="blue" href="{!! route('login') !!}">Присоединиться</a></li>
-					<li><a class="green" href="{!! route('login') !!}">Вход</a></li>
+					<li><a class="blue" href="{!! route('signup') !!}">Присоединиться</a></li>
+					<li><a class="green" href="{!! route('signin') !!}">Вход</a></li>
 				</ul>
 				<ul class="socials">
 					<li><a href="#"><img src="{!! $theme !!}/img/soc_fb.png" alt=""></a></li>

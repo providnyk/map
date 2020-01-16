@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Country;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller as BaseController;
 use App\Http\Requests\SignupRequest;
 use App\Http\Requests\SigninRequest;
 use App\Http\Requests\ResetRequest;
@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
-class LoginController extends Controller
+class LoginController	extends BaseController
 {
 	/*
 	|--------------------------------------------------------------------------
@@ -105,7 +105,7 @@ class LoginController extends Controller
 
 		if($validator->fails()){
 			return response([
-				'message' => 'Validation fails',
+				'message' => 'Validation failed',
 				'errors' => $validator->errors()
 			], 422);
 		}
@@ -144,16 +144,32 @@ class LoginController extends Controller
 		return redirect(route('public.cabinet'));
 	}
 
-	public function showLoginForm()
+	public function signin()
 	{
+		$this->setEnv();
+
 		$s_email	= Cookie::get('email');
 		$i_safety	= (int) (!is_null($s_email) && !empty($s_email));
 
-		return view('public.profile.login',
+#		return view('public.profile.login',
+		return view($this->_env->s_view . 'login',
 					[
 						'safety'		=> $i_safety,
 						'email'			=> $s_email,
+						'tab'			=> request()->segment(1),
 #						'countries'		=> Country::published()->get()->sortBy('name'),
+					]);
+	}
+
+	public function signup()
+	{
+		$this->setEnv();
+
+		return view($this->_env->s_view . 'login',
+					[
+						'safety'		=> NULL,
+						'email'			=> '',
+						'tab'			=> request()->segment(1),
 					]);
 	}
 

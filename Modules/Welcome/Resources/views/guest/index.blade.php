@@ -1,7 +1,6 @@
 @extends($theme . '::' . $_env->s_utype . '.master')
 
 @section('content')
-<section id="map_screen">
 	<div id="main_map" data-zoom="16">
 		<div class="marker" data-lat="50.405388" data-lng="30.3341461" data-icon="{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>
 		<div class="marker" data-lat="50.4066782" data-lng="30.3410947" data-icon="{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>
@@ -163,11 +162,9 @@
 
 		</div>
 	</div>
-</section>
 @endsection
 
 @section('js')
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpiBWpweBNNC0OULC4g-aAvVdS38Ccdu8"></script>
 @append
 

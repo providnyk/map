@@ -24,17 +24,18 @@ $a_modules = config('elements.modules');
 Route::group([
 	'middleware' => []#'language']
 ], function() {
-	Route::get('login', ['as' => 'login', 'uses' => 'Auth\LoginController@showLoginForm']);
-	Route::post('login', ['as' => '', 'uses' => 'Auth\LoginController@login']);
-	Route::post('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
+	Route::get('signin',			['as' => 'signin', 'uses' => 'Auth\LoginController@signin']);
+	Route::post('login',			['as' => 'login', 'uses' => 'Auth\LoginController@login']);
+	Route::post('logout',			['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);
 
 	// Registration Routes...
-	Route::get('register/{token}', ['as' => 'confirm-registration', 'uses' => 'Auth\LoginController@confirmRegistration']);
-	Route::post('register', ['as' => 'register', 'uses' => 'Auth\LoginController@register']);
+	Route::get('signup',			['as' => 'signup', 'uses' => 'Auth\LoginController@signup']);
+	Route::post('register',			['as' => 'register', 'uses' => 'Auth\LoginController@register']);
+	Route::get('register/{token}',	['as' => 'confirm-registration', 'uses' => 'Auth\LoginController@confirmRegistration']);
 
 	// Password Reset Routes...
-	Route::get('password/reset', ['as' => 'password.reset-form', 'uses' => 'Auth\LoginController@resetPasswordForm']);
-	Route::post('password/reset', ['as' => 'password.reset', 'uses' => 'Auth\LoginController@resetPassword']);
+	Route::get('password/reset',	['as' => 'password.reset-form', 'uses' => 'Auth\LoginController@resetPasswordForm']);
+	Route::post('password/reset',	['as' => 'password.reset', 'uses' => 'Auth\LoginController@resetPassword']);
 	Route::get('password/change/{token}', ['as' => 'password.change-form', 'uses' => 'Auth\LoginController@changePasswordForm']);
 	Route::post('password/change/{token}', ['as' => 'password.change', 'uses' => 'Auth\LoginController@changePassword']);
 });
