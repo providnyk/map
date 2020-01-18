@@ -6,8 +6,12 @@
 					<li><a href="#">Новости</a></li>
 					<li><a href="#">Контакты</a></li>
 --}}
+					@if(Auth::user())
+					<li><a class="blue"  href="{!! route('public.cabinet') !!}">{!! trans('general.my-area') !!}</a></li>
+					@else
 					<li><a class="blue"  href="{!! route('signup_page') !!}">Присоединиться</a></li>
 					<li><a class="green" href="{!! route('signin_page') !!}">Вход</a></li>
+					@endif
 				</ul>
 				<ul class="socials">
 					<li><a href="#"><img src="{!! $theme !!}/img/soc_fb.png" alt=""></a></li>

@@ -147,7 +147,6 @@ class PasswordController extends Controller
 
 	}
 
-
 	private function _checkToken($token)
 	{
 		$reset_password = PasswordResets::where('token', $token)->where('created_at', '>', Carbon::now()->subHour())->first();
