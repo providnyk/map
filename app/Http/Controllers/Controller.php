@@ -14,6 +14,7 @@ class Controller extends BaseController
 
 	protected $_env = [];
 	protected $a_fields = [];
+
 	public function setEnv()
 	{
 		$s_basename					= class_basename(__CLASS__);

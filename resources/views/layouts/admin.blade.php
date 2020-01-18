@@ -10,9 +10,11 @@
     <title>@yield('title')</title>
 
     <!-- Global stylesheets -->
+	<link rel="stylesheet" href="{{ asset($theme . '/css/tabs.css?v=' . $version->css) }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="{!! asset('/admin/css/app.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
     <!-- /global stylesheets -->
+
     @yield('css')
 
 @section('script')
@@ -211,7 +213,8 @@
                     <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
                     --}}
 
-					@include($theme . '::' . $_env->s_utype . '._signin', ['class' => 'dropdown-item'])
+					@include('providnykV1::guest._signout', ['class' => 'dropdown-item'])
+					{{-- include($theme . '::' . $_env->s_utype . '._signout', ['class' => 'dropdown-item']) --}}
 
                 </div>
             </li>
@@ -318,7 +321,7 @@
 <script src="{!! asset('/admin/js/plugins/ui/ripple.min.js') !!}"></script>
 
 <script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>
-<script src="{{ asset('/admin/js/plugins/notifications/sweet_alert.min.js') }}"></script>
+<script src="{{ asset('/admin/js/plugins/notifications/sweetalert1.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/forms/styling/uniform.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/pickers/color/spectrum.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/forms/styling/switchery.min.js') }}"></script>

@@ -11,6 +11,8 @@ class DashboardController extends Controller
 
     public function index()
     {
+		$this->setEnv();
+
 		$a_list = config('elements.list');
 		$a_modules = config('elements.modules');
 
