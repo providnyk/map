@@ -4,7 +4,7 @@
 							<div class="name">{!! trans('general.my-area') !!} <span>{{ trans('user/form.text.hint_up') }}</span></div>
 							<div class="divider"></div>
 						</div>
-						<form action="{!! route('register') !!}" method="POST" class="form-page" id="register-form">
+						<form action="{!! route('signup_user') !!}" method="POST" class="form-page" id="signup-form">
 							@csrf
 
 							<div class="user_fields">
@@ -16,26 +16,9 @@
 										<input type="email" class="form-control"  placeholder="" name="email">
 									</span>
 								</div>
-								<div class="item">
-									<span class="label">
-										{!! trans('user/form.field.password') !!}
-									</span>
-									<span class="value">
-										<input type="password" class="form-control"  placeholder="" name="password">
-									</span>
-								</div>
 
-								<div class="item">
-									<span class="label">
-										{!! trans('user/form.field.password_confirmation') !!}
-									</span>
-									<span class="value">
-										<input type="password" class="form-control"  placeholder="" name="password_confirmation">
-									</span>
-								</div>
-
-								<input type="hidden" id="recap_response_signup" placeholder="" name="g-recaptcha-response">
-								<div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
+@include($theme . '::' . $_env->s_utype . '._password_twice')
+@include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'signup'])
 
 							</div>
 							<div class="buttons">

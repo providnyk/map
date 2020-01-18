@@ -210,13 +210,8 @@
                     {{--
                     <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
                     --}}
-					<form action="{!! route('logout') !!}" method="post">
-						@csrf
-						<button class="dropdown-item">
-							<i class="icon-switch2"></i>
-							{!! trans('user/form.button.signout') !!}
-						</button>
-					</form>
+
+					@include($theme . '::' . $_env->s_utype . '._signin', ['class' => 'dropdown-item'])
 
                 </div>
             </li>

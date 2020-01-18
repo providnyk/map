@@ -27,6 +27,9 @@ class ProfileController extends Controller
 
     public function cabinet(Request $request)
     {
+
+		$this->setEnv();
+
         $user = Auth::user();
 /*
         $input = $request->all();

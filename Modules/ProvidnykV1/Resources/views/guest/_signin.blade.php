@@ -4,26 +4,13 @@
 							<div class="name">{!! trans('general.my-area') !!} <span>{{ trans('user/form.text.hint_in') }}</span></div>
 							<div class="divider"></div>
 						</div>
-						<form action="{!! route('login') !!}" method="POST" class="form-page" id="register-form">
+						<form action="{!! route('signin_page') !!}" method="POST" class="form-page" id="signin-form">
 							@csrf
 
 							<div class="user_fields">
-								<div class="item">
-									<span class="label">
-										{!! trans('user/form.field.email') !!}
-									</span>
-									<span class="value">
-										<input type="email" class="form-control" placeholder="" name="email" value="{{ $email }}">
-									</span>
-								</div>
-								<div class="item">
-									<span class="label">
-										{!! trans('user/form.field.password') !!}
-									</span>
-									<span class="value">
-										<input type="password" class="form-control" placeholder="" name="password">
-									</span>
-								</div>
+
+@include($theme . '::' . $_env->s_utype . '._email')
+@include($theme . '::' . $_env->s_utype . '._password')
 
 								<div class="item">
 									<span class="label">
@@ -39,8 +26,7 @@
 									</span>
 								</div>
 
-								<input type="hidden" id="recap_response_signin" placeholder="" name="g-recaptcha-response">
-								<div class="g-recaptcha" data-sitekey="{{ config('services.google.recaptcha.key') }}"></div>
+@include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'signin'])
 
 							</div>
 							<div class="buttons">
@@ -48,7 +34,7 @@
 							</div>
 
 							<div style="padding-left: 223px;">
-								<a href="{!! route('password.reset-form') !!}">{!! trans('user/form.button.forgot') !!}</a>
+								<a href="{!! route('password_reset') !!}">{!! trans('user/form.button.forgot') !!}</a>
 							</div>
 						</form>
 					</div>

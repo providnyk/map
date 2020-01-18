@@ -1,10 +1,10 @@
 @extends($theme . '::' . $_env->s_utype . '.master')
 
 @section('title')
-{{ mb_strtoupper(trans('user/form.text.' . request()->segment(2))) }}
+{{ mb_strtoupper(trans('user/form.text.' . request()->segment(1))) }}
 @endsection
 
-@include('public.partials._profile', ['s_id' => '#password-reset-form'])
+@include('public.partials._profile', ['s_id' => '#password-reset-form, #password-change-form'])
 
 @section('content')
 
@@ -12,14 +12,14 @@
 		<div id="profile_wrap">
 			<div class="profile">
 				<ul class="tabs">
-					<li data-tab="tab-reset" {!! request()->segment(2) == 'reset' ? ' class="active"' : '' !!}>{!! trans('user/form.text.reset') !!}</li>
-					<li data-tab="tab-signup" {!! request()->segment(2) == 'signup' ? ' class="active"' : '' !!}>{!! trans('user/form.text.signup') !!}</li>
+					<li data-tab="tab-reset" {!! request()->segment(1) == 'reset' ? ' class="active"' : '' !!}>{!! trans('user/form.text.reset') !!}</li>
+					<li data-tab="tab-change" {!! request()->segment(1) == 'change' ? ' class="active"' : '' !!}>{!! trans('user/form.text.change') !!}</li>
 					<div class="divider"></div>
 				</ul>
 				<div class="content">
 
 @include($theme . '::' . $_env->s_utype . '._reset')
-@include($theme . '::' . $_env->s_utype . '._signup')
+@include($theme . '::' . $_env->s_utype . '._change')
 
 				</div>
 			</div>

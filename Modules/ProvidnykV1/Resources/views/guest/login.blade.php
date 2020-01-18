@@ -4,7 +4,7 @@
 {{ mb_strtoupper(trans('user/form.text.' . request()->segment(1))) }}
 @endsection
 
-@include('public.partials._profile', ['s_id' => '#register-form, #sign-in-form'])
+@include('public.partials._profile', ['s_id' => '#signin-form, #signup-form'])
 
 @section('content')
 

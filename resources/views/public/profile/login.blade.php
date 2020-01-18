@@ -37,7 +37,7 @@
                          aria-labelledby="sign-tab">
                         <div class="single-content form-page-wrap">
                             <div class="inner">
-                                <form action="/login" method="POST" class="form-page" id="sign-in-form">
+                                <form action="{!! route('signin') !!}" method="POST" class="form-page" id="sign-in-form">
                                     @csrf
                                     <div class="form-group row field" data-field="email">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">
@@ -86,7 +86,7 @@
                                 </form>
 
                                 <div class="offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
-                                    <a href="{!! route('password.reset-form') !!}">{!! trans('user/form.button.forgot') !!}</a>
+                                    <a href="{!! route('password_reset') !!}">{!! trans('user/form.button.forgot') !!}</a>
                                 </div>
 
                             </div>

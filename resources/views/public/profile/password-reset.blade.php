@@ -22,7 +22,7 @@
                     <div class="tab-pane fade show active" id="sign-text-tab" role="tabpanel" aria-labelledby="sign-tab">
                         <div class="single-content form-page-wrap">
                             <div class="inner">
-                                <form action="{!! route('password.reset') !!}" method="POST" class="form-page" id="password-reset-form">
+                                <form action="{!! route('password_reset') !!}" method="POST" class="form-page" id="password-reset-form">
                                     @csrf
                                     <div class="form-group row field" data-field="email">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">

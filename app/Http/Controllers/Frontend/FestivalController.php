@@ -36,6 +36,7 @@ class FestivalController extends Controller
     }
 
     public function index(Request $request){
+die('FestivalController index');
     	return redirect(route('login'));
 
         $a_res = $this->getEventsList($request);

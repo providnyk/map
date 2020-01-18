@@ -68,7 +68,14 @@ class Controller extends BaseController
 			$this->_env->s_view		= 'admin.' . $this->_env->s_sgl . '.';
 
 		////////////////////////////////////////////////////////////////////////////////////////////////////
-		if ($this->_env->s_utype == 'controllers' && in_array($this->_env->s_sgl, ['login']))
+		if ($this->_env->s_utype == 'controllers'
+			&& in_array($this->_env->s_sgl, [
+											'password',
+											'profile',
+											'signin',
+											'signup',
+											])
+			)
 		{
 			$this->_env->s_utype	= 'guest';
 			$this->_env->fn_find	= '';
@@ -109,6 +116,7 @@ class Controller extends BaseController
 		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
 #dump($this->_env->a_field, $this->_env->a_rule);
 		$_env						= $this->_env;
+
 		\View::composer('*', function ($view) use ($_env) {
 			$view->with([
 				'_env'				=> $this->_env,

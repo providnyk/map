@@ -10,6 +10,9 @@
 	let reCAPTCHA_site_key = '{{ config('services.google.recaptcha.key') }}';
 	$(document).ready(() => {
 
+
+//swal("Gotcha!", "Pikachu was caught!", "success");
+
 		setInterval(refreshToken, 1000 * 60); // 1 min
 
 		function reCAPTCHA_execute () {
@@ -49,14 +52,17 @@
 						try {
 							// Do JSON handling here
 							tmp = JSON.parse(xhr.responseText);
+
 							swal({
+								icon: "success",
 								title: '{!! trans('user/messages.text.success') !!}',
 								text: data.message,
-								type: 'success',
-								confirmButtonText: '{!! trans('user/messages.button.ok') !!}',
-								confirmButtonClass: 'btn btn-primary',
+								button: '{!! trans('user/messages.button.ok') !!}',
 							}).then(function(){
-								location.reload(true);
+								if (typeof data.url === 'undefined')
+									location.reload(true);
+								else
+									window.location = data.url;
 							});
 						} catch(e) {
 							//JSON parse error, this is not json (or JSON isn't in the browser)

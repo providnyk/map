@@ -32,7 +32,7 @@
                     let response = xhr.responseJSON;
 
                     if(response.errors.token)
-                        window.location.href = '{!! route('login') !!}';
+                        window.location.href = '{!! route('signin_page') !!}';
 
                     form.find('.error').remove();
 
@@ -62,7 +62,7 @@
                     <div class="tab-pane fade show active" id="sign-text-tab" role="tabpanel" aria-labelledby="sign-tab">
                         <div class="single-content form-page-wrap">
                             <div class="inner">
-                                <form action="{!! route('password.change', $token) !!}" method="POST" class="form-page" id="password-changes-form">
+                                <form action="{!! route('password_change', $token) !!}" method="POST" class="form-page" id="password-changes-form">
                                     @csrf
                                     <div class="form-group row field" data-field="password">
                                         <div class="col-md-3 col-sm-4 col-12 label-wrap">

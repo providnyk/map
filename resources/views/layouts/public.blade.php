@@ -545,7 +545,7 @@
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 <script src="{{ asset('js/jquery.formstyler.min.js') }}"></script>
 <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
-<script src="{{ asset('/admin/js/plugins/notifications/sweet_alert.min.js') }}"></script>
+<script src="{{ asset('/admin/js/plugins/notifications/sweetalert1.min.js') }}"></script>
 <script src="{!! asset('/js/common.js?v=' . $version->js) !!}"></script>
 <script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
 

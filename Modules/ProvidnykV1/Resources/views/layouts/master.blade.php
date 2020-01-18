@@ -42,6 +42,8 @@
 	<link rel="stylesheet" href="{{ asset('css/jquery.formstyler.theme.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
+
+	<link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
 	<link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
 	<!-- /global stylesheets -->
 
@@ -104,8 +106,11 @@
 <script src="{{ asset('js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 <script src="{{ asset('js/jquery.formstyler.min.js') }}"></script>
 <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
-<script src="{{ asset('/admin/js/plugins/notifications/sweet_alert.min.js') }}"></script>
-<script src="{!! asset('/js/common.js?v=' . $version->js) !!}"></script>
+<script src="{{ asset('/admin/js/plugins/notifications/sweetalert1.min.js') }}"></script>
+--}}
+{{-- https://sweetalert.js.org/guides/ --}}
+<script src="{{ asset('/admin/js/plugins/notifications/sweetalert2.min.js') }}"></script>
+{{--
 <script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
 --}}
 

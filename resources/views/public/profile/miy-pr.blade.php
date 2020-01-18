@@ -372,13 +372,9 @@
 				</li>
 				@endif
 				<li class="nav-item">
-					<form action="{!! route('logout') !!}" method="post">
-						@csrf
-						<button class="nav-link">
-							<i class="icon-switch2"></i>
-							{!! trans('user/form.button.signout') !!}
-						</button>
-					</form>
+
+					@include($theme . '::' . $_env->s_utype . '._signout', ['class' => 'nav-link'])
+
 				</li>
 			</ul>
 		</div>
@@ -489,7 +485,7 @@
 											<label for="profile_first_name">{!! trans('user/form.field.first_name') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
-											<input type="text" class="form-control" id="profile_first_name" placeholder="Piter Smith" name="first_name" value="{{ old('first_name') ? old('first_name') : $user->first_name }}">
+											<input type="text" class="form-control" id="profile_first_name" placeholder="{!! trans('user/form.field.first_name') !!}" name="first_name" value="{{ old('first_name') ? old('first_name') : $user->first_name }}">
 										</div>
 									</div>
 
@@ -498,7 +494,7 @@
 											<label for="profile_last_name">{!! trans('user/form.field.last_name') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
-											<input type="text" class="form-control" id="profile_last_name" placeholder="" name="last_name" value="{{ old('last_name') ? old('last_name') : $user->last_name }}">
+											<input type="text" class="form-control" id="profile_last_name" placeholder="{!! trans('user/form.field.last_name') !!}" name="last_name" value="{{ old('last_name') ? old('last_name') : $user->last_name }}">
 										</div>
 									</div>
 									<div class="form-group row">
@@ -506,7 +502,7 @@
 											<label for="profile_email">{!! trans('user/form.field.email') !!}</label>
 										</div>
 										<div class="col-md-9 col-sm-8 col-12 control-wrap">
-											<input type="email" class="form-control" id="profile_email" name="email" placeholder="" value="{{ old('email') ? old('email') : $user->email }}">
+											<input type="email" class="form-control" id="profile_email" name="email" placeholder="{!! trans('user/form.field.email') !!}" value="{{ old('email') ? old('email') : $user->email }}">
 										</div>
 									</div>
 									{{-- <div class="form-group row">
