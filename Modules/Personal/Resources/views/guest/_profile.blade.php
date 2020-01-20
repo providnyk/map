@@ -24,7 +24,7 @@
 										{!! trans('user/form.field.first_name') !!}
 									</span>
 									<span class="value">
-										<input type="email" class="form-control" placeholder="" name="first_name" value="{{ old('first_name') ? old('first_name') : $user->first_name }}">
+										<input type="text" class="form-control" placeholder="" name="first_name" value="{{ old('first_name') ? old('first_name') : $user->first_name }}">
 									</span>
 								</div>
 
@@ -33,7 +33,7 @@
 										{!! trans('user/form.field.last_name') !!}
 									</span>
 									<span class="value">
-										<input type="last_name" class="form-control" placeholder="" name="last_name" value="{{ old('last_name') ? old('last_name') : $user->last_name }}">
+										<input type="text" class="form-control" placeholder="" name="last_name" value="{{ old('last_name') ? old('last_name') : $user->last_name }}">
 									</span>
 								</div>
 
