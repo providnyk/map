@@ -5,6 +5,8 @@ return array (
 	'bookmarks'				=> 'Обране',
 	'my-city'				=> 'Моє місто',
 #	'date'					=> ':day :month :year',
+	'signin'				=> 'Вхід',
+	'signup'				=> 'Приєднатися',
 	'my-area'				=> 'Мій Провідник',
 	'save-changes'			=> 'Зберегти зміни',
 	'search-results'		=> 'Результати пошуку',

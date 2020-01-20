@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Auth\LoginController as Controller;
-use App\PasswordResets;
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Support\Facades\Mail;
-use App\Http\Requests\ResetRequest;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
+      use Illuminate\Support\Facades\Auth;
+                          use Carbon\Carbon;
+      use Illuminate\Support\Facades\DB;
+      use Illuminate\Support\Facades\Hash;
+       use App\Http\Controllers\Auth\LoginController as Controller;
+      use Illuminate\Support\Facades\Mail;
+                             use App\PasswordResets;
+   use Illuminate\Auth\Notifications\ResetPassword;
+               use App\Http\Requests\ResetRequest;
+                 use Illuminate\Http\Request;
+      use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+              use Illuminate\Support\Str;
+      use Illuminate\Support\Facades\Validator;
 
 class PasswordController extends Controller
 {
@@ -67,7 +67,7 @@ class PasswordController extends Controller
 
 		return response([
 			'message' => trans('user/form.text.reset_done'),
-			'url'		=> route('public.cabinet'),
+			'url'		=> route('guest.personal_profile'),
 		], 200);
 
 	}

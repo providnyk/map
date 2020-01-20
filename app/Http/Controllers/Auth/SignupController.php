@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Auth\LoginController as Controller;
-use App\Http\Requests\SignupRequest;
-use App\Http\Requests\ResetRequest;
-use App\User;
-use Carbon\Carbon;
-use Cookie;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+      use Illuminate\Support\Facades\Auth;
+      use Illuminate\Foundation\Auth\AuthenticatesUsers;
+                          use Carbon\Carbon;
+                                 use Cookie;
+      use Illuminate\Support\Facades\DB;
+      use Illuminate\Support\Facades\Hash;
+       use App\Http\Controllers\Auth\LoginController as Controller;
+      use Illuminate\Support\Facades\Mail;
+                 use Illuminate\Http\Request;
+               use App\Http\Requests\SignupRequest;
+                             use App\User;
+      use Illuminate\Support\Facades\Validator;
+              use Illuminate\Support\Str;
 
 class SignupController	extends Controller
 {
@@ -49,7 +50,7 @@ class SignupController	extends Controller
 
 		Auth::login($user);
 
-		return redirect(route('public.cabinet'));
+		return redirect(route('guest.personal_profile'));
 	}
 
 	public function core(SignupRequest $request)

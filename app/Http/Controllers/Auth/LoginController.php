@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Country;
-use App\Http\Controllers\Controller as BaseController;
-use App\Http\Requests\SignupRequest;
-use App\Http\Requests\SigninRequest;
-use App\Http\Requests\ResetRequest;
+#                             use App\Country;
+#      use Illuminate\Support\Facades\Auth;
+      use Illuminate\Foundation\Auth\AuthenticatesUsers;
+#                          use Carbon\Carbon;
+#                                 use Cookie;
+            use App\Http\Controllers\Controller as BaseController;
+#      use Illuminate\Support\Facades\DB;
+#      use Illuminate\Support\Facades\Hash;
+#      use Illuminate\Support\Facades\Mail;
+#   use Illuminate\Auth\Notifications\ResetPassword;
+#               use App\Http\Requests\ResetRequest;
+                 use Illuminate\Http\Request;
+#              use Illuminate\Support\Str;
+#               use App\Http\Requests\SigninRequest;
+#               use App\Http\Requests\SignupRequest;
+#                             use App\User;
+#      use Illuminate\Support\Facades\Validator;
 #use App\Traits\FestivalTrait;
-use App\User;
-use Carbon\Carbon;
-use Cookie;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class LoginController	extends BaseController
 {
@@ -48,7 +48,7 @@ class LoginController	extends BaseController
 
 	protected function redirectTo()
 	{
-		return route('public.cabinet');
+		return route('guest.personal_profile');
 	}
 
 }

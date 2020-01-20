@@ -3,6 +3,7 @@
 										{!! trans('user/form.field.email') !!}
 									</span>
 									<span class="value">
-										<input type="email" class="form-control" placeholder="" name="email" value="{{ $email ?? '' }}">
+										<input type="email" class="form-control" placeholder="" name="email" value="{{ $email ??
+										(old('email') ? old('email') : $user->email) }}">
 									</span>
 								</div>

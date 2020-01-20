@@ -109,6 +109,17 @@ header nav ul li a.blue {
 header nav ul li a.green {
 	color: #21cd73;
 }
+header nav ul li a.violet {
+	color: #8A2BE2;
+}
+header nav ul li button.green {
+	color: #21cd73;
+	padding: 0.9rem 1.25rem;
+}
+header nav ul li button.green:hover {
+	background-color: #f5f5f5;
+}
+
 #custom_page {
 	padding: 125px 0 100px;
 }

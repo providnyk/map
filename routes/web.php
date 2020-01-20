@@ -464,6 +464,17 @@ Route::group([
 	$s_method	= 'index';
 	Route::get('',									['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 
+	Route::group(['middleware' => 'auth'], function() {
+		$s_model	= 'Personal';
+		$s_path		= strtolower($s_model);
+		$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
+		$s_ctrl		.='Controller';
+		$s_method	= 'profile';
+		Route::get('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'update';
+		Route::post('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+	});
+
 });
 
 

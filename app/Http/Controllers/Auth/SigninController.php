@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Auth\LoginController as Controller;
-use App\Http\Requests\SigninRequest;
-use App\Http\Requests\ResetRequest;
-use App\User;
-use Carbon\Carbon;
-use Cookie;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+      use Illuminate\Support\Facades\Auth;
+#      use Illuminate\Foundation\Auth\AuthenticatesUsers;
+                                 use Cookie;
+      use Illuminate\Support\Facades\DB;
+       use App\Http\Controllers\Auth\LoginController as Controller;
+               use App\Http\Requests\SigninRequest;
+              use Illuminate\Support\Str;
+                 use Illuminate\Http\Request;
+      use Illuminate\Support\Facades\Validator;
 
 class SigninController	extends Controller
 {
-	use AuthenticatesUsers;
+#	use AuthenticatesUsers;
 
 	public function __construct(Request $request)
 	{
@@ -68,7 +65,7 @@ class SigninController	extends Controller
 				'action' => 'reload',
 			], 307);
 		}
-		return redirect(route('public.cabinet'));
+		return redirect(route('guest.personal_profile'));
 	}
 
 	public function form()
