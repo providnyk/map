@@ -36,12 +36,18 @@
 
 	<!-- Global stylesheets -->
 	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	{{--
 	<link rel="stylesheet" href="{{ asset('css/slick.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+	--}}
+	{{--
 	<link rel="stylesheet" href="{{ asset('css/jquery.formstyler.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/jquery.formstyler.theme.css') }}">
+	--}}
+	{{--
 	<link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
+	--}}
 
 	<link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
 	<link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
@@ -64,7 +70,7 @@
 	</script>
 	--}}
 
-	<link rel="shortcut icon" href="{!! $theme !!}/img/logo.png" type="image/png">
+	<link rel="shortcut icon" href="/{!! $theme !!}/img/icon.png" type="image/png">
 
 	@section('script')
 	<script type="text/javascript">
@@ -77,8 +83,13 @@
 @include($theme . '::' . $_env->s_utype . '.header')
 
 <section
-	id="{{ request()->segment(1) == '' ? 'map_screen' : 'custom_page'}}"
-	class="{{ request()->segment(1) == '' ? 'general' : request()->segment(1) }}_page"
+	id="{{ request()->segment(1) == '' || request()->segment(1) == 'place' ? 'map_screen' : 'custom_page'}}"
+	class="{{ request()->segment(1) == ''
+				? 'general_page'
+				: request()->segment(1) == 'place'
+					? ''
+					: request()->segment(1) . '_page'
+			}}"
 >
 @yield('content')
 </section>

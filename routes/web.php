@@ -469,10 +469,20 @@ Route::group([
 		$s_path		= strtolower($s_model);
 		$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
 		$s_ctrl		.='Controller';
+
 		$s_method	= 'profile';
 		Route::get('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'update';
 		Route::post('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'places';
+		Route::get('my/places',						['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
+		$s_method	= 'form';
+		Route::get('place/add',						['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'save';
+		Route::post('place/done',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'modify';
+		Route::get('place/edit',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 	});
 
 });
