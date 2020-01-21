@@ -22,10 +22,12 @@ include(getcwd().'/../resources/views/user/crud.php');
 @endsection
 
 @section('css')
-	<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}">
+	<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}{!! '?v=' . $version->css !!}">
+	<link rel="stylesheet" href="{!! asset('/css/select2.css?v=' . $version->css) !!}">
 @endsection
 
 @section('js')
+	<script src="{!! asset('/js/liveDropDowns.js?v=' . $version->js) !!}"></script>
 	<script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
 	<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
 	<script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>

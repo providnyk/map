@@ -22,7 +22,8 @@ include(getcwd().'/../resources/views/user/crud.php');
 @endsection
 
 @section('css')
-	<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}">
+	<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}{!! '?v=' . $version->css !!}">
+	<link rel="stylesheet" href="{!! asset('/css/select2.css?v=' . $version->css) !!}">
 @endsection
 
 @section('js')
