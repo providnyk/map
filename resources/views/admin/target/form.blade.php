@@ -76,7 +76,10 @@ include(getcwd().'/../resources/views/user/crud.php');
 								<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
 									<fieldset class="mb-3">
 									@include('user._form_input', ['name'=>'title',])
+									@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'point_ids'])
+{{--
 									@include('user._form_select', ['name'=>'point_ids'])
+--}}
 									</fieldset>
 								</div>
 								@endforeach
