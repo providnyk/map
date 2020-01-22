@@ -1,10 +1,11 @@
+0.68.3+a022:5 guest ADD better styling for cookies consent
+ADD create a new place form
 0.68.3+a022:4 guest FIX email field value
 0.68.2+a022:3 guest ADD cookies consent styling for current theme
 0.68.2+a022:2 guest ADD cookies consent styling for current theme
 0.68.1+a022:1 guest FIX email field value
 0.68.0+a021:3 guest ADD unify dropdown select form element availability for u s e r and g u e s t
 0.68.0+a021:2 guest ADD unify select2 availability for u s e r and g u e s t
-ADD create a new place form
 0.68.0+a021:1 guest ADD unify lang and socials networks links as separate template
 0.68.0+a020:2 guest ADD correct field types in persoanl profile form
 0.68.0+a020:1 guest UPD personal profile and top menu update

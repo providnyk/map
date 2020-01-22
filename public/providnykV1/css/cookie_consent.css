@@ -35,9 +35,8 @@
 }
 
 .js-cookie-consent.cookie-consent span.cookie-consent__later {
-    width: 40%;
     margin-left: 5%;
-    padding: 9px;
+    padding: 15px;
     cursor: pointer;
     border: 1px solid grey;
 }
