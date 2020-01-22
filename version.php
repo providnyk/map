@@ -3,10 +3,10 @@
 $a_production = [
     'version_release'       => '0',
     'version_major'         => '68', # changes whenever any css,js,api,guest,user value below has changed; reset each realease
-    'version_patch'         => '0',
+    'version_patch'         => '1',
     'version_stage'         => 'a', # a=alfa,b=beta,rc=candidate,r=release
-    'version_day'           => '021',
-    'version_seq'           => '3',
+    'version_day'           => '022',
+    'version_seq'           => '1',
 ];
 
 return (object) [
@@ -19,7 +19,7 @@ return (object) [
     . $a_production['version_day'] . ':'
     . $a_production['version_seq'],
     'release'               => $a_production['version_release'],
-    'guest'                 => '0.04.0',
+    'guest'                 => '0.04.1',
     'user'                  => '0.64.0',
     'unit'                  => '0.00.0',
     'api'                   => '0.00.0',
