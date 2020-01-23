@@ -27,21 +27,9 @@ $(document).ready(() => {
 			type: form.attr('method'),
 			data: form.serialize()
 		}).done((data, status, xhr) => {
-			swal({
-				title: s_res_submit,
-				type: 'success',
-				showCancelButton: true,
-				confirmButtonText: s_text_list,
-				confirmButtonClass: 'btn btn-primary',
-				cancelButtonText: s_text_continue,
-				cancelButtonClass: 'btn btn-light',
-			}).then((confirm) => {
-				if(confirm.value){
-					window.location.href = s_list_route;
-				}else{
-					form.find('fieldset').attr('disabled', false);
-				}
-			});
+
+
+swal("Gotcha!", "Pikachu was caught!", "success");
 
 			form.find('fieldset').attr('disabled', true);
 		}).fail((xhr) => {

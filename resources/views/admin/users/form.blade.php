@@ -30,8 +30,6 @@
     <script>
         $(document).ready(function(){
 
-            //console.log(notify);
-
             let select = $('.select2');
 
             select.select2({

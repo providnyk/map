@@ -55,6 +55,8 @@
 
 	<link rel="stylesheet" href="{{ asset($theme . '/css/' . $_env->s_utype . '_app.css?v=' . $version->css) }}">
 	<link rel="stylesheet" href="{{ asset($theme . '/css/tabs.css?v=' . $version->css) }}">
+    <link href="{!! asset('/css/noty.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
+    <link href="{!! asset('/css/override.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
 
 	@yield('css')
 
@@ -121,6 +123,13 @@
 --}}
 {{-- https://sweetalert.js.org/guides/ --}}
 <script src="{{ asset('/admin/js/plugins/notifications/sweetalert2.min.js') }}"></script>
+
+<!-- Notificationsrelated JavaScript -->
+<script src="{!! asset('/admin/js/main/bootstrap.bundle.min.js') !!}"></script>
+<script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
+<script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>
+<script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
+
 {{--
 <script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
 --}}

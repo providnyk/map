@@ -64,6 +64,7 @@
 								else
 									window.location = data.url;
 							});
+
 						} catch(e) {
 							//JSON parse error, this is not json (or JSON isn't in the browser)
 							location.reload(true);

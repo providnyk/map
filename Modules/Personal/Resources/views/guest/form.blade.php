@@ -26,9 +26,9 @@
                 <div class="new_place_wrap">
 
 {{--
-						<form action="{!! route('guest.personal_save') !!}" method="POST" class="form-page" id="create-place-form">
+						<form action="{!! route('guest.personal_save') !!}" method="POST" class="form-page item-form" id="create-place-form">
 --}}
-						<form action="{!! route('api.point.store') !!}" method="POST" class="form-page" id="create-place-form">
+						<form action="{!! route('api.point.store') !!}" method="POST" class="form-page item-form" id="create-place-form">
 							@csrf
 
 							@php
@@ -115,7 +115,9 @@
 
                     <div class="buttons">
 
+{{--
 @include('layouts._form_control', ['control' => 'image', 'name' => 'image_ids'])
+--}}
 
 {{--
                         <div id="image-preview"></div>
@@ -185,7 +187,7 @@
 	@yield('js-select')
 	<script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
 	<script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
-	<!--script src="{!! asset('/admin/js/forms.js?v=' . $version->js) !!}"></script-->
+	<script src="{!! asset('/admin/js/forms.js?v=' . $version->js) !!}"></script>
 @append
 
 @section('script')
