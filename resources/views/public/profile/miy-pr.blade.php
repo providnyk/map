@@ -421,7 +421,7 @@
 											--}}
 										</div>
 										<div class="sidebar-item filter-category" id="filter-category">
-											{{--
+{{--
 											<h5 class="sidebar-title">{{ trans('general.category') }}</h5>
 											<div class="sidebar-item-content">
 												<div class="row">
@@ -435,7 +435,7 @@
 													@endforeach
 												</div>
 											</div>
-											--}}
+--}}
 										</div>
 										<div class="sidebar-item filter-city" id="filter-city">
 											<h5 class="sidebar-title">{{ trans('general.my-city') }}</h5>
