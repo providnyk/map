@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Api\EventApi;
 use App\Event;
-use App\Traits\FestivalTrait;
+#use App\Traits\FestivalTrait;
 use Auth;
 use Hash;
 use App\User;
@@ -16,7 +16,7 @@ use App\Http\Controllers\ControllerGuest as Controller;
 
 class ProfileController extends Controller
 {
-
+/*
     use FestivalTrait {
         FestivalTrait::__construct as protected __traitConstruct;
     }
@@ -24,7 +24,7 @@ class ProfileController extends Controller
     public function __construct(Request $request){
         $this->__traitConstruct($request);
     }
-
+*/
     public function cabinet(Request $request)
     {
 

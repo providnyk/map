@@ -8,14 +8,8 @@
 							@csrf
 
 							<div class="user_fields">
-								<div class="item">
-									<span class="label">
-										{!! trans('user/form.field.email') !!}
-									</span>
-									<span class="value">
-										<input type="email" class="form-control"  placeholder="" name="email">
-									</span>
-								</div>
+
+@include($theme . '::' . $_env->s_utype . '._email')
 
 @include($theme . '::' . $_env->s_utype . '._password_twice')
 @include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'signup'])

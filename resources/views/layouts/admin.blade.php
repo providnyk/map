@@ -16,6 +16,10 @@
     <!-- /global stylesheets -->
 
     @yield('css')
+	@yield('css-checkbox')
+	@yield('css-image')
+	@yield('css-input')
+	@yield('css-select')
 
 @section('script')
 <script type="text/javascript">
@@ -334,7 +338,16 @@
 <script src="{!! asset('/admin/js/session.js?v=' . $version->js) !!}"></script>
 
 @yield('js')
+@yield('js-checkbox')
+@yield('js-image')
+@yield('js-input')
+@yield('js-select')
+
 @yield('script')
+@yield('script-checkbox')
+@yield('script-image')
+@yield('script-input')
+@yield('script-select')
 
 </body>
 </html>

@@ -848,7 +848,8 @@ footer .open_filter_btn {
 .jqselect select {
 	display: none;
 }
-.jqselect {
+.jqselect,
+#mib_content .new_place_wrap .selection {
 	height: 40px;
 	font-size: 18px;
 	line-height: 20px;
@@ -859,6 +860,10 @@ footer .open_filter_btn {
 	border:none;
 	border-bottom:1px solid #ebeaeb;
 	position: relative;
+}
+#mib_content .new_place_wrap .selection {
+	width: 100%;
+	border-bottom: none;
 }
 .jqselect .jq-selectbox__dropdown {
 	background: #fff;
@@ -873,6 +878,15 @@ footer .open_filter_btn {
 .jqselect .jq-selectbox__dropdown li {
 	line-height: 32px;
 }
+.select2-selection--single .select2-selection__arrow:after{
+	top: 30%;
+}
+.select2-selection--single {
+	color: #6b778e;
+	padding-bottom: 0px;
+	line-height: 1;
+}
+
 .jqselect .jq-selectbox__trigger {
 	position: absolute;
 	right:5px;
@@ -902,6 +916,7 @@ footer .open_filter_btn {
 #mib_content .new_place_wrap .buttons .attach {
 	float:left;
 	position: relative;
+	margin-left: 17px;
 	background-image: url('../img/icon_photo.png');
 	background-position: left center;
 	background-repeat: no-repeat;
@@ -916,6 +931,12 @@ footer .open_filter_btn {
 	font-size: 14px;
 	font-weight: 500;
 	color: #6b778e;
+}
+.buttons button a {
+	color: #fefefe;
+}
+.buttons button a:hover {
+	text-decoration: none;
 }
 
 #profile_wrap .profile {

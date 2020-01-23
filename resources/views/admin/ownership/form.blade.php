@@ -23,14 +23,12 @@ include(getcwd().'/../resources/views/user/crud.php');
 
 @section('css')
 	<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}{!! '?v=' . $version->css !!}">
-	<link rel="stylesheet" href="{!! asset('/css/select2.css?v=' . $version->css) !!}">
 @endsection
 
 @section('js')
 	<script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
-	<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
     <script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
-	<script src="{{ asset('/admin/js/forms.js') }}"></script>
+	<script src="{!! asset('/admin/js/forms.js?v=' . $version->js) !!}"></script>
 @endsection
 
 @section('script')
@@ -72,7 +70,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 							<div class="tab-content">
 								@foreach($localizations as $code => $localization)
 									<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
-									@include('user._form_input', ['name'=>'title',])
+									@include('layouts._form_control', ['control' => 'input', 'name'=>'title'])
 									</div>
 								@endforeach
 								@php ($code = NULL) @endphp
@@ -82,7 +80,10 @@ include(getcwd().'/../resources/views/user/crud.php');
 							<legend class="text-uppercase font-size-sm font-weight-bold">
 								{!! trans('user/crud.tab.manage.info') !!}
 							</legend>
+							@include('layouts._form_control', ['control' => 'checkbox', 'name'=>'published'])
+{{--
 							@include('user._form_checkbox', ['name'=>'published',])
+--}}
 						</div>
 					</div>
 				</form>

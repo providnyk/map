@@ -1,23 +1,8 @@
 @php
-	if (!isset($b_tpl_loaded) && isset($s_type)):
-@endphp
-@section('js')
-
-<script type="text/javascript">
-	@include('modules.uploader.data2js')
-</script>
-<script src="{{ asset('/admin/js/plugins/uploaders/dmUploader.js') }}"></script>
-<script src="{{ asset('/modules/image/admin_form.js') }}"></script>
-@append
-@php
-	endif;
+	if (isset($control) && !isset($b_tpl_loaded[$control]) && Route::has('api.upload.' . $control)):
 @endphp
 
-@php
-	if (isset($s_type) && !isset($b_tpl_loaded[$s_type]) && Route::has('api.upload.' . $s_type)):
-@endphp
-
-<div id="preview-tpl-{!! $s_type !!}" class="d-none">
+<div id="preview-tpl-{!! $control !!}" class="d-none">
 <!--
     <div class="file-preview-frame krajee-default file-preview-initial file-sortable kv-preview-thumb" id="preview-${id}" data-id="">
         <div class="kv-file-content text-center">
@@ -51,6 +36,6 @@
 -->
 </div>
 @php
-	$b_tpl_loaded[$s_type] = TRUE;
+	$b_tpl_loaded[$control] = TRUE;
 	endif;
 @endphp

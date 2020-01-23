@@ -23,8 +23,8 @@ class PointController extends Controller
 			$view->with([
 				'building'		=> Building::all()->sortBy('name'),
 				'design'		=> Design::all()->sortBy('name'),
-				'target'		=> Target::all()->sortBy('name'),
 				'ownership'		=> Ownership::all()->sortBy('name'),
+				'target'		=> Target::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

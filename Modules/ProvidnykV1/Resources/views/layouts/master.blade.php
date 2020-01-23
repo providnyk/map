@@ -126,6 +126,7 @@
 --}}
 
 @yield('js')
+
 @yield('script')
 
 <script src="{{ asset($theme . '/js/' . $_env->s_utype . '_app.js?v=' . $version->js) }}"></script>

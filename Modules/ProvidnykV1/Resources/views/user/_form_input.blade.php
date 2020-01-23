@@ -1,22 +1,22 @@
-<?php
-
+@php
+/*
+#$s_type = 'input';
 $s_label = '';
 $s_rules = '';
-$b_many	= FALSE;
+$s_label = '';
 $s_typein = '';
-$s_route = '';
-$s_route_api = '';
-$s_route_list = '';
 
-if (stristr($name, '_id'))
-{
-	$id = $name;
-#	if (stristr($name, '_ids'))
-	$b_many = (stristr($name, '_ids'));
-	$name = str_replace(['_ids','_id',], '', $name);
-}
 
-#$b_many = (isset($many) ? $many : FALSE);
+
+
+
+
+
+
+
+
+
+
 if (!isset($id)) # direct/simple value
 	$s_id = $name;
 else # expected to be a foreign key *_id
@@ -24,8 +24,7 @@ else # expected to be a foreign key *_id
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
 	$s_typein = trans('user/'.$name.'.names.typein');
-	$s_route_list = 'admin.'.$name.'.index';
-	$s_route_api = 'api.'.$name.'.index';
+
 }
 
 $s_dataname = ($code ? $code .'.' : '') . $s_id;
@@ -53,5 +52,18 @@ elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.r
 	$s_rules = trans('user/crud.field.'.$name.'.rules');
 
 $b_required = (stripos($s_rules, 'required') !== FALSE);
-
-include(base_path().'/resources/views/layouts/_form_' . $control . '_current.php');
+*/
+@endphp
+<div class="form-group row field" data-name="{!! $s_dataname !!}">
+	<div class="col-lg-3">
+		<label class="d-block float-left py-2 m-0">
+@include('layouts._form_label')
+		</label>
+		<span class="badge badge-primary tooltip-helper d-block float-right my-2 px-1" data-toggle="tooltip" title="{!! $s_rules !!}">
+			<i class="icon-info3"></i>
+		</span>
+	</div>
+	<div class="col-lg-9 field-body">
+@include('layouts._form_input_control')
+	</div>
+</div>

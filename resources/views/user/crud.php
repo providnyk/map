@@ -53,3 +53,6 @@ if (isset($$s_category))
 								: trans('common/form.actions.create_more')
 							);
 }
+
+if (!isset($b_script_loaded))
+	$b_script_loaded = [];

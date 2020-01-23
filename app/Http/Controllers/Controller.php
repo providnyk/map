@@ -87,6 +87,9 @@ class Controller extends BaseController
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		if ($this->_env->s_utype == 'controllers'
 			&& in_array($this->_env->s_sgl, [
+											'building',
+											'design',
+											'ownership',
 											'point',
 											'target',
 											])

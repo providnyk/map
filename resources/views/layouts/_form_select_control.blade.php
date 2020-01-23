@@ -1,4 +1,4 @@
-		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="form-control select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}" {!! $b_many ? 'multiple' : '' !!}>
+		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}" {!! $b_many ? 'multiple' : '' !!}>
 			@if($s_selected_id)
 				<option value="{!! $o_item->$s_id !!}">
 					{!! $s_selected_title !!}
@@ -12,3 +12,11 @@
 				@endforeach
 			@endif
 		</select>
+
+@section('css-select')
+<link rel="stylesheet" href="{!! asset('/css/select2.css?v=' . $version->css) !!}">
+@endsection
+@section('js-select')
+<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
+<script src="{!! asset('/js/liveDropDowns.js?v=' . $version->js) !!}"></script>
+@endsection

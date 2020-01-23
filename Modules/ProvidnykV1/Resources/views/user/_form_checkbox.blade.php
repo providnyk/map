@@ -1,5 +1,6 @@
 @php
-$s_type = 'input';
+/*
+$s_type = 'checkbox';
 $s_label = '';
 $s_rules = '';
 $s_label = '';
@@ -51,18 +52,15 @@ elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.r
 	$s_rules = trans('user/crud.field.'.$name.'.rules');
 
 $b_required = (stripos($s_rules, 'required') !== FALSE);
+*/
 @endphp
 <div class="form-group row field" data-name="{!! $s_dataname !!}">
 	<div class="col-lg-3">
 		<label class="d-block float-left py-2 m-0">
-			{!! $s_label !!}
-			{!! $b_required ? '<span class="text-danger">*</span>' : '' !!}
+@include('layouts._form_label')
 		</label>
-		<span class="badge badge-primary tooltip-helper d-block float-right my-2 px-1" data-toggle="tooltip" title="{!! $s_rules !!}">
-			<i class="icon-info3"></i>
-		</span>
 	</div>
 	<div class="col-lg-9 field-body">
-		<input type="text" name="{!! $s_fieldname !!}" class="form-control" placeholder="{!! trans('user/crud.hint.'.$s_type) !!} {!! $s_typein !!}" autocomplete="off" value="{{ $s_value }}">
+@include('layouts._form_checkbox_control')
 	</div>
 </div>

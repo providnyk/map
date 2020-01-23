@@ -23,15 +23,13 @@ include(base_path().'/resources/views/user/crud.php');
 
 @section('css')
 	<link rel="stylesheet" href="{{ mix('/admin/css/form/form.css') }}{!! '?v=' . $version->css !!}">
-	<link rel="stylesheet" href="{!! asset('/css/select2.css?v=' . $version->css) !!}">
 @endsection
 
 @section('js')
 <script src="{{ asset('/admin/js/plugins/forms/selects/bootstrap_multiselect.js') }}"></script>
-<script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
-<script src="{{ asset('/admin/js/forms.js') }}"></script>
-@endsection
+<script src="{!! asset('/admin/js/forms.js?v=' . $version->js) !!}"></script>
+@append
 
 @section('script')
 <script type="text/javascript">

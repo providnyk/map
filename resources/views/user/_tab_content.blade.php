@@ -10,7 +10,7 @@ unset($a_fields_regular['trans']);
 		{!! trans('user/crud.tab.'.$s_tab_key.'.info') !!}
 	</legend>
 
-	@include('user._tab_fields', ['a_fields' => $a_fields_regular,])
+	@include('user._fields_loop', ['a_fields' => $a_fields_regular,])
 
 	@if (count($a_fields_trans) > 0)
 	<ul class="nav nav-tabs nav-tabs-highlight">
@@ -27,7 +27,7 @@ unset($a_fields_regular['trans']);
 	<div class="tab-content">
 		@foreach($localizations as $code => $localization)
 			<div class="tab-pane px-2 {!! $app->getLocale() === $code ? 'active' : ''!!}" id="{!! $code !!}">
-			@include('user._tab_fields', ['a_fields' => $a_fields_trans,])
+			@include('user._fields_loop', ['a_fields' => $a_fields_trans,])
 			</div>
 		@endforeach
 		@php ($code = NULL) @endphp

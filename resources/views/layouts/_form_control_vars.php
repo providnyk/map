@@ -1,21 +1,22 @@
-@php
-$s_type = 'checkbox';
+<?php
+
 $s_label = '';
 $s_rules = '';
-$s_label = '';
+$b_many	= FALSE;
 $s_typein = '';
+$s_route = '';
+$s_route_api = '';
+$s_route_list = '';
 
+if (stristr($name, '_id'))
+{
+	$id = $name;
+#	if (stristr($name, '_ids'))
+	$b_many = (stristr($name, '_ids'));
+	$name = str_replace(['_ids','_id',], '', $name);
+}
 
-
-
-
-
-
-
-
-
-
-
+#$b_many = (isset($many) ? $many : FALSE);
 if (!isset($id)) # direct/simple value
 	$s_id = $name;
 else # expected to be a foreign key *_id
@@ -23,7 +24,8 @@ else # expected to be a foreign key *_id
 	$s_id = $id;
 	$s_label = trans('user/'.$name.'.names.sgl');
 	$s_typein = trans('user/'.$name.'.names.typein');
-
+	$s_route_list = 'admin.'.$name.'.index';
+	$s_route_api = 'api.'.$name.'.index';
 }
 
 $s_dataname = ($code ? $code .'.' : '') . $s_id;
@@ -51,14 +53,5 @@ elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.r
 	$s_rules = trans('user/crud.field.'.$name.'.rules');
 
 $b_required = (stripos($s_rules, 'required') !== FALSE);
-@endphp
-<div class="form-group row field" data-name="{!! $s_dataname !!}">
-    <div class="col-lg-3">
-        <label class="d-block float-left py-2 m-0">
-        	{!! trans('user/crud.hint.'.$s_type) !!} {!! trans('user/crud.field.'.$name.'.label') !!}
-        </label>
-    </div>
-    <div class="col-lg-9 field-body">
-        <input name="{!! $name !!}" value="1" type="{!! $s_type !!}" class="switcher" data-on-text="{!! trans('user/crud.hint.enabled') !!}" data-off-text="{!! trans('user/crud.hint.disabled') !!}" data-on-color="success" data-off-color="default" {!! $s_value ? 'checked="checked"' : '' !!}>
-    </div>
-</div>
+
+include(base_path().'/resources/views/layouts/_form_' . $control . '_current.php');

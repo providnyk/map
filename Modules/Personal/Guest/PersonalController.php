@@ -3,10 +3,15 @@
 namespace Modules\Personal\Guest;
 
 								 use Auth;
+                             use App\Building;
 			use App\Http\Controllers\ControllerGuest as Controller;
+                             use App\Design;
 								 use Hash;
+                             use App\Ownership;
+                             use App\Point;
 				 use Illuminate\Http\Request;
 							 use App\Subscriber;
+                             use App\Target;
 							 use App\User;
 								 use Validator;
 
@@ -15,7 +20,6 @@ class PersonalController extends Controller
 
 	public function profile(Request $request)
 	{
-
 		$this->setEnv();
 
 		$user = Auth::user();
@@ -27,7 +31,7 @@ class PersonalController extends Controller
 						'user'			=> $user,
 						'subscribe'		=> Subscriber::where('email', $user->email)->exists(),
 					]);
-
+/*
 #        return view('public.profile.miy-pr', [
 		return view('public.profile.miy-pr', [
 			'user'			=> $user,
@@ -37,6 +41,7 @@ class PersonalController extends Controller
 			#'dates' => $this->getFavoriteDates(),
 			#'cities' => $this->getCities()
 		]);
+*/
 	}
 
 	public function update(Request $request)
@@ -79,6 +84,39 @@ class PersonalController extends Controller
 		$user->save();
 
 		return back();
+	}
+
+	public function form(Request $request)
+	{
+		$this->setEnv();
+
+		$user = Auth::user();
+
+		return view($this->_env->s_view . 'form',
+					[
+						'b_admin'		=> $user->checkAdmin(),
+						'building'		=> Building::all()->sortBy('name'),
+						'design'		=> Design::all()->sortBy('name'),
+						'ownership'		=> Ownership::all()->sortBy('name'),
+						'point'			=> Point::findOrNew($request->id),
+						'target'		=> Target::all()->sortBy('name'),
+						'user'			=> $user,
+					]);
+	}
+
+	public function places(Request $request)
+	{
+		$this->setEnv();
+
+		$user = Auth::user();
+
+		return view($this->_env->s_view . 'index',
+					[
+						'b_admin'		=> $user->checkAdmin(),
+						'tab'			=> request()->segment(2),
+						'user'			=> $user,
+						'subscribe'		=> Subscriber::where('email', $user->email)->exists(),
+					]);
 	}
 
 }

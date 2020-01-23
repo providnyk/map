@@ -1,0 +1,1 @@
+		<input type="text" name="{!! $s_fieldname !!}" class="form-control" placeholder="{!! trans('user/crud.hint.'.$control) !!} {!! $s_typein !!}" autocomplete="off" value="{{ $s_selected_title }}">
