@@ -1,7 +1,7 @@
 @extends($theme . '::' . $_env->s_utype . '.master')
 
 @section('content')
-	<div id="main_map" data-zoom="16">
+	<div id="main_map" style="display:none;" data-zoom="16">
 		<div class="marker" data-lat="50.405388" data-lng="30.3341461" data-icon="/{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>
 		<div class="marker" data-lat="50.4066782" data-lng="30.3410947" data-icon="/{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>
 		<div class="marker" data-lat="50.4063072" data-lng="30.3283194" data-icon="/{!! $theme !!}/img/map_markers/map_marker_wc.png"></div>
@@ -9,12 +9,12 @@
 	</div>
 
 	<div class="map_info_block">
-		<div id="map_search">
+		<div id="map_search" style="display:none;" >
 			<input type="text" placeholder="Поиск" name="s" />
 			<button type="button" class="gotosearch"></button>
 			<button type="button" class="findme" id="findme_btn"></button>
 		</div>
-		<div id="mib_content">
+		<div id="mib_content" style="display:none;" >
 			<div class="filters">
 				<ul>
 					<li>
