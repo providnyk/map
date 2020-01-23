@@ -53,10 +53,10 @@
 	<link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
 	<!-- /global stylesheets -->
 
-	@yield('css')
-
 	<link rel="stylesheet" href="{{ asset($theme . '/css/' . $_env->s_utype . '_app.css?v=' . $version->css) }}">
 	<link rel="stylesheet" href="{{ asset($theme . '/css/tabs.css?v=' . $version->css) }}">
+
+	@yield('css')
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	{{--
