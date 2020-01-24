@@ -121,7 +121,10 @@
 <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/notifications/sweetalert1.min.js') }}"></script>
 --}}
-{{-- https://sweetalert.js.org/guides/ --}}
+{{--
+https://sweetalert.js.org/guides/
+https://sweetalert.js.org/docs/#buttons
+--}}
 <script src="{{ asset('/admin/js/plugins/notifications/sweetalert2.min.js') }}"></script>
 
 <!-- Notificationsrelated JavaScript -->

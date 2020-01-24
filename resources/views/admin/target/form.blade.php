@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @php
-include(getcwd().'/../resources/views/user/crud.php');
+include(base_path().'/resources/views/user/crud.php');
 @endphp
 
 @section('title-icon')<i class="{!! trans('user/' . $s_category . '.names.ico') !!} mr-2"></i>@endsection
@@ -33,7 +33,7 @@ include(getcwd().'/../resources/views/user/crud.php');
 
 @section('script')
 <script type="text/javascript">
-	@include('admin.common.data2js')
+@include('admin.common.data2js')
 </script>
 @append
 

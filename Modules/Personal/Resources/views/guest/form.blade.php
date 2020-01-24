@@ -1,10 +1,20 @@
 @extends($theme . '::' . $_env->s_utype . '.master')
 
+@php
+include(base_path().'/resources/views/guest/crud.php');
+@endphp
+
 @section('title')
 {{ mb_strtoupper(trans('user/form.text.' . request()->segment(1))) }}
 @endsection
 
 @include('public.partials._profile', ['s_id' => '#addplace-form'])
+
+@section('script')
+<script type="text/javascript">
+@include('admin.common.data2js')
+</script>
+@append
 
 @section('content')
 

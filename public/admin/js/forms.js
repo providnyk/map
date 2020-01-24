@@ -29,8 +29,64 @@ $(document).ready(() => {
 		}).done((data, status, xhr) => {
 
 
-swal("Gotcha!", "Pikachu was caught!", "success");
+//swal("Gotcha!", "Pikachu was caught!", "success");
 
+			swal({
+				icon: "success",
+				title: s_res_submit,
+				text: data.message,
+				buttons: {
+					list: {
+						text: s_text_list,
+						className: "btn-light",
+					},
+					primary: {
+						text: s_text_continue,
+						className: "btn-primary",
+					},
+				},
+			}).then((reaction) => {
+
+				switch (reaction) {
+
+					case 'list':
+						if (typeof data.url === 'undefined')
+							window.location.href = s_list_route;
+						else
+							window.location = data.url;
+					  break;
+					case 'primary':
+						form.find('fieldset').attr('disabled', false);
+					  break;
+
+					default:
+						if (s_close_route != '')
+							window.location.href = s_list_route;
+						else
+							form.find('fieldset').attr('disabled', false);
+//						window.location.href = s_list_route;
+				}
+
+			});
+
+
+/*
+			swal({
+				title: s_res_submit,
+				type: 'success',
+				showCancelButton: true,
+				confirmButtonText: s_text_list,
+				confirmButtonClass: 'btn btn-primary',
+				cancelButtonText: s_text_continue,
+				cancelButtonClass: 'btn btn-light',
+			}).then((confirm) => {
+				if(confirm.value){
+					window.location.href = s_list_route;
+				}else{
+					form.find('fieldset').attr('disabled', false);
+				}
+			});
+*/
 			form.find('fieldset').attr('disabled', true);
 		}).fail((xhr) => {
 			let data = xhr.responseJSON;

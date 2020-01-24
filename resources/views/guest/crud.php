@@ -2,10 +2,10 @@
 
 $s_tmp				= request()->route()->getAction()['as'];
 $a_tmp				= explode('.', $s_tmp);
-$s_category			= mb_strtolower($a_tmp[1]);
+$s_category			= 'point';
 
-
-
+$s_form_route		= 'personal_form';#mb_strtolower($a_tmp[1]);
+$s_utype			= $a_tmp[0];
 
 $s_cat_sgl_low		= mb_strtolower(trans('user/' . $s_category . '.names.sgl'));
 $s_cat_sgl_up		= mb_strtoupper($s_cat_sgl_low);
@@ -15,10 +15,10 @@ $s_cat_plr_low		= mb_strtolower(trans('user/' . $s_category . '.names.plr'));
 $s_cat_plr_up		= mb_strtoupper($s_cat_plr_low);
 $s_cat_plr_u1		= ucfirst($s_cat_plr_low);
 
-$s_create_route		= route('admin.'.$s_category.'.form');
-$s_delete_route		= route('api.' . $s_category . '.destroy');
-$s_list_route		= route('admin.' . $s_category . '.index');
-$s_cancel_route		= '';
+$s_create_route		= route($s_utype.'.'.$s_form_route);
+#$s_delete_route		= route('api.' . $s_category . '.destroy');
+$s_list_route		= route($s_utype . '.personal_places');
+$s_cancel_route		= route($s_utype . '.personal_places');
 $s_list_name		= trans('common/form.breadcrumbs.list') . ' ' . trans('user/' . $s_category . '.names.list');
 
 $s_title			= trans('user/' . $s_category . '.names.plr');
