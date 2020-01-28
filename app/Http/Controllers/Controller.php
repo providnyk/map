@@ -90,7 +90,6 @@ class Controller extends BaseController
 											'building',
 											'design',
 											'point',
-											'target',
 											])
 			)
 		{

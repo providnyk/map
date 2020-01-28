@@ -1,6 +1,7 @@
+0.72.0+a028:1 user DEL target
 0.71.0+a028:1 guest DEL ownership
-DEL target
 ?? DEL design
+-----
 0.70.0+a024:2 guest ADD better sweet alert after creating a point
 0.70.0+a024:1 guest UPD save a new place form
 0.69.0+a023:4 guest ADD menu on mobile screens

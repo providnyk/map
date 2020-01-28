@@ -61,11 +61,9 @@ include(base_path().'/resources/views/user/crud.php');
 
 							@include('layouts._form_control', ['control' => 'select', 'name'=>'design_id'])
 							@include('layouts._form_control', ['control' => 'select', 'name'=>'building_id'])
-							@include('layouts._form_control', ['control' => 'select', 'name'=>'target_ids'])
 {{--
 							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'design_id'])
 							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'building_id'])
-							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'target_ids'])
 --}}
 							<ul class="nav nav-tabs nav-tabs-highlight">
 								@foreach($localizations as $code => $localization)

@@ -14,7 +14,6 @@ class Point extends Model
 		'design_id',
 		'report_id',
 		'user_id',
-		'target_id',
 		'published',
 		'lat',
 		'lng',
@@ -26,11 +25,6 @@ class Point extends Model
 			'rules'		=> '',
 		],
 		'design_id'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],
-		'target_ids'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
@@ -75,10 +69,6 @@ class Point extends Model
 	public function report()
 	{
 		return $this->belongsToMany('App\Report');
-	}
-	public function target()
-	{
-		return $this->belongsToMany('App\Target');
 	}
 	public function user()
 	{

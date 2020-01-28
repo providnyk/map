@@ -10,7 +10,6 @@ namespace Modules\Personal\Guest;
                              use App\Point;
 				 use Illuminate\Http\Request;
 							 use App\Subscriber;
-                             use App\Target;
 							 use App\User;
 								 use Validator;
 
@@ -97,7 +96,6 @@ class PersonalController extends Controller
 						'building'		=> Building::all()->sortBy('name'),
 						'design'		=> Design::all()->sortBy('name'),
 						'point'			=> Point::findOrNew($request->id),
-						'target'		=> Target::all()->sortBy('name'),
 						'user'			=> $user,
 					]);
 	}
