@@ -8,6 +8,38 @@ $('#page-length').on('change', function(){
 });
 
 $('#btn-delete').on('click', function(){
+
+
+//swal("Gotcha!", "Pikachu was caught!", "success");
+
+			swal({
+				icon: "warning",
+				title: '{!! trans('common/messages.confirm_delete_title') !!}',
+				text: '{!! trans('common/messages.confirm_delete_description') !!}',
+				buttons: {
+					delete: {
+						text: '{!! trans('common/messages.confirm_delete_confirm_button_text') !!}',
+						className: "btn-light",
+					},
+					primary: {
+						text: '{!! trans('common/messages.confirm_delete_cancel_button_text') !!}',
+						className: "btn-primary",
+					},
+				},
+			}).then((reaction) => {
+
+				switch (reaction) {
+
+					case 'delete':
+						deleteEntries();
+					  break;
+					case 'primary':
+					default:
+				}
+
+			});
+
+/*
     swal({
         title: '{!! trans('common/messages.confirm_delete_title') !!}',
         text: '{!! trans('common/messages.confirm_delete_description') !!}',
@@ -22,6 +54,7 @@ $('#btn-delete').on('click', function(){
             deleteEntries();
         }
     });
+*/
 });
 
 $('#btn-add').on('click', (e) => {
