@@ -89,7 +89,6 @@ class Controller extends BaseController
 			&& in_array($this->_env->s_sgl, [
 											'building',
 											'design',
-											'ownership',
 											'point',
 											'target',
 											])

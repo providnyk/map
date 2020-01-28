@@ -1,9 +1,8 @@
 <?php
 
 return [
-		'building'		=> 'icon-road',
+		'building'		=> 'icon-office',
 		'design'		=> 'icon-design',
-		'ownership'		=> 'icon-office',
 		'point'			=> 'icon-location3',
 		'target'		=> 'icon-bike',
 		'user'			=> 'icon-users2',

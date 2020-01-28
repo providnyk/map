@@ -13,7 +13,7 @@ $menu_list = ['festivals' => 'icon-music', 'partners' => 'fa fa-handshake-o', 'e
 $menu_title[] = 'materials';
 $menu_color[] = '#5933d6';
 $menu_icon[] = 'fa fa-file-image-o';
-$menu_list[] = ['point', 'target', 'design', 'building', 'ownership', ];
+$menu_list[] = ['point', 'target', 'design', 'building', ];
 
 $menu_title[] = 'improvements';
 $menu_color[] = '#f5ad42';

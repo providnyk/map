@@ -12,7 +12,6 @@ class Point extends Model
 	protected $fillable = [
 		'building_id',
 		'design_id',
-		'ownership_id',
 		'report_id',
 		'user_id',
 		'target_id',
@@ -27,11 +26,6 @@ class Point extends Model
 			'rules'		=> '',
 		],
 		'design_id'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],
-		'ownership_id'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
@@ -77,10 +71,6 @@ class Point extends Model
 	public function design()
 	{
 		return $this->belongsTo('App\Design');
-	}
-	public function ownership()
-	{
-		return $this->belongsTo('App\Ownership');
 	}
 	public function report()
 	{

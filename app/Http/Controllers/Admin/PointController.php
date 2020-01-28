@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Building;
 use App\Design;
 use App\Target;
-use App\Ownership;
 use App\Http\Controllers\ControllerUser as Controller;
 use Illuminate\Http\Request;
 
@@ -23,7 +22,6 @@ class PointController extends Controller
 			$view->with([
 				'building'		=> Building::all()->sortBy('name'),
 				'design'		=> Design::all()->sortBy('name'),
-				'ownership'		=> Ownership::all()->sortBy('name'),
 				'target'		=> Target::all()->sortBy('name'),
 			]);
 		});

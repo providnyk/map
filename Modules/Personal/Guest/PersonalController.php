@@ -7,7 +7,6 @@ namespace Modules\Personal\Guest;
 			use App\Http\Controllers\ControllerGuest as Controller;
                              use App\Design;
 								 use Hash;
-                             use App\Ownership;
                              use App\Point;
 				 use Illuminate\Http\Request;
 							 use App\Subscriber;
@@ -97,7 +96,6 @@ class PersonalController extends Controller
 						'b_admin'		=> $user->checkAdmin(),
 						'building'		=> Building::all()->sortBy('name'),
 						'design'		=> Design::all()->sortBy('name'),
-						'ownership'		=> Ownership::all()->sortBy('name'),
 						'point'			=> Point::findOrNew($request->id),
 						'target'		=> Target::all()->sortBy('name'),
 						'user'			=> $user,
