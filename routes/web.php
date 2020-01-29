@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Factory;
 use Spatie\Permission\Models\Role;
 
-$a_list = config('elements.list');
-$a_modules = config('elements.modules');
+$a_list = config('fragment.list');
+$a_modules = config('fragment.modules');
 
 Route::group([
 	'middleware' => []#'language']

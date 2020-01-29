@@ -13,15 +13,15 @@ class DashboardController extends Controller
     {
 		$this->setEnv();
 
-		$a_list = config('elements.list');
-		$a_modules = config('elements.modules');
+		$a_list = config('fragment.list');
+		$a_modules = config('fragment.modules');
 
     	$a_cnt = [];
 		for ($i = 0; $i < count($a_list); $i++)
 		{
 			$s_ctrl = '';
 			$s_model = $a_list[$i];
-			if (in_array($s_model, config('elements.modules')))
+			if (in_array($s_model, config('fragment.modules')))
 				$s_ctrl = '\Modules\\' . $s_model . '\Database\\' . $s_model ;
 			else
 				$s_ctrl = 'App\\'.$s_model;

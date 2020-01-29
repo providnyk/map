@@ -2,8 +2,8 @@
 
 return [
 		'building'		=> 'icon-office',
-		'design'		=> 'icon-design',
-		'point'			=> 'icon-location3',
+		'element'		=> '', # for modules
+		'point'			=> 'icon-location3', # for non-modules
 		'user'			=> 'icon-users2',
 		'welcome'		=> '',
 ];
