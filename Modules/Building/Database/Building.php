@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Element\Database;
+namespace Modules\Building\Database;
 
 use App\Model;
 
-class Element extends Model
+class Building extends Model
 {
 	protected $connection = 'psc';
 	protected $fillable = [
-		'building_id',
+		'element_id',
 		'published',
 	];
 	public $translatedAttributes = [];
@@ -18,15 +18,15 @@ class Element extends Model
 			'field'		=> 'checkbox',
 			'rules'		=> '',
 		],
-		'building_ids'		=> [
+		'element_ids'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
 		],
 	];
 
-	public function building()
+	public function element()
 	{
-		return $this->belongsToMany('Modules\Building\Database\Building');
+		return $this->belongsToMany('Modules\Element\Database\Element');
 	}
 }
