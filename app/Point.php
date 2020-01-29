@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Model;
-use App\Design;
 use Modules\Issue\API\Issue;
 
 class Point extends Model
@@ -11,7 +10,6 @@ class Point extends Model
 	protected $connection = 'psc';
 	protected $fillable = [
 		'building_id',
-		'design_id',
 		'report_id',
 		'user_id',
 		'published',
@@ -20,11 +18,6 @@ class Point extends Model
 	];
 	protected $a_form = [
 		'building_id'	=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],
-		'design_id'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
@@ -61,10 +54,6 @@ class Point extends Model
 	public function building()
 	{
 		return $this->belongsTo('App\Building');
-	}
-	public function design()
-	{
-		return $this->belongsTo('App\Design');
 	}
 	public function report()
 	{

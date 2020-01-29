@@ -59,10 +59,8 @@ include(base_path().'/resources/views/user/crud.php');
 								{!! trans('user/crud.tab.data.info') !!}
 							</legend>
 
-							@include('layouts._form_control', ['control' => 'select', 'name'=>'design_id'])
 							@include('layouts._form_control', ['control' => 'select', 'name'=>'building_id'])
 {{--
-							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'design_id'])
 							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'building_id'])
 --}}
 							<ul class="nav nav-tabs nav-tabs-highlight">

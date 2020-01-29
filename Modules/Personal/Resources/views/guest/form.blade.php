@@ -47,7 +47,6 @@ include(base_path().'/resources/views/guest/crud.php');
 								$o_item				= $$s_category;
 
 								$a_fields_regular					= [];
-								$a_fields_regular['design_id']		= 'select';
 								$a_fields_regular['building_id']	= 'select';
 								$a_fields_regular['lat']			= 'input';
 								$a_fields_regular['lng']			= 'input';
@@ -61,10 +60,8 @@ include(base_path().'/resources/views/guest/crud.php');
 
 							@include('user._fields_loop', ['a_fields' => $a_fields_regular,])
 {{--
-							@include('layouts._form_control', ['control' => 'select', 'name'=>'design_id'])
 							@include('layouts._form_control', ['control' => 'select', 'name'=>'building_id'])
 
-							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'design_id'])
 							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'building_id'])
 
 							@include('layouts._form_control', ['control' => 'input', 'name'=>'lat'])
