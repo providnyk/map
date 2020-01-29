@@ -2,29 +2,29 @@
 
 
 #namespace App\Http\Controllers\API;
-namespace Modules\Issue\API;
+namespace Modules\Place\API;
 
-#use App\Issue;
-use Modules\Issue\API\Issue;
-use Modules\Issue\Database\Issue as DBIssue;
+#use App\Place;
+use Modules\Place\API\Place;
+use Modules\Place\Database\Place as DBPlace;
 
-#use App\Filters\IssueFilters;
-use Modules\Issue\Filters\IssueFilters;
+#use App\Filters\PlaceFilters;
+use Modules\Place\Filters\PlaceFilters;
 
-#use App\Http\Requests\IssueRequest;
-#use Modules\Issue\Requests\IssueRequest;
+#use App\Http\Requests\PlaceRequest;
+#use Modules\Place\Requests\PlaceRequest;
 
 use App\Http\Requests\DeleteRequest;
 
 use App\Http\Controllers\ControllerAPI as Controller;
 
-#use App\Http\Requests\IssueApiRequest;
-use Modules\Issue\Http\IssueRequest;
-use Modules\Issue\API\SaveRequest;
+#use App\Http\Requests\PlaceApiRequest;
+use Modules\Place\Http\PlaceRequest;
+use Modules\Place\API\SaveRequest;
 
-#use Modules\Issue\Http\Controllers\IssueController as Controller;
+#use Modules\Place\Http\Controllers\PlaceController as Controller;
 
-class IssueController extends Controller
+class PlaceController extends Controller
 {
 	/**
 	 * Deleted selected item(s)
@@ -44,8 +44,8 @@ class IssueController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-#	public function index(IssueApiRequest $request, IssueFilters $filters) : \Illuminate\Http\Response
-	public function index(IssueRequest $request, IssueFilters $filters) : \Illuminate\Http\Response
+#	public function index(PlaceApiRequest $request, PlaceFilters $filters) : \Illuminate\Http\Response
+	public function index(PlaceRequest $request, PlaceFilters $filters) : \Illuminate\Http\Response
 	{
 		return $this->indexAPI($request, $filters);
 	}
@@ -59,7 +59,6 @@ class IssueController extends Controller
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
 		$a_res = $this->storeAPI($request);
-		$this->o_item->element()->sync($request->element_ids);
 		return $a_res;
 	}
 
@@ -69,9 +68,8 @@ class IssueController extends Controller
 	 *
 	 * @return Response	json instance of
 	 */
-	public function update(SaveRequest $request, DBIssue $item) : \Illuminate\Http\Response
+	public function update(SaveRequest $request, DBPlace $item) : \Illuminate\Http\Response
 	{
-		$item->element()->sync($request->element_ids);
 		$a_res = $this->updateAPI($request, $item);
 		return $a_res;
 	}

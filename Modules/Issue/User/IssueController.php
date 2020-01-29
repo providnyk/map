@@ -4,7 +4,7 @@ namespace Modules\Issue\User;
 
 #use Modules\Issue\Http\Controllers\IssueController as Controller;
 use App\Http\Controllers\ControllerUser as Controller;
-use App\Design;
+use Modules\Element\Database\Element;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller
@@ -19,7 +19,7 @@ class IssueController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'design'		=> Design::all()->sortBy('name'),
+				'element'		=> Element::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

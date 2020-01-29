@@ -12,7 +12,7 @@ class Report extends Model
 	protected $connection = 'psc';
 	protected $fillable = [
 		'issue_id',
-		'point_id',
+		'place_id',
 		'user_id',
 		'published',
 	];
@@ -20,7 +20,7 @@ class Report extends Model
 #		'images',
 #	];
 	protected $a_form = [
-		'point_id'		=> [
+		'place_id'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
@@ -62,8 +62,8 @@ class Report extends Model
 	{
 		return $this->belongsTo('Modules\Issue\Database\Issue');
 	}
-	public function point()
+	public function place()
 	{
-		return $this->belongsTo('App\Point');
+		return $this->belongsTo('Modules\Place\Database\Place');
 	}
 }

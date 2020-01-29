@@ -4,7 +4,7 @@ namespace Modules\Building\User;
 
 #use Modules\Building\Http\Controllers\BuildingController as Controller;
 use App\Http\Controllers\ControllerUser as Controller;
-use Modules\Building\Database\Building;
+#use Modules\Building\Database\Building;
 use Modules\Element\Database\Element;
 use Illuminate\Http\Request;
 

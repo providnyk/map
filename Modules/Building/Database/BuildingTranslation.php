@@ -11,16 +11,10 @@ class BuildingTranslation extends Model
 
 	protected $fillable = [
 		'title',
-		'description',
 	];
 
 	public $a_form = [
 		'title'			=> [
-			'tab'		=> 'data',
-			'field'		=> 'input',
-			'rules'		=> '',
-		],
-		'description'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
 			'rules'		=> '',

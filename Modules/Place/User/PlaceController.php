@@ -1,14 +1,13 @@
 <?php
 
-namespace Modules\Element\User;
+namespace Modules\Place\User;
 
-#use Modules\Element\Http\Controllers\ElementController as Controller;
+#use Modules\Place\Http\Controllers\PlaceController as Controller;
 use App\Http\Controllers\ControllerUser as Controller;
 use Modules\Building\Database\Building;
-#use Modules\Element\Database\Element;
 use Illuminate\Http\Request;
 
-class ElementController extends Controller
+class PlaceController extends Controller
 {
 	/**
 	 * Open CRUD form for authenticated user (aka "Admin" previously and now "User")

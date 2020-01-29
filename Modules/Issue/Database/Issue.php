@@ -8,12 +8,12 @@ class Issue extends Model
 {
 	protected $connection = 'psc';
 	protected $fillable = [
-		'design_id',
+		'element_id',
 		'published',
 	];
 	public $translatedAttributes = [];
 	protected $a_form = [
-		'design_ids'		=> [
+		'element_ids'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
@@ -25,9 +25,9 @@ class Issue extends Model
 		],
 	];
 
-	public function design()
+	public function element()
 	{
-		return $this->belongsToMany('App\Design');
+		return $this->belongsToMany('Modules\Element\Database\Element');
 	}
 	public function report()
 	{
