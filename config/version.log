@@ -1,3 +1,4 @@
+0.74.0+a030:2 user ADD move elements now belong to style instead of building
 0.74.0+a030:1 user ADD style as a category for buildings
 0.74.0+a029:2 user ADD building as module to point
 0.74.0+a029:1 user DEL clean up previous non-module building

@@ -5,7 +5,6 @@ namespace Modules\Building\User;
 #use Modules\Building\Http\Controllers\BuildingController as Controller;
 use App\Http\Controllers\ControllerUser as Controller;
 #use Modules\Building\Database\Building;
-use Modules\Element\Database\Element;
 use Modules\Style\Database\Style;
 use Illuminate\Http\Request;
 
@@ -21,7 +20,6 @@ class BuildingController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'element'		=> Element::all()->sortBy('name'),
 				'style'			=> Style::all()->sortBy('name'),
 			]);
 		});

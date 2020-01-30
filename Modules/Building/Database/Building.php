@@ -8,7 +8,6 @@ class Building extends Model
 {
 	protected $connection = 'psc';
 	protected $fillable = [
-		'element_id',
 		'style_id',
 		'published',
 	];
@@ -24,15 +23,5 @@ class Building extends Model
 			'field'		=> 'select',
 			'rules'		=> '',
 		],
-		'element_ids'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],
 	];
-
-	public function element()
-	{
-		return $this->belongsToMany('Modules\Element\Database\Element');
-	}
 }

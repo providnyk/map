@@ -59,6 +59,7 @@ class StyleController extends Controller
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
 		$a_res = $this->storeAPI($request);
+		$this->o_item->element()->sync($request->element_ids);
 		return $a_res;
 	}
 
@@ -70,6 +71,7 @@ class StyleController extends Controller
 	 */
 	public function update(SaveRequest $request, DBStyle $item) : \Illuminate\Http\Response
 	{
+		$item->element()->sync($request->element_ids);
 		$a_res = $this->updateAPI($request, $item);
 		return $a_res;
 	}

@@ -19,7 +19,7 @@ class StyleController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-#				'element'		=> Element::all()->sortBy('name'),
+				'element'		=> Element::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);
