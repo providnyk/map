@@ -39,7 +39,6 @@ $(document).ready(function ()
 							}
 
 						});
-
 /*
 						swal({
 							title: s_session_acl_head,
@@ -73,7 +72,6 @@ $(document).ready(function ()
 						}).then(function(){
 							checkSession();
 						});
-
 /*
 						swal({
 							title: s_servererror_head,
@@ -95,7 +93,6 @@ $(document).ready(function ()
 					}).then(function(){
 						checkSession();
 					});
-
 /*
 					swal({
 						title: s_servererror_head,
@@ -138,7 +135,6 @@ $(document).ready(function ()
 						}
 
 					});
-
 /*
 					swal({
 						title: s_session_expired_head,
@@ -172,7 +168,6 @@ $(document).ready(function ()
 					}).then(function(){
 						checkSession();
 					});
-
 /*
 					swal({
 						title: s_servererror_head,
