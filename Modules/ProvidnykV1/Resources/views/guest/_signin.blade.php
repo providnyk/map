@@ -18,9 +18,9 @@
 									</span>
 									<span class="value">
 										@for ($i = 0; $i < 3; $i++)
-										<div style="margin-left: 21px;">
-											<input type="radio" class="form-check-input" name="login_safety" value=" {!! $i !!}"  {!! $i == $safety ? 'checked="checked"' : '' !!}>
-											<label>{{ trans('user/form.button.remember-' . $i) }}</label>
+										<div class="radio_wrap">
+											<div><input type="radio" name="login_safety" value=" {!! $i !!}"  {!! $i == $safety ? 'checked="checked"' : '' !!}></div>
+											<div class="radio_label">{{ trans('user/form.button.remember-' . $i) }}</div>
 										</div>
 										@endfor
 									</span>

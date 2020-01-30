@@ -9,6 +9,7 @@
         "astrotomic/laravel-translatable": "^11.6",
         "barryvdh/laravel-translation-manager": "^0.5.1",
         "cviebrock/eloquent-sluggable": "^6.0",
+        "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.4",
         "guzzlehttp/guzzle": "6.4",
@@ -23,7 +24,6 @@
         "spatie/laravel-permission": "^3.4"
     },
     "require-dev": {
-        "doctrine/dbal": "^2.10",
         "facebook/webdriver": "^1.7",
         "filp/whoops": "^2.6",
         "laravel/dusk": "5.7.*",

@@ -1081,6 +1081,19 @@ footer .open_filter_btn {
 }
 #profile_wrap .profile .user_fields .item .value input[type="radio"] {
 	height: 13px;
+	margin-top: 3px;
+	margin-right: 11px;
+}
+#profile_wrap .profile .user_fields .item .value .radio_wrap {
+	clear: both;
+	margin-left: 7px;
+}
+#profile_wrap .profile .user_fields .item .value .radio_wrap div {
+	float: left;
+}
+#profile_wrap .profile .user_fields .item .value .radio_label {
+	float: left;
+	padding-left: 5px;
 }
 #profile_wrap .profile .user_fields .item .value label {
 	color: #83878c;
