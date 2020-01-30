@@ -1,15 +1,13 @@
 <?php
 
-namespace Modules\Building\User;
+namespace Modules\Style\User;
 
-#use Modules\Building\Http\Controllers\BuildingController as Controller;
+#use Modules\Style\Http\Controllers\StyleController as Controller;
 use App\Http\Controllers\ControllerUser as Controller;
-#use Modules\Building\Database\Building;
 use Modules\Element\Database\Element;
-use Modules\Style\Database\Style;
 use Illuminate\Http\Request;
 
-class BuildingController extends Controller
+class StyleController extends Controller
 {
 	/**
 	 * Open CRUD form for authenticated user (aka "Admin" previously and now "User")
@@ -21,8 +19,7 @@ class BuildingController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'element'		=> Element::all()->sortBy('name'),
-				'style'			=> Style::all()->sortBy('name'),
+#				'element'		=> Element::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

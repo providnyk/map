@@ -9,6 +9,7 @@ class Building extends Model
 	protected $connection = 'psc';
 	protected $fillable = [
 		'element_id',
+		'style_id',
 		'published',
 	];
 	public $translatedAttributes = [];
@@ -16,6 +17,11 @@ class Building extends Model
 		'published'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'checkbox',
+			'rules'		=> '',
+		],
+		'style_id'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'select',
 			'rules'		=> '',
 		],
 		'element_ids'		=> [
