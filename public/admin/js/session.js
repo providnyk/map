@@ -21,6 +21,27 @@ $(document).ready(function ()
 
 						if (!a_session.acl)
 						swal({
+							icon: "error",
+							title: s_session_acl_head,
+							text: s_session_acl_info,
+							buttons: {
+								primary: {
+									text: s_btn_ok,
+									className: "btn-primary",
+								},
+							},
+						}).then((reaction) => {
+
+							switch (reaction) {
+								case 'primary':
+								default:
+									checkSession();
+							}
+
+						});
+
+/*
+						swal({
 							title: s_session_acl_head,
 							type: 'error',
 							text: s_session_acl_info,
@@ -30,7 +51,7 @@ $(document).ready(function ()
 						}).then(function(){
 							checkSession();
 						});
-
+*/
 						// this could happen, but mostly by mistake
 						// because 'auth' middleware should catch this
 						// so we trigger showing 'info' which in turn
@@ -45,6 +66,16 @@ $(document).ready(function ()
 					} catch(e) {
 						//JSON parse error, this is not json (or JSON isn't in the browser)
 						swal({
+							icon: "info",
+							title: s_servererror_head,
+							text: s_servererror_info,
+							button: s_btn_ok,
+						}).then(function(){
+							checkSession();
+						});
+
+/*
+						swal({
 							title: s_servererror_head,
 							text: s_servererror_info,
 							type: 'info',
@@ -53,8 +84,19 @@ $(document).ready(function ()
 						}).then(function(){
 							checkSession();
 						});
+*/
 					}
 				else
+					swal({
+						icon: "error",
+						title: s_servererror_head,
+						text: response.message + ' ' + s_servererror_final,
+						button: s_btn_ok,
+					}).then(function(){
+						checkSession();
+					});
+
+/*
 					swal({
 						title: s_servererror_head,
 						text: response.message + ' ' + s_servererror_final,
@@ -64,10 +106,40 @@ $(document).ready(function ()
 					}).then(function(){
 						checkSession();
 					});
+*/
 			},
 			'error': (xhr) => {
 				if (xhr.readyState == 4 && xhr.status == 401)
 				{
+
+					swal({
+						icon: "warning",
+						title: s_session_expired_head,
+						text: s_session_expired_info,
+						buttons: {
+							ignore: {
+								text: s_session_close,
+								className: "btn-light",
+							},
+							primary: {
+								text: s_session_tab_opennew,
+								className: "btn-primary",
+							},
+						},
+					}).then((reaction) => {
+
+						switch (reaction) {
+							case 'primary':
+								o_window_ref = window.open(s_route_auth, '_blank');
+								notify(s_session_tab_opened, 'info', 3000);
+							case 'ignore':
+							default:
+								checkSession();
+						}
+
+					});
+
+/*
 					swal({
 						title: s_session_expired_head,
 						type: 'warning',
@@ -87,11 +159,21 @@ $(document).ready(function ()
 						else
 							checkSession();
 					});
-
+*/
 				}
 				else
 				{
 					let response = xhr.responseJSON;
+					swal({
+						icon: "error",
+						title: s_servererror_head,
+						text: response.message + ' ' + s_servererror_final,
+						button: s_btn_ok,
+					}).then(function(){
+						checkSession();
+					});
+
+/*
 					swal({
 						title: s_servererror_head,
 						text: response.message + ' ' + s_servererror_final,
@@ -101,6 +183,7 @@ $(document).ready(function ()
 					}).then(function(){
 						checkSession();
 					});
+*/
 				}
 			}
 		});
