@@ -16,6 +16,11 @@ class PlaceTranslation extends Model
 	];
 
 	public $a_form = [
+		'title'			=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> 'required|string|max:255',
+		],
 		'address'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
@@ -25,11 +30,6 @@ class PlaceTranslation extends Model
 			'tab'		=> 'data',
 			'field'		=> 'input',
 			'rules'		=> 'string|max:255',
-		],
-		'title'			=> [
-			'tab'		=> 'data',
-			'field'		=> 'input',
-			'rules'		=> 'required|string|max:255',
 		],
 	];
 }
