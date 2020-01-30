@@ -8,6 +8,7 @@ return array (
 	'signin'				=> 'Вхід',
 	'signup'				=> 'Приєднатися',
 	'my-area'				=> 'Мій Провідник',
+	'my'					=> 'Профіль',
 	'save-changes'			=> 'Зберегти зміни',
 	'search-results'		=> 'Результати пошуку',
 	'search-btn'			=> 'Шукати',
