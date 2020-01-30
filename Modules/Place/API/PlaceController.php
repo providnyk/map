@@ -58,6 +58,9 @@ class PlaceController extends Controller
 	 */
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
+		$request->merge([
+			'user_id' => \Auth::user()->id,
+		]);
 		$a_res = $this->storeAPI($request);
 		return $a_res;
 	}

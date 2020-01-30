@@ -59,7 +59,7 @@ class ElementController extends Controller
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
 		$a_res = $this->storeAPI($request);
-		$this->o_item->building()->sync($request->building_ids);
+		$this->o_item->style()->sync($request->style_ids);
 		return $a_res;
 	}
 
@@ -71,7 +71,7 @@ class ElementController extends Controller
 	 */
 	public function update(SaveRequest $request, DBElement $item) : \Illuminate\Http\Response
 	{
-		$item->building()->sync($request->building_ids);
+		$item->style()->sync($request->style_ids);
 		$a_res = $this->updateAPI($request, $item);
 		return $a_res;
 	}

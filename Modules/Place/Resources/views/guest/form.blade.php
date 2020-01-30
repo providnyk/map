@@ -36,14 +36,11 @@ include(base_path().'/resources/views/guest/crud.php');
                 <div class="new_place_wrap">
 
 {{--
-						<form action="{!! route('guest.personal_save') !!}" method="POST" class="form-page item-form" id="create-place-form">
+						<form action="{!! route('guest.place_save') !!}" method="POST" class="form-page item-form" id="create-place-form">
 --}}
-						<form action="{!! route('api.point.store') !!}" method="POST" class="form-page item-form" id="create-place-form">
-							@csrf
-
 							@php
 								$code				= NULL;
-								$s_category			= 'point';
+								$s_category			= 'place';
 								$o_item				= $$s_category;
 
 								$a_fields_regular					= [];
@@ -53,10 +50,13 @@ include(base_path().'/resources/views/guest/crud.php');
 
 								$a_fields_trans						= [];
 								$a_fields_trans['title']			= 'input';
-								$a_fields_trans['annotation']		= 'input';
-								$a_fields_trans['description']		= 'input';
 								$a_fields_trans['address']			= 'input';
+								$a_fields_trans['description']		= 'input';
 							@endphp
+
+						<form action="{!! route('api.'.$s_category.'.store') !!}" method="POST" class="form-page item-form" id="create-place-form">
+							@csrf
+
 
 							@include('user._fields_loop', ['a_fields' => $a_fields_regular,])
 {{--

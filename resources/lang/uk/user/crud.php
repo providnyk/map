@@ -44,63 +44,52 @@ return [
 			'label'		=> 'Дійсний',
 			'filterby'	=> 'дійсністю',
 			'typein'	=> 'дійсність',
-			'rules'		=> 'yes or no',
 		],
 		'description' => [
 			'label'		=> 'Опис',
 			'filterby'	=> 'описом',
 			'typein'	=> 'опис',
-			'rules'		=> 'max 191 chars',
 		],
 		'email' => [
 			'label'		=> 'Е-пошта',
 			'filterby'	=> 'е-поштою',
 			'typein'	=> 'е-пошту',
-			'rules'		=> 'max 191 chars',
 		],
 		'first_name' => [
 			'label'		=> 'Ім’я',
 			'filterby'	=> 'ім’ям',
 			'typein'	=> 'Ім’я',
-			'rules'		=> 'max 191 chars',
 		],
 		'id' => [
 			'label'		=> 'ID',
-			'rules'		=> 'required',
 		],
 		'image' => [
 			'label'		=> 'Зображення',
 			'filterby'	=> 'зображенням',
 			'typein'	=> 'зображенні',
-			'rules'		=> '',
 		],
 		'last_name' => [
 			'label'		=> 'Прізвище',
 			'filterby'	=> 'прізвищем',
 			'typein'	=> 'прізвище',
-			'rules'		=> 'max 191 chars',
 		],
 		'title' => [
 			'label'		=> 'Назва',
 			'filterby'	=> 'назвою',
 			'typein'	=> 'назву',
-			'rules'		=> 'max 191 chars',
 		],
 		'published' => [
 			'label'		=> 'Опублікувати',
 			'filterby'	=> 'опубліковані',
 			'typein'	=> 'опублікуване',
-			'rules'		=> 'yes or no',
 		],
 		'role' => [
 			'label'		=> 'Роль',
 			'filterby'	=> 'роллю',
 			'typein'	=> 'роль',
-			'rules'		=> 'max 191 chars',
 		],
 		'timezone' => [
 			'label'		=> 'Виберіть часовий пояс',
-			'rules'		=> 'required | one from list',
 		],
 	],
 	'button' => [

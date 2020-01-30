@@ -2,9 +2,9 @@
 
 $s_tmp				= request()->route()->getAction()['as'];
 $a_tmp				= explode('.', $s_tmp);
-$s_category			= 'point';
+$s_category			= 'place';
 
-$s_form_route		= 'personal_form';#mb_strtolower($a_tmp[1]);
+$s_form_route		= mb_strtolower($a_tmp[1]);
 $s_utype			= $a_tmp[0];
 
 $s_cat_sgl_low		= mb_strtolower(trans('user/' . $s_category . '.names.sgl'));

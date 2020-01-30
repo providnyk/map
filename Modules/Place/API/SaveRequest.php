@@ -13,6 +13,6 @@ class SaveRequest extends BaseRequest
 	 */
 	public function rules()
 	{
-		return $this->rulesLng($this->_rules);
+		return $this->rulesLng([]);#$this->_rules);
 	}
 }

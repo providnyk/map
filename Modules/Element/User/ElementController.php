@@ -4,7 +4,7 @@ namespace Modules\Element\User;
 
 #use Modules\Element\Http\Controllers\ElementController as Controller;
 use App\Http\Controllers\ControllerUser as Controller;
-use Modules\Building\Database\Building;
+use Modules\Style\Database\Style;
 #use Modules\Element\Database\Element;
 use Illuminate\Http\Request;
 
@@ -20,7 +20,7 @@ class ElementController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'building'		=> Building::all()->sortBy('name'),
+				'style'		=> Style::all()->sortBy('name'),
 			]);
 		});
 		return parent::form($request);

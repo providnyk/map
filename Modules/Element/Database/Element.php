@@ -8,7 +8,7 @@ class Element extends Model
 {
 	protected $connection = 'psc';
 	protected $fillable = [
-		'building_id',
+		'style_id',
 		'published',
 	];
 	public $translatedAttributes = [];
@@ -18,15 +18,15 @@ class Element extends Model
 			'field'		=> 'checkbox',
 			'rules'		=> '',
 		],
-		'building_ids'		=> [
+		'style_ids'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
 		],
 	];
 
-	public function building()
+	public function style()
 	{
-		return $this->belongsToMany('Modules\Building\Database\Building');
+		return $this->belongsToMany('Modules\Style\Database\Style');
 	}
 }

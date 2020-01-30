@@ -12,24 +12,24 @@ class PlaceTranslation extends Model
 	protected $fillable = [
 		'title',
 		'address',
-		'annotation',
+		'description',
 	];
 
 	public $a_form = [
-		'title'			=> [
-			'tab'		=> 'data',
-			'field'		=> 'input',
-			'rules'		=> '',
-		],
 		'address'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> '',
+			'rules'		=> 'required|string|max:255',
 		],
-		'annotation'	=> [
+		'description'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> '',
+			'rules'		=> 'string|max:255',
+		],
+		'title'			=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> 'required|string|max:255',
 		],
 	];
 }

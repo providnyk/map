@@ -7,8 +7,9 @@ use App\Http\Requests\Request;
 class PlaceRequest extends Request
 {
 	protected $_rules = [
+		'building_id'		=> 'array',
 		'published'			=> 'boolean',
-		'title'				=> 'required|string|max:255',
+		'title'				=> 'string',
 	];
 
 	/**
@@ -18,6 +19,6 @@ class PlaceRequest extends Request
 	 */
 	public function rules()
 	{
-		return [];
+		return $this->_rules;
 	}
 }

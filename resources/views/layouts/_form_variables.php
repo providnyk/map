@@ -46,12 +46,13 @@ elseif (trans('user/crud.field.'.$name.'.label') != 'user/crud.field.'.$name.'.l
 	$s_label = trans('user/crud.field.'.$name.'.label');
 	$s_typein = trans('user/crud.field.'.$name.'.typein');
 }
-
+/*
 if (trans('user/'.$s_category.'.field.'.$s_id.'.rules') != 'user/'.$s_category.'.field.'.$s_id.'.rules')
 	$s_rules = trans('user/'.$s_category.'.field.'.$s_id.'.rules');
 elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.rules')
 	$s_rules = trans('user/crud.field.'.$name.'.rules');
-
+*/
+$s_rules = $_env->a_rule[$s_id];
 $b_required = (stripos($s_rules, 'required') !== FALSE);
 
 include(base_path().'/resources/views/layouts/_form_' . $control . '_current.php');

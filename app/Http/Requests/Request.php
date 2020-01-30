@@ -55,21 +55,39 @@ class Request extends BaseRequest
 		if (class_exists($s_tmp))
 		{
 			$m						= new $s_tmp;
-#			$a_fill_main			= $m->getFillable();
-#			$a_form_main			= $m->getFields();
-			$a_form_main			= $m->a_form;
+			$a_fill_main			= $m->getFillable();
+			$a_form_main			= $m->getFields();
+#			$a_form_main			= $m->a_form;
 		}
 		$s_tmp						= $this->_env->s_trans.'Translation';
 		if (class_exists($s_tmp))
 		{
 			$t						= new $s_tmp;
 			$a_fill_trans			= $t->getFillable();
-#			$a_form_trans			= $t->getFields();
-			$a_form_trans			= $t->a_form;
+			$a_form_trans			= $t->getFields();
+#			$a_form_trans			= $t->a_form;
 		}
 
 		$a_rules_all = [];
 		$a_locales = config('translatable.locales');
+
+		for ($i = 0; $i < count($a_locales); $i++)
+		{
+			$a_rules_all[$a_locales[$i]] = 'required|array';
+			for ($j = 0; $j < count($a_fill_trans); $j++)
+			{
+				if (array_key_exists($a_fill_trans[$j], $a_form_trans))
+				{
+					$s_tmp = $a_locales[$i].'.'.$a_fill_trans[$j];
+					$a_rules_all[$s_tmp] = $a_form_trans[$a_fill_trans[$j]]['rules'];
+				}
+			}
+		}
+
+		foreach ($a_form_main as $s_name => $a_data) {
+			$a_rules_all[$s_name] = $a_data['rules'];
+		}
+/*
 		for ($i = 0; $i < count($a_locales); $i++)
 		{
 			$a_rules_all[$a_locales[$i]] = 'required|array';
@@ -78,15 +96,26 @@ class Request extends BaseRequest
 				if (array_key_exists($a_fill_trans[$j], $a_rules))
 				{
 					$s_tmp = $a_locales[$i].'.'.$a_fill_trans[$j];
-					$a_rules_all[$s_tmp] = $a_rules[$a_fill_trans[$j]];
+					$a_rules_all[$s_tmp] = $a_rules[$a_form_trans[$j]];
 				}
 			}
 		}
+
+		for ($j = 0; $j < count($a_form_main); $j++)
+		{
+			if (array_key_exists($a_form_main[$j], $a_form_trans))
+			{
+				$s_tmp = $a_locales[$i].'.'.$a_form_main[$j];
+				$a_rules_all[$s_tmp] = $a_rules[$a_form_main[$j]];
+			}
+		}
+
 		foreach ($a_rules AS $s_name => $s_rule)
 		{
 			if (!in_array($s_name, $a_fill_trans))
 				$a_rules_all[$s_name] = $s_rule;
 		}
+*/
 		return $a_rules_all;
 	}
 }

@@ -2,16 +2,15 @@
 
 namespace Modules\Personal\Guest;
 
-								 use Auth;
-                             use App\Building;
-			use App\Http\Controllers\ControllerGuest as Controller;
-                             use App\Design;
-								 use Hash;
-                             use App\Point;
-				 use Illuminate\Http\Request;
-							 use App\Subscriber;
-							 use App\User;
-								 use Validator;
+                                 use Auth;
+       use Modules\Building\Database\Building;
+            use App\Http\Controllers\ControllerGuest as Controller;
+                                 use Hash;
+          use Modules\Place\Database\Place;
+                 use Illuminate\Http\Request;
+                             use App\Subscriber;
+                             use App\User;
+                                 use Validator;
 
 class PersonalController extends Controller
 {
@@ -82,22 +81,6 @@ class PersonalController extends Controller
 		$user->save();
 
 		return back();
-	}
-
-	public function form(Request $request)
-	{
-		$this->setEnv();
-
-		$user = Auth::user();
-
-		return view($this->_env->s_view . 'form',
-					[
-						'b_admin'		=> $user->checkAdmin(),
-						'building'		=> Building::all()->sortBy('name'),
-						'design'		=> Design::all()->sortBy('name'),
-						'point'			=> Point::findOrNew($request->id),
-						'user'			=> $user,
-					]);
 	}
 
 	public function places(Request $request)

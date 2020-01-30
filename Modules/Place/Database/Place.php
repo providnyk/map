@@ -19,12 +19,22 @@ class Place extends Model
 		'published'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'checkbox',
-			'rules'		=> '',
+			'rules'		=> 'boolean',
 		],
 		'building_id'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
-			'rules'		=> '',
+			'rules'		=> 'required|integer',
+		],
+		'lat'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> 'numeric|between:-85.05112878,85.05112878',
+		],
+		'lng'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> 'numeric|between:-999.9999999,999.9999999',
 		],
 	];
 
