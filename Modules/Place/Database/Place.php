@@ -29,12 +29,12 @@ class Place extends Model
 		'lat'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> 'numeric|between:-85.05112878,85.05112878',
+			'rules'		=> 'numeric|between:-85.05112878,85.05112878', #regex:/^[+-]?\d+\.\d+$/
 		],
 		'lng'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> 'numeric|between:-999.9999999,999.9999999',
+			'rules'		=> 'numeric|between:-999.9999999,999.9999999', #regex:/^-?\d{1,2}\.\d{6,}$/
 		],
 	];
 
