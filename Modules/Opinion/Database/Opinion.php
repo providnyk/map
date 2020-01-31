@@ -2,7 +2,7 @@
 
 namespace Modules\Opinion\Database;
 
-use App\Model;
+use                                  App\Model;
 
 class Opinion extends Model
 {

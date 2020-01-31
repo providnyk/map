@@ -2,7 +2,7 @@
 
 namespace Modules\Opinion\Database;
 
-use App\Model;
+use                                  App\Model;
 #use Illuminate\Database\Eloquent\Model;
 
 class OpinionTranslation extends Model
