@@ -18,8 +18,8 @@ $menu_list[] = ['place', 'style', 'building', 'element', ];
 $menu_title[] = 'improvements';
 $menu_color[] = '#f5ad42';
 $menu_icon[] = 'fa fa-envelope';
-$menu_list[] = ['report', 'issue', 'mark', ];
-#$menu_list[] = ['issues', 'reports', ]; theater
+$menu_list[] = ['opinion', 'mark', ];
+#$menu_list[] = ['report', 'issue', ];
 
 $menu_title[] = 'people';
 $menu_color[] = '#33d669';

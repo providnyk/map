@@ -1,5 +1,5 @@
+0.75.0+a031:2 user ADD opinion module
 0.75.0+a031:1 user ADD mark module
-opinion/grade/degree
 0.75.0+a030:2 user ADD place form fields order
 0.75.0+a030:1 guest UPD clean up
 0.74.0+a030:6 guest ADD translation for my in my-area
@@ -174,10 +174,16 @@ down modules<-vmware
 rsync -pahize 'ssh -p 30307' --progress --delete --exclude={'cache','/vendor','storage','tmp'} --exclude=composer.lock --exclude={'.git/*','.git*'} maximax@pr.max:/usr/share/nginx/www/max.pr/Modules/Issue /Volumes/ssd/Dropbox/projects/web/pr.max/Modules
 
 cd /Volumes/ssd/Dropbox/projects/web/pr.max/Modules/
-cp -r Issue Element
-cd Element
-zmv -W '**/Issue*' '**/Element*'
-find . -type f -name "*.php" -print0 | xargs -0 sed -i '' 's/Issue/Element/g'
-find . -type f -name "*.json" -print0 | xargs -0 sed -i '' 's/Issue/Element/g'
-find . -type f -name "*.php" -print0 | xargs -0 sed -i '' 's/issue/element/g'
-find . -type f -name "*.json" -print0 | xargs -0 sed -i '' 's/issue/element/g'
+cp -r Issue Opinion
+cd Opinion
+zmv -W '**/Issue*' '**/Opinion*'
+zmv -W '**/*Issue*' '**/*Opinion*'
+zmv -W '**/*issue*' '**/*opinion*'
+zmv -W '**/*issue*' '**/*opinion*'
+find . -type f -name "*.php" -print0 | xargs -0 sed -i '' 's/Issue/Opinion/g'
+find . -type f -name "*.json" -print0 | xargs -0 sed -i '' 's/Issue/Opinion/g'
+find . -type f -name "*.php" -print0 | xargs -0 sed -i '' 's/issue/opinion/g'
+find . -type f -name "*.json" -print0 | xargs -0 sed -i '' 's/issue/opinion/g'
+cp "../../../pr/[pru] issue.sublime-workspace" "../../../pr/[pru] opinion.sublime-workspace"
+sed -i '' 's/Issue/Opinion/g' "../../../pr/[pru] opinion.sublime-workspace"
+sed -i '' 's/issue/opinion/g' "../../../pr/[pru] opinion.sublime-workspace"

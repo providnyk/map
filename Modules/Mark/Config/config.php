@@ -2,5 +2,5 @@
 
 return [
 	'name'			=> 'Mark',
-	'ico'			=> 'icon-star-full2',
+	'ico'			=> 'icon-podium',
 ];

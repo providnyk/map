@@ -13,7 +13,7 @@ return [
 		'txt_edit'		=> 'балла',
 		'filterby'		=> 'балламі',
 		'typein'		=> 'балл',
-		'saved'			=> 'точку',
+		'saved'			=> 'балл',
 	],
 	'field' => [
 		'qty' => [
