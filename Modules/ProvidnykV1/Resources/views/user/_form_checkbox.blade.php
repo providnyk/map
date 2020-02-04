@@ -60,7 +60,7 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 @include('layouts._form_label')
 		</label>
 	</div>
-	<div class="col-lg-9 field-body">
+	<div class="div_control div_checkbox_control col-lg-9 field-body">
 @include('layouts._form_checkbox_control')
 	</div>
 </div>

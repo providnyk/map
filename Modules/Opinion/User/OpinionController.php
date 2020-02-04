@@ -4,8 +4,9 @@ namespace Modules\Opinion\User;
 
 #use Modules\Opinion\Http\Controllers\OpinionController as Controller;
 use                 App\Http\Controllers\ControllerUser as Controller;
-use             Modules\Element\Database\Element;
-use                Modules\Mark\Database\Mark;
+#use             Modules\Element\Database\Element;
+#use                Modules\Mark\Database\Mark;
+use                                  App\Model;
 use               Modules\Place\Database\Place;
 use                      Illuminate\Http\Request;
 
@@ -19,10 +20,12 @@ class OpinionController extends Controller
 	 */
 	public function form(Request $request) : \Illuminate\View\View
 	{
-		\View::composer('user.*', function ($view) {
+
+		\View::composer('opinion::user.*', function ($view) use ($request) {
 			$view->with([
-				'element'		=> Element::all()->sortBy('title'),
-				'mark'			=> Mark::all()->sortBy('title'),
+				'element'		=> Model::getIdTitle($request, 'Element', NULL, [], TRUE, TRUE, FALSE),
+				'mark'			=> Model::getIdTitle($request, 'Mark', NULL, [], TRUE, TRUE, FALSE),
+##				'mark'			=> Mark::all()->sortBy('title'),
 				'place'			=> Place::all()->sortBy('title'),
 			]);
 		});

@@ -93,6 +93,15 @@ Route::group([
 	'middleware' => [],
 ], function() use ($a_list, $a_modules) {
 
+	$s_model	= 'Opinion';
+	$s_path		= strtolower($s_model);
+	$s_ctrl		= '\Modules\\' . $s_model . '\API\\' . $s_model ;
+	$s_ctrl		= $s_ctrl . 'Controller';
+	$s_method	= 'place';
+	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
+
+/*
 	$s_model	= 'Point';
 	$s_path		= strtolower($s_model);
 #	$s_ctrl		= '\Modules\\' . $s_model . '\API\\' . $s_model ;
@@ -101,7 +110,7 @@ Route::group([
 	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 	$s_method	= 'report';
 	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-
+*/
 	for ($i = 0; $i < count($a_list); $i++)
 	{
 		$s_ctrl = '';
@@ -491,46 +500,6 @@ Route::group([
 	});
 
 });
-
-
-
-//API Routes
-Route::group([
-	'as' => 'api.',
-	'prefix' => 'api',
-	'namespace' => 'API',
-	'middleware' => [],
-], function() use ($a_list, $a_modules) {
-
-	$s_model	= 'Point';
-	$s_path		= strtolower($s_model);
-#	$s_ctrl		= '\Modules\\' . $s_model . '\API\\' . $s_model ;
-	$s_ctrl		= $s_model . 'Controller';
-	$s_method	= 'issue';
-	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-	$s_method	= 'report';
-	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-
-	for ($i = 0; $i < count($a_list); $i++)
-	{
-		$s_ctrl = '';
-		$s_model = $a_list[$i];
-		if (in_array($s_model, $a_modules))
-			$s_ctrl = '\Modules\\' . $s_model . '\API\\' . $s_model ;
-		else
-			$s_ctrl = $s_model;
-		$s_path = strtolower($s_model);
-		if (!empty($s_ctrl))
-		{
-			$s_ctrl .= 'Controller';
-			Route::get($s_path . '/list',			['as' => $s_path . '.index',	'uses' => $s_ctrl . '@index']);
-			Route::post($s_path,					['as' => $s_path . '.store',	'uses' => $s_ctrl . '@store']);
-			Route::post($s_path . '/{item}/edit',	['as' => $s_path . '.update',	'uses' => $s_ctrl . '@update']);
-			Route::post($s_path . '/delete',		['as' => $s_path . '.destroy',	'uses' => $s_ctrl . '@destroy']);
-		}
-	}
-});
-
 
 //Public routes
 Route::group([

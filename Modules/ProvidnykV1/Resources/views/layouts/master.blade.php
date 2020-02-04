@@ -143,6 +143,9 @@ https://sweetalert.js.org/docs/#buttons
 
 <script src="{{ asset($theme . '/js/' . $_env->s_utype . '_app.js?v=' . $version->js) }}"></script>
 
+<div id="div_tmpl_wrapper" class="d-none">
+@yield('tmpl')
+</div>
 
 </body>
 </html>

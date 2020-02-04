@@ -6,6 +6,7 @@ use                           App\Traits\GeneralTrait;
 use         Illuminate\Database\Eloquent\Model        as BaseModel;
 use    Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use              Astrotomic\Translatable\Translatable;
+use                      Illuminate\Http\Request;
 
 class Model extends BaseModel
 {
@@ -82,4 +83,65 @@ class Model extends BaseModel
 			'published' => !! $request->published,
 		]);
 	}
+
+	/**
+	 * Get 2 columns from DB and organise them for a specific need
+	 * @param Request	$request		Data from request
+	 * @param String	$s_model		Model name to retrieve data from
+	 * @param Bool		$b_published	NULL (default) = all, TRUE/FALSE
+	 * @param Array		$a_ids			if only specific ids are needed
+	 * @param Bool		$b_byid			id will be the key and title will be the value
+	 * @param Bool		$b_sort_bytitle	default sorting is by the key
+	 * @param Bool		$b_json			Data from request
+	 *
+	 * @return Array	set of results
+	 */
+	public static function getIdTitle(Request $request, String $s_model, $b_published, Array $a_ids, Bool $b_sort_bytitle, Bool $b_byid, Bool $b_json) : Array
+	{
+#		$a_element_ids			= Style::findOrFail($i_style_id)->element()->get()->pluck('id')->toArray();
+#		$a_issue_ids = Design::findOrFail($i_design_id)->issue()->get()->pluck('id')->toArray();
+#		$t_ids = $this->event->translations->pluck('id', 'locale')->toArray();
+#		$artists->pluck('id')->toArray()
+#		Category::select('type')->distinct()->get()->map->type->toArray(),
+		$s_title = 'title';
+		if ($b_json)
+			$s_title = 'text';
+
+		$fn_select				= '\Modules\\' . $s_model . '\\' . 'Database' . '\\' . $s_model . '::select';
+		$a_items				= $fn_select('id');
+
+		if (!empty($a_ids))
+			$a_items			= $a_items->whereIn('id', $a_ids);
+
+		if (!is_null($b_published))
+			$a_items			= $a_items->wherePublished($b_published);
+
+		if (!is_null($request->search))
+			 $a_items = $a_items->whereTranslationLike('title', '%' . $request->search .'%', app()->getLocale());
+
+		$a_items = $a_items->get()->map( function($o_item) use ($s_title) {
+			return ['id' => $o_item->id, $s_title => $o_item->title];
+		});
+
+		if ($b_byid)
+		{
+			for ($i = 0; $i < count($a_items); $i++)
+			{
+				$a_res[$a_items[$i]['id']] = $a_items[$i]['title'];
+			}
+		}
+		else
+		{
+			for ($i = 0; $i < count($a_items); $i++)
+			{
+				$a_res[] = $a_items[$i];
+			}
+		}
+
+		if ($b_sort_bytitle)
+			asort($a_res);
+
+		return $a_res;
+	}
+
 }

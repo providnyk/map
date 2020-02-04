@@ -5,22 +5,24 @@
 namespace Modules\Opinion\API;
 
 #use App\Opinion;
-use Modules\Opinion\API\Opinion;
-use Modules\Opinion\Database\Opinion as DBOpinion;
 
 #use App\Filters\OpinionFilters;
-use Modules\Opinion\Filters\OpinionFilters;
 
 #use App\Http\Requests\OpinionRequest;
 #use Modules\Opinion\Requests\OpinionRequest;
 
-use App\Http\Requests\DeleteRequest;
+use                    App\Http\Requests\DeleteRequest;
 
-use App\Http\Controllers\ControllerAPI as Controller;
+use                 App\Http\Controllers\ControllerAPI as Controller;
 
 #use App\Http\Requests\OpinionApiRequest;
-use Modules\Opinion\Http\OpinionRequest;
-use Modules\Opinion\API\SaveRequest;
+use                  Modules\Opinion\API\Opinion;
+use             Modules\Opinion\Database\Opinion as DBOpinion;
+use              Modules\Opinion\Filters\OpinionFilters;
+use                 Modules\Opinion\Http\OpinionRequest;
+use                      Illuminate\Http\Request;
+use                  Modules\Opinion\API\SaveRequest;
+use             Modules\Opinion\Database\OpinionVote;
 
 #use Modules\Opinion\Http\Controllers\OpinionController as Controller;
 
@@ -51,8 +53,20 @@ class OpinionController extends Controller
 	}
 
 	/**
-	 * Create a new item
+	 * Get list of related elements, marks specific to this point
 	 * @param Request	$request		Data from request
+	 * @param Integer	$id				point id
+	 *
+	 * @return Response	json instance of
+	 */
+	protected function place(Request $request, $id) : String
+	{
+		return Opinion::getSpecificLists($request, $id);
+	}
+
+	/**
+	 * Create a new item
+	 * @param SaveRequest	$request		Data from Model save request
 	 *
 	 * @return Response	json instance of
 	 */
@@ -62,18 +76,44 @@ class OpinionController extends Controller
 			'user_id' => \Auth::user()->id,
 		]);
 		$a_res = $this->storeAPI($request);
+
+
+		$request->merge([
+			'user_id' => \Auth::user()->id,
+		]);
+
+		$this->saveVote($request, $this->o_item);
+
 		return $a_res;
 	}
 
 	/**
+	 * Save votes for this opinion
+	 * @param SaveRequest	$request		Data from Model save request
+	 * @param Object	$o_item		opinion being created/updated
+	 *
+	 * @return void
+	 */
+	public function saveVote(SaveRequest $request, Object $o_item) : void
+	{
+        $o_item->vote()->saveMany(array_map(function($vote) {
+				$vote['user_id'] = \Auth::user()->id;
+                return new OpinionVote($vote);
+            }, $request->vote)
+        );
+	}
+
+	/**
 	 * Updated item that is being edited
-	 * @param Request	$request		Data from request
+	 * @param SaveRequest	$request		Data from Model save request
 	 *
 	 * @return Response	json instance of
 	 */
 	public function update(SaveRequest $request, DBOpinion $item) : \Illuminate\Http\Response
 	{
 		$a_res = $this->updateAPI($request, $item);
+        $item->vote()->delete();
+		$this->saveVote($request, $item);
 		return $a_res;
 	}
 }

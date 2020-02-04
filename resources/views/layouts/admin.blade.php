@@ -358,5 +358,9 @@ https://sweetalert.js.org/docs/#buttons
 @yield('script-input')
 @yield('script-select')
 
+<div id="div_tmpl_wrapper" class="d-none">
+@yield('tmpl')
+</div>
+
 </body>
 </html>

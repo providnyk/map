@@ -8,44 +8,51 @@ class Opinion extends Model
 {
 	protected $connection = 'psc';
 	protected $fillable = [
-		'element_id',
-		'mark_id',
+
+
+
 		'place_id',
 		'user_id',
 		'published',
 	];
 	public $translatedAttributes = [];
 	protected $a_form = [
+		'published'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'checkbox',
+			'rules'		=> '',
+		],
+
+
+
+
+
+
+
+
+
+
 		'place_id'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> '',
 		],
-		'element_id'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],
-		'mark_id'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],
-		'published'		=> [
-			'tab'		=> 'manage',
-			'field'		=> 'checkbox',
-			'rules'		=> '',
-		],
 	];
 
-	public function element()
-	{
-		return $this->belongsTo('Modules\Element\Database\Element');
-	}
-	public function mark()
-	{
-		return $this->belongsTo('Modules\Mark\Database\Mark');
-	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function place()
 	{
 		return $this->belongsTo('Modules\Place\Database\Place');
@@ -54,4 +61,9 @@ class Opinion extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
+    public function vote()
+    {
+        return $this->hasMany('Modules\Opinion\Database\OpinionVote');
+    }
+
 }
