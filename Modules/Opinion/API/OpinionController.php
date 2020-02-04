@@ -20,6 +20,7 @@ use                  Modules\Opinion\API\Opinion;
 use             Modules\Opinion\Database\Opinion as DBOpinion;
 use              Modules\Opinion\Filters\OpinionFilters;
 use                 Modules\Opinion\Http\OpinionRequest;
+use                Modules\Place\Filters\PlaceFilters;
 use                      Illuminate\Http\Request;
 use                  Modules\Opinion\API\SaveRequest;
 use             Modules\Opinion\Database\OpinionVote;
@@ -53,9 +54,9 @@ class OpinionController extends Controller
 	}
 
 	/**
-	 * Get list of related elements, marks specific to this point
+	 * Get list of related elements, marks specific to this place
 	 * @param Request	$request		Data from request
-	 * @param Integer	$id				point id
+	 * @param Integer	$id				place id
 	 *
 	 * @return Response	json instance of
 	 */
@@ -90,7 +91,7 @@ class OpinionController extends Controller
 	/**
 	 * Save votes for this opinion
 	 * @param SaveRequest	$request		Data from Model save request
-	 * @param Object	$o_item		opinion being created/updated
+	 * @param Object		$o_item			opinion being created/updated
 	 *
 	 * @return void
 	 */
@@ -101,6 +102,18 @@ class OpinionController extends Controller
                 return new OpinionVote($vote);
             }, $request->vote)
         );
+	}
+
+	/**
+	 * Get list of places that user did not vote for yet
+	 * @param Request	$request		Data from request
+	 * @param Filters	$filters		Whatever filters applied
+	 *
+	 * @return Response	json instance of
+	 */
+	protected function unvoted(Request $request, PlaceFilters $filters) : String
+	{
+		return Opinion::getUnvotedPlaces($request, $filters);
 	}
 
 	/**

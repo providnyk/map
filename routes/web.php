@@ -98,6 +98,8 @@ Route::group([
 	$s_ctrl		= '\Modules\\' . $s_model . '\API\\' . $s_model ;
 	$s_ctrl		= $s_ctrl . 'Controller';
 	$s_method	= 'place';
+	Route::get($s_path.'/'.$s_method.'/{id}',		['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+	$s_method	= 'unvoted';
 	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 
 

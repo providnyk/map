@@ -20,15 +20,14 @@ class OpinionController extends Controller
 	 */
 	public function form(Request $request) : \Illuminate\View\View
 	{
-
 		\View::composer('opinion::user.*', function ($view) use ($request) {
 			$view->with([
-				'element'		=> Model::getIdTitle($request, 'Element', NULL, [], TRUE, TRUE, FALSE),
-				'mark'			=> Model::getIdTitle($request, 'Mark', NULL, [], TRUE, TRUE, FALSE),
-##				'mark'			=> Mark::all()->sortBy('title'),
+				'element'		=> Model::getIdTitle($request, NULL, 'Element', NULL, [], [], TRUE, TRUE),#, FALSE),
+				'mark'			=> Model::getIdTitle($request, NULL, 'Mark', NULL, [], [], TRUE, TRUE),#, FALSE),
 				'place'			=> Place::all()->sortBy('title'),
 			]);
 		});
+
 		return parent::form($request);
 	}
 }

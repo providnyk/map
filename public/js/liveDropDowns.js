@@ -17,7 +17,7 @@ function initLiveDropdowns(){
 	var selects = $(".select2-dropdown");
 	selects.each(function (i, item) {
 		var select = $(item);
-//console.log(select);
+//console.log(select, select[0].id == 'place_id', select[0].baseURI);
 		select.select2(settings({
 			url: select.data('url'),
 			filter: 'title'

@@ -7,6 +7,8 @@ $name = 'mark';
 @section('script')
 <script type="text/javascript">
 let s_route = '{!! route('api.opinion.place', ':place_id') !!}'
+	,s_route_unvoted_places = '{!! route('api.opinion.unvoted', ':opinion_id') !!}'
+	,i_item_id = {!! request()->id ? request()->id : 0 !!}
 	,i_previous = null;
 
 function checkRestoreInitialValue(a_results)
@@ -27,7 +29,8 @@ function resetDependentDropdown(s_parent_id, s_child_id)
 	$("#"+s_child_id).select2({
 		placeholder: {
 			id: '-1', // the value of the option
-			text: $("#"+s_parent_id).data('placeholder')
+			title: $("#"+s_parent_id).data('placeholder')
+//			text: $("#"+s_parent_id).data('placeholder')
 		},
 		data: {},
 	});
@@ -44,7 +47,8 @@ function addMarks(s_parent_id, s_child_id, i_place_id, a_results, option_title, 
 		element_id:		a_results.id,
 		id:				Math.random().toString(36).substring(2),
 		place_id:		i_place_id,
-		title:			a_results.text,
+//		title:			a_results.text,
+		title:			a_results.title,
 		option_title:	option_title,
 		option_value:	option_value,
 	}).appendTo("#"+s_parent_id);
@@ -59,7 +63,22 @@ function addMarks(s_parent_id, s_child_id, i_place_id, a_results, option_title, 
 $(document).ready(function () {
 
 	// reset dependent dropdown on page initialization
-	resetDependentDropdown("place_id", "element_id");
+//	resetDependentDropdown("place_id", "element_id");
+
+//    var $example = $("#place_id").select2();
+
+    // re-define dropdown for places at this page
+	$("#place_id").select2(settings({
+		url: s_route_unvoted_places.replace(':opinion_id', i_item_id),
+		filter: 'title'
+	}));
+
+//    $example.select2("destroy");
+
+    $(document).on('click', '#place_id', function (e) {
+        console.log('ok');
+	});
+
 
 	$('#place_id').change( function() {
 		$(this).find(":selected").each(function () {
@@ -151,7 +170,8 @@ $(document).ready(function () {
 				"div_select_place_id .div_control",
 				"div_tmpl_opinion",
 				{!! $v->place_id !!},
-				{id: '{!! $v->element_id !!}', text: '{!! $element[$v->element_id] !!}'},
+//				{id: '{!! $v->element_id !!}', text: '{!! $element[$v->element_id] !!}'},
+				{id: '{!! $v->element_id !!}', title: '{!! $element[$v->element_id] !!}'},
 				'{!! $mark[$v->mark_id] !!}',
 				{!! $v->mark_id !!},
 			);
