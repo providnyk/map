@@ -5,8 +5,8 @@ $a_production = [
     'version_major'         => '77', # changes whenever any css,js,api,guest,user value below has changed; reset each realease
     'version_patch'         => '0',
     'version_stage'         => 'a', # a=alfa,b=beta,rc=candidate,r=release
-    'version_day'           => '035',
-    'version_seq'           => '3',
+    'version_day'           => '049',
+    'version_seq'           => '1',
 ];
 
 return (object) [

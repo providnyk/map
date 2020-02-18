@@ -28,7 +28,6 @@ $(document).ready(() => {
 			data: form.serialize()
 		}).done((data, status, xhr) => {
 
-
 //swal("Gotcha!", "Pikachu was caught!", "success");
 
 			swal({
@@ -56,14 +55,14 @@ $(document).ready(() => {
 							window.location = data.url;
 					  break;
 					case 'primary':
-						form.find('fieldset').attr('disabled', false);
+						resetForm(form);
 					  break;
 
 					default:
 						if (s_close_route != '')
 							window.location.href = s_list_route;
 						else
-							form.find('fieldset').attr('disabled', false);
+							resetForm(form);
 //						window.location.href = s_list_route;
 				}
 
@@ -87,7 +86,8 @@ $(document).ready(() => {
 				}
 			});
 */
-			form.find('fieldset').attr('disabled', true);
+			resetForm(form);
+
 		}).fail((xhr) => {
 			let data = xhr.responseJSON;
 

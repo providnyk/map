@@ -109,6 +109,11 @@ class Model extends BaseModel
 #		$artists->pluck('id')->toArray()
 #		Category::select('type')->distinct()->get()->map->type->toArray(),
 #		->keyBy('id')
+
+		/**
+		 * 'text' is used when providing data directly to select2
+		 * https://select2.org/data-sources/ajax
+		*/
 		$s_title = 'title';
 #		if ($b_json)
 #			$s_title = 'text';
