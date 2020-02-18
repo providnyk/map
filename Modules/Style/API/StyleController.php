@@ -24,8 +24,37 @@ use                    Modules\Style\API\SaveRequest;
 
 #use Modules\Style\Http\Controllers\StyleController as Controller;
 
+use            Modules\Building\Database\Building;
+
 class StyleController extends Controller
 {
+	/**
+	 * Update dependent items that is being edited from current item
+	 * @param Request	$request		Data from request
+	 * @param Request	$item			item being edited
+	 *
+	 * @return void
+	 */
+	private function _related(SaveRequest $request, DBStyle $item) : void
+	{
+		/**
+		 * reset previous selections of building
+		*/
+		# working as well as the one below
+#		Building::where('style_id', '=', $item->id)->update(['style_id' => NULL]);
+		$item->building()->where('style_id', '=', $item->id)->update(['style_id' => NULL]);
+
+		/**
+		 * save new selections of building
+		*/
+		if (is_array($request->building_ids))
+			Building::whereIn('id', $request->building_ids)->update(['style_id' => $item->id]);
+		# not working
+#		$item->building()->whereIn('id', $request->building_ids)->update(['style_id' => $item->id]);
+
+		$item->element()->sync($request->element_ids);
+	}
+
 	/**
 	 * Deleted selected item(s)
 	 * @param Request	$request		Data from request
@@ -59,8 +88,7 @@ class StyleController extends Controller
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
 		$a_res = $this->storeAPI($request);
-		$this->o_item->building()->sync($request->building_ids);
-		$this->o_item->element()->sync($request->element_ids);
+		$this->_related($request, $this->o_item);
 		return $a_res;
 	}
 
@@ -72,7 +100,7 @@ class StyleController extends Controller
 	 */
 	public function update(SaveRequest $request, DBStyle $item) : \Illuminate\Http\Response
 	{
-		$item->element()->sync($request->element_ids);
+		$this->_related($request, $item);
 		$a_res = $this->updateAPI($request, $item);
 		return $a_res;
 	}

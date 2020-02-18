@@ -2,7 +2,7 @@
 
 namespace Modules\Style\Database;
 
-use App\Model;
+use                                  App\Model;
 
 class Style extends Model
 {
@@ -18,6 +18,11 @@ class Style extends Model
 			'field'		=> 'checkbox',
 			'rules'		=> '',
 		],
+		'building_ids'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'select',
+			'rules'		=> '',
+		],
 		'element_ids'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
@@ -25,6 +30,10 @@ class Style extends Model
 		],
 	];
 
+	public function building()
+	{
+		return $this->hasMany('Modules\Building\Database\Building');
+	}
 	public function element()
 	{
 		return $this->belongsToMany('Modules\Element\Database\Element');

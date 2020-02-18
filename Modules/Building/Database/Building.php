@@ -24,4 +24,9 @@ class Building extends Model
 			'rules'		=> '',
 		],
 	];
+
+	public function style()
+	{
+		return $this->belongsTo('Modules\Style\Database\Style');
+	}
 }

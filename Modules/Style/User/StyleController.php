@@ -3,9 +3,10 @@
 namespace Modules\Style\User;
 
 #use Modules\Style\Http\Controllers\StyleController as Controller;
-use App\Http\Controllers\ControllerUser as Controller;
-use Modules\Element\Database\Element;
-use Illuminate\Http\Request;
+use            Modules\Building\Database\Building;
+use                 App\Http\Controllers\ControllerUser as Controller;
+use             Modules\Element\Database\Element;
+use                      Illuminate\Http\Request;
 
 class StyleController extends Controller
 {
@@ -19,6 +20,7 @@ class StyleController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
+				'building'		=> Building::all()->sortBy('name'),
 				'element'		=> Element::all()->sortBy('name'),
 			]);
 		});
