@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use    Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use            Illuminate\Foundation\Bus\DispatchesJobs;
 use     Illuminate\Foundation\Validation\ValidatesRequests;
-use                   Illuminate\Routing\Controller as BaseController;
+use                   Illuminate\Routing\Controller     as BaseController;
 use                   Illuminate\Support\Pluralizer;
 
 class Controller extends BaseController
@@ -83,7 +83,7 @@ class Controller extends BaseController
 			$this->_env->s_view		= (env('APP_THEME') . '::' ?: '') . $this->_env->s_utype . '.' ;
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 		if ($this->_env->s_utype == 'controllers'
 			&& in_array($this->_env->s_sgl, [
@@ -96,7 +96,7 @@ class Controller extends BaseController
 #			$this->_env->s_view		= (env('APP_THEME') . '::' ?: '') . $this->_env->s_utype . '.' ;
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////
-
+*/
 		$a_tmp						= config('translatable.locales');
 		$this->a_fields				= array_merge(config('translatable.locales'), $a_fill_main);
 

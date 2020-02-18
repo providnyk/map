@@ -2,7 +2,7 @@
 
 namespace Modules\Style\Database;
 
-use App\Model;
+use                                  App\Model;
 #use Illuminate\Database\Eloquent\Model;
 
 class StyleTranslation extends Model

@@ -5,22 +5,22 @@
 namespace Modules\Style\API;
 
 #use App\Style;
-use Modules\Style\API\Style;
-use Modules\Style\Database\Style as DBStyle;
+use                    Modules\Style\API\Style;
+use               Modules\Style\Database\Style          as DBStyle;
 
 #use App\Filters\StyleFilters;
-use Modules\Style\Filters\StyleFilters;
+use                Modules\Style\Filters\StyleFilters;
 
 #use App\Http\Requests\StyleRequest;
 #use Modules\Style\Requests\StyleRequest;
 
-use App\Http\Requests\DeleteRequest;
+use                    App\Http\Requests\DeleteRequest;
 
-use App\Http\Controllers\ControllerAPI as Controller;
+use                 App\Http\Controllers\ControllerAPI  as Controller;
 
 #use App\Http\Requests\StyleApiRequest;
-use Modules\Style\Http\StyleRequest;
-use Modules\Style\API\SaveRequest;
+use                   Modules\Style\Http\StyleRequest;
+use                    Modules\Style\API\SaveRequest;
 
 #use Modules\Style\Http\Controllers\StyleController as Controller;
 
@@ -59,6 +59,7 @@ class StyleController extends Controller
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
 		$a_res = $this->storeAPI($request);
+		$this->o_item->building()->sync($request->building_ids);
 		$this->o_item->element()->sync($request->element_ids);
 		return $a_res;
 	}
