@@ -5,5 +5,5 @@ let
 	,s_text_continue	= '{!! $s_btn_secondary !!}'
 	,s_list_route		= '{!! $s_list_route !!}'
 	,s_close_route		= '{!! $s_cancel_route !!}'
+	,s_action_form		= '{!! ($o_item->id ? 'update' : 'create') !!}'
 	;
-
