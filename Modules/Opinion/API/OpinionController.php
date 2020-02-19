@@ -11,19 +11,19 @@ namespace Modules\Opinion\API;
 #use App\Http\Requests\OpinionRequest;
 #use Modules\Opinion\Requests\OpinionRequest;
 
-use                    App\Http\Requests\DeleteRequest;
+use                        App\Http\Requests\DeleteRequest;
 
-use                 App\Http\Controllers\ControllerAPI as Controller;
+use                     App\Http\Controllers\ControllerAPI as Controller;
 
 #use App\Http\Requests\OpinionApiRequest;
-use                  Modules\Opinion\API\Opinion;
-use             Modules\Opinion\Database\Opinion as DBOpinion;
-use              Modules\Opinion\Filters\OpinionFilters;
-use                 Modules\Opinion\Http\OpinionRequest;
-use                Modules\Place\Filters\PlaceFilters;
-use                      Illuminate\Http\Request;
-use                  Modules\Opinion\API\SaveRequest;
-use             Modules\Opinion\Database\OpinionVote;
+use                      Modules\Opinion\API\Opinion;
+use                 Modules\Opinion\Database\Opinion as DBOpinion;
+use                  Modules\Opinion\Filters\OpinionFilters;
+use                     Modules\Opinion\Http\OpinionRequest;
+use                 Modules\Opinion\Database\OpinionVote;
+use                    Modules\Place\Filters\PlaceFilters;
+use                          Illuminate\Http\Request;
+use                      Modules\Opinion\API\SaveRequest;
 
 #use Modules\Opinion\Http\Controllers\OpinionController as Controller;
 
@@ -78,11 +78,9 @@ class OpinionController extends Controller
 		]);
 		$a_res = $this->storeAPI($request);
 
-
 		$request->merge([
 			'user_id' => \Auth::user()->id,
 		]);
-
 		$this->saveVote($request, $this->o_item);
 
 		return $a_res;
@@ -97,11 +95,31 @@ class OpinionController extends Controller
 	 */
 	public function saveVote(SaveRequest $request, Object $o_item) : void
 	{
-        $o_item->vote()->saveMany(array_map(function($vote) {
-				$vote['user_id'] = \Auth::user()->id;
-                return new OpinionVote($vote);
-            }, $request->vote)
-        );
+		$a_votes = [];
+		foreach ($request->vote AS $s_key => $a_vote)
+		{
+			$a_vote['user_id'] = \Auth::user()->id;
+			if ($a_vote['mark_id'] != 0)
+				$a_votes[] = $a_vote;
+		}
+		$o_item->vote()->saveMany(array_map(function($vote) {
+				return new OpinionVote($vote);
+			}, $a_votes)
+		);
+	}
+
+	/**
+	 * Updated item that is being edited
+	 * @param SaveRequest	$request		Data from Model save request
+	 *
+	 * @return Response	json instance of
+	 */
+	public function update(SaveRequest $request, DBOpinion $item) : \Illuminate\Http\Response
+	{
+		$a_res = $this->updateAPI($request, $item);
+		$item->vote()->delete();
+		$this->saveVote($request, $item);
+		return $a_res;
 	}
 
 	/**
@@ -114,19 +132,5 @@ class OpinionController extends Controller
 	protected function unvoted(Request $request, PlaceFilters $filters) : String
 	{
 		return Opinion::getUnvotedPlaces($request, $filters);
-	}
-
-	/**
-	 * Updated item that is being edited
-	 * @param SaveRequest	$request		Data from Model save request
-	 *
-	 * @return Response	json instance of
-	 */
-	public function update(SaveRequest $request, DBOpinion $item) : \Illuminate\Http\Response
-	{
-		$a_res = $this->updateAPI($request, $item);
-        $item->vote()->delete();
-		$this->saveVote($request, $item);
-		return $a_res;
 	}
 }

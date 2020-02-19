@@ -20,7 +20,7 @@ class Opinion extends Model
 		'published'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'checkbox',
-			'rules'		=> '',
+			'rules'		=> 'boolean',
 		],
 
 
@@ -35,7 +35,7 @@ class Opinion extends Model
 		'place_id'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
-			'rules'		=> '',
+			'rules'		=> 'required|integer',
 		],
 	];
 
@@ -61,9 +61,9 @@ class Opinion extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
-    public function vote()
+    public function vote() : HasMany
     {
-        return $this->hasMany('Modules\Opinion\Database\OpinionVote');
+        return $this->HasMany('Modules\Opinion\Database\OpinionVote');
+#		return $this->hasMany('Modules\Opinion\Database\OpinionVote');
     }
-
 }

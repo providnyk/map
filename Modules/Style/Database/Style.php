@@ -32,6 +32,9 @@ class Style extends Model
 
 	public function building()
 	{
+#HasOneOrMany
+#$business->user()->associate($user);
+#$buissness->dealership()->attach($dealership->Id);
 		return $this->hasMany('Modules\Building\Database\Building');
 	}
 	public function element()

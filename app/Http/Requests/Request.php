@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest as BaseRequest;
+use               Illuminate\Foundation\Http\FormRequest as BaseRequest;
+use                                          ReflectionClass;
+use                                          ReflectionMethod;
 
 class Request extends BaseRequest
 {
@@ -84,7 +86,7 @@ class Request extends BaseRequest
 			}
 		}
 
-		foreach ($a_form_main as $s_name => $a_data) {
+		foreach ($a_form_main AS $s_name => $a_data) {
 			$a_rules_all[$s_name] = $a_data['rules'];
 		}
 /*
@@ -116,6 +118,105 @@ class Request extends BaseRequest
 				$a_rules_all[$s_name] = $s_rule;
 		}
 */
+
+    $reflector = new ReflectionClass($this->_env->s_model);
+    $a_relations = [];
+    foreach ($reflector->getMethods() as $reflectionMethod) {
+        $returnType = $reflectionMethod->getReturnType();
+        if ($returnType) {
+        	$s_type = class_basename($returnType->getName());
+
+#            if (in_array(class_basename($returnType->getName()), ['hasOne', 'hasMany', 'belongsTo', 'belongsToMany', 'morphToMany', 'morphTo'])) {
+            if (in_array($s_type, ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
+				$s_meth_name=$reflectionMethod->name;
+
+			if (
+				stripos($s_meth_name, 'translation') === FALSE
+#	&&
+#	method_exists($m->$s_meth_name(), 'getRelated') && is_callable(array($m->$s_meth_name(), 'getRelated'))
+				&&
+				method_exists($m->$s_meth_name()->getRelated(), 'getFillable') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFillable'))
+				&&
+				method_exists($m->$s_meth_name()->getRelated(), 'getFields') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFields'))
+				)
+				{
+					$a_relations[] = $s_meth_name;
+				}
+			}
+		}
+	}
+
+    unset($reflector);
+#    dump($a_relations);
+
+
+#	$a_fields_rel = $m->$s_meth_name()->getRelated()->getFields();
+
+
+
+		for ($i = 0; $i < count($a_relations); $i++)
+		{
+			$s_meth_name			= $a_relations[$i];
+			$a_fill_rel				= $m->$s_meth_name()->getRelated()->getFillable();
+			$a_form_rel				= $m->$s_meth_name()->getRelated()->getFields();
+
+			$a_rules_all[$s_meth_name] = 'required|array';
+			for ($j = 0; $j < count($a_fill_rel); $j++)
+			{
+				if (array_key_exists($a_fill_rel[$j], $a_form_rel))
+				{
+					$s_tmp = $s_meth_name.'.*.'.$a_fill_rel[$j];
+					$a_rules_all[$s_tmp] = $a_form_rel[$a_fill_rel[$j]]['rules'];
+				}
+			}
+#dump($a_fill_rel, $a_form_rel);
+
+		}
+
+#dd($a_rules_all);
+
+  #dump($reflectionMethod->name,class_basename($returnType->getName()), $s_meth_name, method_exists($m->$s_meth_name(), 'getRelated'));
+
+
+#$cm = get_class_methods($m);
+#foreach ($cm AS $k => $v)
+#{#getSpecificLists
+	/*
+	try
+	{
+		dd($v, $m->a_relations, $m->getA_relations(), $m->getParameters(), $m->vote);#, get_class_vars($m), get_object_vars($m), method_exists($m, $v), $m->vote());
+	}
+	catch (Exception $e)
+	{
+		echo 'ok';
+	}
+	die();
+	*/
+/*
+if (
+	method_exists($m->$v(), 'getRelated') && is_callable(array($m->$v(), 'getRelated'))
+	&&
+	method_exists($m->$v()->getRelated(), 'getFields') && is_callable(array($m->$v()->getRelated(), 'getFields'))
+	)
+dd($m->$v()->getRelated()->getFields());
+
+
+	dd($v, $m->$v());
+}
+*/
+/*
+		dd($cm);
+if (
+	method_exists($m->vote(), 'getRelated') && is_callable(array($m->vote(), 'getRelated'))
+	&&
+	method_exists($m->vote()->getRelated(), 'getFields') && is_callable(array($m->vote()->getRelated(), 'getFields'))
+	)
+dd($m->vote()->getRelated()->getFields());
+dd($m->vote()->getRelated()->getFields(), get_class_methods($this->_env->s_model), get_class_methods($m->vote()), $a_rules_all);
+*/
+
+
+#dd($a_rules_all);
 		return $a_rules_all;
 	}
 }

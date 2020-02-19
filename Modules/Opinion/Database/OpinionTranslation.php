@@ -2,7 +2,7 @@
 
 namespace Modules\Opinion\Database;
 
-use                                  App\Model;
+use                                      App\Model;
 #use Illuminate\Database\Eloquent\Model;
 
 class OpinionTranslation extends Model
@@ -18,12 +18,12 @@ class OpinionTranslation extends Model
 		'title'			=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> '',
+			'rules'		=> 'string|max:255',
 		],
 		'description'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> '',
+			'rules'		=> 'string|max:2000',
 		],
 	];
 }

@@ -2,7 +2,7 @@
 
 namespace Modules\Opinion\Database;
 
-use                                  App\Model;
+use                                      App\Model;
 
 class OpinionVote extends Model
 {
@@ -17,21 +17,28 @@ class OpinionVote extends Model
 	];
 	public $translatedAttributes = [];
 	protected $a_form = [
-		/*'place_id'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],
+		/**
+		 * although this model does not have visual represention
+		 * neither it can be filled via dedicated form
+		 * however
+		 * we need to keep fields' and rules' descripton
+		 * so parent form of opinion knows how to interpret every field
+		*/
 		'element_id'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
+			'tab'		=> '',
+			'field'		=> '',
+			'rules'		=> 'required|integer',
 		],
 		'mark_id'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'select',
-			'rules'		=> '',
-		],*/
+			'tab'		=> '',
+			'field'		=> '',
+			'rules'		=> 'required|integer',
+		],
+		'place_id'		=> [
+			'tab'		=> '',
+			'field'		=> '',
+			'rules'		=> 'required|integer',
+		],
 
 
 
@@ -40,14 +47,13 @@ class OpinionVote extends Model
 	];
 
     public $timestamps = false;
-/*
 	public function element()
 	{
-		return $this->belongsToMany('Modules\Element\Database\Element');
+		return $this->belongsTo('Modules\Element\Database\Element');
 	}
 	public function mark()
 	{
-		return $this->belongsToMany('Modules\Mark\Database\Mark');
+		return $this->belongsTo('Modules\Mark\Database\Mark');
 	}
 	public function opinion()
 	{
@@ -61,7 +67,6 @@ class OpinionVote extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
-*/
 
 
 
