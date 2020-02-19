@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use                 App\Http\Controllers\Controller     as BaseController;
-use                      Illuminate\Http\Request;
+use                     App\Http\Controllers\Controller     as BaseController;
+use                          Illuminate\Http\Request;
 
 class ControllerUser	extends BaseController
 {

@@ -2,13 +2,13 @@
 
 namespace Modules\Opinion\Http;
 
-use App\Http\Requests\Request;
+use                        App\Http\Requests\Request;
 
 class OpinionRequest extends Request
 {
 	protected $_rules = [
-		'published'			=> 'boolean',
-		'title'				=> 'required|string|max:255',
+#		'published'			=> 'boolean',
+#		'title'				=> 'required|string|max:255',
 	];
 
 	/**

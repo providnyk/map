@@ -3,12 +3,12 @@
 namespace Modules\Opinion\User;
 
 #use Modules\Opinion\Http\Controllers\OpinionController as Controller;
-use                 App\Http\Controllers\ControllerUser as Controller;
-#use             Modules\Element\Database\Element;
-#use                Modules\Mark\Database\Mark;
-use                                  App\Model;
-use               Modules\Place\Database\Place;
-use                      Illuminate\Http\Request;
+use                     App\Http\Controllers\ControllerUser as Controller;
+#use                 Modules\Element\Database\Element;
+#use                    Modules\Mark\Database\Mark;
+use                                      App\Model;
+use                   Modules\Place\Database\Place;
+use                          Illuminate\Http\Request;
 
 class OpinionController extends Controller
 {

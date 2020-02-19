@@ -2,9 +2,9 @@
 
 namespace App\Traits;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\File;
-use Cookie;
+use                       Illuminate\Support\Carbon;
+use               Illuminate\Support\Facades\File;
+use                                          Cookie;
 
 trait LocaleTrait
 {

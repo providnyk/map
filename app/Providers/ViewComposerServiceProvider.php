@@ -2,12 +2,12 @@
 
 namespace App\Providers;
 
-use App\Text;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\App;
-use App\Traits\LocaleTrait;
+use                                      App\Text;
+use                       Illuminate\Support\ServiceProvider;
+use                          Illuminate\Http\Request;
+use               Illuminate\Support\Facades\DB;
+use               Illuminate\Support\Facades\App;
+use                               App\Traits\LocaleTrait;
 
 class ViewComposerServiceProvider extends ServiceProvider
 {

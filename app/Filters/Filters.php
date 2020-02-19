@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 namespace App\Filters;
 
-use Illuminate\Http\Request;
+use                          Illuminate\Http\Request;
 
 abstract class Filters
 {
@@ -30,7 +30,7 @@ abstract class Filters
     }
 
     public function apply($builder)
-    {   
+    {
         $this->builder = $builder;
 
         foreach ($this->filters as $filter) {
@@ -40,7 +40,7 @@ abstract class Filters
         }
 
         $this->setFilteredCount();
-        
+
         return $this->getQuery();
     }
 
@@ -72,7 +72,7 @@ abstract class Filters
     }
 
     // Get basic query
-    
+
     protected function getQuery()
     {
         return $this->builder->offset($this->request->start)

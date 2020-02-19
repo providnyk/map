@@ -2,13 +2,13 @@
 
 namespace Modules\Opinion\API;
 
-use             Modules\Opinion\Database\Opinion as Model;
-use                 Modules\Building\API\Building;
-use                  Modules\Element\API\Element;
-use                    Modules\Place\API\Place;
-use                Modules\Place\Filters\PlaceFilters;
+use                 Modules\Opinion\Database\Opinion as Model;
+use                     Modules\Building\API\Building;
+use                      Modules\Element\API\Element;
+use                        Modules\Place\API\Place;
+use                    Modules\Place\Filters\PlaceFilters;
 use                      Illuminate\Http\Request;
-use                    Modules\Style\API\Style;
+use                        Modules\Style\API\Style;
 
 class Opinion extends Model
 {

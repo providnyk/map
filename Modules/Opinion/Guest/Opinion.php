@@ -2,7 +2,7 @@
 
 namespace Modules\Opinion\Guest;
 
-use             Modules\Opinion\Database\Opinion as Model;
+use                 Modules\Opinion\Database\Opinion as Model;
 
 class Opinion extends Model
 {

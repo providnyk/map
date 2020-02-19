@@ -2,7 +2,7 @@
 
 namespace Modules\Opinion\Guest;
 
-use App\Http\Controllers\ControllerGuest as Controller;
+use                     App\Http\Controllers\ControllerGuest as Controller;
 
 class OpinionController extends Controller
 {

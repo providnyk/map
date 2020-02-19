@@ -2,7 +2,7 @@
 
 namespace Modules\Opinion\API;
 
-use Modules\Opinion\Http\OpinionRequest as BaseRequest;
+use                     Modules\Opinion\Http\OpinionRequest as BaseRequest;
 
 class SaveRequest extends BaseRequest
 {

@@ -3,10 +3,10 @@
 
 namespace App\Filters;
 
-use DB;
-use App\Filters\Filters;
-use Illuminate\Http\Request;
-use Illuminate\Support\Pluralizer;
+use                                          DB;
+use                              App\Filters\Filters;
+use                          Illuminate\Http\Request;
+use                       Illuminate\Support\Pluralizer;
 
 class FiltersAPI extends Filters
 {

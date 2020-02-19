@@ -4,7 +4,7 @@
 namespace Modules\Opinion\Filters;
 
 #use DB;
-use App\Filters\FiltersAPI;
+use                              App\Filters\FiltersAPI;
 #use Illuminate\Http\Request;
 
 class OpinionFilters extends FiltersAPI
