@@ -86,8 +86,8 @@ class Request extends BaseRequest
 			}
 		}
 
-		foreach ($a_form_main AS $s_name => $a_data) {
-			$a_rules_all[$s_name] = $a_data['rules'];
+		foreach ($a_form_main AS $s_name => $a_params) {
+			$a_rules_all[$s_name]	= $a_params['rules'];
 		}
 /*
 		for ($i = 0; $i < count($a_locales); $i++)
@@ -119,35 +119,35 @@ class Request extends BaseRequest
 		}
 */
 
-    $reflector = new ReflectionClass($this->_env->s_model);
-    $a_relations = [];
-    foreach ($reflector->getMethods() as $reflectionMethod) {
-        $returnType = $reflectionMethod->getReturnType();
-        if ($returnType) {
-        	$s_type = class_basename($returnType->getName());
+		$reflector = new ReflectionClass($this->_env->s_model);
+		$a_relations = [];
+		foreach ($reflector->getMethods() as $reflectionMethod) {
+			$returnType = $reflectionMethod->getReturnType();
+			if ($returnType) {
+				$s_type = class_basename($returnType->getName());
 
-#            if (in_array(class_basename($returnType->getName()), ['hasOne', 'hasMany', 'belongsTo', 'belongsToMany', 'morphToMany', 'morphTo'])) {
-            if (in_array($s_type, ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
-				$s_meth_name=$reflectionMethod->name;
+	#            if (in_array(class_basename($returnType->getName()), ['hasOne', 'hasMany', 'belongsTo', 'belongsToMany', 'morphToMany', 'morphTo'])) {
+				if (in_array($s_type, ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
+					$s_meth_name=$reflectionMethod->name;
 
-			if (
-				stripos($s_meth_name, 'translation') === FALSE
-#	&&
-#	method_exists($m->$s_meth_name(), 'getRelated') && is_callable(array($m->$s_meth_name(), 'getRelated'))
-				&&
-				method_exists($m->$s_meth_name()->getRelated(), 'getFillable') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFillable'))
-				&&
-				method_exists($m->$s_meth_name()->getRelated(), 'getFields') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFields'))
-				)
-				{
-					$a_relations[] = $s_meth_name;
+				if (
+					stripos($s_meth_name, 'translation') === FALSE
+	#	&&
+	#	method_exists($m->$s_meth_name(), 'getRelated') && is_callable(array($m->$s_meth_name(), 'getRelated'))
+					&&
+					method_exists($m->$s_meth_name()->getRelated(), 'getFillable') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFillable'))
+					&&
+					method_exists($m->$s_meth_name()->getRelated(), 'getFields') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFields'))
+					)
+					{
+						$a_relations[] = $s_meth_name;
+					}
 				}
 			}
 		}
-	}
 
-    unset($reflector);
-#    dump($a_relations);
+		unset($reflector);
+	#    dump($a_relations);
 
 
 #	$a_fields_rel = $m->$s_meth_name()->getRelated()->getFields();

@@ -34,7 +34,7 @@ $s_value = $o_item->id
 				? ($code ? $o_item->translate($code)->$name : $o_item->$name)
 				: ''
 			;
-
+$s_class_name = (isset($s_class_name) ? $s_class_name : '');
 if (trans('user/'.$s_category.'.field.'.$s_id.'.label') != 'user/'.$s_category.'.field.'.$s_id.'.label')
 {
 	$s_label = trans('user/'.$s_category.'.field.'.$s_id.'.label');

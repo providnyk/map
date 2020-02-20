@@ -13,6 +13,7 @@ class OpinionRequest extends Request
 
 	/**
 	 * Get the validation rules that apply to the request.
+	 * used for items list in datatable
 	 *
 	 * @return array
 	 */

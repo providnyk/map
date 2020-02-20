@@ -64,6 +64,6 @@ $b_required = (stripos($s_rules, 'required') !== FALSE);
 		</span>
 	</div>
 	<div class="div_control div_input_control col-lg-9 field-body">
-@include('layouts._form_input_control')
+@include('layouts._form_input_control', ['s_field_type' => 'text'])
 	</div>
 </div>

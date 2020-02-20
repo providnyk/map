@@ -7,6 +7,8 @@ use                Illuminate\Foundation\Bus\DispatchesJobs;
 use         Illuminate\Foundation\Validation\ValidatesRequests;
 use                       Illuminate\Routing\Controller     as BaseController;
 use                       Illuminate\Support\Pluralizer;
+use                                          ReflectionClass;
+use                                          ReflectionMethod;
 
 class Controller extends BaseController
 {
@@ -124,7 +126,66 @@ class Controller extends BaseController
 			$this->a_field[$s_tab]['trans'][$s_name]	= $s_field;
 			$this->a_rule[$s_name]	= $s_rules;
 		}
+
+#		foreach ($a_form_main AS $s_name => $a_params) {
+#			$this->a_rule[$s_name]	= $a_params['rules'];
+#		}
+
+
+
+		$reflector = new ReflectionClass($this->_env->s_model);
+		$a_relations = [];
+		foreach ($reflector->getMethods() as $reflectionMethod) {
+			$returnType = $reflectionMethod->getReturnType();
+			if ($returnType) {
+				$s_type = class_basename($returnType->getName());
+
+	#            if (in_array(class_basename($returnType->getName()), ['hasOne', 'hasMany', 'belongsTo', 'belongsToMany', 'morphToMany', 'morphTo'])) {
+				if (in_array($s_type, ['HasOne', 'HasMany', 'BelongsTo', 'BelongsToMany', 'MorphToMany', 'MorphTo'])) {
+					$s_meth_name=$reflectionMethod->name;
+
+				if (
+					stripos($s_meth_name, 'translation') === FALSE
+	#	&&
+	#	method_exists($m->$s_meth_name(), 'getRelated') && is_callable(array($m->$s_meth_name(), 'getRelated'))
+					&&
+					method_exists($m->$s_meth_name()->getRelated(), 'getFillable') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFillable'))
+					&&
+					method_exists($m->$s_meth_name()->getRelated(), 'getFields') && is_callable(array($m->$s_meth_name()->getRelated(), 'getFields'))
+					)
+					{
+						$a_relations[] = $s_meth_name;
+					}
+				}
+			}
+		}
+
+		unset($reflector);
+	#    dump($a_relations);
+
+
+		for ($i = 0; $i < count($a_relations); $i++)
+		{
+			$s_meth_name			= $a_relations[$i];
+			$a_fill_rel				= $m->$s_meth_name()->getRelated()->getFillable();
+			$a_form_rel				= $m->$s_meth_name()->getRelated()->getFields();
+
+			$this->a_rule[$s_meth_name] = 'required|array';
+			for ($j = 0; $j < count($a_fill_rel); $j++)
+			{
+				if (array_key_exists($a_fill_rel[$j], $a_form_rel))
+				{
+					$s_tmp = $s_meth_name.'.*.'.$a_fill_rel[$j];
+					$this->a_rule[$s_tmp] = $a_form_rel[$a_fill_rel[$j]]['rules'];
+				}
+			}
+#dump($a_fill_rel, $a_form_rel);
+
+		}
+
 #dd($this->a_rule);
+
+
 		$this->_env->a_field		= $this->a_field;
 		$this->_env->a_rule			= $this->a_rule;
 		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
