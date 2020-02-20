@@ -1,3 +1,4 @@
+0.80.1+a051:2 user FIX check for reflection in controller when creating related model rules
 0.80.0+a051:1 user UPD required marker for dynamic selects in opinion
 0.79.0+a050:2 user ADD use of HasMany
 0.79.0+a050:1 user UPD save only filled in values for related models

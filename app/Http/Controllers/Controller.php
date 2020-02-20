@@ -131,6 +131,10 @@ class Controller extends BaseController
 #			$this->a_rule[$s_name]	= $a_params['rules'];
 #		}
 
+if (class_exists($this->_env->s_model))
+{
+
+
 
 
 		$reflector = new ReflectionClass($this->_env->s_model);
@@ -185,6 +189,10 @@ class Controller extends BaseController
 
 #dd($this->a_rule);
 
+
+
+
+}
 
 		$this->_env->a_field		= $this->a_field;
 		$this->_env->a_rule			= $this->a_rule;
