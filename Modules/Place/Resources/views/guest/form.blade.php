@@ -35,84 +35,21 @@ include(base_path().'/resources/views/guest/crud.php');
             <div id="mib_content" class="visible_anytime">
                 <div class="new_place_wrap">
 
-{{--
-						<form action="{!! route('guest.place_save') !!}" method="POST" class="form-page item-form" id="create-place-form">
---}}
-							@php
-								$code				= NULL;
-								$s_category			= 'place';
-								$o_item				= $$s_category;
+					@php
+						$code				= NULL;
+						$s_category			= 'place';
+						$o_item				= $$s_category;
+					@endphp
 
-								$a_fields_regular					= [];
-								$a_fields_regular['building_id']	= 'select';
-								$a_fields_regular['lat']			= 'input';
-								$a_fields_regular['lng']			= 'input';
+					<form action="{!! route('api.'.$s_category.'.store') !!}" method="POST" class="form-page item-form" id="create-place-form">
+						@csrf
 
-								$a_fields_trans						= [];
-								$a_fields_trans['title']			= 'input';
-								$a_fields_trans['address']			= 'input';
-								$a_fields_trans['description']		= 'input';
-							@endphp
+						@include('user._fields_loop', ['a_fields' => $_env->a_field['data'],])
 
-						<form action="{!! route('api.'.$s_category.'.store') !!}" method="POST" class="form-page item-form" id="create-place-form">
-							@csrf
-
-
-							@include('user._fields_loop', ['a_fields' => $a_fields_regular,])
-{{--
-							@include('layouts._form_control', ['control' => 'select', 'name'=>'building_id'])
-
-							@include($theme . '::' . $_env->s_utype . '._form_select', ['name'=>'building_id'])
-
-							@include('layouts._form_control', ['control' => 'input', 'name'=>'lat'])
-							@include('layouts._form_control', ['control' => 'input', 'name'=>'lng'])
---}}
-							@foreach($localizations as $code => $localization)
-								@include('user._fields_loop', ['a_fields' => $a_fields_trans,])
-							@endforeach
-							@php ($code = NULL) @endphp
-{{--
-							@foreach($localizations as $code => $localization)
-								@include('layouts._form_control', ['control' => 'input', 'name'=>'title'])
-								@include('layouts._form_control', ['control' => 'input', 'name'=>'annotation'])
-								@include('layouts._form_control', ['control' => 'input', 'name'=>'description'])
-								@include('layouts._form_control', ['control' => 'input', 'name'=>'address'])
-							@endforeach
-							@php ($code = NULL) @endphp
-
-                   <div class="field_row">
-                       <label for="">местоположение</label>
-                       <input type="text" class="address_field" placeholder="местоположение" value="Киев, улица Симона Петлюры, 1" />
-                   </div>
-                   <div class="field_row">
-                       <label for="">название</label>
-                       <input type="text" placeholder="название" value="Станция метро Университет" />
-                   </div>
-                   <div class="field_row">
-                       <label for="">тип</label>
-                       <select name="" id="">
-                           <option value="Пандус">Пандус</option>
-                           <option value="Пандус2">Пандус2</option>
-                           <option value="Пандус3">Пандус3</option>
-                       </select>
-                   </div>
-
-                   <div class="field_row">
-                       <label for="">КАЧЕСТВО ИЗГОТОВЛЕНИЯ</label>
-                       <input type="text" placeholder="КАЧЕСТВО ИЗГОТОВЛЕНИЯ" value="" />
-                   </div>
-                   <div class="field_row">
-                       <label for="">МАТЕРИАЛ ИЗГОТОВЛЕНИЯ</label>
-                       <input type="text" placeholder="МАТЕРИАЛ ИЗГОТОВЛЕНИЯ" value="Металл" />
-                   </div>
-                   <div class="field_row">
-                       <label for="">состояние</label>
-                       <input type="text" placeholder="состояние" value="Частично доступно для кресел-каталок" />
-                   </div>
---}}
-
-
-
+						@foreach($localizations as $code => $localization)
+							@include('user._fields_loop', ['a_fields' => $_env->a_field['data']['trans'],])
+						@endforeach
+						@php ($code = NULL) @endphp
 
                     <div class="buttons">
 
