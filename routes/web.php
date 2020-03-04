@@ -85,6 +85,70 @@ Route::group([
 #dd(class_exists('Module'), class_exists('Modules\\Issue\\Http\\Controllers\\IssueController'));
 # 	Route::get('issues', ['as' => 'issues.index', 'uses' => '\Modules\Issue\Http\Controllers\IssueController@index']);
 
+
+//Public routes
+Route::group([
+	'as' => 'guest.',
+	'namespace' => 'Guest',
+	'middleware' => []
+], function() {
+
+	$s_model	= 'Welcome';
+	$s_path		= strtolower($s_model);
+	$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
+	$s_ctrl		.='Controller';
+	$s_method	= 'index';
+	Route::get('',									['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
+	Route::group(['middleware' => 'auth'], function() {
+		$s_model	= 'Personal';
+		$s_path		= strtolower($s_model);
+		$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
+		$s_ctrl		.='Controller';
+
+		$s_method	= 'profile';
+		Route::get('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'update';
+		Route::post('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'places';
+		Route::get('my/places',						['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
+		$s_model	= 'Place';
+		$s_path		= strtolower($s_model);
+		$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
+		$s_ctrl		.='Controller';
+
+#		$s_method	= 'edit';
+#		Route::get($s_path . '/modify/{id?}',		['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'form';
+		Route::get($s_path . '/add',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'list';
+		Route::get($s_path . '/all/{type?}/{id?}',	['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'save';
+		Route::post($s_path . '/done',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'view';
+		Route::get($s_path . '/look/{id}',			['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
+		$s_model	= 'Opinion';
+		$s_path		= strtolower($s_model);
+		$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
+		$s_ctrl		.='Controller';
+
+#		$s_method	= 'edit';
+#		Route::get($s_path . '/modify/{id?}',		['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'form';
+		Route::get($s_path . '/add',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/add/{type?}/{id}',	['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'save';
+		Route::post($s_path . '/done',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'list';
+		Route::get($s_path . '/all/{type?}/{id?}',	['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		$s_method	= 'view';
+		Route::get($s_path . '/look/{id}',			['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+	});
+
+});
+
 //API Routes
 Route::group([
 	'as' => 'api.',
@@ -338,6 +402,15 @@ Route::group([
 			Route::get($s_path . '/form/{id?}',	['as' => $s_path . '.form',		'uses' => $s_ctrl . '@form']);
 		}
 	}
+
+	$s_model	= 'Opinion';
+	$s_path		= strtolower($s_model);
+	$s_ctrl		= '\Modules\\' . $s_model . '\User\\' . $s_model ;
+	$s_ctrl		.='Controller';
+
+	$s_method	= 'place';
+	Route::get($s_path . '/place/{id?}',		['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
 });
 
 //Admin Routes
@@ -459,48 +532,6 @@ Route::group([
 
 	Route::get('settings', ['as' => 'settings', 'uses' => 'SettingsController@index']);
 */
-});
-
-//Public routes
-Route::group([
-	'as' => 'guest.',
-	'namespace' => 'Guest',
-	'middleware' => []
-], function() {
-
-	$s_model	= 'Welcome';
-	$s_path		= strtolower($s_model);
-	$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
-	$s_ctrl		.='Controller';
-	$s_method	= 'index';
-	Route::get('',									['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-
-	Route::group(['middleware' => 'auth'], function() {
-		$s_model	= 'Personal';
-		$s_path		= strtolower($s_model);
-		$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
-		$s_ctrl		.='Controller';
-
-		$s_method	= 'profile';
-		Route::get('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-		$s_method	= 'update';
-		Route::post('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-		$s_method	= 'places';
-		Route::get('my/places',						['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-
-		$s_model	= 'Place';
-		$s_path		= strtolower($s_model);
-		$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
-		$s_ctrl		.='Controller';
-
-		$s_method	= 'form';
-		Route::get('place/add',						['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-		$s_method	= 'save';
-		Route::post('place/done',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-		$s_method	= 'modify';
-		Route::get('place/edit',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-	});
-
 });
 
 //Public routes
