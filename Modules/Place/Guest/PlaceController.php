@@ -2,12 +2,12 @@
 
 namespace Modules\Place\Guest;
 
-                                 use Auth;
-       use Modules\Building\Database\Building;
-            use App\Http\Controllers\ControllerGuest as Controller;
+use                                          Auth;
+use                Modules\Building\Database\Building;
+use                     App\Http\Controllers\ControllerGuest as Controller;
 #                                 use Hash;
-          use Modules\Place\Database\Place;
-                 use Illuminate\Http\Request;
+use                   Modules\Place\Database\Place;
+use                          Illuminate\Http\Request;
 #                             use App\Subscriber;
 #                             use App\User;
 #                                 use Validator;
@@ -15,6 +15,13 @@ namespace Modules\Place\Guest;
 
 class PlaceController extends Controller
 {
+	/**
+	 * Open CRUD form to authenticated user (aka "User" previously and now "Guest")
+	 * for creating/editing the specified resource.
+	 * @param Request	$request		Data from request
+	 *
+	 * @return View		instance of
+	 */
 	public function form(Request $request)
 	{
 		$this->setEnv();
@@ -29,5 +36,4 @@ class PlaceController extends Controller
 						'user'			=> $user,
 					]);
 	}
-
 }
