@@ -52,13 +52,12 @@
 	<link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
 	<link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
 	<!-- /global stylesheets -->
+	@yield('css')
 
 	<link rel="stylesheet" href="{{ asset($theme . '/css/' . $_env->s_utype . '_app.css?v=' . $version->css) }}">
 	<link rel="stylesheet" href="{{ asset($theme . '/css/tabs.css?v=' . $version->css) }}">
     <link href="{!! asset('/css/noty.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
     <link href="{!! asset('/css/override.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
-
-	@yield('css')
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	{{--
@@ -85,10 +84,15 @@
 @include($theme . '::' . $_env->s_utype . '.header')
 
 <section
-	id="{{ request()->segment(1) == '' || request()->segment(1) == 'place' ? 'map_screen' : 'custom_page'}}"
+	id="{{ request()->segment(1) == ''
+		|| request()->segment(1) == 'place'
+		|| request()->segment(1) == 'opinion'
+		? 'map_screen'
+		: 'custom_page'
+		}}"
 	class="{{ request()->segment(1) == ''
 				? 'general_page'
-				: request()->segment(1) == 'place'
+				: request()->segment(1) == 'place' || request()->segment(1) == 'opinion'
 					? ''
 					: request()->segment(1) . '_page'
 			}}"
@@ -124,10 +128,17 @@
 {{--
 https://sweetalert.js.org/guides/
 https://sweetalert.js.org/docs/#buttons
+it allows for multiple action buttons being shown
 --}}
 <script src="{{ asset('/admin/js/plugins/notifications/sweetalert2.min.js') }}"></script>
+{{--
+version by another author
+we used v.1 of it
+it allows for 2 action buttons only. still has its advatages, too
+https://sweetalert2.github.io/
+--}}
 
-<!-- Notificationsrelated JavaScript -->
+<!-- Notifications related JavaScript -->
 <script src="{!! asset('/admin/js/main/bootstrap.bundle.min.js') !!}"></script>
 <script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>

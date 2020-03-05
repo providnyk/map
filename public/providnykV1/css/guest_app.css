@@ -843,8 +843,11 @@ footer .open_filter_btn {
 }
 #mib_content .new_place_wrap .field_row input::placeholder {
 	color: #d9dce1;
-	text-transform: capitalize;
 }
+.select2-selection--single .select2-selection__placeholder {
+	color: #d9dce1;
+}
+
 .jqselect select {
 	display: none;
 }

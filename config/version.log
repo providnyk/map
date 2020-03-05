@@ -1,5 +1,6 @@
-0.80.1+a064:1 user ADD routes for adding opinion for selected place
+0.80.1+a065:1 user ADD proper css ordering for easier overriding external styles
 ADD form for opinion same as for a d m i n
+0.80.1+a064:1 user ADD routes for adding opinion for selected place
 0.80.1+a062:1 user ADD inner clean place creation form
 0.80.1+a051:2 user FIX check for reflection in controller when creating related model rules
 0.80.0+a051:1 user UPD required marker for dynamic selects in opinion
