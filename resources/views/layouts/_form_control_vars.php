@@ -1,5 +1,5 @@
 <?php
-
+/*
 $s_label = '';
 $s_rules = '';
 $b_many	= FALSE;
@@ -55,3 +55,4 @@ elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.r
 $b_required = (stripos($s_rules, 'required') !== FALSE);
 
 include(base_path().'/resources/views/layouts/_form_' . $control . '_current.php');
+*/

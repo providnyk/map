@@ -1,19 +1,19 @@
 <?php
-
+/*
 return [
 	'names' =>
 	[
-		'sgl'			=> 'Будова',
-		'plr'			=> 'Будови',
-		'list'			=> 'будов',
-		'btn_create'	=> 'будову',
-		'btn_edit'		=> 'будову',
-		'btn_delete'	=> 'будов',
-		'txt_create'	=> 'будови',
-		'txt_edit'		=> 'будови',
-		'filterby'		=> 'будовою',
-		'typein'		=> 'будову',
-		'saved'			=> 'Будову',
+		'sgl'			=> 'moved to module',
+		'plr'			=> 'moved to module',
+		'list'			=> 'moved to module',
+		'btn_create'	=> 'moved to module',
+		'btn_edit'		=> 'moved to module',
+		'btn_delete'	=> 'moved to module',
+		'txt_create'	=> 'moved to module',
+		'txt_edit'		=> 'moved to module',
+		'filterby'		=> 'moved to module',
+		'typein'		=> 'moved to module',
+		'saved'			=> 'moved to module',
 	],
 	'field' => [
 		'title' => [
@@ -22,3 +22,4 @@ return [
 		],
 	],
 ];
+*/

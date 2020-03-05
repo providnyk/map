@@ -1,5 +1,5 @@
 <?php
-/*
+
 return [
 	'tab' => [
 		'data' => [
@@ -73,11 +73,6 @@ return [
 			'filterby'	=> 'прізвищем',
 			'typein'	=> 'прізвище',
 		],
-		'title' => [
-			'label'		=> 'Назва',
-			'filterby'	=> 'назвою',
-			'typein'	=> 'назву',
-		],
 		'published' => [
 			'label'		=> 'Опублікувати',
 			'filterby'	=> 'опубліковані',
@@ -87,6 +82,11 @@ return [
 			'label'		=> 'Роль',
 			'filterby'	=> 'роллю',
 			'typein'	=> 'роль',
+		],
+		'title' => [
+			'label'		=> 'Назва',
+			'filterby'	=> 'назвою',
+			'typein'	=> 'назву',
 		],
 		'timezone' => [
 			'label'		=> 'Виберіть часовий пояс',
@@ -119,4 +119,3 @@ return [
 		],
 	],
 ];
-*/
