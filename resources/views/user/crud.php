@@ -19,6 +19,7 @@ $s_create_route		= route('admin.'.$s_category.'.form');
 $s_delete_route		= route('api.' . $s_category . '.destroy');
 $s_list_route		= route('admin.' . $s_category . '.index');
 $s_cancel_route		= '';
+$s_opinion_route	= route('admin.opinion.form', ':place_id');
 $s_list_name		= trans('common/form.breadcrumbs.list') . ' ' . trans('user/' . $s_category . '.names.list');
 
 $s_title			= trans('user/' . $s_category . '.names.plr');
@@ -50,12 +51,27 @@ if (isset($$s_category))
 								: route('api.' . $s_category . '.store')
 							);
 
-	$s_btn_primary		= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
-
-	$s_btn_secondary	= ($o_item->id
-								? trans('common/form.actions.continue') . ' ' . trans('common/form.actions.edit')
+	$s_btn_extra		= ($o_item->id
+								? ''
 								: trans('common/form.actions.create_more')
 							);
+	$s_route_extra		= ($o_item->id
+								? ''
+								: $s_create_route
+							);
+
+#	$s_btn_primary		= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
+	$s_btn_primary		= ($o_item->id
+								? trans('common/form.actions.continue') . ' ' . trans('common/form.actions.edit')
+								: trans('common/form.actions.evaluate')
+							);
+	$s_route_primary	= ($o_item->id
+								? ''
+								: $s_opinion_route
+							);
+
+	$s_btn_secondary	= trans("common/form.breadcrumbs.list");
+	$s_route_secondary	= $s_list_route;
 }
 
 if (!isset($b_script_loaded))

@@ -30,6 +30,68 @@ $(document).ready(() => {
 
 //swal("Gotcha!", "Pikachu was caught!", "success");
 
+			var a_buttons = {};
+
+			if (s_text_secondary != '')
+			{
+				a_buttons['secondary'] = {
+					text: s_text_secondary,
+					className: "btn-light",
+				};
+			}
+
+			if (s_text_extra != '')
+				a_buttons['extra'] = {
+					text: s_text_extra,
+					className: "btn-light",
+				};
+
+			if (s_text_primary != '')
+			{
+				a_buttons['primary'] = {
+					text: s_text_primary,
+					className: "btn-primary",
+				};
+				s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
+			}
+
+			swal({
+				icon: "success",
+				title: s_res_submit,
+				text: data.message,
+				buttons: a_buttons,
+			}).then((reaction) => {
+
+				switch (reaction) {
+
+					case 'extra':
+						if (s_route_extra != '')
+							window.location.href = s_route_extra;
+						else
+							resetForm(form);
+					break;
+					case 'secondary':
+						if (typeof data.url === 'undefined')
+							window.location.href = s_route_list;
+						else
+							window.location = data.url;
+					break;
+					case 'primary':
+						if (s_route_primary != '')
+							window.location.href = s_route_primary;
+						else
+							resetForm(form);
+					break;
+
+					default:
+						if (s_close_route != '')
+							window.location.href = s_route_list;
+						else
+							resetForm(form);
+				}
+
+			});
+/*
 			swal({
 				icon: "success",
 				title: s_res_submit,
@@ -50,7 +112,7 @@ $(document).ready(() => {
 
 					case 'list':
 						if (typeof data.url === 'undefined')
-							window.location.href = s_list_route;
+							window.location.href = s_route_list;
 						else
 							window.location = data.url;
 					  break;
@@ -60,15 +122,14 @@ $(document).ready(() => {
 
 					default:
 						if (s_close_route != '')
-							window.location.href = s_list_route;
+							window.location.href = s_route_list;
 						else
 							resetForm(form);
-//						window.location.href = s_list_route;
+//						window.location.href = s_route_list;
 				}
 
 			});
-
-
+*/
 /*
 			swal({
 				title: s_res_submit,
@@ -80,7 +141,7 @@ $(document).ready(() => {
 				cancelButtonClass: 'btn btn-light',
 			}).then((confirm) => {
 				if(confirm.value){
-					window.location.href = s_list_route;
+					window.location.href = s_route_list;
 				}else{
 					form.find('fieldset').attr('disabled', false);
 				}
