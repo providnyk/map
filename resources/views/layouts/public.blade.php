@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="{{ asset('css/jquery.formstyler.theme.css') }}">
     <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
 
+    @yield('css')
+
     <link rel="stylesheet" href="{{ asset('css/app_public.css?v=' . $version->css) }}">
     <link rel="stylesheet" href="{{ asset('css/app_media.css?v=' . $version->css) }}">
-
-    @yield('css')
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     {{--
