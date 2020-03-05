@@ -1,3 +1,4 @@
+0.81.0+a065:6 user ADD new cleaner label, input, and hint detection for forms
 0.81.0+a065:5 user ADD move translations to new places at g u e s t forms
 0.81.0+a065:4 user ADD proper css ordering for easier overriding external styles
 0.81.0+a065:3 user ADD clean redundant variabls in g u e s t form

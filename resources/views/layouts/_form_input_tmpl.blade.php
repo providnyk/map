@@ -6,5 +6,6 @@
 		's_field_type'		=> 'hidden',
 		's_selected_title'	=> '${'.$s_fname.'}',
 		's_typein'			=> '',
+		's_hint'			=> '',
 	]
 )

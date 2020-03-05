@@ -1,4 +1,4 @@
-		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! trans('user/crud.hint.select') !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}" {!! $b_many ? 'multiple' : '' !!}>
+		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! $s_hint !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}" {!! $b_many ? 'multiple' : '' !!}>
 			@if($s_selected_id)
 				<option value="{!! $o_item->$s_id !!}">
 					{!! $s_selected_title !!}
