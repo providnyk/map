@@ -48,7 +48,7 @@ class LoginController	extends BaseController
 
 	protected function redirectTo()
 	{
-		return route('guest.personal_profile');
+		return route('guest.personal.profile');
 	}
 
 }

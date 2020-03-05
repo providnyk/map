@@ -107,11 +107,11 @@ Route::group([
 		$s_ctrl		.='Controller';
 
 		$s_method	= 'profile';
-		Route::get('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get('my/profile',					['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'update';
-		Route::post('my/profile',					['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::post('my/profile',					['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'places';
-		Route::get('my/places',						['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get('my/places',						['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 
 		$s_model	= 'Place';
 		$s_path		= strtolower($s_model);
@@ -119,15 +119,15 @@ Route::group([
 		$s_ctrl		.='Controller';
 
 #		$s_method	= 'edit';
-#		Route::get($s_path . '/modify/{id?}',		['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+#		Route::get($s_path . '/modify/{id?}',		['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'form';
-		Route::get($s_path . '/add',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/add',				['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'list';
-		Route::get($s_path . '/all/{type?}/{id?}',	['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/all/{type?}/{id?}',	['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'save';
-		Route::post($s_path . '/done',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::post($s_path . '/done',				['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'view';
-		Route::get($s_path . '/look/{id}',			['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/look/{id}',			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 
 		$s_model	= 'Opinion';
 		$s_path		= strtolower($s_model);
@@ -135,16 +135,16 @@ Route::group([
 		$s_ctrl		.='Controller';
 
 #		$s_method	= 'edit';
-#		Route::get($s_path . '/modify/{id?}',		['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+#		Route::get($s_path . '/modify/{id?}',		['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'form';
-		Route::get($s_path . '/add',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
-		Route::get($s_path . '/add/{type?}/{id}',	['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/add',				['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/add/{type?}/{id?}',	['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'save';
-		Route::post($s_path . '/done',				['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::post($s_path . '/done',				['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'list';
-		Route::get($s_path . '/all/{type?}/{id?}',	['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/all/{type?}/{id?}',	['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 		$s_method	= 'view';
-		Route::get($s_path . '/look/{id}',			['as' => $s_path . '_' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+		Route::get($s_path . '/look/{id}',			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 	});
 
 });

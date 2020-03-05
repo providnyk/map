@@ -50,7 +50,7 @@ class SignupController	extends Controller
 
 		Auth::login($user);
 
-		return redirect(route('guest.personal_profile'));
+		return redirect(route('guest.personal.profile'));
 	}
 
 	public function core(SignupRequest $request)

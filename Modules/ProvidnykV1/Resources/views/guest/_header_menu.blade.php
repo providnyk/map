@@ -12,7 +12,7 @@
 					@if(isset($b_admin) && $b_admin)
 					<li><a class="violet" href="{!! route('admin.home') !!}">{{ trans('general.admin-panel') }}</a></li>
 					@endif
-					<li><a class="blue"  href="{!! route('guest.personal_profile') !!}">{!! trans('general.my-area') !!}</a></li>
+					<li><a class="blue"  href="{!! route('guest.personal.profile') !!}">{!! trans('general.my-area') !!}</a></li>
 					<li>
 					@include('providnykV1::guest._signout', ['class' => 'green nav-link'])
 					</li>

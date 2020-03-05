@@ -67,7 +67,7 @@ class PasswordController extends Controller
 
 		return response([
 			'message' => trans('user/form.text.reset_done'),
-			'url'		=> route('guest.personal_profile'),
+			'url'		=> route('guest.personal.profile'),
 		], 200);
 
 	}

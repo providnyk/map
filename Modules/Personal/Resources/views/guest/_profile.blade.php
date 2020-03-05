@@ -14,7 +14,7 @@
 							<div class="divider"></div>
 						</div>
 
-						<form action="{!! route('guest.personal_profile') !!}" method="POST" class="form-page" id="profile-form">
+						<form action="{!! route('guest.personal.profile') !!}" method="POST" class="form-page" id="profile-form">
 							@csrf
 
 							<div class="user_fields">

@@ -65,7 +65,7 @@ class SigninController	extends Controller
 				'action' => 'reload',
 			], 307);
 		}
-		return redirect(route('guest.personal_profile'));
+		return redirect(route('guest.personal.profile'));
 	}
 
 	public function form()

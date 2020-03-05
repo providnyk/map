@@ -207,7 +207,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{!! route('guest.personal_profile') !!}" class="dropdown-item">
+                    <a href="{!! route('guest.personal.profile') !!}" class="dropdown-item">
                     	<i class="icon-user-plus"></i>
                     	{!! trans('general.user-profile') !!}
                 	</a>

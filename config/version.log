@@ -1,3 +1,4 @@
+0.81.0+a065:1 user UPD routing using dot as splitter
 0.80.1+a065:1 user ADD proper css ordering for easier overriding external styles
 ADD form for opinion same as for a d m i n
 0.80.1+a064:1 user ADD routes for adding opinion for selected place
