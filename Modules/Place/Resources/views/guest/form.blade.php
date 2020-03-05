@@ -37,8 +37,6 @@ include(base_path().'/resources/views/guest/crud.php');
 
 					@php
 						$code				= NULL;
-						$s_category			= 'place';
-						$o_item				= $$s_category;
 					@endphp
 
 					<form action="{!! route('api.'.$s_category.'.store') !!}" method="POST" class="form-page item-form" id="create-place-form">
@@ -64,9 +62,14 @@ include(base_path().'/resources/views/guest/crud.php');
                             <input type="file" name="image" id="image-upload" />
                         </div>
 --}}
-							<div class="buttons">
-								<button type="submit" class="confirm">{!! trans('personal::guest.button.add_new_place') !!}</button>
-							</div>
+
+@include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'create-' . $s_category])
+
+						<div class="buttons">
+							<button type="submit" class="confirm">
+								{!! trans('personal::guest.button.add_new_' . $s_category) !!}
+							</button>
+						</div>
 
                         <div class="divider"></div>
                     </div>
@@ -94,7 +97,7 @@ include(base_path().'/resources/views/guest/crud.php');
 									</span>
 								</div>
 
-@include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'create-place'])
+@include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'create-' . $s_category])
 
 							</div>
 
