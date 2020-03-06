@@ -1,6 +1,9 @@
-		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}" data-placeholder="{!! $s_hint !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}" {!! $b_many ? 'multiple' : '' !!}>
+	@if ($b_readonly || $b_disabled)
+	<input type="hidden" name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" value="{!! $s_selected_id !!}"/>
+	@endif
+		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}@if ($b_readonly || $b_disabled){!! '_off' !!}@endif" data-placeholder="{!! $s_hint !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}"{!! $b_many ? ' multiple' : '' !!}{!! $b_disabled ? ' disabled="disabled"' : '' !!}{!! $b_readonly ? ' readonly' : '' !!}>
 			@if($s_selected_id)
-				<option value="{!! $o_item->$s_id !!}">
+				<option value="{!! $s_selected_id !!}">
 					{!! $s_selected_title !!}
 				</option>
 			@elseif ($b_many && $$name)
@@ -20,3 +23,16 @@
 <script src="{{ asset('/admin/js/plugins/forms/selects/select2.min.js') }}"></script>
 <script src="{!! asset('/js/liveDropDowns.js?v=' . $version->js) !!}"></script>
 @endsection
+@section('script')
+<script type="text/javascript">
+$(document).ready(function () {
+	@if ($b_readonly)
+	$("#{!! $s_id !!}_off").select2({disabled:'readonly'});
+	@endif
+	@if ($b_disabled)
+	$("#{!! $s_id !!}_off").select2({disabled:true});
+	@endif
+});
+</script>
+@append
+
