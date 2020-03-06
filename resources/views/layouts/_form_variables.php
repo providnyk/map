@@ -3,6 +3,8 @@
 $s_label			= '';
 $s_rules			= '';
 $b_many				= FALSE;
+$b_disabled			= FALSE;
+$b_readonly			= FALSE;
 $s_typein			= '';
 $s_hint				= '';
 $s_route			= '';
@@ -38,7 +40,7 @@ $s_value			= $o_item->id
 $s_class_name		= (isset($s_class_name) ? $s_class_name : '');
 
 $a_labels			= [];
-dump($_env->s_utype, $s_category, $name);
+
 /**
  * ------ Project specific ------
  */
@@ -122,7 +124,7 @@ do
 while ((empty($s_label) || empty($s_typein) || empty($s_hint)) && $i < count($a_field_trans));
 
 /**
- * fallback to plain field name
+ * fallback to plain field name, typein, and hint
  */
 if (empty($s_label)) $s_label		= '“'.$name.'”';
 if (empty($s_typein)) $s_typein		= '“'.$name.'”';
@@ -151,7 +153,9 @@ if (trans('user/'.$s_category.'.field.'.$s_id.'.rules') != 'user/'.$s_category.'
 elseif (trans('user/crud.field.'.$name.'.rules') != 'user/crud.field.'.$name.'.rules')
 	$s_rules = trans('user/crud.field.'.$name.'.rules');
 */
-$s_rules = $_env->a_rule[$s_id];
-$b_required = (stripos($s_rules, 'required') !== FALSE);
+$s_rules			= $_env->a_rule[$s_id];
+$b_required			= (stripos($s_rules, 'required') !== FALSE);
+$b_disabled			= isset($o_item->disabled) && in_array($s_id, $o_item->disabled);
+$b_readonly			= isset($o_item->readonly) && in_array($s_id, $o_item->readonly);
 
 include(base_path().'/resources/views/layouts/_form_' . $control . '_current.php');
