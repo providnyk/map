@@ -31,7 +31,7 @@ class PlaceController extends Controller
 		return view($this->_env->s_view . 'form',
 					[
 						'b_admin'		=> $user->checkAdmin(),
-						'building'		=> Building::all()->sortBy('name'),
+						'building'		=> Building::all()->sortBy('title'),
 						'place'			=> Place::findOrNew($request->id),
 						'user'			=> $user,
 					]);

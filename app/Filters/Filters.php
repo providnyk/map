@@ -21,12 +21,12 @@ abstract class Filters
 
     public function __construct(Request $request)
     {
-        $this->request = $request;
-        $this->appLocale = app()->getLocale();
+        $this->request				= $request;
+        $this->appLocale			= app()->getLocale();
 
-        $this->limit = $this->getLimit();
-        $this->orderColumn = $this->getOrderColumn();
-        $this->orderDirection = $this->getOrderDirection();
+        $this->limit				= $this->getLimit();
+        $this->orderColumn			= $this->getOrderColumn();
+        $this->orderDirection		= $this->getOrderDirection();
     }
 
     public function apply($builder)
@@ -53,13 +53,12 @@ abstract class Filters
         return $this->perPage;
     }
 
-    protected function getOrderColumn()
+    protected function getOrderColumn($s_default = 'id')
     {
         if (isset($this->request->columns[$this->request->order[0]['column']]['data'])) {
             return $this->request->columns[$this->request->order[0]['column']]['data'];
         }
-
-        return 'id';
+        return $s_default;
     }
 
     protected function getOrderDirection()

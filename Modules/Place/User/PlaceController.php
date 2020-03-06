@@ -19,7 +19,7 @@ class PlaceController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'building'		=> Building::all()->sortBy('name'),
+				'building'		=> Building::all()->sortBy('title'),
 			]);
 		});
 		return parent::form($request);

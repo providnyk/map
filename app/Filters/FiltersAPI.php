@@ -24,11 +24,13 @@ class FiltersAPI extends Filters
 
 	protected function getQuery()
 	{
+
 		$s_basename					= class_basename(__CLASS__);
 		$this->_env					= (object) [];
 		$s_tmp						= get_called_class();
 		$a_tmp						= explode('\\', $s_tmp);
 		$this->_env->s_name			= str_replace($s_basename, '', $a_tmp[3]);
+		$this->orderColumn			= $this->getOrderColumn('title');
 
 		if ($a_tmp[0] == 'Modules')
 		{
