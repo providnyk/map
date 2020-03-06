@@ -9,29 +9,31 @@ define('STR_OPT_FEW_LIST', 'few from list');
 define('BOOL_YES_NO', 'yes or no');
 */
 return [
-    'breadcrumbs' => [
-        'list' => 'Список',
-    ],
-	'text' => [
-        'create'    	=> 'Створити',
-        'create_more'  	=> 'Створити ще один запис',
-        'edit'      	=> 'Редагування',
-        'view'      	=> 'Перегляд',
+	'breadcrumbs' => [
+		'list' => 'Список',
 	],
-    'actions' => [
-        'create'    	=> 'Створити',
-        'create_more'  	=> 'Створити ще один запис',
-        'edit'      	=> 'Редагувати',
-        'view'      	=> 'Подивитись',
-        'continue'  	=> 'Продовжити',
-    ],
-    'fields' => [
+	'text' => [
+		'create'		=> 'Створити',
+		'create_more'	=> 'Створити ще один запис',
+		'evaluate'		=> 'Оцініти цій запис',
+		'edit'			=> 'Редагування',
+		'view'			=> 'Перегляд',
+	],
+	'actions' => [
+		'create'		=> 'Створити',
+		'create_more'	=> 'Створити ще',
+		'evaluate'		=> 'Оцініти',
+		'edit'			=> 'Редагувати',
+		'view'			=> 'Подивитись',
+		'continue'		=> 'Продовжити',
+	],
+	'fields' => [
 		'country_id' => [
 			'label' => 'Country',
 		],
 		'active' => [
 			'label' => 'Active',
 		],
-    ],
+	],
 
 ];
