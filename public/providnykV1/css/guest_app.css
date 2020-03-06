@@ -1229,11 +1229,23 @@ footer .open_filter_btn {
 	margin-top:5px;
 }
 
+/*-------------*/
 
-
-
-
-
-
+/* adjusting styles */
 
 /*-------------*/
+
+header nav ul li a,
+.green.nav-link {
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+i.icon-switch2 {
+	font-size: 0.9em;
+	top: -3px;
+}
+
+header nav ul li button.green {
+	padding: 0.7rem 1.25rem;
+}
