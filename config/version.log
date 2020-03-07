@@ -1,9 +1,10 @@
+0.81.0+a067:6 user ADD more versatile translations at u s e r and global levels for g u e s t being able using them
+UPD re-use same form for g_u_e_s_t as for u_s_e_r for opinion as next step after place creation
 0.81.0+a067:5 user ADD select control proper class name
 0.81.0+a067:4 user ADD comment out js javascript provided by html-frontender that is conflicting with select2
 0.81.0+a067:3 user ADD comment out js javascript provided by html-frontender that is conflicting with select2
 0.81.0+a067:2 user ADD new routing variables will use ony id for main record and other ids will be prepended with a letter
 0.81.0+a067:1 user ADD more versatile translations at u s e r and global levels for g u e s t being able using them
-UPD re-use same form for g_u_e_s_t as for u_s_e_r for opinion as next step after place creation
 0.81.0+a066:5 user ADD visual spacing for vars setting
 0.81.0+a066:4 user ADD disabled and readonly for select in forms
 0.81.0+a066:3 user ADD change filters default sorting by title for translations query
