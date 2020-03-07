@@ -52,6 +52,7 @@
 	<link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
 	<link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
 	<!-- /global stylesheets -->
+
 	@yield('css')
 
 	<link rel="stylesheet" href="{{ asset($theme . '/css/' . $_env->s_utype . '_app.css?v=' . $version->css) }}">
@@ -77,6 +78,17 @@
 	<script type="text/javascript">
 	@include('common.var2js')
 	</script>
+	@append
+	@section('js')
+	<!-- Notifications related JavaScript -->
+	<script src="{!! asset('/admin/js/main/bootstrap.bundle.min.js') !!}"></script>
+	<script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
+	<script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>
+	<script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
+	{{--
+	<script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
+	--}}
+	<script src="{{ asset($theme . '/js/' . $_env->s_utype . '_app.js?v=' . $version->js) }}"></script>
 	@append
 
 </head>
@@ -138,21 +150,9 @@ it allows for 2 action buttons only. still has its advatages, too
 https://sweetalert2.github.io/
 --}}
 
-<!-- Notifications related JavaScript -->
-<script src="{!! asset('/admin/js/main/bootstrap.bundle.min.js') !!}"></script>
-<script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
-<script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>
-<script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
-
-{{--
-<script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
---}}
-
 @yield('js')
 
 @yield('script')
-
-<script src="{{ asset($theme . '/js/' . $_env->s_utype . '_app.js?v=' . $version->js) }}"></script>
 
 <div id="div_tmpl_wrapper" class="d-none">
 @yield('tmpl')
