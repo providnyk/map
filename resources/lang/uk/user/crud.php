@@ -36,11 +36,6 @@ return [
 			'filterby'	=> 'дійсністю',
 			'typein'	=> 'дійсність',
 		],
-		'description' => [
-			'label'		=> 'Опис',
-			'filterby'	=> 'описом',
-			'typein'	=> 'текст опису',
-		],
 		'email' => [
 			'label'		=> 'Е-пошта',
 			'filterby'	=> 'е-поштою',

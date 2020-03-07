@@ -105,7 +105,7 @@ $(document).ready(function () {
 										"div_tmpl_opinion",
 										i_place_id,
 										tmp.results[i],
-										'{!! trans('crud.hint.select') !!} {!! trans('user/'.$name.'.names.sgl') !!}',
+										'{!! trans('crud.hint.select') !!} {!! trans($name.'::crud.names.sgl') !!}',
 										0,
 										);
 							}

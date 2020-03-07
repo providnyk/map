@@ -72,7 +72,7 @@ $(document).ready(() => {
 					break;
 					case 'secondary':
 						if (typeof data.url === 'undefined')
-							window.location.href = s_route_list;
+							window.location.href = s_route_secondary;
 						else
 							window.location = data.url;
 					break;

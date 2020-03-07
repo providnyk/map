@@ -11,7 +11,7 @@
 			<div class="col-lg-8 field-body">
 				@include('layouts._form_' . $control . '_tmpl', ['s_fname' => 'element_id'])
 				<!--input type="hidden" name="{!! $s_model_nameid !!}[element_id]" class="{!! $s_model_name !!}_element_id" value="${element_id}"-->
-				<select name="{!! $s_model_nameid !!}[mark_id]" class="opinions" data-placeholder="{!! trans('crud.hint.select') !!} {!! trans('user/'.$name.'.names.sgl') !!}">
+				<select name="{!! $s_model_nameid !!}[mark_id]" class="opinions" data-placeholder="{!! trans('crud.hint.select') !!} {!! trans($name.'::crud.names.sgl') !!}">
 					<option value="${option_value}">${option_title}</option>
 				</select>
 				@include('layouts._form_' . $control . '_tmpl', ['s_fname' => 'place_id'])

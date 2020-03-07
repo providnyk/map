@@ -26,8 +26,10 @@
 @section('script')
 <script type="text/javascript">
 $(document).ready(function () {
+//	$("#{!! $s_id !!}").trigger('change');
 	@if ($b_readonly)
 	$("#{!! $s_id !!}_off").select2({disabled:'readonly'});
+	$("#{!! $s_id !!}_off").trigger('change');
 	@endif
 	@if ($b_disabled)
 	$("#{!! $s_id !!}_off").select2({disabled:true});

@@ -6,6 +6,11 @@ return [
 			'filterby'	=> 'назвою',
 			'typein'	=> 'назву',
 		],
+		'description' => [
+			'label'		=> 'Опис',
+			'filterby'	=> 'описом',
+			'typein'	=> 'текст опису',
+		],
 	],
 	'hint' => [
 		'input'			=> 'Введіть',

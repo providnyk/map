@@ -51,27 +51,34 @@ if (isset($$s_category))
 								: route('api.' . $s_category . '.store')
 							);
 
-	$s_btn_extra		= ($o_item->id
-								? ''
-								: trans('common/form.actions.create_more')
-							);
-	$s_route_extra		= ($o_item->id
-								? ''
-								: $s_create_route
-							);
-
-#	$s_btn_primary		= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
-	$s_btn_primary		= ($o_item->id
-								? trans('common/form.actions.continue') . ' ' . trans('common/form.actions.edit')
-								: trans('common/form.actions.evaluate')
-							);
-	$s_route_primary	= ($o_item->id
-								? ''
-								: $s_opinion_route
-							);
-
-	$s_btn_secondary	= trans("common/form.breadcrumbs.list");
-	$s_route_secondary	= $s_list_route;
+	switch ($s_category)
+	{
+		case 'opinion':
+		$s_btn_primary		= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
+		$s_route_primary	= $s_list_route;
+		$s_btn_secondary	= '';
+		$s_route_secondary	= '';
+		$s_btn_extra		= '';
+		$s_route_extra		= '';
+		break;
+		case 'place':
+		$s_btn_primary		= trans('common/form.actions.evaluate');
+		$s_route_primary	= $s_opinion_route;
+		$s_btn_secondary	= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
+		$s_route_secondary	= $s_list_route;
+		$s_btn_extra		= trans('common/form.actions.create_more');
+		$s_route_extra		= $s_create_route;
+		break;
+		default:
+		$s_btn_primary		= ($o_item->id
+									? trans('common/form.actions.continue') . ' ' . trans('common/form.actions.edit')
+									: trans('common/form.actions.create_more')
+								);
+		$s_route_primary	= $s_page_route;
+		$s_btn_secondary	= trans("common/form.breadcrumbs.list");
+		$s_route_secondary	= $s_list_route;
+		break;
+	}
 }
 
 if (!isset($b_script_loaded))
