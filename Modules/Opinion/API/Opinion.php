@@ -28,9 +28,9 @@ class Opinion extends Model
 	 */
 	#  -> select a palce from dropdown
 
-	public static function getSpecificLists($request, $id) : String
+	public static function getSpecificLists($request, $pid) : String
 	{
-		$i_building_id			= Place::findOrFail($id)->building_id;
+		$i_building_id			= Place::findOrFail($pid)->building_id;
 		$i_style_id				= Building::findOrFail($i_building_id)->style_id;
 		$a_element_ids			= Style::findOrFail($i_style_id)->element()->get()->pluck('id')->toArray();
 

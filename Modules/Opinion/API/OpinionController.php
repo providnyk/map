@@ -56,13 +56,13 @@ class OpinionController extends Controller
 	/**
 	 * Get list of related elements, marks specific to this place
 	 * @param Request	$request		Data from request
-	 * @param Integer	$id				place id
+	 * @param Integer	$pid				place id
 	 *
 	 * @return Response	json instance of
 	 */
-	protected function place(Request $request, $id) : String
+	protected function place(Request $request, $pid) : String
 	{
-		return Opinion::getSpecificLists($request, $id);
+		return Opinion::getSpecificLists($request, $pid);
 	}
 
 	/**

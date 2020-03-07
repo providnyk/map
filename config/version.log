@@ -1,3 +1,4 @@
+0.81.0+a067:2 user ADD new routing variables will use ony id for main record and other ids will be prepended with a letter
 0.81.0+a067:1 user ADD more versatile translations at u s e r and global levels for g u e s t being able using them
 UPD re-use same form for g_u_e_s_t as for u_s_e_r for opinion as next step after place creation
 0.81.0+a066:5 user ADD visual spacing for vars setting
