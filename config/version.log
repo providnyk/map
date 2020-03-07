@@ -1,3 +1,4 @@
+0.81.0+a067:8 user ADD place, add form, missing translations for page title and description field
 0.81.0+a067:7 user ADD move js and script to head of template as section
 0.81.0+a067:6 user ADD more versatile translations at u s e r and global levels for g u e s t being able using them
 UPD re-use same form for g_u_e_s_t as for u_s_e_r for opinion as next step after place creation

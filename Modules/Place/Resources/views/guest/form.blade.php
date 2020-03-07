@@ -4,8 +4,10 @@
 include(base_path().'/resources/views/guest/crud.php');
 @endphp
 
+
+
 @section('title')
-{{ mb_strtoupper(trans('user/form.text.' . request()->segment(1))) }}
+{!! mb_strtoupper($s_page_action . ' &#60; ' . trans(request()->segment(1) . '::crud.names.plr')) !!}
 @endsection
 
 @include('public.partials._profile', ['s_id' => '#addplace-form'])
@@ -39,7 +41,7 @@ include(base_path().'/resources/views/guest/crud.php');
 						$code				= NULL;
 					@endphp
 
-					<form action="{!! route('api.'.$s_category.'.store') !!}" method="POST" class="form-page item-form" id="create-place-form">
+					<form action="{!! route('api.'.$s_category.'.store') !!}" method="POST" class="form-page item-form" id="create-{!! $s_category !!}-form">
 						@csrf
 
 						@include('user._fields_loop', ['a_fields' => $_env->a_field['data'],])

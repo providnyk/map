@@ -1,10 +1,10 @@
 @extends($theme . '::' . $_env->s_utype . '.master')
 
 @section('title')
-{{ mb_strtoupper(trans('general.' . request()->segment(1))) }}
+{!! mb_strtoupper(trans('personal::guest.text.'.request()->segment(2)) . ' &#60; ' . trans('general.' . request()->segment(1))) !!}
 @endsection
 
-@include('public.partials._profile', ['s_id' => '#profile-form, #create-place-form'])
+@include('public.partials._profile', ['s_id' => '#profile-form, #create-place-form, #create-opinion-form'])
 
 @section('content')
 
