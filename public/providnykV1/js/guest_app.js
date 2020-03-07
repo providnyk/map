@@ -55,7 +55,7 @@ $(function() {
 		$('.profile .tabs li').removeClass('active');
 		$(this).addClass('active');
 	});
-
+/*
 	setTimeout(function() {
 		$('select').styler();
 	}, 100)
@@ -123,5 +123,5 @@ $(function() {
 		label_selected: "Change File",  // Default: Change File
 		no_label: false                 // Default: false
 	});
-
+*/
 });
