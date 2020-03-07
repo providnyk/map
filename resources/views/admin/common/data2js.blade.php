@@ -1,6 +1,6 @@
 let
 	s_page_route		= '{!! $s_page_route !!}'
-	,s_res_submit		= '{!! trans( 'user/'. $s_category . '.names.saved') . ' ' . mb_strtolower(trans( 'user/messages.text.'.($o_item->id ? 'updated' : 'created')) ) !!}'
+	,s_res_submit		= '{!! trans( $s_category . '::crud.names.saved') . ' ' . mb_strtolower(trans( 'user/messages.text.'.($o_item->id ? 'updated' : 'created')) ) !!}'
 	,s_text_extra		= '{!! $s_btn_extra !!}'
 	,s_route_extra		= '{!! $s_route_extra !!}'
 	,s_text_primary		= '{!! $s_btn_primary !!}'

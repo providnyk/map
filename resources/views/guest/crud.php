@@ -7,11 +7,11 @@ $s_category			= mb_strtolower($a_tmp[1]);
 $s_form_route		= mb_strtolower($a_tmp[1]).'.'.mb_strtolower($a_tmp[2]);
 $s_utype			= $a_tmp[0];
 
-$s_cat_sgl_low		= mb_strtolower(trans('user/' . $s_category . '.names.sgl'));
+$s_cat_sgl_low		= mb_strtolower(trans($s_category . '::crud.names.sgl'));
 $s_cat_sgl_up		= mb_strtoupper($s_cat_sgl_low);
 $s_cat_sgl_u1		= ucfirst($s_cat_sgl_low);
 
-$s_cat_plr_low		= mb_strtolower(trans('user/' . $s_category . '.names.plr'));
+$s_cat_plr_low		= mb_strtolower(trans($s_category . '::crud.names.plr'));
 $s_cat_plr_up		= mb_strtoupper($s_cat_plr_low);
 $s_cat_plr_u1		= ucfirst($s_cat_plr_low);
 
@@ -20,9 +20,9 @@ $s_create_route		= route($s_utype.'.'.$s_form_route);
 $s_list_route		= route($s_utype . '.personal.places');
 $s_cancel_route		= route($s_utype . '.personal.places');
 $s_opinion_route	= route($s_utype . '.opinion.form', [':type', ':id']);
-$s_list_name		= trans('common/form.breadcrumbs.list') . ' ' . trans('user/' . $s_category . '.names.list');
+$s_list_name		= trans('common/form.breadcrumbs.list') . ' ' . trans($s_category . '::crud.names.list');
 
-$s_title			= trans('user/' . $s_category . '.names.plr');
+$s_title			= trans($s_category . '::crud.names.plr');
 
 if (isset($$s_category))
 {
@@ -33,8 +33,8 @@ if (isset($$s_category))
 							)
 							. ' '
 							. ($o_item->id
-								? trans('user/' . $s_category . '.names.txt_edit')
-								: trans('user/' . $s_category . '.names.txt_create')
+								? trans($s_category . '::crud.names.txt_edit')
+								: trans($s_category . '::crud.names.txt_create')
 							)
 							;
 	$s_page_route		= ($o_item->id

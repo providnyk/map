@@ -1,5 +1,5 @@
 <?php
-/*
+
 return [
 	'tab' => [
 		'data' => [
@@ -29,15 +29,6 @@ return [
 		'published'		=> 'Опубліковано',
 		'enabled'		=> 'Так',
 		'disabled'		=> 'Ні',
-	],
-	'hint' => [
-		'input'			=> 'Введіть',
-		'checkbox'		=> 'Перемкніть',
-		'disabled'		=> 'Вимкн.',
-		'enabled'		=> 'Увімкн.',
-		'file'			=> 'Завантажіть',
-		'image'			=> 'Завантажіть',
-		'select'		=> 'Виберіть',
 	],
 	'field' => [
 		'active' => [
@@ -72,11 +63,6 @@ return [
 			'label'		=> 'Прізвище',
 			'filterby'	=> 'прізвищем',
 			'typein'	=> 'прізвище',
-		],
-		'title' => [
-			'label'		=> 'Назва',
-			'filterby'	=> 'назвою',
-			'typein'	=> 'назву',
 		],
 		'published' => [
 			'label'		=> 'Опублікувати',
@@ -119,4 +105,3 @@ return [
 		],
 	],
 ];
-*/

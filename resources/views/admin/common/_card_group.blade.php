@@ -41,7 +41,7 @@
 	<div class="sub_level" style="">
 		@foreach($menu_list[$i_idx] AS $i_cnt => $menu_item)
 		<a href="{!! route('admin.' . $menu_item . '.index') !!}" class="nav-link">
-		<i class="{!! Config::get($menu_item.'.ico') !!} {!! config('icons.'.$menu_item) !!}"></i><span>{!! trans('user/' . $menu_item . '.names.plr') !!}</span>
+		<i class="{!! Config::get($menu_item.'.ico') !!} {!! config('icons.'.$menu_item) !!}"></i><span>{!! trans($menu_item . '::crud.names.plr') !!}</span>
 		</a>
 		@endforeach
 	</div>

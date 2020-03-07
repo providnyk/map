@@ -1,9 +1,10 @@
+0.81.0+a067:1 user ADD more versatile translations at u s e r and global levels for g u e s t being able using them
+UPD re-use same form for g_u_e_s_t as for u_s_e_r for opinion as next step after place creation
 0.81.0+a066:5 user ADD visual spacing for vars setting
 0.81.0+a066:4 user ADD disabled and readonly for select in forms
 0.81.0+a066:3 user ADD change filters default sorting by title for translations query
 0.81.0+a066:2 user ADD adjust g u e s t menu items font size and screen position
 0.81.0+a066:1 user ADD readonly and disabled for select element of a form
-UPD same as for a d m i n form for opinion as next step after place creation
 0.81.0+a065:8 user ADD spacing and comment to place
 0.81.0+a065:7 user ADD extra button name for place and follow opinion form
 0.81.0+a065:6 user ADD new cleaner label, input, and hint detection for forms
