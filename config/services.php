@@ -43,8 +43,8 @@ return [
 
     'google' => [
         'recaptcha' => [
-            'key' => env('GOOGLE_RECAPTCHA_KEY'),
-            'secret' => env('GOOGLE_SECRET_KEY'),
+            'key' => env('GOOGLE_RECAPTCHA_V2_SITE_KEY'),
+            'secret' => env('GOOGLE_RECAPTCHA_V2_SECRET'),
         ],
     ],
 
