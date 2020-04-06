@@ -3,7 +3,7 @@
 		<div class="flexwrap">
 			<p class="copyright">
 				{!! trans('app.name') !!} &copy;
-				@if (env('APP_EST')!=date("Y")) {{ env('APP_EST') }} &mdash; @endif
+				@if (config('app.est')!=date("Y")) {{ config('app.est') }} &mdash; @endif
 				{!! @date("Y") !!}
 			</p>
 @include($theme . '::layouts._lang')

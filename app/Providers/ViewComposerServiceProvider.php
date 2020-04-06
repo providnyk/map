@@ -22,7 +22,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 		$this->_L10N2config();
 
 		$a_version	= include_once( base_path(). '/version.php');
-		$s_theme	= getenv('APP_THEME') ?: '';
+		$s_theme	= config('app.theme') ?: '';
 
 		\View::composer('*', function ($view) use ($a_version, $s_theme) {
 			if ($route = \Request::route()) {
@@ -32,7 +32,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 			}
 
 			# avoid css&js caching at dev environment
-			if (getenv('APP_ENV') == 'local')
+			if (config('app.env') == 'local')
 			{
 				$a_version->css = time();
 				$a_version->js = time();

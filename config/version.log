@@ -1,3 +1,4 @@
+0.83.0+a097:1 guest UPD prod and better config caching support
 0.82.1+a084:1 guest FIX google recaptcha usage switch to v2 instead of broken v3
 0.82.1+a067:2 user FIX versioning by branch
 0.82.0+a067:1 guest UPD re-use same form for g_u_e_s_t as for u_s_e_r for opinion as next step after place creation
