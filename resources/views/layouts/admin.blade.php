@@ -289,7 +289,7 @@
 
             <div class="navbar-collapse collapse" id="navbar-footer">
                 <div class="navbar-text main">
-                    Production by: <a href="http://www.activemedia.ua/ua" target="_blank">Activemedia</a>
+                    Produced with 3> by <a href="http://www.activemedia.ua/" target="_blank">Activemedia</a>
                     <br />Version: {{ $version->app }}
                     <br />@php echo date("H:i:s m/d/Y") @endphp
                 </div>
