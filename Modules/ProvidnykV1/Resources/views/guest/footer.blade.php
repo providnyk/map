@@ -9,7 +9,7 @@
 @include($theme . '::layouts._lang')
 @include($theme . '::layouts._social_networks')
 		</div>
-		<button class="open_filter_btn">Показать фильтр</button>
+		{{-- <button class="open_filter_btn">Показать фильтр</button> --}}
 		<div class="divider"></div>
 	</div>
 </footer>

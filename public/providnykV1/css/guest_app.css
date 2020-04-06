@@ -1249,3 +1249,19 @@ i.icon-switch2 {
 header nav ul li button.green {
 	padding: 0.7rem 1.25rem;
 }
+
+@media screen and (max-width:1180px) {
+	header nav ul li button.green {
+		margin:0 45% 0 auto;
+	}
+}
+@media screen and (max-width:700px) {
+	header nav ul li button.green {
+		margin:0 40% 0 auto;
+	}
+}
+@media screen and (max-width:480px) {
+	header nav ul li button.green {
+		margin:0 35% 0 auto;
+	}
+}
