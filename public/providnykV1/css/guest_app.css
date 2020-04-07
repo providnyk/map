@@ -1268,9 +1268,13 @@ footer .eu_visibility a {
 	color: #848a91;
 }
 
+.div_reset_password {
+	margin: 0 auto 0 40%;
+}
+
 @media screen and (max-width:1180px) {
 	header nav ul li button.green {
-		margin:0 45% 0 auto;
+		margin: 0 auto 0 42%;
 	}
 	footer div {
 		padding-left: 7px;
@@ -1285,12 +1289,11 @@ footer .eu_visibility a {
 }
 @media screen and (max-width:700px) {
 	header nav ul li button.green {
-		margin:0 40% 0 auto;
+		margin: 0 auto 0 37%;
+	}
+	.div_reset_password {
+		margin: 0 auto 0 30%;
 	}
 }
 @media screen and (max-width:480px) {
-	header nav ul li button.green {
-		margin:0 35% 0 auto;
-	}
 }
-

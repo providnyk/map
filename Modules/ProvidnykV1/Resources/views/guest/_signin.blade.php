@@ -33,7 +33,7 @@
 								<button type="submit" class="confirm">{!! trans('user/form.button.signin') !!}</button>
 							</div>
 
-							<div style="padding-left: 223px;">
+							<div class="div_reset_password">
 								<a href="{!! route('password_reset') !!}">{!! trans('user/form.button.forgot') !!}</a>
 							</div>
 						</form>

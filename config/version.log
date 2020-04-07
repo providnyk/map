@@ -1,4 +1,5 @@
-0.83.1+a098:3 guest ADD better ordering for footer styles ordering on small sceens
+0.83.1+a098:3 guest ADD better placing forgot password link on mobiles
+ADD header logo link to project homepage
 0.83.1+a098:2 guest ADD eu visibility
 0.83.1+a098:1 guest ADD disable recaptcha for after sign in
 0.83.1+a097:5 guest FIX css version
