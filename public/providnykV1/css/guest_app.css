@@ -1275,12 +1275,12 @@ footer .eu_visibility a {
 	footer div {
 		padding-left: 7px;
 	}
-	footer .eu_visibility img {
-		margin-right: 7px;
-	}
 	footer .copyright {
 		padding-top: 10px;
 		width: 100%;
+	}
+	footer .eu_visibility img {
+		margin-right: 7px;
 	}
 }
 @media screen and (max-width:700px) {
