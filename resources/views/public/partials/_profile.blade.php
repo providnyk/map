@@ -32,8 +32,10 @@
 
 		if (typeof grecaptcha !== 'undefined' && typeof reCAPTCHA_site_key !== 'undefined') {
 			grecaptcha.ready(reCAPTCHA_execute);
+			@if ((Auth::user() === NULL))
 			a_check_focus.push(reCAPTCHA_execute);
 			setInterval(reCAPTCHA_execute, 1000 * 60); // 1 min
+			@endif
 		}
 
 		// TODO: refactoring
@@ -80,7 +82,9 @@
 					$.each(response.errors, (field, message) => {
 						form.find(`[data-field="${field}"] .field-body`).append($('<div class="error pt-2">').html(message+' '));
 					});
+					@if ((Auth::user() === NULL))
 					reCAPTCHA_execute();
+					@endif
 				}
 			});
 		});
