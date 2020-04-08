@@ -1,3 +1,6 @@
+0.83.0+a099:1 user ADD show checkbox for publishing a place
+ADD place auto-published
+ADD google maps API key
 0.83.1+a098:4 guest ADD header logo link to project homepage
 0.83.1+a098:3 guest ADD better placing forgot password link on mobiles
 0.83.1+a098:2 guest ADD eu visibility
