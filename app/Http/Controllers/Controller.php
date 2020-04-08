@@ -104,6 +104,7 @@ class Controller extends BaseController
 		$this->a_fields				= array_merge(config('translatable.locales'), $a_fill_main);
 
 		$this->a_field				= [];
+		$this->a_default			= [];
 		$this->a_rule				= [];
 		$this->a_tab				= [];#['All'];
 #dd($a_fill_main, $a_form_main);
@@ -201,7 +202,7 @@ if (class_exists($this->_env->s_model))
 		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
 #dump($this->_env->a_field, $this->_env->a_rule);
 		$user = Auth::user();
-		$this->_env->b_admin		= $user->checkAdmin();
+		$this->_env->b_admin		= (!is_null($user) ? $user->checkAdmin() : FALSE);
 
 		$_env						= $this->_env;
 		\View::composer('*', function ($view) use ($_env) {

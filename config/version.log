@@ -1,9 +1,10 @@
+0.83.1+a099:6 user FIX default and admin values checking
+ADD google maps API key
 0.83.0+a099:5 user ADD toggle checkbox when default value is on
 0.83.0+a099:4 user ADD published default value as set in model when new item is created
 0.83.0+a099:3 user ADD place auto-published defaults to true
 0.83.0+a099:2 user ADD hide published checkbox for guests
 0.83.0+a099:1 user ADD show checkbox for publishing a place
-ADD google maps API key
 0.83.1+a098:4 guest ADD header logo link to project homepage
 0.83.1+a098:3 guest ADD better placing forgot password link on mobiles
 0.83.1+a098:2 guest ADD eu visibility
