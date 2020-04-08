@@ -1,3 +1,4 @@
+0.83.0+a099:4 user ADD published default value as set in model when new item is created
 0.83.0+a099:3 user ADD place auto-published defaults to true
 0.83.0+a099:2 user ADD hide published checkbox for guests
 0.83.0+a099:1 user ADD show checkbox for publishing a place

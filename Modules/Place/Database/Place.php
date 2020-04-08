@@ -20,6 +20,7 @@ class Place extends Model
 			'tab'		=> 'data',
 			'field'		=> 'checkbox',
 			'rules'		=> 'boolean',
+			'default'	=>	TRUE,
 		],
 		'building_id'		=> [
 			'tab'		=> 'data',

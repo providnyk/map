@@ -36,6 +36,21 @@ class ControllerAPI		extends BaseController
 	public function storeAPI($request) : \Illuminate\Http\Response
 	{
 		$this->setEnv();
+
+		$s_tmp						= $this->_env->s_model;
+		if (class_exists($s_tmp))
+		{
+			$m						= new $s_tmp;
+#			$a_fill_main			= $m->getFillable();
+			$a_form_main			= $m->getFields();
+		}
+
+		foreach ($a_form_main AS $s_field_name => $s_field_params)
+		{
+			if (isset($s_field_params['default']) && is_null($request->$s_field_name))
+				$request->$s_field_name = $s_field_params['default'];
+		}
+
 		$this->_env->s_model::_addBoolsValuesFromForm($request);
 
 		$this->o_item = $this->_env->s_model::create($request->only($this->a_fields));
