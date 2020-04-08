@@ -22,6 +22,7 @@ class Opinion extends Model
 			'tab'		=> 'data',
 			'field'		=> 'checkbox',
 			'rules'		=> 'boolean',
+			'default'	=>	TRUE,
 		],
 
 
