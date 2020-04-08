@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use                                          Auth;
 use        Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use                Illuminate\Foundation\Bus\DispatchesJobs;
 use         Illuminate\Foundation\Validation\ValidatesRequests;
@@ -198,8 +199,10 @@ if (class_exists($this->_env->s_model))
 		$this->_env->a_rule			= $this->a_rule;
 		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
 #dump($this->_env->a_field, $this->_env->a_rule);
-		$_env						= $this->_env;
+		$user = Auth::user();
+		$this->_env->b_admin		= $user->checkAdmin();
 
+		$_env						= $this->_env;
 		\View::composer('*', function ($view) use ($_env) {
 			$view->with([
 				'_env'				=> $this->_env,
