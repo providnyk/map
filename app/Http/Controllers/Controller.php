@@ -116,7 +116,9 @@ class Controller extends BaseController
 #			$this->a_field['all'][$s_name]	= $s_field;
 			$this->a_field[$s_tab][$s_name]	= $s_field;
 			$this->a_rule[$s_name]	= $s_rules;
+			$this->a_default[$s_name]= ($a_params['default'] ?? '');
 		}
+
 		foreach ($a_form_trans AS $s_name => $a_params)
 		{
 			$s_tab					= $a_params['tab'];
@@ -126,6 +128,7 @@ class Controller extends BaseController
 #			$this->a_field['all']['trans'][$s_name]		= $s_field;
 			$this->a_field[$s_tab]['trans'][$s_name]	= $s_field;
 			$this->a_rule[$s_name]	= $s_rules;
+			$this->a_default[$s_name]= ($a_params['default'] ?? '');
 		}
 
 #		foreach ($a_form_main AS $s_name => $a_params) {
@@ -134,9 +137,6 @@ class Controller extends BaseController
 
 if (class_exists($this->_env->s_model))
 {
-
-
-
 
 		$reflector = new ReflectionClass($this->_env->s_model);
 		$a_relations = [];
@@ -196,6 +196,7 @@ if (class_exists($this->_env->s_model))
 }
 
 		$this->_env->a_field		= $this->a_field;
+		$this->_env->a_default		= $this->a_default;
 		$this->_env->a_rule			= $this->a_rule;
 		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
 #dump($this->_env->a_field, $this->_env->a_rule);
