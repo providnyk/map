@@ -1,3 +1,4 @@
+0.83.1+a100:1 guest ADD hide empty titile mainly for home page
 0.83.1+a099:7 user ADD default published on for opinions
 0.83.1+a099:6 user FIX default and admin values checking
 ADD google maps API key

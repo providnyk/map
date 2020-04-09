@@ -25,7 +25,12 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 	<meta charset="UTF-8">
-	<title>@yield('title') &#60; {!! mb_strtoupper(trans('app.name')) !!}</title>
+	<title>
+	@if(View::hasSection('title'))
+	@yield('title') &#60;
+	@endif
+	{!! mb_strtoupper(trans('app.name')) !!}
+	</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width">
 
