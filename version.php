@@ -6,7 +6,7 @@ $a_production = [
     'version_patch'         => '1',
     'version_stage'         => 'a', # a=alfa,b=beta,rc=candidate,r=release
     'version_day'           => '100',
-    'version_seq'           => '1',
+    'version_seq'           => '2',
 ];
 
 return (object) [
@@ -24,5 +24,5 @@ return (object) [
     'unit'                  => '0.00.0',
     'api'                   => '0.00.0',
     'css'                   => '0.16.0',
-    'js'                    => '0.26.0',
+    'js'                    => '0.27.0',
 ];

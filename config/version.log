@@ -1,7 +1,7 @@
+0.83.1+a100:2 guest ADD google maps API key
 0.83.1+a100:1 guest ADD hide empty titile mainly for home page
 0.83.1+a099:7 user ADD default published on for opinions
 0.83.1+a099:6 user FIX default and admin values checking
-ADD google maps API key
 0.83.0+a099:5 user ADD toggle checkbox when default value is on
 0.83.0+a099:4 user ADD published default value as set in model when new item is created
 0.83.0+a099:3 user ADD place auto-published defaults to true
