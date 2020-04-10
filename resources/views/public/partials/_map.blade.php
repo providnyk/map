@@ -1,16 +1,52 @@
+@php
+$s_category = 'place';
+#include(base_path().'/resources/views/guest/crud.php');
+
+$s_tmp				= request()->route()->getAction()['as'];
+$a_tmp				= explode('.', $s_tmp);
+#$s_category			= mb_strtolower($a_tmp[1]);
+
+$s_form_route		= mb_strtolower($a_tmp[1]).'.'.mb_strtolower($a_tmp[2]);
+$s_utype			= $a_tmp[0];
+
+$s_create_route		= route($s_utype.'.'.$s_form_route);
+$s_cancel_route		= route($s_utype . '.personal.places');
+$s_list_route		= route($s_utype . '.personal.places');
+$s_opinion_route	= route($s_utype . '.opinion.form', [':type', ':id']);
+
+		$s_btn_primary		= trans('common/form.actions.evaluate');
+		$s_route_primary	= $s_opinion_route;
+		$s_btn_secondary	= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
+		$s_route_secondary	= $s_list_route;
+
+		$s_btn_extra		= '';
+#		$s_btn_extra		= trans('common/form.actions.create_more');
+		$s_route_extra		= $s_create_route;
+
+@endphp
 @section('script')
 	<script type="text/javascript">
-	let google_map_key = '{!! config('services.google.map.key') !!}';
+	let google_map_key				= '{!! config('services.google.map.key') !!}'
+		,s_route_list				= '{!! route('api.'.$s_category.'.index') !!}'
+		,s_servererror_info			= '{!! trans('user/session.text.server_err_info') !!}'
+
+		,s_text_extra				= '{!! $s_btn_extra !!}'
+		,s_route_extra				= '{!! $s_route_extra !!}'
+		,s_text_primary				= '{!! $s_btn_primary !!}'
+		,s_route_primary			= '{!! $s_route_primary !!}'
+		,s_text_secondary			= '{!! $s_btn_secondary !!}'
+		,s_route_secondary			= '{!! $s_route_secondary !!}'
+		,s_close_route				= '{!! $s_cancel_route !!}'
+
+		;
 	</script>
 @append
 @section('js')
 	<script src="https://maps.googleapis.com/maps/api/js?key={!! config('services.google.map.key') !!}"></script>
-	<script src="/js/map.js"></script>
+	<script src="/js/map.js?v='{!! $version->js !!}"></script>
 @append
 
-
-
-<div id="main_map" data-zoom="16">
+<div id="main_map" data-zoom="11">
 	<div class="marker" data-lat="50.405388" data-lng="30.3341461" data-icon="/{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>
 	{{--
 	<div class="marker" data-lat="50.4066782" data-lng="30.3410947" data-icon="/{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>

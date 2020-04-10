@@ -47,8 +47,8 @@
 
 			$.ajax({
 				'type': 'post',
-				'data': form.serialize(),
 				'url': form.attr('action'),
+				'data': form.serialize(),
 				success: (data, status, xhr) => {
 					if (xhr.readyState == 4 && xhr.status == 200)
 						try {

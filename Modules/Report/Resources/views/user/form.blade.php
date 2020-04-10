@@ -35,14 +35,16 @@ $(document).ready(function () {
 			if ($("#issue_id").val() != null)
 				i_previous = $("#issue_id").val();
 
+			// TODO: refactor and make a common component
+
 			// check dependent dropdown new values
 			// if there is dependent selected value already
 			// then keep it selected otherwise clear dependent selection
 			// also notify about errors
 			$.ajax({
 				'type': 'get',
-				'data': {},
 				'url': s_route.replace(':point_id', i_point_id),
+				'data': {},
 				success: (data, status, xhr) => {
 					if (xhr.readyState == 4 && xhr.status == 200)
 						try {

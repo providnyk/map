@@ -62,6 +62,7 @@ include(base_path().'/resources/views/user/crud.php');
 				ajax: {
 					url: '{!! route('api.'.$s_category.'.index') !!}',
 					data: function(data){
+						console.log(filters);
 						data.filters = filters;
 					}
 				}

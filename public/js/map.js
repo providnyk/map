@@ -1,15 +1,53 @@
-function initMap( $el ) {
-	var $markers = $el.find('.marker');
+function initMap( el ) {
+	var markers = []; //el.find('.marker');
+//console.log(el.find('.marker'));
+	// TODO: refactor and make a common component
+
 	var mapArgs = {
-		zoom				: $el.data('zoom') || 16,
-		mapTypeId	 : google.maps.MapTypeId.ROADMAP
+		zoom:		el.data('zoom') || 11,
+		mapTypeId:	google.maps.MapTypeId.ROADMAP
 	};
-	var map = new google.maps.Map( $el[0], mapArgs );
+	var map = new google.maps.Map( el[0], mapArgs );
 	map.markers = [];
-	$markers.each(function(){
-		initMarker( $(this), map );
+
+	// get list of markers for map
+	// async'ly so that
+	// visitors don't have to wait loooooog while page loads
+	// with all the data pre-inserted to the page
+	// also notify about errors
+	$.ajax({
+		'type': 'get',
+		'url': s_route_list,
+		data: {
+			length: 10000,
+			filters: { published: 1 },
+		},
+		success: (data, status, xhr) => {
+			if (xhr.readyState == 4 && xhr.status == 200)
+				try {
+					// Do JSON handling here
+					tmp = JSON.parse(xhr.responseText);
+					for (var i = 0; i < tmp.data.length; i++)
+					{
+						initMarkerFromJSON(tmp.data[i], map);
+					}
+				} catch(e) {
+					//JSON parse error, this is not json (or JSON isn't in the browser)
+					notify(s_servererror_info, 'danger', 3000);
+				}
+			else
+				notify(s_servererror_info, 'danger', 3000);
+		},
+		'error': (xhr) => {
+			notify(s_servererror_info, 'danger', 3000);
+		}
 	});
+
+//	markers.each(function(){
+//		initMarker( $(this), map );
+//	});
 	centerMap( map );
+
 	$('#findme_btn').bind('click', function() {
 		findMe(map);
 	});
@@ -53,7 +91,92 @@ function initMap( $el ) {
 	return map;
 }
 
-function initMarker( $marker, map ) {
+function initMarkerFromJSON( data, map ) {
+	var lat			= data.lat;
+	var lng			= data.lng;
+	var a_lat_lng	= {
+		lat: parseFloat( lat ),
+		lng: parseFloat( lng )
+	};
+
+	var marker		= new google.maps.Marker({
+		position: a_lat_lng,
+		map: map,
+		icon: "/providnykV1/img/map_markers/map_marker_bank.png",
+		title: data.title
+	});
+	marker.addListener('click', function() {
+
+			var a_buttons = {};
+
+			if (s_text_secondary != '')
+			{
+				a_buttons['secondary'] = {
+					text: s_text_secondary,
+					className: "btn-light",
+				};
+			}
+
+			if (s_text_extra != '')
+				a_buttons['extra'] = {
+					text: s_text_extra,
+					className: "btn-light",
+				};
+
+			if (s_text_primary != '')
+			{
+				a_buttons['primary'] = {
+					text: s_text_primary,
+					className: "btn-primary",
+				};
+				s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
+			}
+
+//swal("Gotcha!", "Pikachu was caught!", "success");
+
+			swal({
+				icon: "info",
+				title: data.title,
+				text: data.address + '\n\n' + data.description,
+				buttons: a_buttons,
+			}).then((reaction) => {
+
+				switch (reaction) {
+
+					case 'extra':
+						if (s_route_extra != '')
+							window.location.href = s_route_extra;
+						else
+							resetForm(form);
+					break;
+					case 'secondary':
+						if (typeof data.url === 'undefined')
+							window.location.href = s_route_secondary;
+						else
+							window.location = data.url;
+					break;
+					case 'primary':
+						if (s_route_primary != '')
+							window.location.href = s_route_primary;
+						else
+							resetForm(form);
+					break;
+
+					default:
+						if (s_close_route != '')
+							window.location.href = s_route_list;
+						else
+							resetForm(form);
+				}
+
+			});
+
+//		infowindow.open(map, marker);
+	});
+	map.markers.push( marker );
+}
+/*
+function initMarkerFromHTML( $marker, map ) {
 	var lat = $marker.data('lat');
 	var lng = $marker.data('lng');
 	var latLng = {
@@ -71,8 +194,11 @@ function initMarker( $marker, map ) {
 		console.log(marker);
 	});
 }
-
+*/
 function centerMap( map ) {
+	map.setCenter( new google.maps.LatLng(50.45466, 30.5238) );
+return 0;
+/*
 	var bounds = new google.maps.LatLngBounds();
 	map.markers.forEach(function( marker ){
 		bounds.extend({
@@ -85,6 +211,7 @@ function centerMap( map ) {
 	} else{
 		map.fitBounds( bounds );
 	}
+*/
 }
 
 function findMe( map ) {

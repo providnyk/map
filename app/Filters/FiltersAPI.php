@@ -11,9 +11,10 @@ use                       Illuminate\Support\Pluralizer;
 class FiltersAPI extends Filters
 {
 	protected $filters = [
-		'id',
-		'title',
 		'created_at',
+		'id',
+		'published',
+		'title',
 		'updated_at',
 	];
 
