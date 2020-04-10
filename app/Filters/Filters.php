@@ -17,7 +17,7 @@ abstract class Filters
 	protected $filteredCount;
 	protected $filters = [];
 	protected $columns = [];
-	protected $perPage = 2;
+	protected $perPage = 20;
 
 	public function __construct(Request $request)
 	{
