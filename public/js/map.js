@@ -108,6 +108,7 @@ function initMarkerFromJSON( data, map ) {
 	marker.addListener('click', function() {
 
 			var a_buttons = {};
+			data['url'] = '';
 
 			if (s_text_secondary != '')
 			{
@@ -163,10 +164,10 @@ function initMarkerFromJSON( data, map ) {
 					break;
 
 					default:
-						if (s_close_route != '')
-							window.location.href = s_route_list;
-						else
-							resetForm(form);
+//						if (s_close_route != '')
+//							window.location.href = s_route_list;
+//						else
+//							resetForm(form);
 				}
 
 			});

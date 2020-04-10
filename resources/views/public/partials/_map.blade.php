@@ -16,7 +16,8 @@ $s_opinion_route	= route($s_utype . '.opinion.form', [':type', ':id']);
 
 		$s_btn_primary		= trans('common/form.actions.evaluate');
 		$s_route_primary	= $s_opinion_route;
-		$s_btn_secondary	= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
+		$s_btn_secondary	= '';
+#		$s_btn_secondary	= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
 		$s_route_secondary	= $s_list_route;
 
 		$s_btn_extra		= '';
