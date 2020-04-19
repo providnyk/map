@@ -1,3 +1,4 @@
+0.84.0+a110:3 guest ADD coloring markers per overall rating for the place
 0.84.0+a110:2 guest ADD localise description for rating
 0.84.0+a110:1 guest ADD calculate average ratings for each place incl. per element and total
 0.84.0+a101:3 guest ADD more items to list by expanding limit per page

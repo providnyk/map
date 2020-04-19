@@ -60,9 +60,9 @@ class PlaceController extends Controller
 				$a_places['latest_opinion'] = $a_places['opinion'][0]['title'];
 			$a_rating = [];
 			$a_rating = self::_sumAllVotes($a_places['vote'], $a_marks);
-			if (isset($a_rating['elements']))
-				$a_rating = self::_setAverageTotal($a_rating, $a_elements, $i_mark_max);
+			$a_rating = self::_setAverageTotal($a_rating, $a_elements, $i_mark_max);
 			$a_places['rating'] = $a_rating;
+#dump($a_places['rating']);
 			unset($a_places['opinion']);
 			unset($a_places['vote']);
 			$a_content['data'][$i] = $a_places;
@@ -96,12 +96,11 @@ class PlaceController extends Controller
 	 */
 	private static function _setAverageTotal(Array $a_rating, Array $a_elements, Int $i_mark_max) : Array
 	{
-		$a_res				= [];
-		$a_res[]			= '';
+		$a_res				= ['element' => [], 'overall' => [],];
 		$i_overall_value	= 0;
 		$i_overall_votes	= 0;
 		$i_total_elements	= 0;
-		foreach ($a_rating['elements'] AS $i_element_id => $a_marks)
+		foreach ($a_rating AS $i_element_id => $a_marks)
 		{
 			foreach ($a_marks AS $i_mark_value => $i_mark_qty)
 			{
@@ -116,7 +115,7 @@ class PlaceController extends Controller
 				if ($i_sum_votes > 0 && $i_mark_max > 0)
 				{
 					$i_tmp = $i_sum_value / $i_sum_votes;
-					$a_res[] = self::_setMarkDescription(
+					$a_res['element'][] = self::_setMarkDescription(
 								trans('mark::crud.rating.element'),
 								[
 								$a_elements[$i_element_id],
@@ -140,11 +139,13 @@ class PlaceController extends Controller
 		if ($i_overall_votes > 0 && $i_mark_max > 0)
 		{
 			$i_tmp = $i_overall_value / $i_total_elements;
-			$a_res[0] = self::_setMarkDescription(
+			$i_overall = $i_tmp / $i_mark_max * 100;
+			$a_res['overall']['percent'] = round($i_overall);
+			$a_res['overall']['description'] = self::_setMarkDescription(
 						trans('mark::crud.rating.overall'),
 						[
 						trans('mark::crud.rating.summary'),
-						Place::formatNumber($i_tmp / $i_mark_max * 100),
+						Place::formatNumber($i_overall),
 						Place::formatNumber($i_tmp, 1),
 						Place::formatNumber($i_mark_max),
 						Place::formatNumber($i_overall_votes),
@@ -175,13 +176,10 @@ class PlaceController extends Controller
 			$i_element_id	= $a_vote['element_id'];
 			$i_mark_value	= $a_marks[$i_mark_id];
 
-			if (!isset($a_rating['total'][$i_mark_value]))
-				$a_rating['total'][$i_mark_value] = 0;
-			if (!isset($a_rating['elements'][$i_element_id][$i_mark_value]))
-				$a_rating['elements'][$i_element_id][$i_mark_value] = 0;
+			if (!isset($a_rating[$i_element_id][$i_mark_value]))
+				$a_rating[$i_element_id][$i_mark_value] = 0;
 
-			$a_rating['total'][$i_mark_value]++;
-			$a_rating['elements'][$i_element_id][$i_mark_value]++;
+			$a_rating[$i_element_id][$i_mark_value]++;
 		}
 		return $a_rating;
 	}

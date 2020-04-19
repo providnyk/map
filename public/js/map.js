@@ -91,22 +91,6 @@ function initMap( el ) {
 	return map;
 }
 
-function calculateMarkerOpinion( data ) {
-	rating			= {};
-
-	rating			= data.rating;
-console.log(rating);
-	for(i=0; i < tmp.rating; i++) {
-//		rating.vote
-//		if ()
-
-//		console.log(tmp[i]);
-	}
-//	var opinion = data.opinion[0].id;
-
-	return rating;
-}
-
 function initMarkerFromJSON( data, map ) {
 	var lat			= data.lat;
 	var lng			= data.lng;
@@ -116,17 +100,41 @@ function initMarkerFromJSON( data, map ) {
 	};
 
 	var rating		= '';
-	if (typeof data.rating == 'object')
+	var overall		= -1;
+
+	if (typeof data.rating == 'object'
+		&& typeof data.rating.element == 'object'
+		&& typeof data.rating.overall == 'object'
+		&& typeof data.rating.overall.percent == 'number'
+		)
 	{
 		var tmp			= data.rating;
-		for(i = 0; i < tmp.length; i++)
-			rating	= rating + '\n\n' + tmp[i];
+
+		rating			= rating + '\n\n' + tmp.overall.description;
+		overall			= tmp.overall.percent;
+
+		for(i = 0; i < tmp.element.length; i++)
+			rating	= rating + '\n\n' + tmp['element'][i];
+	}
+
+	var icon = '/providnykV1/img/map_markers/map_marker_bank_bw.png';
+	if (overall > 70)
+	{
+		icon = '/providnykV1/img/map_markers/map_marker_bank_green.png';
+	}
+	else if (overall > 35)
+	{
+		icon = '/providnykV1/img/map_markers/map_marker_bank_yellow.png';
+	}
+	else if (overall > 0)
+	{
+		icon = '/providnykV1/img/map_markers/map_marker_bank_red.png';
 	}
 
 	var marker		= new google.maps.Marker({
 		position: a_lat_lng,
 		map: map,
-		icon: "/providnykV1/img/map_markers/map_marker_bank.png",
+		icon: icon,
 		title: data.title
 	});
 	marker.addListener('click', function() {
