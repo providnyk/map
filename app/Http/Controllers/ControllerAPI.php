@@ -12,13 +12,17 @@ class ControllerAPI		extends BaseController
 	 * this is also used by dynamic dropdowns
 	 * @param Request	$request		Data from request
 	 * @param Filters	$filters		Whatever filters applied
+	 * @param Array		$a_with			what related models to be included
 	 *
 	 * @return Response	json instance of
 	 */
-	public function indexAPI($request, $filters) : \Illuminate\Http\Response
+	public function indexAPI($request, $filters, Array $a_with = []) : \Illuminate\Http\Response
 	{
 		$this->setEnv();
-		$o_items = $this->_env->s_model::filter($filters);
+		$o_items	= $this->_env->s_model::filter($filters);
+		$i_tmp		= count($a_with);
+		for ($i = 0; $i < count($a_with); $i++)
+			$o_items->with($a_with[$i]);
 		return response([
 			'draw'				=> $request->draw,
 			'data'				=> $o_items->get(),

@@ -44,7 +44,7 @@ $s_opinion_route	= route($s_utype . '.opinion.form', [':type', ':id']);
 @append
 @section('js')
 	<script src="https://maps.googleapis.com/maps/api/js?key={!! config('services.google.map.key') !!}"></script>
-	<script src="/js/map.js?v='{!! $version->js !!}"></script>
+	<script src="/js/map.js?v={!! $version->js !!}"></script>
 @append
 
 <div id="main_map" data-zoom="11">

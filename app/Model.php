@@ -59,6 +59,18 @@ class Model extends BaseModel
 		}
 	}
 
+	/**
+	 * Unify number formatting
+	 *
+	 * @param Float		$i_num		Number to be formatted
+	 * @param Integer	$i_num		Decimal places
+	 *
+	 * @return String	formatted number
+	 */
+	public static function formatNumber(float $i_num, int $i_decimal = NULL) : String
+	{
+		return number_format($i_num, $i_decimal ?? 0, ',', '’');
+	}
 	public function scopeFilter($query, $filters)
 	{
 		return $filters->apply($query);

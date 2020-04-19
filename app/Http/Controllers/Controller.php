@@ -53,7 +53,7 @@ class Controller extends BaseController
 			$a_fill_main			= $m->getFillable();
 			$a_form_main			= $m->getFields();
 		}
-		$s_tmp					= $this->_env->s_trans.'Translation';
+		$s_tmp						= $this->_env->s_trans.'Translation';
 		if (class_exists($s_tmp))
 		{
 			$t						= new $s_tmp;
