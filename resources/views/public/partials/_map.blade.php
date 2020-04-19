@@ -43,6 +43,10 @@ $s_opinion_route	= route($s_utype . '.opinion.form', [':type', ':id']);
 	</script>
 @append
 @section('js')
+	<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+{{--
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={!! config('services.google.map.key') !!}&callback=initMap"></script>
+--}}
 	<script src="https://maps.googleapis.com/maps/api/js?key={!! config('services.google.map.key') !!}"></script>
 	<script src="/js/map.js?v={!! $version->js !!}"></script>
 @append

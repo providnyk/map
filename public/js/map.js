@@ -1,3 +1,18 @@
+a_locations = [];
+function initClusterer( map ) {
+	var a_params = {
+		maxZoom: 				16,
+		minimumClusterSize: 	5,
+		styles: [{
+			width: 				55,
+			height: 			56,
+			textColor: 			"#F15C2D",
+			textSize: 			16,
+			url: 				"/providnykV1/img/map_clusters/m1.svg",
+		}],
+	};
+	var markerCluster = new MarkerClusterer(map, a_locations, a_params);
+}
 function initMap( el ) {
 	var markers = []; //el.find('.marker');
 //console.log(el.find('.marker'));
@@ -5,6 +20,7 @@ function initMap( el ) {
 
 	var mapArgs = {
 		zoom:		el.data('zoom') || 11,
+//		zoom:		11,
 		mapTypeId:	google.maps.MapTypeId.ROADMAP
 	};
 	var map = new google.maps.Map( el[0], mapArgs );
@@ -37,6 +53,7 @@ function initMap( el ) {
 				}
 			else
 				notify(s_servererror_info, 'danger', 3000);
+			initClusterer(map);
 		},
 		'error': (xhr) => {
 			notify(s_servererror_info, 'danger', 3000);
@@ -46,6 +63,7 @@ function initMap( el ) {
 //	markers.each(function(){
 //		initMarker( $(this), map );
 //	});
+
 	centerMap( map );
 
 	$('#findme_btn').bind('click', function() {
@@ -135,8 +153,12 @@ function initMarkerFromJSON( data, map ) {
 		position: a_lat_lng,
 		map: map,
 		icon: icon,
-		title: data.title
+		title: data.title,
 	});
+
+
+	a_locations.push(marker);
+
 	marker.addListener('click', function() {
 
 			var a_buttons = {};
