@@ -91,6 +91,22 @@ function initMap( el ) {
 	return map;
 }
 
+function calculateMarkerOpinion( data ) {
+	rating			= {};
+
+	rating			= data.rating;
+console.log(rating);
+	for(i=0; i < tmp.rating; i++) {
+//		rating.vote
+//		if ()
+
+//		console.log(tmp[i]);
+	}
+//	var opinion = data.opinion[0].id;
+
+	return rating;
+}
+
 function initMarkerFromJSON( data, map ) {
 	var lat			= data.lat;
 	var lng			= data.lng;
@@ -98,6 +114,14 @@ function initMarkerFromJSON( data, map ) {
 		lat: parseFloat( lat ),
 		lng: parseFloat( lng )
 	};
+
+	var rating		= '';
+	if (typeof data.rating == 'object')
+	{
+		var tmp			= data.rating;
+		for(i = 0; i < tmp.length; i++)
+			rating	= rating + '\n\n' + tmp[i];
+	}
 
 	var marker		= new google.maps.Marker({
 		position: a_lat_lng,
@@ -138,7 +162,7 @@ function initMarkerFromJSON( data, map ) {
 			swal({
 				icon: "info",
 				title: data.title,
-				text: data.address + '\n\n' + data.description,
+				text: data.address + '\n\n' + data.description + rating,
 				buttons: a_buttons,
 			}).then((reaction) => {
 

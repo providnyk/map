@@ -74,14 +74,13 @@ class PlaceController extends Controller
 	/**
 	 * Unify marks description for all elements
 	 *
+	 * @param String	$s_format_set	Format describing placement of information
 	 * @param Array		$a_format_val	values (aka marks) to be formatted
-	 * @param Integer	$i_mark_max		Maximum posible value for a single mark
 	 *
 	 * @return Array					mark as key and qty as value
 	 */
-	private static function _setMarkDescription($a_format_val, $i_mark_max) : String
+	private static function _setMarkDescription(String $s_format_set, Array $a_format_val) : String
 	{
-		$s_format_set		= '%s: %d%% (оценка %1s на основании %d отзывов)';
 		return vsprintf($s_format_set, $a_format_val);
 	}
 
@@ -95,11 +94,12 @@ class PlaceController extends Controller
 	 *
 	 * @return Array					mark as key and qty as value
 	 */
-	private static function _setAverageTotal($a_rating, $a_elements, $i_mark_max) : Array
+	private static function _setAverageTotal(Array $a_rating, Array $a_elements, Int $i_mark_max) : Array
 	{
 		$a_res				= [];
 		$a_res[]			= '';
-		$i_total_value		= 0;
+		$i_overall_value	= 0;
+		$i_overall_votes	= 0;
 		$i_total_elements	= 0;
 		foreach ($a_rating['elements'] AS $i_element_id => $a_marks)
 		{
@@ -117,16 +117,18 @@ class PlaceController extends Controller
 				{
 					$i_tmp = $i_sum_value / $i_sum_votes;
 					$a_res[] = self::_setMarkDescription(
+								trans('mark::crud.rating.element'),
 								[
 								$a_elements[$i_element_id],
 								Place::formatNumber($i_tmp / $i_mark_max * 100),
 								Place::formatNumber($i_tmp, 1),
 								Place::formatNumber($i_sum_votes),
-								],
-								$i_mark_max
+								]
 							);
-					$i_total_value += $i_tmp;
+					$i_overall_value += $i_tmp;
 					$i_total_elements++;
+					if ($i_sum_votes > $i_overall_votes)
+						$i_overall_votes = $i_sum_votes;
 				}
 			}
 		}
@@ -135,17 +137,18 @@ class PlaceController extends Controller
 		 * Total rating for the place
 		 * is based on the rating of all elements' rating
 		 */
-		if ($i_total_elements > 0 && $i_mark_max > 0)
+		if ($i_overall_votes > 0 && $i_mark_max > 0)
 		{
-			$i_tmp = $i_total_value / $i_total_elements;
+			$i_tmp = $i_overall_value / $i_total_elements;
 			$a_res[0] = self::_setMarkDescription(
+						trans('mark::crud.rating.overall'),
 						[
-						'Общая оценка',
+						trans('mark::crud.rating.summary'),
 						Place::formatNumber($i_tmp / $i_mark_max * 100),
 						Place::formatNumber($i_tmp, 1),
-						Place::formatNumber($i_total_elements),
-						],
-						$i_mark_max
+						Place::formatNumber($i_mark_max),
+						Place::formatNumber($i_overall_votes),
+						]
 					);
 		}
 		return $a_res;

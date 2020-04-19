@@ -6,6 +6,7 @@ use                                      App\Model;
 
 class OpinionVote extends Model
 {
+	public $translationModel = '\Modules\Opinion\Database\OpinionTranslation';
 	protected $connection = 'psc';
 	protected $fillable = [
 		'element_id',
@@ -13,7 +14,6 @@ class OpinionVote extends Model
 		'opinion_id',
 		'place_id',
 		'user_id',
-
 	];
 	public $translatedAttributes = [];
 	protected $a_form = [
