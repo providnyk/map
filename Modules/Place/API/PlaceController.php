@@ -49,8 +49,11 @@ class PlaceController extends Controller
 	public function index(PlaceRequest $request, PlaceFilters $filters) : \Illuminate\Http\Response
 	{
 		$o_res		= $this->indexAPI($request, $filters, ['opinion', 'vote']);
-		$a_marks	= Mark::wherePublished(1)->get()->pluck('qty', 'id')->toArray();
+		$a_marks	= Mark::wherePublished(1)->where('qty', '>', '0')->get()->pluck('qty', 'id')->toArray();
 		$i_mark_max = max($a_marks);
+		$i_mark_min = min($a_marks);
+#dd($i_mark_min);
+#		dd($a_marks, array_diff($a_marks, [$i_mark_min]));
 		$a_elements	= Element::get()->pluck('title', 'id')->toArray();
 		$a_content = json_decode($o_res->getContent(), TRUE);
 		for ($i = 0; $i < count($a_content['data']); $i++)
@@ -60,7 +63,7 @@ class PlaceController extends Controller
 				$a_places['latest_opinion'] = $a_places['opinion'][0]['title'];
 			$a_rating = [];
 			$a_rating = self::_sumAllVotes($a_places['vote'], $a_marks);
-			$a_rating = self::_setAverageTotal($a_rating, $a_elements, $i_mark_max);
+			$a_rating = self::_setAverageTotal($a_rating, $a_elements, $i_mark_max, $i_mark_min);
 			$a_places['rating'] = $a_rating;
 #dump($a_places['rating']);
 			unset($a_places['opinion']);
@@ -94,7 +97,7 @@ class PlaceController extends Controller
 	 *
 	 * @return Array					mark as key and qty as value
 	 */
-	private static function _setAverageTotal(Array $a_rating, Array $a_elements, Int $i_mark_max) : Array
+	private static function _setAverageTotal(Array $a_rating, Array $a_elements, Int $i_mark_max, Int $i_mark_min) : Array
 	{
 		$a_res				= ['element' => [], 'overall' => [],];
 		$i_overall_value	= 0;
@@ -106,25 +109,30 @@ class PlaceController extends Controller
 			{
 				$i_sum_value = 0;
 				$i_sum_votes = 0;
-				if ($i_mark_value > 0)
+#				if ($i_mark_value > $i_mark_min)
 				{
-					$i_sum_value += $i_mark_value;
-					$i_sum_votes += $i_mark_qty;
-
 				}
+				$i_sum_value += $i_mark_value;
+				$i_sum_votes += $i_mark_qty;
 				if ($i_sum_votes > 0 && $i_mark_max > 0)
 				{
 					$i_tmp = $i_sum_value / $i_sum_votes;
-					$a_res['element'][] = self::_setMarkDescription(
+					$i_percent = ($i_tmp-$i_mark_min) / ($i_mark_max-$i_mark_min) * 100;
+
+					$a_res['element'][] =
+						[	'percent'		=> $i_percent,
+							'description'	=> self::_setMarkDescription(
 								trans('mark::crud.rating.element'),
 								[
 								$a_elements[$i_element_id],
-#								Place::formatNumber($i_tmp / $i_mark_max * 100),
 								Place::formatNumber($i_tmp, 1),
 								Place::formatNumber($i_sum_votes),
 								]
-							);
-					$i_overall_value += $i_tmp;
+							),
+						]
+							;
+					if ($i_tmp > $i_mark_min)
+						$i_overall_value += $i_tmp;
 					$i_total_elements++;
 					if ($i_sum_votes > $i_overall_votes)
 						$i_overall_votes = $i_sum_votes;
@@ -140,12 +148,18 @@ class PlaceController extends Controller
 		{
 			$i_tmp = $i_overall_value / $i_total_elements;
 			$i_overall = $i_tmp / $i_mark_max * 100;
+			$i_tmp = $i_mark_max * ($i_overall / 100);
 			$a_res['overall']['percent'] = round($i_overall);
 			$a_res['overall']['description'] = self::_setMarkDescription(
 						trans('mark::crud.rating.overall'),
 						[
 						trans('mark::crud.rating.summary'),
 						Place::formatNumber($i_overall),
+						]
+					);
+			$a_res['overall']['details'] = self::_setMarkDescription(
+						trans('mark::crud.rating.details'),
+						[
 						Place::formatNumber($i_tmp, 1),
 						Place::formatNumber($i_mark_max),
 						Place::formatNumber($i_overall_votes),
@@ -174,12 +188,15 @@ class PlaceController extends Controller
 			$a_vote			= $a_votes[$i];
 			$i_mark_id		= $a_vote['mark_id'];
 			$i_element_id	= $a_vote['element_id'];
-			$i_mark_value	= $a_marks[$i_mark_id];
 
-			if (!isset($a_rating[$i_element_id][$i_mark_value]))
-				$a_rating[$i_element_id][$i_mark_value] = 0;
+			if (isset($a_marks[$i_mark_id]))
+			{
+				$i_mark_value	= $a_marks[$i_mark_id];
+				if (!isset($a_rating[$i_element_id][$i_mark_value]))
+					$a_rating[$i_element_id][$i_mark_value] = 0;
 
-			$a_rating[$i_element_id][$i_mark_value]++;
+				$a_rating[$i_element_id][$i_mark_value]++;
+			}
 		}
 		return $a_rating;
 	}

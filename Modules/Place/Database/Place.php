@@ -3,7 +3,6 @@
 namespace Modules\Place\Database;
 
 use                                      App\Model;
-use   Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Place extends Model
 {
@@ -40,14 +39,15 @@ class Place extends Model
 		],
 	];
 
-    public function opinion() : HasMany
+    public function opinion()
     {
         return $this->HasMany('Modules\Opinion\Database\Opinion');
     }
-    public function vote() : HasMany
+    public function vote()
     {
         return $this->HasMany('Modules\Opinion\Database\OpinionVote');
     }
+
 	public function building()
 	{
 		return $this->belongsTo('Modules\Building\Database\Building');

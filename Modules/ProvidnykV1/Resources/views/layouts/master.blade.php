@@ -54,7 +54,9 @@
 	<link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
 	--}}
 
+{{--
 	<link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
+--}}
 	<link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
 	<!-- /global stylesheets -->
 
@@ -155,6 +157,7 @@ we used v.1 of it
 it allows for 2 action buttons only. still has its advatages, too
 https://sweetalert2.github.io/
 --}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
 @yield('js')
 

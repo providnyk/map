@@ -17451,8 +17451,10 @@ a.plupload_disabled {
   .swal2-icon.swal2-info {
     color: #03A9F4;
     border-color: #03A9F4;
+    /*
     font-size: 4rem;
     line-height: 5rem;
+    */
     -ms-flex-pack: center;
         -webkit-box-pack: center;
             justify-content: center; }
@@ -17464,6 +17466,37 @@ a.plupload_disabled {
     -ms-flex-pack: center;
         -webkit-box-pack: center;
             justify-content: center; }
+
+  .swal2-content p,
+  .swal2-footer p {
+    text-align:left;
+    flex-basis: 100%;
+    float: none;
+  }
+  .swal2-content .place_address {
+    font-size: 0.9em;
+    font-style: italic;
+  }
+  .swal2-content .place_description {
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+  .swal2-content .rating_overall {
+    font-weight: 700;
+    font-size: 1.1em;
+  }
+  .swal2-content .rating_details {
+    font-weight: 400;
+    font-size: 0.9em;
+  }
+
+  .swal2-footer{
+    flex-wrap: wrap;
+  }
+  .swal2-footer p {
+    line-height: 0.93em;
+    font-size: 0.8em;
+  }
 
 .swal2-progresssteps {
   font-weight: 500;

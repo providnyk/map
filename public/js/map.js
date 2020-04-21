@@ -109,6 +109,23 @@ function initMap( el ) {
 	return map;
 }
 
+function getColor( i_percent ) {
+	s_color = 'black';
+	if (i_percent > 70)
+	{
+		s_color = 'green';
+	}
+	else if (i_percent > 35)
+	{
+		s_color = 'chocolate';
+	}
+	else if (i_percent > -1)
+	{
+		s_color = 'red';
+	}
+	return s_color;
+}
+
 function initMarkerFromJSON( data, map ) {
 	var lat			= data.lat;
 	var lng			= data.lng;
@@ -117,8 +134,10 @@ function initMarkerFromJSON( data, map ) {
 		lng: parseFloat( lng )
 	};
 
-	var rating		= '';
-	var overall		= -1;
+	var s_rating	= '';
+	var i_overall	= -1;
+	var s_overall	= '';
+	var s_details	= '';
 
 	if (typeof data.rating == 'object'
 		&& typeof data.rating.element == 'object'
@@ -128,31 +147,30 @@ function initMarkerFromJSON( data, map ) {
 	{
 		var tmp			= data.rating;
 
-		rating			= rating + '\n\n' + tmp.overall.description;
-		overall			= tmp.overall.percent;
+		s_overall		= tmp.overall.description;
+		s_details		= tmp.overall.details;
+		i_overall		= tmp.overall.percent;
 
 		for(i = 0; i < tmp.element.length; i++)
-			rating	= rating + '\n\n' + tmp['element'][i];
+		{
+			i_percent	= tmp['element'][i]['percent'];
+			s_color		= getColor(i_percent);
+			s_rating		= s_rating
+							+ '<p style="color: ' + s_color + ';">'
+							+ tmp['element'][i]['description']
+							+ '</p>'
+						;
+		}
 	}
 
-	var icon = '/providnykV1/img/map_markers/map_marker_bank_bw.png';
-	if (overall > 70)
-	{
-		icon = '/providnykV1/img/map_markers/map_marker_bank_green.png';
-	}
-	else if (overall > 35)
-	{
-		icon = '/providnykV1/img/map_markers/map_marker_bank_yellow.png';
-	}
-	else if (overall > 0)
-	{
-		icon = '/providnykV1/img/map_markers/map_marker_bank_red.png';
-	}
+	var s_color		= getColor(i_overall);
+
+	var s_marker_icon = '/providnykV1/img/map_markers/map_marker_bank_' + s_color + '.png';
 
 	var marker		= new google.maps.Marker({
 		position: a_lat_lng,
 		map: map,
-		icon: icon,
+		icon: s_marker_icon,
 		title: data.title,
 	});
 
@@ -187,44 +205,18 @@ function initMarkerFromJSON( data, map ) {
 				s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
 			}
 
-//swal("Gotcha!", "Pikachu was caught!", "success");
-
-			swal({
-				icon: "info",
-				title: data.title,
-				text: data.address + '\n\n' + data.description + rating,
-				buttons: a_buttons,
-			}).then((reaction) => {
-
-				switch (reaction) {
-
-					case 'extra':
-						if (s_route_extra != '')
-							window.location.href = s_route_extra;
-						else
-							resetForm(form);
-					break;
-					case 'secondary':
-						if (typeof data.url === 'undefined')
-							window.location.href = s_route_secondary;
-						else
-							window.location = data.url;
-					break;
-					case 'primary':
-						if (s_route_primary != '')
-							window.location.href = s_route_primary;
-						else
-							resetForm(form);
-					break;
-
-					default:
-//						if (s_close_route != '')
-//							window.location.href = s_route_list;
-//						else
-//							resetForm(form);
-				}
-
-			});
+			// we need colourful footer here so have to use another type of sweetalert2
+			Swal.fire({
+			  icon: 'info',
+			  title: data.title,
+			  html: ''
+			  		+ '<p class="place_address">' + data.address + '</p>'
+			  		+ '<p class="place_description">' + data.description + '</p>'
+			  		+ '<p class="rating_overall" style="color: ' + s_color + ';">' + s_overall + '</p>'
+			  		+ '<p class="rating_details" style="color: ' + s_color + ';">' + s_details + '</p>'
+			  		,
+			  footer: s_rating
+			})
 
 //		infowindow.open(map, marker);
 	});
