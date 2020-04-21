@@ -119,7 +119,7 @@ class PlaceController extends Controller
 								trans('mark::crud.rating.element'),
 								[
 								$a_elements[$i_element_id],
-								Place::formatNumber($i_tmp / $i_mark_max * 100),
+#								Place::formatNumber($i_tmp / $i_mark_max * 100),
 								Place::formatNumber($i_tmp, 1),
 								Place::formatNumber($i_sum_votes),
 								]
