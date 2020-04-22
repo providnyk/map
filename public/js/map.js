@@ -1,4 +1,5 @@
 a_locations = [];
+
 function initClusterer( map ) {
 	var a_params = {
 		maxZoom: 				16,
@@ -8,19 +9,17 @@ function initClusterer( map ) {
 			height: 			56,
 			textColor: 			"#F15C2D",
 			textSize: 			16,
-			url: 				"/providnykV1/img/map_clusters/m1.svg",
+			url: 				"/" + s_theme + "/img/map_clusters/m1.svg",
 		}],
 	};
 	var markerCluster = new MarkerClusterer(map, a_locations, a_params);
 }
 function initMap( el ) {
 	var markers = []; //el.find('.marker');
-//console.log(el.find('.marker'));
-	// TODO: refactor and make a common component
 
+	// TODO: refactor and make a common component
 	var mapArgs = {
 		zoom:		el.data('zoom') || 11,
-//		zoom:		11,
 		mapTypeId:	google.maps.MapTypeId.ROADMAP
 	};
 	var map = new google.maps.Map( el[0], mapArgs );
@@ -60,11 +59,7 @@ function initMap( el ) {
 		}
 	});
 
-//	markers.each(function(){
-//		initMarker( $(this), map );
-//	});
-
-	centerMap( map );
+	centerMap( map, el.data('lat'), el.data('lng') );
 
 	$('#findme_btn').bind('click', function() {
 		findMe(map);
@@ -165,7 +160,7 @@ function initMarkerFromJSON( data, map ) {
 
 	var s_color		= getColor(i_overall);
 
-	var s_marker_icon = '/providnykV1/img/map_markers/map_marker_bank_' + s_color + '.png';
+	var s_marker_icon = '/' + s_theme + '/img/map_markers/map_marker_bank_' + s_color + '.png';
 
 	var marker		= new google.maps.Marker({
 		position: a_lat_lng,
@@ -217,48 +212,13 @@ function initMarkerFromJSON( data, map ) {
 			  		,
 			  footer: s_rating
 			})
+	});
+	map.markers.push( marker );
+}
 
-//		infowindow.open(map, marker);
-	});
-	map.markers.push( marker );
-}
-/*
-function initMarkerFromHTML( $marker, map ) {
-	var lat = $marker.data('lat');
-	var lng = $marker.data('lng');
-	var latLng = {
-		lat: parseFloat( lat ),
-		lng: parseFloat( lng )
-	};
-	var marker = new google.maps.Marker({
-		position : latLng,
-		map: map,
-		icon: $marker.data('icon')
-	});
-	map.markers.push( marker );
-	google.maps.event.addListener(marker, 'click', function() {
-		alert("Вы кликнули на маркер "+lat+" "+lng+" В консоли вывел параметры маркера. Цепляйте на него нужные события)");
-		console.log(marker);
-	});
-}
-*/
-function centerMap( map ) {
-	map.setCenter( new google.maps.LatLng(50.45466, 30.5238) );
-return 0;
-/*
-	var bounds = new google.maps.LatLngBounds();
-	map.markers.forEach(function( marker ){
-		bounds.extend({
-			lat: marker.position.lat(),
-			lng: marker.position.lng()
-		});
-	});
-	if( map.markers.length == 1 ){
-		map.setCenter( bounds.getCenter() );
-	} else{
-		map.fitBounds( bounds );
-	}
-*/
+function centerMap( map, f_lat, f_lng ) {
+	var o_lat_lng = new google.maps.LatLng(f_lat, f_lng);
+	map.setCenter(o_lat_lng);
 }
 
 function findMe( map ) {

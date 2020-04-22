@@ -24,12 +24,28 @@ $s_opinion_route	= route($s_utype . '.opinion.form', [':type', ':id']);
 #		$s_btn_extra		= trans('common/form.actions.create_more');
 		$s_route_extra		= $s_create_route;
 
+if (Request::getHost() == 'pr.max')
+	$b_dev					= TRUE;
+else
+	$b_dev					= FALSE;
+
+$f_map_center_lat			= 50.45466;
+$f_map_center_lng			= 30.5238;
+$i_map_zoom					= 11;
+if ($b_dev)
+{
+	$f_map_center_lat			= 50.458295;
+	$f_map_center_lng			= 30.599699;
+	$i_map_zoom					= 13;
+}
+
 @endphp
 @section('script')
 	<script type="text/javascript">
 	let google_map_key				= '{!! config('services.google.map.key') !!}'
 		,s_route_list				= '{!! route('api.'.$s_category.'.index') !!}'
 		,s_servererror_info			= '{!! trans('user/session.text.server_err_info') !!}'
+		,s_theme					= '{!! $theme !!}'
 
 		,s_text_extra				= '{!! $s_btn_extra !!}'
 		,s_route_extra				= '{!! $s_route_extra !!}'
@@ -44,21 +60,11 @@ $s_opinion_route	= route($s_utype . '.opinion.form', [':type', ':id']);
 @append
 @section('js')
 	<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-{{--
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key={!! config('services.google.map.key') !!}&callback=initMap"></script>
---}}
 	<script src="https://maps.googleapis.com/maps/api/js?key={!! config('services.google.map.key') !!}"></script>
 	<script src="/js/map.js?v={!! $version->js !!}"></script>
 @append
 
-<div id="main_map" data-zoom="11">
-	<div class="marker" data-lat="50.405388" data-lng="30.3341461" data-icon="/{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>
-	{{--
-	<div class="marker" data-lat="50.4066782" data-lng="30.3410947" data-icon="/{!! $theme !!}/img/map_markers/map_marker_bank.png"></div>
-	<div class="marker" data-lat="50.4063072" data-lng="30.3283194" data-icon="/{!! $theme !!}/img/map_markers/map_marker_wc.png"></div>
-	<div class="marker" data-lat="50.4040143" data-lng="30.3339627" data-icon="/{!! $theme !!}/img/map_markers/map_marker_atm.png"></div>
-	--}}
-</div>
+<div id="main_map" data-zoom="{!! $i_map_zoom !!}" data-lat="{!! $f_map_center_lat !!}" data-lng="{!! $f_map_center_lng !!}"></div>
 
 {{--
 <div class="map_info_block">
