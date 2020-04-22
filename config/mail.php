@@ -62,8 +62,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'noreply@culturescapes.ch'),
-        'name' => env('MAIL_FROM_NAME', 'Culturescapes'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@nospam.com'),
+        'name' => env('MAIL_FROM_NAME', 'Noreply Nospam'),
     ],
 
     /*

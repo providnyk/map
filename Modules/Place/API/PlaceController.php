@@ -131,7 +131,7 @@ class PlaceController extends Controller
 							),
 						]
 							;
-					if ($i_tmp > $i_mark_min)
+#					if ($i_tmp > $i_mark_min)
 						$i_overall_value += $i_tmp;
 					$i_total_elements++;
 					if ($i_sum_votes > $i_overall_votes)
@@ -147,8 +147,8 @@ class PlaceController extends Controller
 		if ($i_overall_votes > 0 && $i_mark_max > 0)
 		{
 			$i_tmp = $i_overall_value / $i_total_elements;
-			$i_overall = $i_tmp / $i_mark_max * 100;
-			$i_tmp = $i_mark_max * ($i_overall / 100);
+			$i_overall = ($i_tmp-$i_mark_min) / ($i_mark_max-$i_mark_min) * 100;
+#			$i_tmp = $i_mark_max * ($i_overall / 100);
 			$a_res['overall']['percent'] = round($i_overall);
 			$a_res['overall']['description'] = self::_setMarkDescription(
 						trans('mark::crud.rating.overall'),

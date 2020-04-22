@@ -1,3 +1,4 @@
+0.85.0+a113:3 guest ADD change total percent and rating mark calculation
 0.85.0+a113:2 guest ADD use theme variable, clean up, and choose another map center and zoom for dev purposes at local environment
 0.85.0+a113:1 guest ADD rating description colouring and sweetalert2 with html footer support
 0.85.0+a112:1 guest ADD cleaner rating description for a place
