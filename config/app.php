@@ -4,6 +4,7 @@ return [
 
 	'theme'		=> env('APP_THEME', ''),
 	'est'		=> env('APP_EST', ''),
+	'email'		=> env('APP_EMAIL', ''),
     /*
     |--------------------------------------------------------------------------
     | Application Name

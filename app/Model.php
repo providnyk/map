@@ -2,11 +2,11 @@
 
 namespace App;
 
-use                           App\Traits\GeneralTrait;
-use         Illuminate\Database\Eloquent\Model          as BaseModel;
-use    Astrotomic\Translatable\Contracts\Translatable   as TranslatableContract;
-use              Astrotomic\Translatable\Translatable;
-use                      Illuminate\Http\Request;
+use                               App\Traits\GeneralTrait;
+use             Illuminate\Database\Eloquent\Model          as BaseModel;
+use        Astrotomic\Translatable\Contracts\Translatable   as TranslatableContract;
+use                  Astrotomic\Translatable\Translatable;
+use                          Illuminate\Http\Request;
 
 class Model extends BaseModel
 {

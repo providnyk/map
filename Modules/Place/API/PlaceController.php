@@ -17,6 +17,7 @@ use                    Modules\Place\Filters\PlaceFilters;
 use                        App\Http\Requests\DeleteRequest;
 
 use                     App\Http\Controllers\ControllerAPI as Controller;
+use               Illuminate\Support\Facades\Mail;
 use                   \Modules\Mark\Database\Mark;
 use                \Modules\Element\Database\Element;
 #use App\Http\Requests\PlaceApiRequest;
@@ -38,6 +39,74 @@ class PlaceController extends Controller
 		return $this->destroyAPI($request);
 	}
 
+	public function sendIt(Array $a_places, Bool $b_dry_run = NULL) : void
+	{
+		$s_date		= date("m/d/Y");
+		$s_title	= $a_places['title'];
+		$s_address	= $a_places['address'];
+		$s_descr	= $a_places['description'];
+
+		$a_from[0]	= [
+						's_title'		=> 'ГРОМАДСЬКА ОРГАНІЗАЦІЯ «ДЕБАТИ ЗАРАДИ ЗМІН»',
+						's_phone'		=> '+38068 255 75 91',
+						's_legal'		=> 'код: 40190259',
+						'a_position'	=> 'ПРЕЗИДЕНТА ГО «ДЕБАТИ ЗАРАДИ ЗМІН»',
+						'a_position_who'=> 'Президент ГО «ДЕБАТИ ЗАРАДИ ЗМІН»',
+						'a_name'		=> 'Крис Анни Сергіївни',
+						'a_name_who'	=> 'Крис Анна Сергіївна',
+						's_address'		=> 'м. Київ, вул. Інститутська, буд. 22/7, кв. 27, 01021',
+						];
+		$a_to[0]	= [
+
+						's_title'		=> 'КИЇВСЬКА МІСЬКА ДЕРЖАВНА АДМІНІСТРАЦІЯ',
+						's_address'		=> 'м. Київ, вул. Хрещатик, 36, 01044',
+						'a_email'		=> ['bogachenko.pavel@gmail.com','anna.krys.od@gmail.com',],
+#						'a_email'		=> ['zvernen@kmda.gov.ua','dsp@kmda.gov.ua',],
+						];
+		$a_to[1]	= [
+						's_title'		=> 'МІНІСТЕРСТВО СОЦІАЛЬНОЇ ПОЛІТИКИ УКРАЇНИ',
+						's_address'		=> 'м. Київ, вул. Еспланадна, 8/10, 01601',
+						'a_email'		=> ['m.d@tut.by','max.dmitriev@activelex.com',],
+#						'a_email'		=> ['info@mlsp.gov.ua','zvernennya@mlsp.gov.ua',],
+						];
+#
+		$a_params	=
+				[
+					's_date'		=> $s_date,
+					's_title'		=> $s_title,
+					's_address'		=> $s_address,
+					's_descr'		=> $s_descr,
+					'a_from'		=> $a_from,
+					'a_to'			=> $a_to,
+				];
+		$a_emails	= [];
+		$a_emails[]	= config('services.mail.from');
+		$a_emails[]	= config('app.email');
+		for ($i = 0; $i < count($a_to); $i++)
+		for ($j = 0; $j < count($a_to[$i]['a_email']); $j++)
+			$a_emails[] = $a_to[$i]['a_email'][$j];
+
+		if ($b_dry_run ?? FALSE)
+			$a_emails	= [config('services.mail.from')];
+
+		for ($i = 0; $i < count($a_emails); $i++)
+		{
+			$s_email_to = $a_emails[$i];
+			Mail::send(
+				'emails.complaint',
+				$a_params,
+				function($message) use ($s_email_to) {
+					$message->from(
+						config('services.mail.from'),
+						config('services.mail.name')
+					)
+					->to($s_email_to)
+					->subject('Заява (звернення)')
+				;
+			});
+		}
+	}
+
 	/**
 	 * Prepare data for listing all of items
 	 * @param Request	$request		Data from request
@@ -48,12 +117,15 @@ class PlaceController extends Controller
 #	public function index(PlaceApiRequest $request, PlaceFilters $filters) : \Illuminate\Http\Response
 	public function index(PlaceRequest $request, PlaceFilters $filters) : \Illuminate\Http\Response
 	{
+		$b_dev		= (config('app.env') == 'local');
+
+		$b_test		= $b_dev;
+
 		$o_res		= $this->indexAPI($request, $filters, ['opinion', 'vote']);
 		$a_marks	= Mark::wherePublished(1)->where('qty', '>', '0')->get()->pluck('qty', 'id')->toArray();
 		$i_mark_max = max($a_marks);
 		$i_mark_min = min($a_marks);
-#dd($i_mark_min);
-#		dd($a_marks, array_diff($a_marks, [$i_mark_min]));
+
 		$a_elements	= Element::get()->pluck('title', 'id')->toArray();
 		$a_content = json_decode($o_res->getContent(), TRUE);
 		for ($i = 0; $i < count($a_content['data']); $i++)
@@ -65,10 +137,17 @@ class PlaceController extends Controller
 			$a_rating = self::_sumAllVotes($a_places['vote'], $a_marks);
 			$a_rating = self::_setAverageTotal($a_rating, $a_elements, $i_mark_max, $i_mark_min);
 			$a_places['rating'] = $a_rating;
-#dump($a_places['rating']);
+
 			unset($a_places['opinion']);
 			unset($a_places['vote']);
 			$a_content['data'][$i] = $a_places;
+
+			if ($b_test)
+			{
+				self::sendIt($a_places, $b_dev);
+				$b_test  = FALSE;
+			}
+
 		}
 		$o_res->setContent(json_encode($a_content));
 		return $o_res;
