@@ -20,7 +20,7 @@
 		<span class="c4">&nbsp;</span>
 		<span class="c13"><br></span>
 		<span class="c10">{{ $a_from[0]['s_legal'] }}, </span>
-		<span class="c14 c10 c18"><a class="c7" href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a></span><span class="c12 c10">, {{ $a_from[0]['s_phone'] }}</span>
+		<span class="c14 c10 c18"><a class="c7" href="mailto:{{ $a_from[0]['s_email'] }}">{{ $a_from[0]['s_email'] }}</a></span><span class="c12 c10">, {{ $a_from[0]['s_phone'] }}</span>
 	</p>
 	<hr>
 	<p class="c6 c2"><span class="c12 c10"></span></p>
@@ -57,8 +57,8 @@
 			<br>
 		</span>
 		<span class="c14 c13 c16">
-			<a class="c7" href="mailto:{{ config('app.email') }}">
-				{{ config('app.email') }}
+			<a class="c7" href="mailto:{{ $a_from[0]['s_email'] }}">
+				{{ $a_from[0]['s_email'] }}
 			</a>
 		</span>
 			<span class="c9"></span>
@@ -114,7 +114,7 @@
 		<span class="c13">
 			Відповідь про результати розгляду даного звернення просимо надати у встановлені законом строки за наступними адресами: &nbsp;на електронну пошту&nbsp;
 		</span>
-		<span class="c14 c13 c18"><a class="c7" href="mailto:{{ config('app.email') }}">{{ config('app.email') }}</a></span>
+		<span class="c14 c13 c18"><a class="c7" href="mailto:{{ $a_from[0]['s_email'] }}">{{ $a_from[0]['s_email'] }}</a></span>
 		<span class="c13">
 			&nbsp;та поштою на адресу {{ $a_from[0]['s_address'] }}.
 		</span>
