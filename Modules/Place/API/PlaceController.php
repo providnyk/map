@@ -95,8 +95,9 @@ class PlaceController extends Controller
 					];
 
 		$s_email_from	= $a_from[0]['s_email'];
-		$s_name_from	= $a_from[0]['s_title'];
+#		$s_name_from	= $a_from[0]['s_title'];
 		$s_subj		 	= $a_from[0]['s_subject'];
+		$s_name_from	= config('services.mail.name');
 
 		if ($b_dry_run ?? FALSE)
 		{
@@ -139,7 +140,7 @@ class PlaceController extends Controller
 	{
 		$b_dev		= (config('app.env') == 'local');
 
-		$b_test		= 1;#0 && $b_dev;
+		$b_test		= 0 && $b_dev;
 
 		$o_res		= $this->indexAPI($request, $filters, ['opinion', 'vote']);
 		$a_marks	= Mark::wherePublished(1)->where('qty', '>', '0')->get()->pluck('qty', 'id')->toArray();
