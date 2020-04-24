@@ -45,6 +45,7 @@ class PlaceController extends Controller
 		$s_title	= $a_places['title'];
 		$s_address	= $a_places['address'];
 		$s_descr	= $a_places['description'];
+		$a_issues	= implode(', ', $a_places['rating']['issues']);
 
 		$a_from[0]	= [
 						's_title'		=> 'ГРОМАДСЬКА ОРГАНІЗАЦІЯ «ДЕБАТИ ЗАРАДИ ЗМІН»',
@@ -78,6 +79,7 @@ class PlaceController extends Controller
 					's_title'		=> $s_title,
 					's_address'		=> $s_address,
 					's_descr'		=> $s_descr,
+					'a_issues'		=> $a_issues,
 					'a_from'		=> $a_from,
 					'a_to'			=> $a_to,
 				];
@@ -121,6 +123,7 @@ class PlaceController extends Controller
 					;
 				}
 			);
+die();
 		}
 	}
 
@@ -136,7 +139,7 @@ class PlaceController extends Controller
 	{
 		$b_dev		= (config('app.env') == 'local');
 
-		$b_test		= 0 && $b_dev;
+		$b_test		= 1;#0 && $b_dev;
 
 		$o_res		= $this->indexAPI($request, $filters, ['opinion', 'vote']);
 		$a_marks	= Mark::wherePublished(1)->where('qty', '>', '0')->get()->pluck('qty', 'id')->toArray();
@@ -159,7 +162,7 @@ class PlaceController extends Controller
 			unset($a_places['vote']);
 			$a_content['data'][$i] = $a_places;
 
-			if ($b_test)
+			if ($b_test && isset($a_places['rating']['overall']['percent']) && $a_places['rating']['overall']['percent'] < 35)
 			{
 				self::sendIt($a_places, $b_dev);
 				$b_test  = FALSE;
@@ -195,7 +198,7 @@ class PlaceController extends Controller
 	 */
 	private static function _setAverageTotal(Array $a_rating, Array $a_elements, Int $i_mark_max, Int $i_mark_min) : Array
 	{
-		$a_res				= ['element' => [], 'overall' => [],];
+		$a_res				= ['element' => [], 'overall' => [], 'issues' => [],];
 		$i_overall_value	= 0;
 		$i_overall_votes	= 0;
 		$i_total_elements	= 0;
@@ -214,6 +217,9 @@ class PlaceController extends Controller
 				{
 					$i_tmp = $i_sum_value / $i_sum_votes;
 					$i_percent = ($i_tmp-$i_mark_min) / ($i_mark_max-$i_mark_min) * 100;
+
+					if ($i_percent < 35)
+						$a_res['issues'][] = $a_elements[$i_element_id];
 
 					$a_res['element'][] =
 						[	'percent'		=> $i_percent,
