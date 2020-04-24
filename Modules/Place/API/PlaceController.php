@@ -123,7 +123,7 @@ class PlaceController extends Controller
 					;
 				}
 			);
-die();
+
 		}
 	}
 
