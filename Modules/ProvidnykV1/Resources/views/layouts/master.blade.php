@@ -149,15 +149,16 @@
 https://sweetalert.js.org/guides/
 https://sweetalert.js.org/docs/#buttons
 it allows for multiple action buttons being shown
---}}
 <script src="{{ asset('/admin/js/plugins/notifications/sweetalert2.min.js') }}"></script>
+--}}
 {{--
 version by another author
 we used v.1 of it
-it allows for 2 action buttons only. still has its advatages, too
+it allows for 2 action buttons only
+on the bright side, it allowed html formatting and text in "footer" under action buttons
 https://sweetalert2.github.io/
 --}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="{{ asset('/admin/js/plugins/notifications/sweetalert2html.js') }}"></script>
 
 @yield('js')
 

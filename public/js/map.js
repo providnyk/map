@@ -211,7 +211,7 @@ function initMarkerFromJSON( data, map ) {
 			  		+ '<p class="rating_details" style="color: ' + s_color + ';">' + s_details + '</p>'
 			  		,
 			  footer: s_rating
-			})
+			});
 	});
 	map.markers.push( marker );
 }

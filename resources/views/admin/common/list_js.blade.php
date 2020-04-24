@@ -9,9 +9,30 @@ $('#page-length').on('change', function(){
 
 $('#btn-delete').on('click', function(){
 
+			a_params = {
+				reverseButtons:		true,
+				showCloseButton:	true,
+				icon:				'warning',
+				title:				'{!! trans('common/messages.confirm_delete_title') !!}',
+				text:				'{!! trans('common/messages.confirm_delete_description') !!}',
+				confirmButtonText:	'{!! trans('common/messages.confirm_delete_cancel_button_text') !!}',
+				cancelButtonText:	'{!! trans('common/messages.confirm_delete_confirm_button_text') !!}',
+				showCancelButton:	true,
+			};
 
+			Swal.fire(
+				a_params
+			).then((result) => {
+				if (result.value) {
+					notify('{!! trans('common/messages.delete_entries_cancelled') !!}', 'info', 2000);
+				} else if (result.dismiss === Swal.DismissReason.cancel) {
+					deleteEntries();
+				}
+			})
+			;
+
+/*
 //swal("Gotcha!", "Pikachu was caught!", "success");
-
 			swal({
 				icon: "warning",
 				title: '{!! trans('common/messages.confirm_delete_title') !!}',
@@ -38,7 +59,7 @@ $('#btn-delete').on('click', function(){
 				}
 
 			});
-
+*/
 /*
     swal({
         title: '{!! trans('common/messages.confirm_delete_title') !!}',

@@ -64,10 +64,10 @@ if (isset($$s_category))
 		case 'place':
 		$s_btn_primary		= trans('common/form.actions.evaluate');
 		$s_route_primary	= $s_opinion_route;
-		$s_btn_secondary	= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
-		$s_route_secondary	= $s_list_route;
-		$s_btn_extra		= trans('common/form.actions.create_more');
-		$s_route_extra		= $s_create_route;
+		$s_btn_secondary	= trans('common/form.actions.create_more');
+		$s_route_secondary	= $s_create_route;
+		$s_btn_extra		= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
+		$s_route_extra		= $s_list_route;
 		break;
 		default:
 		$s_btn_primary		= ($o_item->id

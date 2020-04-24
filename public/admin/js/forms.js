@@ -28,6 +28,52 @@ $(document).ready(() => {
 			data: form.serialize()
 		}).done((data, status, xhr) => {
 
+			a_params = {
+				reverseButtons:		true,
+				showCloseButton:	true,
+				icon:				'info',
+				title:				s_res_submit,
+				text:				data.message,
+			};
+			a_routes = {};
+
+			if (s_text_secondary != '')
+			{
+				a_params.cancelButtonText	= s_text_secondary;
+				a_params.showCancelButton	= true;
+			}
+
+			if (s_text_extra != '')
+			{
+				if (typeof data.url !== 'undefined')
+					s_route_extra = data.url;
+				a_params.footer = '<a href="' + s_route_extra + '">' + s_text_extra + '</a>';
+			}
+			if (s_text_primary != '')
+			{
+				a_params.confirmButtonText = s_text_primary;
+				s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
+			}
+
+			Swal.fire(
+				a_params
+			).then((result) => {
+				if (result.value) {
+					if (s_route_primary != '')
+						window.location.href = s_route_primary;
+					else
+						resetForm(form);
+				} else if (result.dismiss === Swal.DismissReason.cancel) {
+					if (s_route_secondary != '')
+						window.location.href = s_route_secondary;
+					else
+						resetForm(form);
+				}
+			})
+			;
+
+/*
+
 //swal("Gotcha!", "Pikachu was caught!", "success");
 
 			var a_buttons = {};
@@ -91,6 +137,7 @@ $(document).ready(() => {
 				}
 
 			});
+*/
 /*
 			swal({
 				icon: "success",

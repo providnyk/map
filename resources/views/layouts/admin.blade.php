@@ -12,7 +12,9 @@
     <!-- Global stylesheets -->
 	<link rel="stylesheet" href="{{ asset($theme . '/css/tabs.css?v=' . $version->css) }}">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+{{--
 	<link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
+--}}
     <link href="{!! asset('/admin/css/app.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
     <link href="{!! asset('/css/noty.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
     <link href="{!! asset('/css/override.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
@@ -332,8 +334,9 @@
 {{--
 https://sweetalert.js.org/guides/
 https://sweetalert.js.org/docs/#buttons
---}}
 <script src="{{ asset('/admin/js/plugins/notifications/sweetalert2.min.js') }}"></script>
+--}}
+<script src="{{ asset('/admin/js/plugins/notifications/sweetalert2html.js') }}"></script>
 
 <script src="{{ asset('/admin/js/plugins/forms/styling/uniform.min.js') }}"></script>
 <script src="{{ asset('/admin/js/plugins/pickers/color/spectrum.js') }}"></script>

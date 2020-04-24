@@ -136,7 +136,7 @@ class PlaceController extends Controller
 	{
 		$b_dev		= (config('app.env') == 'local');
 
-		$b_test		= $b_dev;
+		$b_test		= 0 && $b_dev;
 
 		$o_res		= $this->indexAPI($request, $filters, ['opinion', 'vote']);
 		$a_marks	= Mark::wherePublished(1)->where('qty', '>', '0')->get()->pluck('qty', 'id')->toArray();

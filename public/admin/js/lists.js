@@ -23,7 +23,11 @@ $(document).ready(() => {
 	});
 	// Ctrl+s, Cmd+S pressed
 	$(document).keydown(function(e) {
-		if ((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
+		if (
+			(e.key == 'Enter' || e.keyCode == 13)
+			||
+			((e.key == 's' || e.key == 'S' ) && (e.ctrlKey || e.metaKey))
+			)
 		{
 			e.preventDefault();
 			$('#btn-filter').trigger( "click" );

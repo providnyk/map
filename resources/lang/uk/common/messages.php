@@ -5,6 +5,7 @@ return [
     'reset_filters' => 'filters have been reset',
     'delete_entries_success' => 'Entries were successfully deleted',
     'delete_entries_error' => 'An error occurred while deleting records',
+    'delete_entries_cancelled' => 'Cancelled deletion',
     'confirm_delete_title' => 'Are you sure?',
     'confirm_delete_description' => 'You will not be able to recover the record(s)',
     'confirm_delete_confirm_button_text' => 'Yes, delete',

@@ -60,10 +60,13 @@ if (isset($$s_category))
 								: $s_create_route
 							);
 
+$s_btn_extra = '';
+$s_route_extra = '';
+
 #	$s_btn_primary		= trans('common/form.actions.view') . ' ' . trans("common/form.breadcrumbs.list");
 	$s_btn_primary		= ($o_item->id
 								? trans('common/form.actions.continue') . ' ' . trans('common/form.actions.edit')
-								: ''
+								: trans('common/form.actions.create_more')
 							);
 	$s_route_primary	= ($o_item->id
 								? ''
