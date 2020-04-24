@@ -88,7 +88,6 @@
                 ajax: {
                     url: '{!! route('api.places.index') !!}',
                     data: function(data){
-                        console.log(filters);
                         data.filters = filters;
                     }
                 }
