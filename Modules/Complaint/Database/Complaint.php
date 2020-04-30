@@ -8,10 +8,7 @@ class Complaint extends Model
 {
 	protected $connection = 'psc';
 	protected $fillable = [
-		'building_id',
-		'user_id',
-		'lat',
-		'lng',
+		'place_id',
 		'published',
 	];
 	public $translatedAttributes = [];
@@ -22,38 +19,15 @@ class Complaint extends Model
 			'rules'		=> 'boolean',
 			'default'	=>	TRUE,
 		],
-		'building_id'		=> [
+		'place_id'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'select',
 			'rules'		=> 'required|integer',
 		],
-		'lat'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'input',
-			'rules'		=> 'numeric|between:-85.05112878,85.05112878', #regex:/^[+-]?\d+\.\d+$/
-		],
-		'lng'		=> [
-			'tab'		=> 'data',
-			'field'		=> 'input',
-			'rules'		=> 'numeric|between:-999.9999999,999.9999999', #regex:/^-?\d{1,2}\.\d{6,}$/
-		],
 	];
 
-    public function opinion()
+    public function place()
     {
-        return $this->HasMany('Modules\Opinion\Database\Opinion');
+        return $this->HasMany('Modules\Place\Database\Place');
     }
-    public function vote()
-    {
-        return $this->HasMany('Modules\Opinion\Database\OpinionVote');
-    }
-
-	public function building()
-	{
-		return $this->belongsTo('Modules\Building\Database\Building');
-	}
-	public function user()
-	{
-		return $this->belongsTo('App\User');
-	}
 }

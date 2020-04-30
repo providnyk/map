@@ -11,8 +11,9 @@ class ComplaintTranslation extends Model
 
 	protected $fillable = [
 		'title',
-		'address',
+		'annotation',
 		'description',
+		'response',
 	];
 
 	public $a_form = [
@@ -21,15 +22,20 @@ class ComplaintTranslation extends Model
 			'field'		=> 'input',
 			'rules'		=> 'required|string|max:255',
 		],
-		'address'	=> [
-			'tab'		=> 'data',
-			'field'		=> 'input',
-			'rules'		=> 'required|string|max:255',
-		],
-		'description'	=> [
+		'annotation'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
 			'rules'		=> 'string|max:255',
+		],
+		'description'	=> [
+			'tab'		=> 'data',
+			'field'		=> 'textarea',
+			'rules'		=> 'string|max:10000',
+		],
+		'response'	=> [
+			'tab'		=> 'data',
+			'field'		=> 'textarea',
+			'rules'		=> 'string|max:10000',
 		],
 	];
 }
