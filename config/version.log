@@ -1,3 +1,5 @@
+0.85.0+a121:1 guest ADD improve translations usage in power panel (aka a d m i n panel)
+ADD complaint module
 0.85.0+a115:7 guest ADD clean up logging in a d m i n panel
 0.85.0+a115:6 guest ADD disable test emails
 0.85.0+a115:5 guest ADD clean debug
@@ -228,6 +230,9 @@ Consent required to access this website
 Unfortunately, our paywall and function to measure trending articles does not work unless you accept our cookie requirements.
 As you have not accepted them, you will not be able to use the website.
 
+https://www.fluke.com/en-us/product/network-cable-testers/copper/cableiq-qualification-tester
+Ensures visitor browsing-security by preventing cross-site request forgery. This cookie is essential for the security of the website and visitor.
+
 Максиме Валерійовичу!
 
 На жаль, у нас немає Вашої e-mail-адреси,
@@ -245,6 +250,8 @@ As you have not accepted them, you will not be able to use the website.
 Ми не розсилаємо спам. Якщо Ви вирішите, що наші листи
 Вам не потрібні, просто відпишіться, перейшовши
 за посиланням у кінці повідомлення.
+
+If you choose to send us your system information, you encourage better support for your system configuration in our future releases. This is entirely voluntary and anonymous. We promise never to use your information for nefarious purposes. Please click Open Preferences to learn more.
 
 https://nwidart.com/laravel-modules/v6/advanced-tools/artisan-commands
 php artisan module:use Issue

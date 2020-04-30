@@ -8,7 +8,7 @@ return [
 		'list'			=> 'відгуків',
 		'btn_create'	=> 'відгук',
 		'btn_edit'		=> 'відгук',
-		'btn_delete'	=> 'відгук',
+		'btn_delete'	=> 'відгуків',
 		'txt_create'	=> 'відгука',
 		'txt_edit'		=> 'відгука',
 		'filterby'		=> 'відгукамі',
