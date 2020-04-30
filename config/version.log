@@ -1,5 +1,6 @@
-0.86.0+a121:3 guest ADD textarea form field
+0.86.0+a121:4 guest ADD move email sender from places to complaints
 ADD check how many complaints sent today
+0.86.0+a121:3 guest ADD textarea form field
 0.86.0+a121:2 guest ADD remove country reference for u s e r s
 0.86.0+a121:1 guest UPD complaint module
 0.85.0+a121:1 guest ADD improve translations usage in power panel (aka a d m i n panel)
