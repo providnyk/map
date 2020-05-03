@@ -1,3 +1,4 @@
+0.87.0+a124:2 guest ADD cut extra symbols in title
 0.87.0+a124:1 guest UPD pre-calculate rating, values for future settings of sending complaints
 0.86.0+a121:4 guest ADD move email sender from places to complaints
 0.86.0+a121:3 guest ADD textarea form field
