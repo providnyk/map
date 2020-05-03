@@ -17443,8 +17443,10 @@ a.plupload_disabled {
   .swal2-icon.swal2-warning {
     color: #FF7043;
     border-color: #FF7043;
+    /*
     font-size: 4rem;
     line-height: 5rem;
+    */
     -ms-flex-pack: center;
         -webkit-box-pack: center;
             justify-content: center; }

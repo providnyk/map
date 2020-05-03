@@ -13,6 +13,7 @@ class ComplaintTranslation extends Model
 		'title',
 		'annotation',
 		'description',
+		'address',
 		'response',
 	];
 
@@ -20,12 +21,12 @@ class ComplaintTranslation extends Model
 		'title'			=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> 'required|string|max:255',
+			'rules'		=> 'required|string|max:191',
 		],
 		'annotation'	=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
-			'rules'		=> 'string|max:255',
+			'rules'		=> 'string|max:191',
 		],
 		'description'	=> [
 			'tab'		=> 'data',

@@ -3,9 +3,9 @@
 namespace Modules\Complaint\User;
 
 #use Modules\Complaint\Http\Controllers\ComplaintController as Controller;
-use App\Http\Controllers\ControllerUser as Controller;
-use Modules\Building\Database\Building;
-use Illuminate\Http\Request;
+use                     App\Http\Controllers\ControllerUser as Controller;
+use                   Modules\Place\Database\Place;
+use                          Illuminate\Http\Request;
 
 class ComplaintController extends Controller
 {
@@ -19,7 +19,7 @@ class ComplaintController extends Controller
 	{
 		\View::composer('user.*', function ($view) {
 			$view->with([
-				'building'		=> Building::all()->sortBy('title'),
+				'place'		=> Place::all()->sortBy('title'),
 			]);
 		});
 		return parent::form($request);

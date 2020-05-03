@@ -1,5 +1,5 @@
+0.87.0+a124:1 guest UPD pre-calculate rating, values for future settings of sending complaints
 0.86.0+a121:4 guest ADD move email sender from places to complaints
-ADD check how many complaints sent today
 0.86.0+a121:3 guest ADD textarea form field
 0.86.0+a121:2 guest ADD remove country reference for u s e r s
 0.86.0+a121:1 guest UPD complaint module

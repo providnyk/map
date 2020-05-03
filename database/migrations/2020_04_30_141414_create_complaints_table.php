@@ -20,7 +20,8 @@ class CreateComplaintsTable extends Migration {
         Schema::connection(self::DB_CONNECTION)->create(self::DB_NAME_PLR, function (Blueprint $table) {
             $table->bigIncrements(self::DB_TABLE_KEY);
 			$table->bigInteger('place_id')->unsigned()->nullable()->default(NULL);
-            $table->boolean('published')->default(0);
+            $table->boolean('published')->default(0)->index();
+            $table->string('email')->default('')->nullable(false)->index();
             $table->timestamps();
             $table->foreign('place_id')->references(self::DB_TABLE_KEY)->on('places')->onDelete('set null');
         });
@@ -32,6 +33,7 @@ class CreateComplaintsTable extends Migration {
             $table->string('title')->default('')->nullable(false);
             $table->string('annotation')->default('')->nullable(false);
             $table->text('description')->default('')->nullable(false);
+            $table->string('address')->default('')->nullable(false);
             $table->text('response')->default('')->nullable(false);
 
             $table->unique([$s_fkey, 'locale']);

@@ -1,6 +1,7 @@
 a_locations = [];
 
-function initClusterer( map ) {
+function initClusterer( map )
+{
 	var a_params = {
 		maxZoom: 				16,
 		minimumClusterSize: 	5,
@@ -14,7 +15,8 @@ function initClusterer( map ) {
 	};
 	var markerCluster = new MarkerClusterer(map, a_locations, a_params);
 }
-function initMap( el ) {
+function initMap( el )
+{
 	var markers = []; //el.find('.marker');
 
 	// TODO: refactor and make a common component
@@ -42,8 +44,10 @@ function initMap( el ) {
 				try {
 					// Do JSON handling here
 					tmp = JSON.parse(xhr.responseText);
+//console.log(tmp.data.length);
 					for (var i = 0; i < tmp.data.length; i++)
 					{
+//console.log(i, typeof tmp.data[i].rating_info, tmp.data[i].rating_info);
 						initMarkerFromJSON(tmp.data[i], map);
 					}
 				} catch(e) {
@@ -104,7 +108,8 @@ function initMap( el ) {
 	return map;
 }
 
-function getColor( i_percent ) {
+function getColor( i_percent )
+{
 	s_color = 'black';
 	if (i_percent > 70)
 	{
@@ -121,7 +126,8 @@ function getColor( i_percent ) {
 	return s_color;
 }
 
-function initMarkerFromJSON( data, map ) {
+function initMarkerFromJSON( data, map )
+{
 	var lat			= data.lat;
 	var lng			= data.lng;
 	var a_lat_lng	= {
@@ -133,26 +139,35 @@ function initMarkerFromJSON( data, map ) {
 	var i_overall	= -1;
 	var s_overall	= '';
 	var s_details	= '';
+	if (typeof data.rating_info != "string")
+		return 0;
 
-	if (typeof data.rating == 'object'
-		&& typeof data.rating.element == 'object'
-		&& typeof data.rating.overall == 'object'
-		&& typeof data.rating.overall.percent == 'number'
-		)
+//console.log(data.rating_info);
+
+	try {
+		// Do JSON handling here
+		o_rating = JSON.parse(data.rating_info);
+	} catch(e) {
+		console.log('err parsing id=' + data.id);
+		//JSON parse error, this is not json (or JSON isn't in the browser)
+	}
+//console.log(typeof o_rating);
+	i_overall		= data.rating_all;
+
+	if (typeof o_rating == 'object')
 	{
-		var tmp			= data.rating;
+		if (typeof o_rating.overall.description == "string")
+			s_overall	= o_rating.overall.description;
+		if (typeof o_rating.overall.details == "string")
+			s_details	= o_rating.overall.details;
 
-		s_overall		= tmp.overall.description;
-		s_details		= tmp.overall.details;
-		i_overall		= tmp.overall.percent;
-
-		for(i = 0; i < tmp.element.length; i++)
+		for(i = 0; i < o_rating.element.length; i++)
 		{
-			i_percent	= tmp['element'][i]['percent'];
+			i_percent	= o_rating['element'][i]['percent'];
 			s_color		= getColor(i_percent);
 			s_rating		= s_rating
 							+ '<p style="color: ' + s_color + ';">'
-							+ tmp['element'][i]['description']
+							+ o_rating['element'][i]['description']
 							+ '</p>'
 						;
 		}
@@ -168,7 +183,6 @@ function initMarkerFromJSON( data, map ) {
 		icon: s_marker_icon,
 		title: data.title,
 	});
-
 
 	a_locations.push(marker);
 
@@ -216,12 +230,14 @@ function initMarkerFromJSON( data, map ) {
 	map.markers.push( marker );
 }
 
-function centerMap( map, f_lat, f_lng ) {
+function centerMap( map, f_lat, f_lng )
+{
 	var o_lat_lng = new google.maps.LatLng(f_lat, f_lng);
 	map.setCenter(o_lat_lng);
 }
 
-function findMe( map ) {
+function findMe( map )
+{
 	findMeMarker = new google.maps.InfoWindow;
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(function(position) {
@@ -241,6 +257,7 @@ function findMe( map ) {
 	}
 }
 
-$(document).ready(function(){
+$(document).ready(function()
+{
 	 var map = initMap( $('#main_map') );
 });

@@ -20,7 +20,7 @@ class CreatePointsTable extends Migration {
         Schema::connection(self::DB_CONNECTION)->create(self::DB_NAME_PLR, function (Blueprint $table) {
             $table->bigIncrements(self::DB_TABLE_KEY);
             $table->unsignedInteger('design_id')->nullable();
-            $table->boolean('published')->default(0);
+            $table->boolean('published')->default(0)->index();
             $table->decimal('lat', 9, 7)->nullable();
             $table->decimal('lng', 10, 7)->nullable();
             $table->timestamps();

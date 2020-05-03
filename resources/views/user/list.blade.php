@@ -35,11 +35,14 @@ include(base_path().'/resources/views/user/crud.php');
 @endsection
 
 @section('script')
-	<script>
+	<script type="text/javascript">
 		$(document).ready(function(){
 
 			let s_route_add = '{!! $s_create_route !!}';
 			let s_route_del = '{!! $s_delete_route !!}';
+
+			if (typeof a_order == 'undefined')
+				a_order = [ 2, "asc" ];
 
 			@include('admin.common.list_js')
 			@include('admin.common.filters.js')
@@ -55,7 +58,7 @@ include(base_path().'/resources/views/user/crud.php');
 					style: 'os',
 					selector: 'td:not(:last-child)'
 				},
-                order: [[ 2, "asc" ]],
+                order: a_order,
 				columns: [
 					@include('user._list_table_columns')
 				],
@@ -69,7 +72,7 @@ include(base_path().'/resources/views/user/crud.php');
 
 		});
 	</script>
-@endsection
+@append
 
 @section('content')
 	<div class="card">
