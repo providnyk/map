@@ -57,7 +57,6 @@ class Place extends Model
 	{
 		$i_update_freq = 24;
 		$o_sql		= self::wherePublished(1)
-#						->whereId(39)
 						->where('rating_last', '<', Carbon::now()->subHour($i_update_freq))
 						->with(['opinion', 'vote'])
 						;
