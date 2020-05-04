@@ -138,6 +138,7 @@ function initMarkerFromJSON( data, map )
 	var s_rating	= '';
 	var i_overall	= -1;
 	var s_overall	= '';
+	var s_latest	= '';
 	var s_details	= '';
 	if (typeof data.rating_info != "string")
 		return 0;
@@ -160,6 +161,8 @@ function initMarkerFromJSON( data, map )
 			s_overall	= o_rating.overall.description;
 		if (typeof o_rating.overall.details == "string")
 			s_details	= o_rating.overall.details;
+		if (typeof o_rating.overall.latest_opinion == "string")
+			s_latest	= o_rating.overall.latest_opinion;
 
 		for(i = 0; i < o_rating.element.length; i++)
 		{
@@ -218,6 +221,7 @@ function initMarkerFromJSON( data, map )
 			Swal.fire({
 			  html: ''
 			  		+ '<p class="place_title">' + data.title + '</p>'
+			  		+ '<p class="place_latest_opinion">' + s_latest + '</p>'
 			  		+ '<hr>'
 			  		+ '<p class="place_address">' + data.address + '</p>'
 			  		+ '<p class="place_description">' + data.description + '</p>'

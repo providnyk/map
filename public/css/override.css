@@ -17480,6 +17480,11 @@ a.plupload_disabled {
     font-weight: 700;
     font-style: none;
   }
+  .swal2-content .place_latest_opinion {
+    font-size: 0.9em;
+    font-weight: 400;
+    font-style: none;
+  }
   .swal2-content .place_address {
     font-size: 0.9em;
     font-style: italic;

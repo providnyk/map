@@ -57,6 +57,7 @@ class Place extends Model
 	{
 		$i_update_freq = 24;
 		$o_sql		= self::wherePublished(1)
+#						->whereId(39)
 						->where('rating_last', '<', Carbon::now()->subHour($i_update_freq))
 						->with(['opinion', 'vote'])
 						;
@@ -95,11 +96,20 @@ class Place extends Model
 
 			$o_place->rating_last		= Carbon::now();
 
-			if (isset($o_place['opinion'][0]))
-				$a_update['latest_opinion'] = $o_place['opinion'][0]['title'];
 			$a_rating	= [];
 			$a_rating	= self::_sumAllVotes($o_place['vote'], $a_marks);
 			$a_rating	= self::_setAverageTotal($a_rating, $a_elements, $i_mark_max, $i_mark_min);
+
+			$i_tmp		= $o_place['opinion']->count();
+			$a_rating['overall']['latest_opinion'] = '';
+			for ($j = $i_tmp; $j > 0; $j--)
+			{
+				if (!empty($o_place['opinion'][$j]['description']))
+				{
+					$a_rating['overall']['latest_opinion'] = $o_place['opinion'][$j]['description'];
+					break;
+				}
+			}
 
 			$o_place->rating_all		= $a_rating['overall']['percent'];
 			$o_place->rating_min		= $a_rating['lowest']['elements'];
