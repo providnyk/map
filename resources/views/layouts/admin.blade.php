@@ -222,7 +222,7 @@
                     <a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
                     --}}
 
-					@include('providnykV1::guest._signout', ['class' => 'dropdown-item'])
+					@include($theme . '::guest._signout', ['class' => 'dropdown-item'])
 					{{-- include($theme . '::' . $_env->s_utype . '._signout', ['class' => 'dropdown-item']) --}}
 
                 </div>

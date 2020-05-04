@@ -181,7 +181,7 @@ function initMarkerFromJSON( data, map )
 		position: a_lat_lng,
 		map: map,
 		icon: s_marker_icon,
-		title: data.title.substring(0, 24),
+		title: data.title,
 	});
 
 	a_locations.push(marker);
@@ -216,9 +216,9 @@ function initMarkerFromJSON( data, map )
 
 			// we need colourful footer here so have to use another type of sweetalert2
 			Swal.fire({
-			  icon: 'info',
-			  title: data.title.substring(0, 24),
 			  html: ''
+			  		+ '<p class="place_title">' + data.title + '</p>'
+			  		+ '<hr>'
 			  		+ '<p class="place_address">' + data.address + '</p>'
 			  		+ '<p class="place_description">' + data.description + '</p>'
 			  		+ '<p class="rating_overall" style="color: ' + s_color + ';">' + s_overall + '</p>'

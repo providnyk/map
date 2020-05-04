@@ -14,7 +14,7 @@
 					@endif
 					<li><a class="blue"  href="{!! route('guest.personal.profile') !!}">{!! trans('general.my-area') !!}</a></li>
 					<li>
-					@include('providnykV1::guest._signout', ['class' => 'green nav-link'])
+					@include($theme . '::guest._signout', ['class' => 'green nav-link'])
 					</li>
 					@else
 					<li><a class="blue"  href="{!! route('signup_page') !!}">{{ trans('general.signup') }}</a></li>

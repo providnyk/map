@@ -17475,6 +17475,11 @@ a.plupload_disabled {
     flex-basis: 100%;
     float: none;
   }
+  .swal2-content .place_title {
+    font-size: 1.1em;
+    font-weight: 700;
+    font-style: none;
+  }
   .swal2-content .place_address {
     font-size: 0.9em;
     font-style: italic;
