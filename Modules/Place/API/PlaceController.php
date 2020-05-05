@@ -48,7 +48,7 @@ class PlaceController extends Controller
 	public function index(PlaceRequest $request, PlaceFilters $filters) : \Illuminate\Http\Response
 	{
 		Place::calculateRating();
-		return $this->indexAPI($request, $filters);
+		return $this->indexAPI($request, $filters, ['user']);
 	}
 
 	/**

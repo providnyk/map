@@ -60,9 +60,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Country');
     }
-	public function points()
+	public function places()
 	{
-		return $this->hasMany('App\Point');
+		return $this->hasMany('Modules\Place\Database\Place');
 	}
 
     public function getRoles($i_user_id = NULL)

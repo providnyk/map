@@ -21,11 +21,33 @@ class ControllerAPI		extends BaseController
 		$this->setEnv();
 		$o_items	= $this->_env->s_model::filter($filters);
 		$i_tmp		= count($a_with);
+
 		for ($i = 0; $i < count($a_with); $i++)
-			$o_items->with($a_with[$i]);
+			if ($a_with[$i] != 'user')
+				$o_items->with($a_with[$i]);
+
+		$o_res = $o_items->get();
+
+		/**
+		 * Users are not a Module yet
+		 * so have to arrange a crutch for user name to be shown
+		 */
+		if (array_search('user', $a_with) !== FALSE)
+		{
+			$a_user_ids = [];
+			for ($i = 0; $i < count($o_res); $i++)
+				$a_user_ids[] = $o_res[$i]->user_id;
+			$o_users = \App\User::select('id', \DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
+									->whereIn('id', $a_user_ids)
+									->pluck('full_name', 'id')
+								;
+			for ($i = 0; $i < count($o_res); $i++)
+				$o_res[$i]->user_name = $o_users[$o_res[$i]->user_id];
+		}
+
 		return response([
 			'draw'				=> $request->draw,
-			'data'				=> $o_items->get(),
+			'data'				=> $o_res,
 			'recordsTotal'		=> $this->_env->s_model::count(),
 			'recordsFiltered'	=> $filters->getFilteredCount(),
 		], 200);
