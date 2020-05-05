@@ -4,7 +4,6 @@
 	</script>
 @append
 @php
-#$b_title = FALSE;
 $a_columns = [
 				'user_name' => 'text'
 			];

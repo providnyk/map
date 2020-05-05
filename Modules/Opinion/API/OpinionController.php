@@ -50,7 +50,7 @@ class OpinionController extends Controller
 #	public function index(OpinionApiRequest $request, OpinionFilters $filters) : \Illuminate\Http\Response
 	public function index(OpinionRequest $request, OpinionFilters $filters) : \Illuminate\Http\Response
 	{
-		return $this->indexAPI($request, $filters);
+		return $this->indexAPI($request, $filters, ['place']);
 	}
 
 	/**

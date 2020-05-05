@@ -28,6 +28,11 @@ class ControllerAPI		extends BaseController
 
 		$o_res = $o_items->get();
 
+		for($i = 0; $i < count($o_res); $i++)
+			for ($j = 0; $j < count($a_with); $j++)
+				if ($a_with[$j] != 'user')
+					$o_res[$i]->{$a_with[$j] . '_title'} = $o_res[$i]->{$a_with[$j]}->title;
+
 		/**
 		 * Users are not a Module yet
 		 * so have to arrange a crutch for user name to be shown
