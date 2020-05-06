@@ -21,30 +21,17 @@ class CreateOpinionsTable extends Migration {
         Schema::connection(self::DB_CONNECTION)->create(self::DB_NAME_PLR, function (Blueprint $table) {
             $table->bigIncrements(self::DB_TABLE_KEY);
 
-#			$table->integer('element_id')->unsigned()->nullable()->default(NULL);
-#			$table->integer('mark_id')->unsigned()->nullable()->default(NULL);
             $table->bigInteger('place_id')->unsigned()->nullable()->default(NULL);
 			$table->integer('user_id')->unsigned()->nullable()->default(NULL);
 
             $table->boolean('published')->default(0);
             $table->timestamps();
         });
-/*
-		Schema::connection(self::DB_CONNECTION)->table(self::DB_NAME_PLR, function (Blueprint $table) {
-			$table->foreign('element_id')->references(self::DB_TABLE_KEY)->on('elements')->onDelete('cascade');
-		});
-		Schema::connection(self::DB_CONNECTION)->table(self::DB_NAME_PLR, function (Blueprint $table) {
-			$table->foreign('mark_id')->references(self::DB_TABLE_KEY)->on('marks')->onDelete('cascade');
-		});
-*/
+
 		Schema::connection(self::DB_CONNECTION)->table(self::DB_NAME_PLR, function (Blueprint $table) {
 			$table->foreign('place_id')->references(self::DB_TABLE_KEY)->on('places')->onDelete('cascade');
 		});
-/*
-		Schema::table(self::DB_PREFIX.'_'.self::DB_NAME_PLR, function (Blueprint $table) {
-			$table->foreign('user_id')->references(self::DB_TABLE_KEY)->on('users')->onDelete('cascade');
-		});
-*/
+
 		$s_fkey = self::DB_NAME_SGL.'_'.self::DB_TABLE_KEY;
         Schema::connection(self::DB_CONNECTION)->create(self::DB_NAME_SGL.self::DB_TABLE_TRAN, function (Blueprint $table) use ($s_fkey) {
             $table->bigIncrements(self::DB_TABLE_KEY);

@@ -1,3 +1,4 @@
+0.87.1+a127:3 guest ADD irreversible duplicates clean up to the migration
 0.87.1+a127:2 guest ADD draft migration for adding unique index to opinions
 0.87.1+a127:1 guest ADD opinion button after place viewed in modal
 FIX prevent duplicate opinions for the same place by the same user
