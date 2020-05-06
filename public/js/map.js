@@ -191,45 +191,59 @@ function initMarkerFromJSON( data, map )
 
 	marker.addListener('click', function() {
 
-			var a_buttons = {};
-			data['url'] = '';
+			a_params = {
+				reverseButtons:		true,
+				showCloseButton:	true,
+				html: 				''
+						+ '<p class="place_title">' + data.title + '</p>'
+						+ '<p class="place_latest_opinion">' + s_latest + '</p>'
+						+ '<hr>'
+						+ '<p class="place_address">' + data.address + '</p>'
+						+ '<p class="place_description">' + data.description + '</p>'
+						+ '<p class="rating_overall" style="color: ' + s_color + ';">' + s_overall + '</p>'
+						+ '<p class="rating_details" style="color: ' + s_color + ';">' + s_details + '</p>'
+						,
+				footer:				s_rating,
+			};
+			a_routes = {};
 
 			if (s_text_secondary != '')
 			{
-				a_buttons['secondary'] = {
-					text: s_text_secondary,
-					className: "btn-light",
-				};
+				a_params.cancelButtonText	= s_text_secondary;
+				a_params.showCancelButton	= true;
+				s_route_secondary = s_route_secondary.replace(':type', 'place').replace(':id', data.id);
 			}
 
 			if (s_text_extra != '')
-				a_buttons['extra'] = {
-					text: s_text_extra,
-					className: "btn-light",
-				};
-
+			{
+				if (typeof data.url !== 'undefined')
+					s_route_extra = data.url;
+				a_params.footer = '<a href="' + s_route_extra + '">' + s_text_extra + '</a>';
+			}
 			if (s_text_primary != '')
 			{
-				a_buttons['primary'] = {
-					text: s_text_primary,
-					className: "btn-primary",
-				};
+				a_params.confirmButtonText = s_text_primary;
 				s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
 			}
 
 			// we need colourful footer here so have to use another type of sweetalert2
-			Swal.fire({
-			  html: ''
-			  		+ '<p class="place_title">' + data.title + '</p>'
-			  		+ '<p class="place_latest_opinion">' + s_latest + '</p>'
-			  		+ '<hr>'
-			  		+ '<p class="place_address">' + data.address + '</p>'
-			  		+ '<p class="place_description">' + data.description + '</p>'
-			  		+ '<p class="rating_overall" style="color: ' + s_color + ';">' + s_overall + '</p>'
-			  		+ '<p class="rating_details" style="color: ' + s_color + ';">' + s_details + '</p>'
-			  		,
-			  footer: s_rating
-			});
+			Swal.fire(
+				a_params
+			).then((result) => {
+				if (result.value) {
+					if (s_route_primary != '')
+						window.location.href = s_route_primary;
+					else
+						resetForm(form);
+				} else if (result.dismiss === Swal.DismissReason.cancel) {
+					if (s_route_secondary != '')
+						window.location.href = s_route_secondary;
+					else
+						resetForm(form);
+				}
+			})
+			;
+
 	});
 	map.markers.push( marker );
 }

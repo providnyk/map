@@ -1,10 +1,11 @@
+0.87.1+a127:1 guest ADD opinion button after place viewed in modal
+FIX prevent duplicate opinions for the same place by the same user
 0.87.1+a126:4 guest ADD files cleanup
 0.87.1+a126:3 guest FIX login button overflow
 0.87.0+a126:2 guest ADD hide title for opinion and show place title instead
 0.87.0+a126:1 guest ADD name surname to table when listing places
 0.87.0+a125:3 guest ADD latest opinion when viewing place
 0.87.0+a125:2 guest ADD latest opinion when viewing place
-ADD opinion button after place created
 0.87.0+a125:1 guest ADD better map place sweetalert title and icon
 0.87.0+a124:6 guest ADD cut extra symbols in title
 0.87.0+a124:5 guest ADD cut extra symbols in title

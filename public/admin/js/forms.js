@@ -41,6 +41,7 @@ $(document).ready(() => {
 			{
 				a_params.cancelButtonText	= s_text_secondary;
 				a_params.showCancelButton	= true;
+				s_route_secondary = s_route_secondary.replace(':type', 'place').replace(':id', data.id);
 			}
 
 			if (s_text_extra != '')
