@@ -12,6 +12,7 @@ namespace Modules\Opinion\API;
 #use Modules\Opinion\Requests\OpinionRequest;
 
 use                        App\Http\Requests\DeleteRequest;
+use                                          Exception;
 
 use                     App\Http\Controllers\ControllerAPI as Controller;
 
@@ -24,7 +25,6 @@ use                 Modules\Opinion\Database\OpinionVote;
 use                    Modules\Place\Filters\PlaceFilters;
 use                          Illuminate\Http\Request;
 use                      Modules\Opinion\API\SaveRequest;
-
 #use Modules\Opinion\Http\Controllers\OpinionController as Controller;
 
 class OpinionController extends Controller
@@ -76,12 +76,35 @@ class OpinionController extends Controller
 		$request->merge([
 			'user_id' => \Auth::user()->id,
 		]);
-		$a_res = $this->storeAPI($request);
+
+		try
+		{
+			$a_res = $this->storeAPI($request);
+		}
+		catch(Exception $exception)
+		{
+			$errormsg = 'Database error! ' . $exception->getCode();
+			dd($errormsg);
+		}
 
 		$request->merge([
 			'user_id' => \Auth::user()->id,
 		]);
-		$this->saveVote($request, $this->o_item);
+
+		try
+		{
+			$this->saveVote($request, $this->o_item);
+		}
+		catch(Exception $exception)
+		{
+			/**
+			 * remove newly created parent "duplicate" item of opinion for place
+			 */
+			$this->setEnv();
+			$this->_env->s_model::destroy($this->o_item->id);
+			$errormsg = 'Database error! ' . $exception->getCode();
+			dd($errormsg);
+		}
 
 		return $a_res;
 	}
