@@ -15,6 +15,10 @@ return [
 		'typein'		=> 'відгук',
 		'saved'			=> 'відгук',
 	],
+	'messages' => [
+		'no_dup_title'	=> 'Помилка',
+		'no_dup_text'	=> 'ви вже оцінили цей об’єкт',
+	],
 	'field' => [
 		'place_title' => [
 			'label'		=> 'Назва точки',

@@ -1,9 +1,8 @@
+0.87.1+a129:1 guest ADD show nice message when trying creation a duplicate of opinion for the same place by the same user
 0.87.1+a128:1 guest ADD remove newly created parent "duplicate" item of opinion for place
-ADD catch duplicate opinion creation error
 0.87.1+a127:3 guest ADD irreversible duplicates clean up to the migration
 0.87.1+a127:2 guest ADD draft migration for adding unique index to opinions
 0.87.1+a127:1 guest ADD opinion button after place viewed in modal
-FIX prevent duplicate opinions for the same place by the same user
 0.87.1+a126:4 guest ADD files cleanup
 0.87.1+a126:3 guest FIX login button overflow
 0.87.0+a126:2 guest ADD hide title for opinion and show place title instead

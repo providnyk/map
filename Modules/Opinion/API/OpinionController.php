@@ -73,6 +73,10 @@ class OpinionController extends Controller
 	 */
 	public function store(SaveRequest $request) : \Illuminate\Http\Response
 	{
+		$b_err	= FALSE;
+		$i_code	= 200;
+		$this->setEnv();
+
 		$request->merge([
 			'user_id' => \Auth::user()->id,
 		]);
@@ -83,30 +87,42 @@ class OpinionController extends Controller
 		}
 		catch(Exception $exception)
 		{
-			$errormsg = 'Database error! ' . $exception->getCode();
-			dd($errormsg);
+			$this->setEnv();
+			if ($exception->getCode() == 23000)
+				$b_err = TRUE;
+				$i_code = 409;
 		}
 
 		$request->merge([
 			'user_id' => \Auth::user()->id,
 		]);
 
-		try
+		if (!$b_err)
 		{
-			$this->saveVote($request, $this->o_item);
-		}
-		catch(Exception $exception)
-		{
-			/**
-			 * remove newly created parent "duplicate" item of opinion for place
-			 */
-			$this->setEnv();
-			$this->_env->s_model::destroy($this->o_item->id);
-			$errormsg = 'Database error! ' . $exception->getCode();
-			dd($errormsg);
+			try
+			{
+				$this->saveVote($request, $this->o_item);
+			}
+			catch(Exception $exception)
+			{
+				/**
+				 * remove newly created parent "duplicate" item of opinion for place
+				 */
+				$this->_env->s_model::destroy($this->o_item->id);
+				if ($exception->getCode() == 23000)
+					$b_err = TRUE;
+					$i_code = 424;
+			}
 		}
 
-		return $a_res;
+		if ($b_err)
+			return response([
+				'error' => TRUE,
+				'title' => trans( $this->_env->s_sgl . '::crud.messages.no_dup_title'),
+				'message' => trans( $this->_env->s_sgl . '::crud.messages.no_dup_text'),
+			], $i_code);
+		else
+			return $a_res;
 	}
 
 	/**
