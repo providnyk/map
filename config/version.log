@@ -1,3 +1,4 @@
+0.87.1+a129:2 guest ADD redirect to list of places after added new opinion
 0.87.1+a129:1 guest ADD show nice message when trying creation a duplicate of opinion for the same place by the same user
 0.87.1+a128:1 guest ADD remove newly created parent "duplicate" item of opinion for place
 0.87.1+a127:3 guest ADD irreversible duplicates clean up to the migration

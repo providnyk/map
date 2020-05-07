@@ -23,7 +23,6 @@ $(document).ready(() => {
 			title:				data.title,
 			text:				data.message,
 		};
-		a_routes = {};
 
 		if (s_text_secondary != '')
 		{
@@ -43,6 +42,14 @@ $(document).ready(() => {
 			a_params.confirmButtonText = s_text_primary;
 			s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
 		}
+
+		a_params.onClose = () => {
+			if (s_route_primary != '' && s_route_secondary == '')
+				window.location.href = s_route_primary;
+			else
+				resetForm(form);
+		};
+
 	}
 
 	// TODO: refactoring
