@@ -1,3 +1,4 @@
+0.87.1+a133:1 guest ADD map preload spinner
 0.87.1+a129:2 guest ADD redirect to list of places after added new opinion
 0.87.1+a129:1 guest ADD show nice message when trying creation a duplicate of opinion for the same place by the same user
 0.87.1+a128:1 guest ADD remove newly created parent "duplicate" item of opinion for place
@@ -272,6 +273,15 @@ Ensures visitor browsing-security by preventing cross-site request forgery. This
 Ми не розсилаємо спам. Якщо Ви вирішите, що наші листи
 Вам не потрібні, просто відпишіться, перейшовши
 за посиланням у кінці повідомлення.
+
+Ми помітили, що для вашого браузеру встановлено пріоритет української мови, ви можете перемкнути мову відображення сайту на українську.
+Оставить русский язык, и не отображать больше это сообщение! УКРАЇНСЬКОЮ
+
+
+Реєструючись в Бізнес-кабінеті, ви даєте згоду на використання номера телефону та email для отримання інформаційних повідомлень від ТОВ "Нова Пошта".
+Ознайомитись з умовами програмі ЗБІЛЬШУЙ МОЖЛИВОСТІ та з правилами використання особистого кабінету.
+https://novaposhta.ua/uploads/misc/doc/Loyalty_Program_Terms_bk.pdf
+https://novaposhta.ua/uploads/misc/doc/Rules_personal-cabinet_mobile-application.pdf
 
 If you choose to send us your system information, you encourage better support for your system configuration in our future releases. This is entirely voluntary and anonymous. We promise never to use your information for nefarious purposes. Please click Open Preferences to learn more.
 
