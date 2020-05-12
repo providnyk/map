@@ -81,7 +81,7 @@ class Complaint extends Model
 		$s_subj		 	= $a_from[0]['s_subject'];
 		$s_name_from	= config('services.mail.name');
 
-		if (config('app.env') == 'acceptance')
+		if (config('app.env') == 'production') #acceptance
 			$a_to[0]['a_email']			= [
 											'anna.krys.od@gmail.com',
 											'bogachenko.pavel@gmail.com',
@@ -109,6 +109,7 @@ class Complaint extends Model
 
 		$a_recipients	= [];
 		$a_recipients[]	= ['email' => config('services.mail.from'), 'name' => config('services.mail.name'),];
+		$a_recipients[]	= ['email' => 'bogachenko.pavel@gmail.com', 'name' => 'Bogachenko Pavel',];
 
 		for ($i = 0; $i < count($a_to); $i++)
 		{
