@@ -3,7 +3,9 @@
 		<div class="flexwrap">
 			<div class="copyright">
 				<p>
-					{!! trans('app.name') !!} &copy;
+					&copy; {!! trans('app.name') !!}
+				</p>
+				<p>
 					@if (config('app.est')!=date("Y")) {{ config('app.est') }} &mdash; @endif
 					{!! @date("Y") !!}
 				</p>
