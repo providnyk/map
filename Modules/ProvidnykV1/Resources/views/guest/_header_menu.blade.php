@@ -1,7 +1,7 @@
 			<nav>
 				<ul>
+					<li><a href="{!! route('guest.page', ['page_slug' => 'about-us']) !!}">Про нас</a></li>
 {{--
-					<li><a href="#">Про нас</a></li>
 					<li><a href="#">Волонтерам</a></li>
 					<li><a href="#">Новости</a></li>
 					<li><a href="#">Контакты</a></li>
