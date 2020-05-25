@@ -81,17 +81,20 @@ class Complaint extends Model
 		$s_subj		 	= $a_from[0]['s_subject'];
 		$s_name_from	= config('services.mail.name');
 
-		if (config('app.env') == 'production') #acceptance
+		if (config('app.env') == 'production' || config('app.env') == 'acceptance')
+		{
 			$a_to[0]['a_email']			= [
 											'anna.krys.od@gmail.com',
 											'bogachenko.pavel@gmail.com',
 											'max.dmitriev@activelex.com',
 										];
-		elseif (config('app.env') == 'local')
-			$a_to[0]['a_email']			= [config('services.mail.from')];
-
-		if (config('app.env') != 'production')
 			$a_to[1]['a_email']			= $a_to[0]['a_email'];
+		}
+		elseif (config('app.env') == 'local')
+		{
+			$a_to[0]['a_email']			= [config('services.mail.from')];
+			$a_to[1]['a_email']			= $a_to[0]['a_email'];
+		}
 
 		$a_params	=
 				[
