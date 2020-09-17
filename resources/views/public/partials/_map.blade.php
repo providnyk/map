@@ -73,6 +73,11 @@ if (config('app.env') == 'local')
 
 <div class="map_info_block">
 
+	<div class="div_directions_switch">
+		<i class="i_switch_directions icon-shrink" style="display: none;"></i>
+		<i class="i_switch_directions icon-enlarge"></i>
+	</div>
+
 	<div id="mib_content">
 		<div class="filters directions">
 		<form class="google_maps_direction" action="/" method="POST">

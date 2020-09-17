@@ -322,6 +322,18 @@ function centerMap( map, f_lat, f_lng )
 	map.setCenter(o_lat_lng);
 }
 
+function showDirectionsForm()
+{
+	$('.i_switch_directions').on('click', function (e) {
+		e.preventDefault();
+	//console.log(e, $(this));
+
+		var $this = $(this);
+		$('.i_switch_directions').toggle();
+		$('#mib_content .filters').toggle();
+	});
+}
+
 function findMe( map )
 {
 	findMeMarker = new google.maps.InfoWindow;
@@ -348,6 +360,7 @@ $(document).ready(function()
 	map = initMap( $('#main_map') );
 	$('form.google_maps_direction').on('submit', fnAutocompleteAddress);
 //	console.log(map);
+	showDirectionsForm();
 });
 
 //       google.maps.event.addDomListener(window, 'load', initAutocomplete);
