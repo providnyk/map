@@ -1,0 +1,13 @@
+{
+    "name": "ProvidnykV1",
+    "alias": "providnykV1",
+    "description": "",
+    "keywords": [],
+    "order": 0,
+    "providers": [
+        "Modules\\ProvidnykV1\\Providers\\ProvidnykV1ServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
