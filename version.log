@@ -1,3 +1,4 @@
+0.93.0+a272:2 user ADD remove legacy reference for versionlog
 0.93.0+a272:1 user ADD tracks module DB migration
 0.93.0+a261:2 guest ADD visibility switch of directions chooser
 0.93.0+a261:1 guest UPD transfer major core changes
