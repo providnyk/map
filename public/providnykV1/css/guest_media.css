@@ -242,3 +242,13 @@
 		letter-spacing: -1px;
 	}
 }
+@media screen and (max-width:515px) {
+	#mib_content .filters ul li input + label span {
+		display:  none;
+	}
+	#profile_wrap .profile .confirm,
+	.confirm {
+		width: 300px;
+	}
+}
+
