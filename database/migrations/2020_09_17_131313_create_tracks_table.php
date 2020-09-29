@@ -40,7 +40,8 @@ class CreatetracksTable extends Migration {
 			 *	The JSON alias was added in MariaDB 10.2.7
 			 *	JSON is an alias for LONGTEXT introduced for compatibility reasons with MySQL's JSON data type
 			 */
-			$table->longtext('response_raw')->nullable(FALSE)->default('')->comment('response from API as is');
+			$table->longtext('request_raw')->nullable(FALSE)->default('')->comment('request sent to API as is; it is for debuggin purpose and may be dropped for saving space');
+			$table->longtext('response_raw')->nullable(FALSE)->default('')->comment('response from API as is; it is for debuggin purpose and may be dropped for saving space');
 
 			$table->timestamps();
 		});
