@@ -171,7 +171,15 @@
 		margin:0 auto;
 		float: none;
 	}
-
+	#mib_content .filters,
+	.i_switch_directions.icon-shrink
+	{
+		display: none;
+	}
+	.i_switch_directions.icon-enlarge
+	{
+		display: block;
+	}
 }
 
 @media screen and (max-width:1200px) {

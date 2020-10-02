@@ -212,7 +212,7 @@ footer .open_filter_btn {
 #main_map,
 #main_map iframe {
 	position: relative;
-	height: 100vh;
+	height: calc(100vh - 80px);
 	width: 100vw;
 }
 #map_screen .map_info_block {
@@ -1440,7 +1440,15 @@ footer .socials {
 	background-color: rgb(255, 255, 255);
 	box-shadow: rgba(82, 85, 114, 0.2) 0px 0px 40px 0px;
 }
-#mib_content .filters
+.i_switch_directions
+{
+	cursor:pointer;
+}
+.i_switch_directions.icon-shrink
+{
+	display: block;
+}
+.i_switch_directions.icon-enlarge
 {
 	display: none;
 }

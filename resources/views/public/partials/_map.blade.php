@@ -38,19 +38,20 @@ if (config('app.env') == 'local')
 @section('script')
 	<script type="text/javascript">
 	let google_map_key				= '{!! config('services.google.map.key') !!}'
-		,s_route_list				= '{!! route('api.'.$s_category.'.index') !!}'
+		,s_route_list						= '{!! route('api.'.$s_category.'.index') !!}'
+//		,s_track_add						= '{!! route('api.track.store') !!}'
 		,s_servererror_info			= '{!! trans('user/session.text.server_err_info') !!}'
-		,s_theme					= '{!! $theme !!}'
+		,s_theme								= '{!! $theme !!}'
 
-		,s_text_extra				= '{!! $s_btn_extra !!}'
-		,s_route_extra				= '{!! $s_route_extra !!}'
-		,s_text_primary				= '{!! $s_btn_primary !!}'
-		,s_route_primary			= '{!! $s_route_primary !!}'
-		,s_text_secondary			= '{!! $s_btn_secondary !!}'
+		,s_text_extra						= '{!! $s_btn_extra !!}'
+		,s_route_extra					= '{!! $s_route_extra !!}'
+		,s_text_primary					= '{!! $s_btn_primary !!}'
+		,s_route_primary				= '{!! $s_route_primary !!}'
+		,s_text_secondary				= '{!! $s_btn_secondary !!}'
 		,s_route_secondary			= '{!! $s_route_secondary !!}'
-		,s_close_route				= '{!! $s_cancel_route !!}'
+		,s_close_route					= '{!! $s_cancel_route !!}'
 
-		,i_places_qty				= '{!! $i_places_qty !!}'
+		,i_places_qty						= '{!! $i_places_qty !!}'
 		;
 	</script>
 @append
@@ -58,6 +59,8 @@ if (config('app.env') == 'local')
 	<script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key={!! config('services.google.map.key') !!}&language={{ config('app.locale') }}&libraries=places" type="text/javascript"></script>
 	<script src="/js/map.js?v={!! $version->js !!}" type="text/javascript"></script>
+	<script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>
+	<script src="{!! asset('/admin/js/forms.js?v=' . $version->js) !!}"></script>
 @append
 
 
@@ -74,13 +77,13 @@ if (config('app.env') == 'local')
 <div class="map_info_block">
 
 	<div class="div_directions_switch">
-		<i class="i_switch_directions icon-shrink" style="display: none;"></i>
+		<i class="i_switch_directions icon-shrink"></i>
 		<i class="i_switch_directions icon-enlarge"></i>
 	</div>
 
 	<div id="mib_content">
 		<div class="filters directions">
-		<form class="google_maps_direction" action="/" method="POST">
+		<form class="google_maps_direction" action="{!! route('api.track.store') !!}" method="POST">
 			<ul>
 				<li>
 					<input type="radio" name="travel_mode" value="TRANSIT" id="directions_bus" />
@@ -106,19 +109,30 @@ if (config('app.env') == 'local')
 			</ul>
 
 			<div class="map_search">
-				<input type="text" class="google_maps_autocomplete" placeholder="Відсюди" name="s" />
-				<input type="hidden" id="lat_from" name="lat_from" class="lat" value="{{ (config('app.env') == 'local') ? '50.3925912' : ''}}" />
-				<input type="hidden" id="lng_from" name="lng_from" class="lng" value="{{ (config('app.env') == 'local') ? '30.622539' : ''}}" />
+				<input type="text" class="google_maps_autocomplete" placeholder="Відсюди" id="{!! $app->getLocale() !!}_from_address" name="{!! $app->getLocale() !!}[from_address]" value="{{ (config('app.env') == 'local') ? 'Позняки, Київ, Україна' : ''}}" />
+				<input type="hidden" id="from_lat" name="from_lat" class="lat" value="{{ (config('app.env') == 'local') ? '50.4086678' : ''}}" />
+				<input type="hidden" id="from_lng" name="from_lng" class="lng" value="{{ (config('app.env') == 'local') ? '30.62840660000001' : ''}}" />
 				<button type="button" class="gotosearch"></button>
 		{{--
 				<button type="button" class="findme" id="findme_btn"></button>
 		--}}
 			</div>
 			<div class="map_search">
-				<input type="text" class="google_maps_autocomplete" placeholder="Досюди" name="s" />
-				<input type="hidden" id="lat_to" name="lat_to" class="lat" value="{{ (config('app.env') == 'local') ? '50.3825909' : ''}}" />
-				<input type="hidden" id="lng_to" name="lng_to" class="lng" value="{{ (config('app.env') == 'local') ? '30.6048569' : ''}}" />
+				<input type="text" class="google_maps_autocomplete" placeholder="Досюди" id="{!! $app->getLocale() !!}_to_address" name="{!! $app->getLocale() !!}[to_address]" value="{{ (config('app.env') == 'local') ? 'вулиця Єлизавети Чавдар, 7, Київ, Україна' : ''}}" />
+				<input type="hidden" id="to_lat" name="to_lat" class="lat" value="{{ (config('app.env') == 'local') ? '50.3936141' : ''}}" />
+				<input type="hidden" id="to_lng" name="to_lng" class="lng" value="{{ (config('app.env') == 'local') ? '30.6226939' : ''}}" />
 				<button type="button" class="gotosearch"></button>
+			</div>
+
+			<div>
+				<input type="hidden" id="request_raw" name="request_raw" value="" />
+				<input type="hidden" id="response_raw" name="response_raw" value="" />
+				<input type="hidden" id="response_status" name="response_status" value="" />
+				<input type="hidden" id="route_qty" name="route_qty" value="" />
+				<input type="hidden" id="route_selected" name="route_selected" value="" />
+				<input type="hidden" id="length" name="length" value="" />
+				<input type="hidden" id="time" name="time" value="" />
+				<input type="hidden" id="{!! $app->getLocale() !!}_title" name="{!! $app->getLocale() !!}[title]" value="" />
 			</div>
 
 			<div class="buttons">

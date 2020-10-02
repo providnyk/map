@@ -1,38 +1,16 @@
 a_locations						= [];
 var a_directions_routes		= [];
 var i_directions_routes		= 0;
-var request						= {};
+var i_selected_route			= 0;
+var o_dir_request				= {};
+var o_dir_response			= {};
+var s_dir_status				= {};
 
 // https://developers.google.com/maps/documentation/javascript/reference/directions#DirectionsRendererOptions.directions
 var directionsRenderer		= new google.maps.DirectionsRenderer({
 										draggable: true,
 										hideRouteList: true
 									});
-
-$('#build_directions').on('click', function (e) {
-	e.preventDefault();
-//console.log(e, $(this));
-
-	var $this = $(this);
-	$this.addClass('disabled').prop("disabled",true);
-	submitForm();
-
-//	$('body').toggleClass('sidebar-xs').removeClass('sidebar-mobile-main');
-//	revertBottomMenus();
-
-	$this.removeClass('disabled').prop("disabled",false);
-});
-
-function showSelectedRoute( i_number )
-{
-	$('#div_routes_variants_wrap').removeClass('d-none');
-	$('.div_routes_variants').removeClass('active');
-	$('#div_routes_variants_' + i_number).addClass('active');
-	$('.div_directions_panel_wrap').removeClass('d-none');
-//	$('#main_map').addClass('with_directions');
-	directionsRenderer.setPanel($('#div_directions_panel')[0]);
-	directionsRenderer.setRouteIndex(i_number);
-}
 
 function resetRoutes( directionsRenderer )
 {
@@ -130,6 +108,12 @@ function initMap( el )
 			notify(s_servererror_info, 'danger', 3000);
 		}
 	});
+
+	// TODO: enable initial location detection over https
+	// o_my_location = detectLocation();
+
+			// map.setCenter(pos);
+	// centerMap( map, pos.lat, pos.lng );
 
 	centerMap( map, el.data('lat'), el.data('lng') );
 
@@ -326,12 +310,26 @@ function showDirectionsForm()
 {
 	$('.i_switch_directions').on('click', function (e) {
 		e.preventDefault();
-	//console.log(e, $(this));
-
-		var $this = $(this);
 		$('.i_switch_directions').toggle();
 		$('#mib_content .filters').toggle();
 	});
+}
+
+function detectLocation( )
+{
+	if (navigator.geolocation)
+	{
+		navigator.geolocation.getCurrentPosition(function(position) {
+			var pos = {
+				lat: position.coords.latitude,
+				lng: position.coords.longitude
+			};
+			return pos;
+		}, function() {
+			// alert('Error: The Geolocation service failed.');
+		});
+	}
+	return null;
 }
 
 function findMe( map )
@@ -358,13 +356,16 @@ function findMe( map )
 $(document).ready(function()
 {
 	map = initMap( $('#main_map') );
-	$('form.google_maps_direction').on('submit', fnAutocompleteAddress);
+	// $('form.google_maps_direction').on('submit', fnAutocompleteAddress);
 //	console.log(map);
+// console.log($('form.google_maps_direction').html());
 	showDirectionsForm();
+	$('form.google_maps_direction').on('submit', submitForm);
+
+	//       google.maps.event.addDomListener(window, 'load', initAutocomplete);
 });
 
-//       google.maps.event.addDomListener(window, 'load', initAutocomplete);
-google.maps.event.addDomListener(window, 'load', initializeAutocompleteAddress);
+	google.maps.event.addDomListener(window, 'load', initializeAutocompleteAddress);
 
 fnAutocompleteAddress = function(e){
 	e.preventDefault();
@@ -444,29 +445,27 @@ fetch(url)
 }
 
 
-   async function get_ajax_data(pointurl){
-	   var _reprojected_lat_lng = await $.ajax({
+async function get_ajax_data(pointurl){
+	var _reprojected_lat_lng = await $.ajax({
 //   function get_ajax_data(){
 //       var _reprojected_lat_lng = $.ajax({
-	mode: 'no-cors',
-								type: 'GET',
-								dataType: 'jsonp',
-								data: {},
-								url: pointurl,
-								success: function (data) {
-									console.log(data);
+		mode: 'no-cors',
+		type: 'GET',
+		dataType: 'jsonp',
+		data: {},
+		url: pointurl,
+		success: function (data) {
+			console.log(data);
 
-									// note: data is already json type, you
-									//       just specify dataType: jsonp
-									return data;
-								},
-								error: function (jqXHR, textStatus, errorThrown) {
-									console.log(jqXHR)
-								},
-							});
-
-
- } // function
+			// note: data is already json type, you
+			//       just specify dataType: jsonp
+			return data;
+		},
+		error: function (jqXHR, textStatus, errorThrown) {
+			console.log(jqXHR)
+		},
+	});
+} // function
 
 function initializeAutocompleteAddress() {
 	//Restrict Country in Google Autocomplete Address
@@ -476,10 +475,14 @@ function initializeAutocompleteAddress() {
 
 //var input = document.getElementById('autocomplete');
 //   var input = $('#autocomplete')[0];
-		submitForm();
+		// $('form.google_maps_direction').submit();
+		// submitForm();
+
+// $('form.google_maps_direction').find('button[type=submit]').trigger('click');
 
 		$("input[name='travel_mode']").change(function(){
-			submitForm();
+			$('form.google_maps_direction').find('button[type=submit]').trigger('click');
+			// submitForm();
 		});
 
 		$('.google_maps_autocomplete').each(function(i, elem){
@@ -529,17 +532,29 @@ function initializeAutocompleteAddress() {
 //       	console.log(data)
 //       }
 
-	function submitForm() {
+	function submitForm(e) {
+		e.preventDefault();
+
 		resetRoutes( directionsRenderer );
 		res		= checkRequiredFields();
 		if (Object.keys(res).length > 0)
 		{
 			var directionsService		= new google.maps.DirectionsService();
 
+			/**
+			 *		saving form means logging directions data for o_dir_request and o_dir_response
+			 */
+			// fnForm($('form.google_maps_direction'));
+			// $('form.google_maps_direction').on('submit', fnForm);
+
+
 		//	directionsRenderer.setPanel(document.getElementById('directionsPanel'));
 
 		//	var onChangeHandler = function() {
-				calculateAndDisplayRoute(directionsService);
+				calculateAndDisplayRoute(e, directionsService);
+				// $this = $(this);
+
+// console.log(typeof $this.preventDefault == 'function');
 		//	};
 
 
@@ -553,60 +568,118 @@ function initializeAutocompleteAddress() {
 		}
 	}
 
-
 	function checkRequiredFields() {
 
-		request = {
-			origin: {query: $('#lat_from').val() + ',' + $('#lng_from').val()},
-			destination: {query: $('#lat_to').val() + ',' + $('#lng_to').val()},
+		o_dir_request = {
+			origin: {query: $('#from_lat').val() + ',' + $('#from_lng').val()},
+			destination: {query: $('#to_lat').val() + ',' + $('#to_lng').val()},
 			//travelMode: google.maps.TravelMode[$('#mode').val()],
 			travelMode: $('input[name=travel_mode]:checked').val(),
 //			travelMode: $('#mode').val(),
 			provideRouteAlternatives: true,
 		};
-//console.log(request.origin.query, request.destination.query, request.travelMode, (request.origin.query != ',' && request.destination.query != ',' && request.travelMode != ''));
-		if (request.origin.query != ',' && request.destination.query != ',' && typeof request.travelMode != 'undefined')
+//console.log(o_dir_request.origin.query, o_dir_request.destination.query, o_dir_request.travelMode, (o_dir_request.origin.query != ',' && o_dir_request.destination.query != ',' && o_dir_request.travelMode != ''));
+		if (o_dir_request.origin.query != ',' && o_dir_request.destination.query != ',' && typeof o_dir_request.travelMode != 'undefined')
 		{
 			$('#build_directions').removeClass('disabled').prop("disabled",false);
 		}
 		else
 		{
 			$('#build_directions').addClass('disabled').prop("disabled",true);
-			request = {};
+			o_dir_request = {};
 		}
-		return request;
+		return o_dir_request;
 	}
 
+	function showSelectedRoute( i_number )
+	{
+		$('#div_routes_variants_wrap').removeClass('d-none');
+		$('.div_routes_variants').removeClass('active');
+		$('#div_routes_variants_' + i_number).addClass('active');
+		$('.div_directions_panel_wrap').removeClass('d-none');
+	//	$('#main_map').addClass('with_directions');
+		directionsRenderer.setPanel($('#div_directions_panel')[0]);
+		directionsRenderer.setRouteIndex(i_number);
+	}
 
+	function logDirectionsResponse(form) {
+		disableSubmit(form);
 
-	function calculateAndDisplayRoute(directionsService) {
+		var i_length = -1;
+		var i_time = -1;
+
+		$("#request_raw").val(JSON.stringify(o_dir_request));
+		$("#response_raw").val(JSON.stringify(o_dir_response));
+
+		$("#response_status").val(s_dir_status);
+		$("#route_qty").val(o_dir_response.routes.length);
+		$("#route_selected").val(i_selected_route);
+
+		if (o_dir_response.routes.length > 0)
+		{
+			i_length = o_dir_response.routes[i_selected_route].legs[0].distance.value;
+			i_time = o_dir_response.routes[i_selected_route].legs[0].duration.value;
+		}
+
+		$("#length").val(i_length);
+		$("#time").val(i_time);
+		$("#" + s_locale + "_title").val( $("#" + s_locale + "_from_address").val() + ' —> ' + $("#" + s_locale + "_to_address").val());
+
+		$.ajax({
+			url:	form.attr('action'),
+			type:	form.attr('method'),
+			data:	form.serialize()
+/*
+		}).done((data, status, xhr) => {
+		}).fail((xhr) => {
+*/
+		}).always((xhr, type, status) => {
+			enableSubmit(form);
+		});
+	}
+
+	function calculateAndDisplayRoute(e, directionsService) {
 //console.log('calculateAndDisplayRoute');
-//console.log(request);
+//console.log(o_dir_request);
+		form = $(e.currentTarget)
 
 		directionsService.route(
-			request,
-			function(response, status) {
-//console.log(response);
-				switch(status) {
+			o_dir_request,
+			function(o_response_raw, s_api_status) {
+// console.log(o_dir_request, s_api_status, o_response_raw);
+
+				o_dir_response		= o_response_raw;
+				s_dir_status		= s_api_status;
+				i_selected_route	= 0;
+
+				/**
+				 *		The maximum POST request body size is configured on the HTTP server and typically ranges from 1MB to 2GB
+				 *		The HTTP client (browser or other user agent) can have its own limitations.
+				 *		Therefore, the maximum POST body request size is min(serverMaximumSize, clientMaximumSize).
+				 */
+// console.log(JSON.stringify(o_dir_request), JSON.stringify(o_dir_response));
+				logDirectionsResponse(form);
+
+				switch(s_api_status) {
 					case 'OK':
 
 					directionsRenderer.setMap(map);
 
-					i_directions_routes = response.routes.length;
-					for (var i = 0, len = response.routes.length; i < len; i++) {
+					i_directions_routes = o_response_raw.routes.length;
+					for (var i = 0, len = o_response_raw.routes.length; i < len; i++) {
 						$('#div_routes_variants')
 							.append('<a href="" data-number="' + i + '" class="div_routes_variants" id="div_routes_variants_' + i + '">' + (i+1) + '</a>')
 						;
 /*
 						var directionsDisplay = new google.maps.DirectionsRenderer({
 							map: map,
-							directions: response,
+							directions: o_response_raw,
 							routeIndex: i
 						});
-						notify(response.routes[i].legs[0].distance.text + ' ' + response.routes[i].legs[0].duration.text, 'success', 7000);
-						if(typeof response.routes[i].warnings === "object")
+						notify(o_response_raw.routes[i].legs[0].distance.text + ' ' + o_response_raw.routes[i].legs[0].duration.text, 'success', 7000);
+						if(typeof o_response_raw.routes[i].warnings === "object")
 						{
-							response.routes[i].warnings.forEach((msg) => {
+							o_response_raw.routes[i].warnings.forEach((msg) => {
 								notify(msg, 'warning', 12000);
 							});
 						}
@@ -617,8 +690,9 @@ function initializeAutocompleteAddress() {
 						var fnListRouteSwitch = function(e) {
 							e.preventDefault();
 							var $this					= $(this);
-							var i_selected_route		= $this.data('number');
+							i_selected_route			= $this.data('number');
 							showSelectedRoute(i_selected_route);
+							logDirectionsResponse(form);
 						};
 						$('.div_routes_variants').click('change', fnListRouteSwitch);
 
@@ -629,21 +703,21 @@ function initializeAutocompleteAddress() {
 /*
 						var directionsDisplay = new google.maps.DirectionsRenderer({
 							map: map,
-							directions: response,
+							directions: o_response_raw,
 							draggable: true
 						});
 */
-//console.log(response);
-						directionsRenderer.setDirections(response);
-						showSelectedRoute(0);
+//console.log(o_response_raw);
+						directionsRenderer.setDirections(o_response_raw);
+						showSelectedRoute(i_selected_route);
 //						$('#div_routes_variants_0').trigger('click');
-						//directionsRenderer.setDirections({directions: response,draggable: true});
+						//directionsRenderer.setDirections({directions: o_response_raw,draggable: true});
 					break;
 					case 'ZERO_RESULTS':
-						notify('No directions ' + status, 'info', 3000);
+						notify('No directions ' + s_api_status, 'info', 3000);
 					break;
 					default:
-						notify('Directions request failed due to ' + status, 'danger', 3000);
+						notify('Directions o_dir_request failed due to ' + s_api_status, 'danger', 3000);
 				}
 			});
 	  }
