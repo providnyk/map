@@ -25,9 +25,10 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
 	@if (config('app.env') == 'production')
-
+{{--
 	@include('public.partials._googe_analytics')
 	@include('public.partials._googe_tagmanager_head')
+--}}
 	@endif
 
 	<meta charset="UTF-8">
@@ -111,9 +112,9 @@
 </head>
 <body>
 @if (config('app.env') == 'production')
-
+{{--
 @include('public.partials._googe_tagmanager_body')
-
+--}}
 @endif
 @include($theme . '::' . $_env->s_utype . '.header')
 
