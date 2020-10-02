@@ -74,6 +74,11 @@
 		max-height: 60px;
 		height: 60px;
 	}
+	#map_screen,
+	#main_map,
+	#main_map iframe {
+		height: calc(100vh);
+	}
 	#map_search button.findme {
 		top: calc(100vh - 250px);
 		right: 10px;

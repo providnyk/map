@@ -218,7 +218,8 @@ footer .open_filter_btn {
 #map_screen .map_info_block {
 	position: absolute;
 	z-index: 98;
-	top:113px;left:40px;
+	top:113px;
+	left:40px;
 	width: 464px;
 	max-height:calc(100vh - 176px);
 	-webkit-max-height:calc(100vh - 176px);
