@@ -481,6 +481,7 @@ function initializeAutocompleteAddress() {
 // $('form.google_maps_direction').find('button[type=submit]').trigger('click');
 
 		$("input[name='travel_mode']").change(function(){
+			checkRequiredFields();
 			$('form.google_maps_direction').find('button[type=submit]').trigger('click');
 			// submitForm();
 		});
@@ -526,6 +527,7 @@ function initializeAutocompleteAddress() {
 		});
 
 //   var input = $('.google_maps_autocomplete')[0];
+		checkRequiredFields();
 }
 
 //       function initAutocomplete(data) {
@@ -536,8 +538,8 @@ function initializeAutocompleteAddress() {
 		e.preventDefault();
 
 		resetRoutes( directionsRenderer );
-		res		= checkRequiredFields();
-		if (Object.keys(res).length > 0)
+		checkRequiredFields();
+		if (Object.keys(o_dir_request).length > 0)
 		{
 			var directionsService		= new google.maps.DirectionsService();
 
@@ -588,7 +590,6 @@ function initializeAutocompleteAddress() {
 			$('#build_directions').addClass('disabled').prop("disabled",true);
 			o_dir_request = {};
 		}
-		return o_dir_request;
 	}
 
 	function showSelectedRoute( i_number )
