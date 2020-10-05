@@ -2,5 +2,5 @@
 
 return [
 	'name'			=> 'Track',
-	'ico'			=> 'icon-location3',
+	'ico'			=> 'icon-direction',
 ];
