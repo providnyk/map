@@ -9,6 +9,7 @@ return [
 		'btn_create'	=> 'будову',
 		'btn_edit'		=> 'будову',
 		'btn_delete'	=> 'будов',
+		'btn_download'	=> 'будови',
 		'txt_create'	=> 'будови',
 		'txt_edit'		=> 'будови',
 		'filterby'		=> 'будовою',

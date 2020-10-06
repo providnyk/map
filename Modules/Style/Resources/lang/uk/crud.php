@@ -9,6 +9,7 @@ return [
 		'btn_create'	=> 'категорию',
 		'btn_edit'		=> 'категорию',
 		'btn_delete'	=> 'категорії',
+		'btn_download'	=> 'категорії',
 		'txt_create'	=> 'категорії',
 		'txt_edit'		=> 'категорії',
 		'filterby'		=> 'категорією',

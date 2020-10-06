@@ -9,6 +9,7 @@ return [
 		'btn_create'	=> 'балл',
 		'btn_edit'		=> 'балл',
 		'btn_delete'	=> 'балл',
+		'btn_download'	=> 'балли',
 		'txt_create'	=> 'балла',
 		'txt_edit'		=> 'балла',
 		'filterby'		=> 'балламі',

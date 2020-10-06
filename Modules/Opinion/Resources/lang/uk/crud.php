@@ -9,6 +9,7 @@ return [
 		'btn_create'	=> 'відгук',
 		'btn_edit'		=> 'відгук',
 		'btn_delete'	=> 'відгуків',
+		'btn_download'	=> 'відгуки',
 		'txt_create'	=> 'відгука',
 		'txt_edit'		=> 'відгука',
 		'filterby'		=> 'відгукамі',

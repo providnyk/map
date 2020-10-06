@@ -9,6 +9,7 @@ return [
 		'btn_create'	=> 'конструкцію',
 		'btn_edit'		=> 'конструкцію',
 		'btn_delete'	=> 'конструкції',
+		'btn_download'	=> 'конструкції',
 		'txt_create'	=> 'конструкції',
 		'txt_edit'		=> 'конструкції',
 		'filterby'		=> 'конструкцією',

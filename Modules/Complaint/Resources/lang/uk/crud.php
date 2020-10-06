@@ -9,6 +9,7 @@ return [
 		'btn_create'	=> 'скаргу',
 		'btn_edit'		=> 'скаргу',
 		'btn_delete'	=> 'скарг',
+		'btn_download'	=> 'скарги',
 		'txt_create'	=> 'скарги',
 		'txt_edit'		=> 'скарги',
 		'filterby'		=> 'скаргою',
