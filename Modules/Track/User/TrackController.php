@@ -3,8 +3,9 @@
 namespace Modules\Track\User;
 
 #use Modules\Track\Http\Controllers\TrackController as Controller;
-use App\Http\Controllers\ControllerUser as Controller;
-use Illuminate\Http\Request;
+use                     App\Http\Controllers\ControllerUser as Controller;
+use                          Illuminate\Http\Request;
+use                       Modules\Track\User\Track;
 
 class TrackController extends Controller
 {
@@ -21,5 +22,11 @@ class TrackController extends Controller
 			]);
 		});
 		return parent::form($request);
+	}
+
+	public function download(Request $request, $format)
+	{
+		// $this->setModuleEnv($format);
+		return Track::download();
 	}
 }

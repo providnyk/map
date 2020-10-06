@@ -54,13 +54,29 @@ Route::group([
 // Change language Route
 Route::get('lang/{language}', ['as' => 'change-lang', 'uses' => 'LanguageController@changeLanguage']);
 
+//Power routes
+Route::group([
+	'as' => 'user.',
+	'namespace' => 'User',
+	'middleware' => []
+], function() {
+	Route::group(['middleware' => 'auth'], function() {
+		$s_model	= 'Track';
+		$s_path		= strtolower($s_model);
+		$s_ctrl		= '\Modules\\' . $s_model . '\User\\' . $s_model ;
+		$s_ctrl		.='Controller';
+
+		$s_method	= 'download';
+		Route::get($s_path . '/download/{format}',	['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+	});
+});
+
 //Public routes
 Route::group([
 	'as' => 'guest.',
 	'namespace' => 'Guest',
 	'middleware' => []
 ], function() {
-
 	$s_model	= 'Welcome';
 	$s_path		= strtolower($s_model);
 	$s_ctrl		= '\Modules\\' . $s_model . '\Guest\\' . $s_model ;
@@ -115,7 +131,6 @@ Route::group([
 		$s_method	= 'view';
 		Route::get($s_path . '/look/{id}',			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 	});
-
 });
 
 //API Routes

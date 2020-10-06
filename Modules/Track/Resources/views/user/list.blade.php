@@ -7,5 +7,8 @@
 $a_columns = [
 				'user_name' => 'name'
 			];
+$a_buttons = [
+				'download' => 'xls'
+			];
 @endphp
 @extends('user.list')

@@ -210,7 +210,7 @@ if (class_exists($this->_env->s_model))
 #dump($this->_env->a_field, $this->_env->a_rule);
 		$user = Auth::user();
 		$this->_env->b_admin		= (!is_null($user) ? $user->checkAdmin() : FALSE);
-
+// dd($this->_env);
 		$_env						= $this->_env;
 		\View::composer('*', function ($view) use ($_env) {
 			$view->with([
