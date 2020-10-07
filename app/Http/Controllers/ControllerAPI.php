@@ -50,8 +50,8 @@ class ControllerAPI		extends BaseController
 									->whereIn('id', $a_user_ids)
 									->pluck('full_name', 'id')
 								;
-			for ($i = 0; $i < count($o_res); $i++)
-				$o_res[$i]->user_name = $o_users[$o_res[$i]->user_id];
+			for ($i = 0; $i < $o_res->count(); $i++)
+				$o_res[$i]->user_name = (!is_null($o_res[$i]->user_id) ? $o_users[$o_res[$i]->user_id] : 'anonymous');
 		}
 
 		return response([
