@@ -66,6 +66,5 @@ class Opinion extends Model
     public function vote() : HasMany
     {
         return $this->HasMany('Modules\Opinion\Database\OpinionVote');
-#		return $this->hasMany('Modules\Opinion\Database\OpinionVote');
     }
 }

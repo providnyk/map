@@ -19,6 +19,6 @@ class OpinionRequest extends Request
 	 */
 	public function rules()
 	{
-		return [];
+		return $this->_rules;
 	}
 }

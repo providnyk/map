@@ -30,11 +30,13 @@ class ControllerAPI		extends BaseController
 
 		for($i = 0; $i < $o_res->count(); $i++)
 			for ($j = 0; $j < count($a_with); $j++)
-				if ($a_with[$j] != 'user')
-					if (is_object($o_res[$i]->{$a_with[$j]}))
-						if (property_exists($o_res[$i]->{$a_with[$j]}, 'title'))
-							$o_res[$i]->{$a_with[$j] . '_title'} = $o_res[$i]->{$a_with[$j]}->title;
-
+				if ($a_with[$j] != 'user'
+					&& is_object($o_res[$i]->{$a_with[$j]})
+					&& isset($o_res[$i]->{$a_with[$j]}->title)
+				)
+				{
+					$o_res[$i]->{$a_with[$j] . '_title'} = $o_res[$i]->{$a_with[$j]}->title;
+				}
 		/**
 		 * Users are not a Module yet
 		 * so have to arrange a crutch for user name to be shown
