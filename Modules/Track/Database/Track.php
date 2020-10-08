@@ -2,7 +2,6 @@
 
 namespace Modules\Track\Database;
 
-use                       Illuminate\Support\Carbon;
 use                                      App\Model;
 
 class Track extends Model
@@ -36,12 +35,22 @@ class Track extends Model
 			'rules'		=> 'boolean',
 			'default'	=>	TRUE,
 		],
-		'lat'		=> [
+		'from_lat'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
 			'rules'		=> 'numeric|between:-85.05112878,85.05112878', #regex:/^[+-]?\d+\.\d+$/
 		],
-		'lng'		=> [
+		'from_lng'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> 'numeric|between:-999.9999999,999.9999999', #regex:/^-?\d{1,2}\.\d{6,}$/
+		],
+		'to_lat'		=> [
+			'tab'		=> 'data',
+			'field'		=> 'input',
+			'rules'		=> 'numeric|between:-85.05112878,85.05112878', #regex:/^[+-]?\d+\.\d+$/
+		],
+		'to_lng'		=> [
 			'tab'		=> 'data',
 			'field'		=> 'input',
 			'rules'		=> 'numeric|between:-999.9999999,999.9999999', #regex:/^-?\d{1,2}\.\d{6,}$/

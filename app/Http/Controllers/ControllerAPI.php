@@ -44,7 +44,7 @@ class ControllerAPI		extends BaseController
 		if (array_search('user', $a_with) !== FALSE)
 		{
 			$a_user_ids = [];
-			for ($i = 0; $i < count($o_res); $i++)
+			for ($i = 0; $i < $o_res->count(); $i++)
 				$a_user_ids[] = $o_res[$i]->user_id;
 			$o_users = \App\User::select('id', \DB::raw("CONCAT(first_name, ' ', last_name) as full_name"))
 									->whereIn('id', $a_user_ids)
