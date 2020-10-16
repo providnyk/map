@@ -141,7 +141,7 @@ class Model extends BaseModel
 /*	 *
 	 * @return Array						set of results
 	 */
-	public static function getIdTitle(Request $request, $filters, String $s_model, Bool $b_published, Array $a_include_ids, Array $a_exclude_ids, Bool $b_sort_bytitle, Bool $b_byid
+	public static function getIdTitle(Request $request, $filters, String $s_model, ?Bool $b_published, Array $a_include_ids, Array $a_exclude_ids, Bool $b_sort_bytitle, Bool $b_byid
 #		, Bool $b_json
 	) : Array
 	{
