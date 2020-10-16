@@ -12,14 +12,14 @@
 		<div id="profile_wrap">
 			<div class="profile">
 				<ul class="tabs">
-					<li data-tab="tab-profile" {!! request()->segment(2) == 'profile' ? ' class="active"' : '' !!}>{!! trans('personal::guest.text.profile') !!}</li>
 					<li data-tab="tab-activity" {!! request()->segment(2) == 'activity' ? ' class="active"' : '' !!}>{!! trans('personal::guest.text.activity') !!}</li>
+					<li data-tab="tab-profile" {!! request()->segment(2) == 'profile' ? ' class="active"' : '' !!}>{!! trans('personal::guest.text.profile') !!}</li>
 					<div class="divider"></div>
 				</ul>
 				<div class="content">
 
+@include($_env->s_view . '._activity')
 @include($_env->s_view . '._profile')
-@include($_env->s_view . '._places')
 
 
 				</div>

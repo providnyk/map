@@ -1,3 +1,4 @@
+0.99.0+a290:3 user ADD from places to activity after sign in
 0.99.0+a290:2 user ADD unfiy translation for app_name and messages for failed sign in
 0.99.0+a290:1 user DEL legacy code
 0.98.0+a290:1 user UPD unfify google analytics re-usabilty
