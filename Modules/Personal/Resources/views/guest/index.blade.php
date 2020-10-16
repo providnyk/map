@@ -13,7 +13,7 @@
 			<div class="profile">
 				<ul class="tabs">
 					<li data-tab="tab-profile" {!! request()->segment(2) == 'profile' ? ' class="active"' : '' !!}>{!! trans('personal::guest.text.profile') !!}</li>
-					<li data-tab="tab-places" {!! request()->segment(2) == 'places' ? ' class="active"' : '' !!}>{!! trans('personal::guest.text.places') !!}</li>
+					<li data-tab="tab-activity" {!! request()->segment(2) == 'activity' ? ' class="active"' : '' !!}>{!! trans('personal::guest.text.activity') !!}</li>
 					<div class="divider"></div>
 				</ul>
 				<div class="content">

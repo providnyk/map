@@ -3,7 +3,7 @@
 return [
 	'text' => [
 		'profile'					=> 'Профіль',
-		'places'					=> 'Додані місця',
+		'activity'					=> 'Додані місця',
 	],
 	'field' => [
 	],

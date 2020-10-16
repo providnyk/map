@@ -10,8 +10,8 @@ $s_form_route					= mb_strtolower($a_tmp[1]).'.'.mb_strtolower($a_tmp[2]);
 $s_utype							= $a_tmp[0];
 
 $s_create_route				= route($s_utype.'.'.$s_form_route);
-$s_cancel_route				= route($s_utype . '.personal.places');
-$s_list_route					= route($s_utype . '.personal.places');
+$s_cancel_route				= route($s_utype . '.personal.activity');
+$s_list_route					= route($s_utype . '.personal.activity');
 $s_opinion_route			= route($s_utype . '.opinion.form', [':type', ':id']);
 
 $s_btn_primary				= '';

@@ -1,4 +1,4 @@
-					<div id="tab-places" class="tab{{ request()->segment(2) == 'places' ? ' opened' : '' }}">
+					<div id="tab-places" class="tab{{ request()->segment(2) == 'activity' ? ' opened' : '' }}">
 
 						<div class="buttons">
 							<button type="submit" class="confirm">
