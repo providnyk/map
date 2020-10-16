@@ -546,7 +546,7 @@
 									<div class="form-group form-check row">
 										<div class="check-inner offset-md-3 col-md-9 offset-sm-4 col-sm-8 col-12 control-wrap">
 											<input type="checkbox" class="form-check-input" id="check_subscribe" name="subscribe"{{-- old('subscribe') ? old('subscribe') == true ? 'checked' : '' : $subscribe == true ? 'checked' : '' --}}>
-											<label class="form-check-label" for="check_subscribe">{{ trans('general.want-recieve-updates') }}</label>
+											<label class="form-check-label" for="check_subscribe">{{ trans( 'general.want-recieve-updates', ['app_name' => trans('app.name')] ) }}</label>
 										</div>
 									</div>
 									<div class="btn-wrap row">

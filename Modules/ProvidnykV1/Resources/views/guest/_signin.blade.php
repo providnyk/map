@@ -1,7 +1,7 @@
 					<div id="tab-signin" class="tab{{ request()->segment(1) == 'signin' ? ' opened' : '' }}">
 						<div class="user_details">
 							<div class="img" style="width: 10px;"></div>
-							<div class="name">{!! trans('general.my-area') !!} <span>{{ trans('user/form.text.hint_in') }}</span></div>
+							<div class="name">{!! trans('general.my-area', ['app_name' => trans('app.name')]) !!} <span>{{ trans('user/form.text.hint_in') }}</span></div>
 							<div class="divider"></div>
 						</div>
 						<form action="{!! route('signin_page') !!}" method="POST" class="form-page" id="signin-form">

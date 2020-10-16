@@ -1,13 +1,13 @@
 <?php
 
 return array (
-	'admin-panel'			=> 'Адмін',
+	'admin-panel'			=> 'Керування',
 	'bookmarks'				=> 'Обране',
 	'my-city'				=> 'Моє місто',
-#	'date'					=> ':day :month :year',
+	'date'					=> ':day :month :year',
 	'signin'				=> 'Вхід',
 	'signup'				=> 'Приєднатися',
-	'my-area'				=> 'Мій Провідник',
+	'my-area'				=> 'Мій :app_name',
 	'my'					=> 'Особістий',
 	'save-changes'			=> 'Зберегти зміни',
 	'search-results'		=> 'Результати пошуку',
@@ -15,5 +15,5 @@ return array (
 	'search-hint'			=> 'Пошук у',
 	'select-city'			=> 'Виберіть місто',
 	'user-profile'			=> 'Мій профіль',
-	'want-recieve-updates'	=> 'Я хочу отримувати новини про оновлення PROVIDNYK та міста',
+	'want-recieve-updates'	=> 'Я хочу отримувати новини про оновлення :app_name',
 );

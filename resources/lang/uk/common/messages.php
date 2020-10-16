@@ -12,13 +12,13 @@ return [
 	'confirm_delete_cancel_button_text' => 'Cancel',
 	'json_parse_error' => 'Помилкова json-відповідь',
 	'email' => [
-		'subject' => 'Confirm registration on PROVIDNYK',
+		'subject' => 'Confirm registration on :app_name',
 		'confirm' => [
-			'title' => 'Confirm your email address on PROVIDNYK',
+			'title' => 'Confirm your email address on :app_name',
 			'open' => 'Hello! We just need to verify that',
-			'close' => 'is your email address, and then we’ll help you login to you personal PROVIDNYK cabinet.',
+			'close' => 'is your email address, and then we’ll help you login to you personal :app_name cabinet.',
 			'link' => 'Confirm Email Address',
-			'thanks' => 'Thanks for signing up to PROVIDNYK.',
+			'thanks' => 'Thanks for signing up to :app_name.',
 		],
 		'disclaimer' => [
 			'title' => 'Didn’t request this email?',
