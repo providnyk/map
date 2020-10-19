@@ -1,3 +1,4 @@
+0.99.1+a293:1 user FIX place vote by parameters not shown
 0.99.0+a290:3 user ADD from places to activity after sign in
 0.99.0+a290:2 user ADD unfiy translation for app_name and messages for failed sign in
 0.99.0+a290:1 user DEL legacy code

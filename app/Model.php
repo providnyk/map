@@ -160,9 +160,9 @@ class Model extends BaseModel
 #		if ($b_json)
 #			$s_title = 'text';
 
-		$s_model				= self::getModelNameWithNamespace($s_model);
-		$fn_select				= $s_model . '::select';
-		$fn_filter				= $s_model . '::filter';
+		$s_model_path			= self::getModelNameWithNamespace($s_model);
+		$fn_select				= $s_model_path . '::select';
+		$fn_filter				= $s_model_path . '::filter';
 
 
 		if (is_null($filters))
