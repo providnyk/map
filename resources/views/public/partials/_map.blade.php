@@ -117,6 +117,13 @@ if (config('app.env') == 'local')
 				<button type="button" class="findme" id="findme_btn"></button>
 		--}}
 			</div>
+
+			<div class="buttons">
+				<button type="button" class="btn_exchange">
+					<i class="icon-loop4"></i>
+				</button>
+			</div>
+
 			<div class="map_search">
 				<input type="text" class="google_maps_autocomplete" placeholder="Досюди" id="{!! $app->getLocale() !!}_to_address" name="{!! $app->getLocale() !!}[to_address]" value="{{ (config('app.env') == 'local') ? 'вулиця Єлизавети Чавдар, 7, Київ, Україна' : ''}}" />
 				<input type="hidden" id="to_lat" name="to_lat" class="lat" value="{{ (config('app.env') == 'local') ? '50.3936141' : ''}}" />

@@ -361,11 +361,32 @@ $(document).ready(function()
 // console.log($('form.google_maps_direction').html());
 	showDirectionsForm();
 	$('form.google_maps_direction').on('submit', submitForm);
+	$('.btn_exchange').on('click', fnExchangeRoutePoints);
 
 	//       google.maps.event.addDomListener(window, 'load', initAutocomplete);
 });
 
 	google.maps.event.addDomListener(window, 'load', initializeAutocompleteAddress);
+
+fnExchangeRoutePoints = function(e){
+	var a_exchange		= [];
+	a_exchange.push($('#from_lat').val());
+	a_exchange.push($('#from_lng').val());
+	a_exchange.push($("#" + s_locale + "_from_address").val());
+	a_exchange.push($('#to_lat').val());
+	a_exchange.push($('#to_lng').val());
+	a_exchange.push($("#" + s_locale + "_to_address").val());
+
+	$('#to_lat').val(a_exchange[0]);
+	$('#to_lng').val(a_exchange[1]);
+	$("#" + s_locale + "_to_address").val(a_exchange[2]);
+	$('#from_lat').val(a_exchange[3]);
+	$('#from_lng').val(a_exchange[4]);
+	$("#" + s_locale + "_from_address").val(a_exchange[5]);
+
+	checkRequiredFields();
+	$('form.google_maps_direction').find('button[type=submit]').trigger('click');
+}
 
 fnAutocompleteAddress = function(e){
 	e.preventDefault();
