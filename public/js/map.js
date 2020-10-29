@@ -5,6 +5,20 @@ var i_selected_route			= 0;
 var o_dir_request				= {};
 var o_dir_response			= {};
 var s_dir_status				= {};
+var o_map_dom					= $('#main_map');
+var o_initial_position		= {
+											lat: o_map_dom.data('lat'),
+											lng: o_map_dom.data('lng')
+										};
+var map							= {};
+var i_time_start				= 0;
+var i_time_done				= 0;
+
+var o_position_options = {
+  enableHighAccuracy: true,
+  timeout: 60 * 1000, // in seconds
+  maximumAge: 0
+};
 
 // https://developers.google.com/maps/documentation/javascript/reference/directions#DirectionsRendererOptions.directions
 var directionsRenderer		= new google.maps.DirectionsRenderer({
@@ -31,7 +45,7 @@ function resetRoutes( directionsRenderer )
 //		$('#div_routes_variants').remove('.div_routes_variants');
 	}
 	$('.div_directions_panel_wrap').addClass('d-none');
-	$('#main_map').removeClass('with_directions');
+	o_map_dom.removeClass('with_directions');
 	directionsRenderer.setMap(null);
 	$('.div_routes_variants').remove();
 	$('#div_routes_variants_wrap').addClass('d-none');
@@ -53,6 +67,44 @@ function initClusterer( map )
 	var markerCluster = new MarkerClusterer(map, a_locations, a_params);
 }
 
+function getTimeNow( )
+{
+	var d = new Date();
+	var n = d.getTime();
+	return n;
+}
+
+function detectUserLocation( )
+{
+	i_time_start = getTimeNow();
+
+	if (navigator.geolocation)
+	{
+		navigator.geolocation.getCurrentPosition(fnInitMapCenter, fnInitCenterErr, o_position_options);
+	}
+	else
+	{
+		fnInitMapCenter(o_initial_position);
+	}
+}
+
+fnInitMapCenter = function(position) {
+	i_time_done = getTimeNow();
+	console.log('GeoLocation received in ' + ((i_time_done - i_time_start) / 1000) + 's');
+	if (typeof position.coords == 'object')
+	{
+		o_initial_position = {
+			lat: position.coords.latitude,
+			lng: position.coords.longitude
+		};
+	}
+	centerMap( map, o_initial_position.lat, o_initial_position.lng );
+}
+
+function fnInitCenterErr(err) {
+  console.warn(`ERROR: ${err.message} (code=${err.code})`);
+}
+
 function initMap( el )
 {
 	var markers = []; //el.find('.marker');
@@ -62,15 +114,8 @@ function initMap( el )
 		zoom:		el.data('zoom') || 11,
 		mapTypeId:	google.maps.MapTypeId.ROADMAP
 	};
-	var map = new google.maps.Map( el[0], mapArgs );
+	map = new google.maps.Map( el[0], mapArgs );
 	map.markers = [];
-
-
-
-
-
-
-
 
 	// get list of markers for map
 	// async'ly so that
@@ -89,10 +134,8 @@ function initMap( el )
 				try {
 					// Do JSON handling here
 					tmp = JSON.parse(xhr.responseText);
-//console.log(tmp.data.length);
 					for (var i = 0; i < tmp.data.length; i++)
 					{
-//console.log(i, typeof tmp.data[i].rating_info, tmp.data[i].rating_info);
 						initMarkerFromJSON(tmp.data[i], map);
 					}
 				} catch(e) {
@@ -109,17 +152,12 @@ function initMap( el )
 		}
 	});
 
-	// TODO: enable initial location detection over https
-	// o_my_location = detectLocation();
-
-			// map.setCenter(pos);
-	// centerMap( map, pos.lat, pos.lng );
-
-	centerMap( map, el.data('lat'), el.data('lng') );
+	detectUserLocation();
 
 	$('#findme_btn').bind('click', function() {
 		findMe(map);
 	});
+
 	var styles = [
 		{
 			"featureType": "administrative",
@@ -315,23 +353,6 @@ function showDirectionsForm()
 	});
 }
 
-function detectLocation( )
-{
-	if (navigator.geolocation)
-	{
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = {
-				lat: position.coords.latitude,
-				lng: position.coords.longitude
-			};
-			return pos;
-		}, function() {
-			// alert('Error: The Geolocation service failed.');
-		});
-	}
-	return null;
-}
-
 function findMe( map )
 {
 	findMeMarker = new google.maps.InfoWindow;
@@ -355,7 +376,7 @@ function findMe( map )
 
 $(document).ready(function()
 {
-	map = initMap( $('#main_map') );
+	map = initMap( o_map_dom );
 	// $('form.google_maps_direction').on('submit', fnAutocompleteAddress);
 //	console.log(map);
 // console.log($('form.google_maps_direction').html());
@@ -619,7 +640,7 @@ function initializeAutocompleteAddress() {
 		$('.div_routes_variants').removeClass('active');
 		$('#div_routes_variants_' + i_number).addClass('active');
 		$('.div_directions_panel_wrap').removeClass('d-none');
-	//	$('#main_map').addClass('with_directions');
+	//	o_map_dom.addClass('with_directions');
 		directionsRenderer.setPanel($('#div_directions_panel')[0]);
 		directionsRenderer.setRouteIndex(i_number);
 	}

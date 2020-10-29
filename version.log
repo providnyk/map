@@ -1,3 +1,4 @@
+0.99.1+a303:1 user ADD geolocation or failback to default location (Kyiv is the capital of Great Ukraine)
 0.99.1+a293:3 user ADD improve map top border visibility
 0.99.1+a293:2 user ADD exchange from and to button
 0.99.1+a293:1 user FIX place vote by parameters not shown
