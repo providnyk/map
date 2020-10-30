@@ -26,6 +26,12 @@ class Controller extends BaseController
 		$a_tmp						= explode('\\', $s_tmp);
 		$this->_env->s_name			= str_replace($s_basename, '', $a_tmp[3]);
 #dd($this->_env->s_name, $a_tmp[0], $s_tmp);
+
+		// TODO refactroring
+		// app/Providers/ViewComposerServiceProvider.php
+		$o_settings	= app('App\Settings');
+		$s_theme	= $o_settings->theme;
+
 		if ($a_tmp[0] == 'Modules')
 		{
 			$this->_env->s_name		= $a_tmp[1];
@@ -90,7 +96,7 @@ class Controller extends BaseController
 		{
 			$this->_env->s_utype	= 'guest';
 			$this->_env->fn_find	= '';
-			$this->_env->s_view		= (config('app.theme') . '::' ?: '') . $this->_env->s_utype . '.' ;
+			$this->_env->s_view		= ($s_theme . '::' ?: '') . $this->_env->s_utype . '.' ;
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
@@ -103,7 +109,7 @@ class Controller extends BaseController
 		{
 			$this->_env->s_utype	= request()->segment(1) == 'admin' ? 'user' : 'guest';
 #			$this->_env->fn_find	= '';
-#			$this->_env->s_view		= (config('app.theme') . '::' ?: '') . $this->_env->s_utype . '.' ;
+#			$this->_env->s_view		= ($settings->theme . '::' ?: '') . $this->_env->s_utype . '.' ;
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 */
@@ -210,7 +216,7 @@ if (class_exists($this->_env->s_model))
 #dump($this->_env->a_field, $this->_env->a_rule);
 		$user = Auth::user();
 		$this->_env->b_admin		= (!is_null($user) ? $user->checkAdmin() : FALSE);
-// dd($this->_env);
+
 		$_env						= $this->_env;
 		\View::composer('*', function ($view) use ($_env) {
 			$view->with([

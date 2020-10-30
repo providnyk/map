@@ -5,7 +5,7 @@ $a_production = [
     'version_leader'        => '99', # changes whenever any css,js,api,guest,user value below has changed; reset each realease
     'version_patch'         => '1',
     'version_maturity'      => 'a', # a=alfa,b=beta,rc=candidate,r=release,sr=service release
-    'version_day'           => '303',
+    'version_day'           => '304',
     'version_seq'           => '1',
 ];
 
