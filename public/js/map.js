@@ -154,8 +154,10 @@ function initMap( el )
 
 	detectUserLocation();
 
-	$('#findme_btn').bind('click', function() {
-		findMe(map);
+	$('.btn_findme').on('click', function (e) {
+		e.preventDefault();
+		var $this					= $(this);
+		findMe(e, $this, map);
 	});
 
 	var styles = [
@@ -353,25 +355,19 @@ function showDirectionsForm()
 	});
 }
 
-function findMe( map )
+function findMe( e, $this, map )
 {
+	// set coordinates values for selected point
+	$this.parent().find('.lat').val(o_initial_position.lat)
+	$this.parent().find('.lng').val(o_initial_position.lng)
+	$this.parent().find('.google_maps_autocomplete').val(o_initial_position.lat+','+o_initial_position.lng)
+/*
 	findMeMarker = new google.maps.InfoWindow;
-	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
-			var pos = {
-				lat: position.coords.latitude,
-				lng: position.coords.longitude
-			};
-			findMeMarker.setPosition(pos);
-			findMeMarker.setContent('<div class="myplacemarker"><span class="ov1"></span><span class="ov2"></span><span class="ov3"></span><span class="ov4"></span></div>');
-			findMeMarker.open(map);
-			map.setCenter(pos);
-		}, function() {
-			alert('Error: The Geolocation service failed.');
-		});
-	} else {
-		alert('Error: Your browser doesn’t support geolocation.');
-	}
+	findMeMarker.setPosition(o_initial_position);
+	findMeMarker.setContent('<div class="myplacemarker"><span class="ov1"></span><span class="ov2"></span><span class="ov3"></span><span class="ov4"></span></div>');
+	findMeMarker.open(map);
+*/
+	centerMap(map,o_initial_position.lat,o_initial_position.lng)
 }
 
 $(document).ready(function()

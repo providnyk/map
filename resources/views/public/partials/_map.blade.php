@@ -113,9 +113,7 @@ if (config('app.env') == 'local')
 				<input type="hidden" id="from_lat" name="from_lat" class="lat" value="{{ (config('app.env') == 'local') ? '50.4086678' : ''}}" />
 				<input type="hidden" id="from_lng" name="from_lng" class="lng" value="{{ (config('app.env') == 'local') ? '30.62840660000001' : ''}}" />
 				<button type="button" class="gotosearch"></button>
-		{{--
-				<button type="button" class="findme" id="findme_btn"></button>
-		--}}
+				<button type="button" class="btn_findme"></button>
 			</div>
 
 			<div class="buttons">
@@ -129,6 +127,7 @@ if (config('app.env') == 'local')
 				<input type="hidden" id="to_lat" name="to_lat" class="lat" value="{{ (config('app.env') == 'local') ? '50.3936141' : ''}}" />
 				<input type="hidden" id="to_lng" name="to_lng" class="lng" value="{{ (config('app.env') == 'local') ? '30.6226939' : ''}}" />
 				<button type="button" class="gotosearch"></button>
+				<button type="button" class="btn_findme"></button>
 			</div>
 
 			<div>
@@ -156,85 +155,6 @@ if (config('app.env') == 'local')
 		</div>
 		</div>
 	</div>
-
-{{--
-<form class="google_map_autocomplete" action="/" method="POST">
-	<div class="container mt-5">
-		<div class="row">
-			<div class="col-xl-12 col-lg-6 col-md-8 col-sm-12 col-12 m-auto">
-				<div class="card shadow">
-					<div class="card-header bg-primary">
-						<h5 class="card-title text-white"> Google Autocomplete Address</h5>
-					</div>
-
-					<div class="card-body">
-						<div class="form-group">
-							<label for="autocomplete"> Location/City/Address </label>
-							<input type="text" name="autocomplete" id="autocomplete" class="form-control" placeholder="Select Location">
-						</div>
-
-						<div class="form-group d-none" id="lat_area">
-							<label for="latitude"> Latitude </label>
-							<input type="text" name="latitude" id="latitude" class="form-control">
-						</div>
-
-						<div class="form-group d-none" id="long_area">
-							<label for="latitude"> Longitude </label>
-							<input type="text" name="longitude" id="longitude" class="form-control">
-						</div>
-					</div>
-
-					<div class="card-footer">
-					<button type="submit" class="btn btn-success"> Submit </button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</form>
-
-
-
-    <div id="floating-panel">
-    <b>Start: </b>
-    <select id="start">
-      <option value="50.4501,30.5234">Kyiv</option>
-      <option value="st louis, mo">St Louis</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-    <b>End: </b>
-    <select id="end">
-      <option value="chicago, il">Chicago</option>
-      <option value="50.4153964,30.69359919999999">Darnitsa</option>
-      <option value="joplin, mo">Joplin, MO</option>
-      <option value="oklahoma city, ok">Oklahoma City</option>
-      <option value="amarillo, tx">Amarillo</option>
-      <option value="gallup, nm">Gallup, NM</option>
-      <option value="flagstaff, az">Flagstaff, AZ</option>
-      <option value="winona, az">Winona</option>
-      <option value="kingman, az">Kingman</option>
-      <option value="barstow, ca">Barstow</option>
-      <option value="san bernardino, ca">San Bernardino</option>
-      <option value="los angeles, ca">Los Angeles</option>
-    </select>
-		<strong>Mode of Travel: </strong>
-		<select id="mode">
-		  <option value="DRIVING">Driving</option>
-		  <option value="WALKING">Walking</option>
-		  <option value="BICYCLING">Bicycling</option>
-		  <option value="TRANSIT">Transit</option>
-		</select>
-		</div>
---}}
 
 {{--
 	<div id="map_search" style="display:none;" >

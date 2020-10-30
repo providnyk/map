@@ -228,6 +228,7 @@ footer .open_filter_btn {
 .map_search {
 	position: relative;
 	height: 60px;
+	width:  344px;
 	border-radius: 30px;
 	box-shadow: 0px 10px 40px 0 rgba(82, 85, 114, 0.2);
 	background-color: #ffffff;
@@ -263,7 +264,7 @@ footer .open_filter_btn {
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.map_search button.findme {
+.map_search button.btn_findme {
 	height:60px;
 	width: 60px;
 	position: absolute;
@@ -273,12 +274,13 @@ footer .open_filter_btn {
 	border-radius: 30px;
 	border:1px solid transparent;
 	box-shadow: 0px 10px 40px 0 rgba(82, 85, 114, 0.2);
+	outline: none;
 	background-color: #ffffff;
 	background-image: url('../img/findme.png');
 	background-position: center;
 	background-repeat: no-repeat;
 }
-.map_search button.findme:hover {
+.map_search button.btn_findme:hover {
 	box-shadow: 0px 10px 40px 0 rgba(82, 85, 114, 0.5);
 }
 
