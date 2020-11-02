@@ -47,7 +47,7 @@ class Track extends Model
 			'id'				=> trans('user/crud.field.id.label'),
 		];
 
-		$s_category = 'track';
+		$s_category = strtolower(self::class);
 
 		foreach ($a_columns_write AS $s_name => $s_id)
 		{
@@ -92,18 +92,22 @@ class Track extends Model
 			fputcsv($f, $a_data);
 		}
 		fclose($f);
-    }
-
-    public static function download()
-    {
+	}
+/*
+	public static function download()
+	{
+		$s_basename					= class_basename(__CLASS__);
+		$s_category 				= strtolower($s_basename);
+		dd($s_category);
 		$headers = [
 			'Cache-Description'		=> 'File Transfer',
 			'Cache-Control'			=> 'must-revalidate, post-check=0, pre-check=0',
 			'Content-Type'			=> 'text/csv; charset=UTF-8',
-			'Content-Disposition'	=> 'attachment; filename="track_' . date("Y.m.d_H-i") . '.csv"',
+			'Content-Disposition'	=> 'attachment; filename="' . $s_category . '_' . date("Y.m.d_H-i") . '.csv"',
 			'Expires'				=> '0',
 			'Pragma'				=> 'public',
 		];
 		return response()->stream([self::class, 'streamRecords'], 200, $headers);
-    }
+	}
+*/
 }

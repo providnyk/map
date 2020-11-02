@@ -30,4 +30,11 @@ class OpinionController extends Controller
 
 		return parent::form($request);
 	}
+	public function download(Request $request, $format)
+	{
+		$this->setEnv();
+		$s = str_replace('Database', 'User', $this->_env->s_model);
+		$m = new $s;
+		return $m::download();
+	}
 }

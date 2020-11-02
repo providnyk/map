@@ -26,7 +26,9 @@ class TrackController extends Controller
 
 	public function download(Request $request, $format)
 	{
-		// $this->setModuleEnv($format);
-		return Track::download();
+		$this->setEnv();
+		$s = str_replace('Database', 'User', $this->_env->s_model);
+		$m = new $s;
+		return $m::download();
 	}
 }

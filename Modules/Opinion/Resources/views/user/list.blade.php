@@ -8,5 +8,8 @@ $b_title = FALSE;
 $a_columns = [
 				'place_title' => 'text'
 			];
+$a_buttons = [
+				'download' => 'xls'
+			];
 @endphp
 @extends('user.list')

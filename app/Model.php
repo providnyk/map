@@ -8,6 +8,7 @@ use           Astrotomic\Translatable\Contracts\Translatable   as TranslatableCo
 use                     Astrotomic\Translatable\Translatable;
 use                             Illuminate\Http\Response;
 use                             Illuminate\Http\Request;
+use                                      Carbon\Carbon;
 
 class Model extends BaseModel
 {
@@ -15,6 +16,7 @@ class Model extends BaseModel
 	use Translatable;
 
 	public $translatedAttributes = [];
+	protected static $_model = '';
 
 	# https://stackoverflow.com/questions/30502922/a-construct-on-an-eloquent-laravel-model#30503372
 	# The first line (parent::__construct()) will run the Eloquent Model's own construct method
@@ -36,15 +38,16 @@ class Model extends BaseModel
 			if ($a_tmp[0] == 'Modules')
 			{
 #				$s_name					= $a_tmp[1];
-#				$s_model				= '\Modules\\' . $s_name . '\\' . $a_tmp[2] . '\\' . $s_name ;
+				$s_model				= '\Modules\\' . $s_name . '\\' . $a_tmp[2] . '\\' . $s_name ;
 				$s_trans				= '\Modules\\' . $s_name . '\\' . 'Database' . '\\' . $s_name ;
 			}
 			else
 			{
 				$s_name					= str_replace($s_basename, '', $s_name);
 				$s_model				= '\App\\'.$s_name;
-				$s_trans				= $s_model ;
+				$s_trans				= $s_model;
 			}
+			self::$_model				= $s_model;
 
 #			$m							= new $s_model;
 			$s_tmp						= $s_trans.'Translation';
@@ -414,4 +417,25 @@ class Model extends BaseModel
 		return $s_tmp;
 	}
 
+	public static function download()
+	{
+		$s_basename					= class_basename(self::$_model);
+		$s_category 				= strtolower($s_basename);
+
+		// $s_model		= self::getModelNameWithNamespace($s_model);
+// dd($s_basename, $s_category, self::$_model);
+		// $fn_select		= $s_model . '::select';
+		// $o_items		= $fn_select()->whereIn($s_parent . '_id', $a_parent)->get('title', 'id')->pluck('title', 'id');
+
+		$headers = [
+			'Cache-Description'		=> 'File Transfer',
+			'Cache-Control'			=> 'must-revalidate, post-check=0, pre-check=0',
+			'Content-Type'			=> 'text/csv; charset=UTF-8',
+			'Content-Disposition'	=> 'attachment; filename="' . $s_category . '_' . date("Y.m.d_H-i") . '.csv"',
+			'Expires'				=> '0',
+			'Pragma'				=> 'public',
+		];
+// dd(self::class);
+		return response()->stream([self::$_model, 'streamRecords'], 200, $headers);
+	}
 }

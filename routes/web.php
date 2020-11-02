@@ -68,6 +68,22 @@ Route::group([
 
 		$s_method	= 'download';
 		Route::get($s_path . '/download/{format}',	['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
+		$s_model	= 'Place';
+		$s_path		= strtolower($s_model);
+		$s_ctrl		= '\Modules\\' . $s_model . '\User\\' . $s_model ;
+		$s_ctrl		.='Controller';
+
+		$s_method	= 'download';
+		Route::get($s_path . '/download/{format}',	['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
+
+		$s_model	= 'Opinion';
+		$s_path		= strtolower($s_model);
+		$s_ctrl		= '\Modules\\' . $s_model . '\User\\' . $s_model ;
+		$s_ctrl		.='Controller';
+
+		$s_method	= 'download';
+		Route::get($s_path . '/download/{format}',	['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 	});
 });
 

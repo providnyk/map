@@ -5,7 +5,8 @@ namespace Modules\Place\User;
 #use Modules\Place\Http\Controllers\PlaceController as Controller;
 use App\Http\Controllers\ControllerUser as Controller;
 use Modules\Building\Database\Building;
-use Illuminate\Http\Request;
+use                          Illuminate\Http\Request;
+use                       Modules\Place\User\Place;
 
 class PlaceController extends Controller
 {
@@ -23,5 +24,12 @@ class PlaceController extends Controller
 			]);
 		});
 		return parent::form($request);
+	}
+	public function download(Request $request, $format)
+	{
+		$this->setEnv();
+		$s = str_replace('Database', 'User', $this->_env->s_model);
+		$m = new $s;
+		return $m::download();
 	}
 }
