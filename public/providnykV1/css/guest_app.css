@@ -219,9 +219,9 @@ footer .open_filter_btn {
 #map_screen .map_info_block {
 	position: absolute;
 	z-index: 98;
-	top:113px;
-	left:40px;
-	width: 464px;
+	top:75px;
+	left:10px;
+	width: 499px;
 	max-height:calc(100vh - 176px);
 	-webkit-max-height:calc(100vh - 176px);
 }
@@ -288,7 +288,7 @@ footer .open_filter_btn {
 	position: relative;
 	box-shadow: 0 0 40px 0 rgba(82, 85, 114, 0.2);
 	background-color: #ffffff;
-	max-height: calc(100vh - 250px);
+	max-height: calc(100vh - 155px);
 	overflow: hidden;
 }
 #mib_content .filters {
@@ -1451,12 +1451,13 @@ footer .socials {
 {
 	clear: both;
 	overflow-y: scroll;
-	height: 200px;
+	height: calc(100vh - 75px - 80px - 435px);
 }
 
 .div_directions_switch
 {
 	display: block;
+	float: left;
 	visibility: visible;
 	padding: 5px 10px;
 	width: 35px;
