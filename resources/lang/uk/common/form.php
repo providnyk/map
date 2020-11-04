@@ -20,12 +20,13 @@ return [
 		'view'			=> 'Перегляд',
 	],
 	'actions' => [
+		'continue'		=> 'Продовжити',
 		'create'		=> 'Створити',
 		'create_more'	=> 'Створити ще',
-		'evaluate'		=> 'Оцініти',
 		'edit'			=> 'Редагувати',
+		'evaluate'		=> 'Оцініти',
+		'set_destination'		=> 'Дістатися сюди',
 		'view'			=> 'Подивитись',
-		'continue'		=> 'Продовжити',
 	],
 	'fields' => [
 /*

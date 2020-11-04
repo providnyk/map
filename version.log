@@ -1,3 +1,4 @@
+0.99.0+a309:3 guest ADD set destination by clicking map marker
 0.99.0+a309:2 guest ADD trigger deafault location for map even if user denies location permission
 0.99.0+a309:1 guest ADD show directions pane at full available height
 0.99.3+a307:1 user ADD unify download of tracks, places, and opinions by u s e r as csv file

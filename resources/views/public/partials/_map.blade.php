@@ -14,7 +14,7 @@ $s_cancel_route				= route($s_utype . '.personal.activity');
 $s_list_route					= route($s_utype . '.personal.activity');
 $s_opinion_route			= route($s_utype . '.opinion.form', [':type', ':id']);
 
-$s_btn_primary				= '';
+$s_btn_primary				= trans('common/form.actions.set_destination');
 $s_route_primary			= '';
 $s_btn_secondary			= trans('common/form.actions.evaluate');
 $s_route_secondary		= $s_opinion_route;

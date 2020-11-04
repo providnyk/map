@@ -319,6 +319,7 @@ function initMarkerFromJSON( data, map )
 				s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
 			}
 
+			// TODO unify with forms.js runSwal()
 			// we need colourful footer here so have to use another type of sweetalert2
 			Swal.fire(
 				a_params
@@ -327,12 +328,17 @@ function initMarkerFromJSON( data, map )
 					if (s_route_primary != '')
 						window.location.href = s_route_primary;
 					else
-						resetForm(form);
+					{
+						$("#to_lat").val(data.lat);
+						$("#to_lng").val(data.lng);
+						$("#" + s_locale + "_to_address").val(data.title);
+						// resetForm(form);
+					}
 				} else if (result.dismiss === Swal.DismissReason.cancel) {
-					if (s_route_secondary != '')
+					// if (s_route_secondary != '')
 						window.location.href = s_route_secondary;
-					else
-						resetForm(form);
+					// else
+						// resetForm(form);
 				}
 			})
 			;
