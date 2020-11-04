@@ -103,6 +103,7 @@ fnInitMapCenter = function(position) {
 
 function fnInitCenterErr(err) {
   console.warn(`ERROR: ${err.message} (code=${err.code})`);
+  fnInitMapCenter(o_initial_position);
 }
 
 function initMap( el )
