@@ -22,7 +22,7 @@ class PageController extends BaseController {
 	}
 
     public function showStaticPage(Request $request){
-		if ($request->page_slug != 'about-us')
+		if (! in_array($request->page_slug, ['about-us', 'confidentiality']))
 			die();
 		$this->setEnv();
 #        $o_page = Page::where('slug', $request->page_slug)->where('published', 1)->firstOrFail();

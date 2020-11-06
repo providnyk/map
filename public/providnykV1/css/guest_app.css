@@ -186,7 +186,7 @@ footer .language li a:hover {
 footer .socials a.ico {
 	display: inline;
 	float: left;
-	padding-left: 20px;
+	padding-left: 12px;
 }
 footer .socials a img {
 	width: 20px;
@@ -1365,25 +1365,42 @@ header nav ul li button.green {
 	padding: 0.7rem 1.25rem;
 }
 
-footer div {
-	padding-left: 20px;
+footer a {
+	font-size: 0.8em;
 }
-footer div, img, p {
+footer a strong {
+	vertical-align: middle;
+}
+footer div, footer img, footer p {
 	display: block;
 	float: left;
+	margin-bottom: 0px;
 }
 footer .copyright {
 	width: 250px;
 }
 footer .eu_visibility img {
 	margin-right: 20px;
+	padding-left: 20px;
 }
-
+footer .eu_visibility p {
+	margin-right: 25px;
+}
 footer .eu_visibility a {
 	color: #848a91;
 }
+footer p.confidentiality {
+	padding-top: 0px;
+	padding-left: 87px;
+}
+footer p.confidentiality, footer p.confidentiality a {
+	font-size: 1em;
+}
+footer p.confidentiality a {
+	font-weight: bolder;
+}
 footer .socials {
-	width: 650px;
+	width: 580px;
 }
 
 .div_reset_password {
