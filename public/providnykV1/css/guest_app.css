@@ -1389,6 +1389,11 @@ footer .eu_visibility p {
 footer .eu_visibility a {
 	color: #848a91;
 }
+#custom_page embed.confidentiality
+{
+	width: 75vw;
+	height: calc(100vh - 75px - 80px - 105px);
+}
 footer p.confidentiality {
 	padding-top: 0px;
 	padding-left: 87px;

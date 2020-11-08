@@ -15,6 +15,9 @@
 @include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'signup'])
 
 							</div>
+
+@include($theme . '::' . $_env->s_utype . '._confidentiality_info')
+
 							<div class="buttons">
 								<button type="submit" class="confirm">{!! trans('user/form.button.signup') !!}</button>
 							</div>

@@ -12,4 +12,5 @@
 </style>
 <div class="static">
 	<h2>Правила та Політика конфіденційності Provodnik</h2>
+	<embed class="confidentiality" src="https://docs.google.com/document/d/e/2PACX-1vQGw3gPSqxdXXuQdUH5IPp1xJvT4QmB98CDv-LeWfRRMLf_VtYwUIQxLTcos2csko3w6__mUQodvOFP/pub?embedded=true">
 </div>

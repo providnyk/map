@@ -17,9 +17,9 @@
 					This website was created and maintained with the financial support of the European Union. Its contents are the sole responsibility of the <strong>Debate for Changes NGO</strong> and do not necessarily reflect the views of the European Union
 				</a>
 				</p>
-				<p class="confidentiality">
-					Використовуючи сайт Provodnik, ви автоматично приймаєте <a href="/info/confidentiality" target="_blank">Правила та Політику конфіденційності Provodnik</a>
-				</p>
+
+@include($theme . '::' . $_env->s_utype . '._confidentiality_info')
+
 			</div>
 @include($theme . '::layouts._lang')
 @include($theme . '::layouts._social_networks')
