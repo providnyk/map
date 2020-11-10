@@ -299,12 +299,13 @@ function initMarkerFromJSON( data, map )
 				footer:				s_rating,
 			};
 			a_routes = {};
+			s_url_dissmiss = '';
 
 			if (s_text_secondary != '')
 			{
 				a_params.cancelButtonText	= s_text_secondary;
 				a_params.showCancelButton	= true;
-				s_route_secondary = s_route_secondary.replace(':type', 'place').replace(':id', data.id);
+				s_url_dissmiss = s_route_secondary.replace(':type', 'place').replace(':id', data.id);
 			}
 
 			if (s_text_extra != '')
@@ -335,8 +336,10 @@ function initMarkerFromJSON( data, map )
 						// resetForm(form);
 					}
 				} else if (result.dismiss === Swal.DismissReason.cancel) {
-					// if (s_route_secondary != '')
-						window.location.href = s_route_secondary;
+					if (s_url_dissmiss != '')
+					{
+						window.location.href = s_url_dissmiss;
+					}
 					// else
 						// resetForm(form);
 				}
