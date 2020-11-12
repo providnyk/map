@@ -56,7 +56,7 @@ class Place extends Model
 	 */
 	public static function calculateRating(Int $i_debug = 0) : void
 	{
-		$i_update_freq = 24;
+		$i_update_freq = 6;
 		if ($i_debug > 0)
 		{
 			$o_sql		= self::whereId($i_debug);
@@ -68,7 +68,6 @@ class Place extends Model
 		$o_sql			= $o_sql
 						->with(['opinion', 'vote'])
 						;
-
 		if ($o_sql->count() > 0 || $i_debug > 0)
 			self::_calculateRating($o_sql, $i_debug);
 	}
@@ -84,7 +83,7 @@ class Place extends Model
 	{
 		$i_lowest_allowed 	= 35;
 		$i_emails_per_day	= 1;
-		$i_batch_update		= 7;
+		$i_batch_update		= 70;
 		$i_min_opinions		= 10;
 
 		$a_data		= $o_sql
