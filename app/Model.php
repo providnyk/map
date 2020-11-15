@@ -422,10 +422,10 @@ class Model extends BaseModel
 		$s_basename					= class_basename(self::$_model);
 		$s_category 				= strtolower($s_basename);
 
-		// $s_model		= self::getModelNameWithNamespace($s_model);
-// dd($s_basename, $s_category, self::$_model);
-		// $fn_select		= $s_model . '::select';
-		// $o_items		= $fn_select()->whereIn($s_parent . '_id', $a_parent)->get('title', 'id')->pluck('title', 'id');
+		/**
+		 *	debuggin' output
+		 */
+		# \Modules\Opinion\User\Opinion::streamRecords();
 
 		$headers = [
 			'Cache-Description'		=> 'File Transfer',
@@ -435,7 +435,6 @@ class Model extends BaseModel
 			'Expires'				=> '0',
 			'Pragma'				=> 'public',
 		];
-// dd(self::class);
 		return response()->stream([self::$_model, 'streamRecords'], 200, $headers);
 	}
 }
