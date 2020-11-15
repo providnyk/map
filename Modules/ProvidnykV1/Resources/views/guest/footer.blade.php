@@ -18,7 +18,7 @@
 				</a>
 				</p>
 
-@include($theme . '::' . $_env->s_utype . '._confidentiality_info')
+@include($theme . '::' . $_env->s_utype . '._confidentiality_info', ['id' => 'footer'])
 
 			</div>
 @include($theme . '::layouts._lang')
