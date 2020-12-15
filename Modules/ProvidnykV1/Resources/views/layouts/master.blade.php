@@ -112,9 +112,7 @@
 </head>
 <body>
 @if (config('app.env') == 'production')
-{{--
 @include('public.partials._googe_tagmanager_body')
---}}
 @endif
 @include($theme . '::' . $_env->s_utype . '.header')
 
