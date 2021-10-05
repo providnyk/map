@@ -8,15 +8,23 @@ The main users of the application are people with special needs in commuting, li
 
 ## Installation
 
-This is typical Laravel 6 application. Please, google for best installation and set up approaches.
+This is a typical Laravel 6 application. Please, google for best installation and set up approaches.
 
 ## Database
 
-Run migrations and let us know
+Run migrations with "php artisan migrate"
 
-## .env settings
+## Parameters
 
-A sample of settings file is included. rename it to ".env". Also remember to "php artisan config:cache" after deployment completed at production environment.
+A sample of settings file "env_sample.txt" is included. Rename it to ".env" and fill with your data for DB connection and application key. Also remember to "php artisan config:cache" after deployment completed at production environment.
+
+## 3rd part integration
+
+Some external tools are used and you need API and/or access keys for using them.
+
+- Google Maps
+- Recaptcha. We recommend version 3 for better user experience. However version 2 is also supported.
+- Google Tag for analytics
 
 ## Contributing
 
