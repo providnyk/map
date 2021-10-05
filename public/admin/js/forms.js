@@ -34,11 +34,20 @@ fnForm = function(e){
 	e.preventDefault();
 
 	let data = {},
-		form = $(e.currentTarget)
+		form = $(e.currentTarget),
 		$this = $(this)
 		;
 
 	disableSubmit($this);
+
+	// wysiwyg is loaded
+	if (typeof(CKEDITOR) !== "undefined")
+	{
+		for (instance in CKEDITOR.instances) {
+			CKEDITOR.instances[instance].updateElement();
+		}
+	}
+
 	refreshToken();
 	$.ajax({
 		url:	form.attr('action'),
@@ -70,7 +79,7 @@ fnForm = function(e){
 		{
 			setSwalParams(data, form, b_error);
 		}
-		runSwal(b_error);
+		runSwal(b_error, form);
 	}).fail((xhr) => {
 		b_error	= true;
 
@@ -111,7 +120,7 @@ fnForm = function(e){
 			else
 			{
 				setSwalParams(data, form, b_error);
-				runSwal(b_error);
+				runSwal(b_error, form);
 			}
 		}
 	}).always((xhr, type, status) => {
@@ -304,7 +313,7 @@ function setSwalParams(data, form, b_error){
 	};
 }
 
-function runSwal(b_keep_form)
+function runSwal(b_keep_form, form)
 {
 	// check that setSwalParams() was called
 	if ("title" in a_params)
@@ -330,6 +339,10 @@ function runSwal(b_keep_form)
 
 function resetForm(form)
 {
+	if (typeof (form.find) === 'undefined')
+	{
+		return false;
+	}
 	if (typeof (s_action_form) !== 'undefined' && s_action_form == 'create')
 	{
 		// clean all fields once the form's been saved

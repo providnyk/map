@@ -32,7 +32,7 @@ class ComplaintController extends Controller
 					[
 						'b_admin'		=> $user->checkAdmin(),
 						'building'		=> Building::all()->sortBy('title'),
-						'complaint'			=> Complaint::findOrNew($request->id),
+						'complaint'		=> Complaint::findOrNew($request->id),
 						'user'			=> $user,
 					]);
 	}
