@@ -1,5 +1,6 @@
-<a class="ico" target="_blank" href="https://www.facebook.com/Provodnik4u/"><img src="/{!! $theme !!}/img/soc_fb.png"  alt=""></a>
-<a class="ico" target="_blank" href="https://www.linkedin.com/company/provodnik/"><img src="/{!! $theme !!}/img/soc_li.png"  alt=""></a>
-<a class="ico" target="_blank" href="https://www.youtube.com/channel/UCCpqWOgNnsXJGiVn8uRITmQ/featured"><img src="/{!! $theme !!}/img/soc_yt.png"  alt=""></a>
-<a class="ico" target="_blank" href="https://www.instagram.com/provodnik4u/"><img src="/{!! $theme !!}/img/soc_in.png"  alt=""></a>
-<a class="ico" target="_blank" href="https://t.me/joinchat/BrZ7yFEfkm6bIoOE93U8dQ "><img src="/{!! $theme !!}/img/soc_tg.png"  alt=""></a>
+@if (!empty($settings->github))
+<a class="ico" target="_blank" href="{{ $settings->github }}"><img class="grayscale filter-green" src="https://github.githubassets.com/pinned-octocat.svg" alt="github" title="github"></a>
+@endif
+@if (!empty($settings->linkedin))
+<a class="ico" target="_blank" href="{{ $settings->linkedin }}"><img src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" alt="linkedin" title="linkedin"></a>
+@endif

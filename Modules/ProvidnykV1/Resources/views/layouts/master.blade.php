@@ -1,111 +1,53 @@
-@php /*
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Module ProvidnykV1</title>
+@include($theme . '::layouts._header')
 
-		 { {-- Laravel Mix - CSS File --} }
-		 { {-- <link rel="stylesheet" href="{{ mix('css/providnykV1.css') }}"> --} }
-
-	</head>
-	<body>
-		@yield('content')
-
-		{ {-- Laravel Mix - JS File --} }
-		{ {-- <script src="{{ mix('js/providnykV1.js') }}"></script> --} }
-	</body>
-</html>
-*/@endphp
-
-
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-	@if (config('app.env') == 'production')
-	@include('public.partials._googe_analytics')
-	@include('public.partials._googe_tagmanager_head')
-	@endif
-
-	<meta charset="UTF-8">
-	<title>
-	@if(View::hasSection('title'))
-	@yield('title') &#60;
-	@endif
-	{!! mb_strtoupper(trans('app.name')) !!}
-	</title>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width">
-
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta name="version-app" content="{{ $version->app }}">
-	@yield('meta')
-
-	<!-- Global stylesheets -->
-	{{--
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-	--}}
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	{{--
-	<link rel="stylesheet" href="{{ asset('css/slick.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
-	--}}
-	{{--
-	<link rel="stylesheet" href="{{ asset('css/jquery.formstyler.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/jquery.formstyler.theme.css') }}">
-	--}}
-	{{--
-	<link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
-	--}}
+  <!-- Global stylesheets -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  {{--
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/slick-theme.css') }}">
+  --}}
+  {{--
+  <link rel="stylesheet" href="{{ asset('css/jquery.formstyler.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery.formstyler.theme.css') }}">
+  --}}
+  {{--
+  <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery.mCustomScrollbar.css') }}">
+  --}}
 
 {{--
-	<link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
+  <link rel="stylesheet" href="{{ asset('css/sweet_alert.css?v=' . $version->css) }}">
 --}}
-	<link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
-	<!-- /global stylesheets -->
+  <link rel="stylesheet" href="{{ asset('icons/icomoon/styles.css') }}">
+  <link rel="stylesheet" href="{{ asset('icons/fontawesome/css/all.min.css?v=5.13.0') }}">
+  <!-- /global stylesheets -->
 
-	<link rel="stylesheet" href="{{ asset($theme . '/css/' . $_env->s_utype . '_app.css?v=' . $version->css) }}">
-	<link rel="stylesheet" href="{{ asset($theme . '/css/tabs.css?v=' . $version->css) }}">
+  <link rel="stylesheet" href="{{ asset($theme . '/css/' . $_env->s_utype . '_app.css?v=' . $version->css) }}">
+  <link rel="stylesheet" href="{{ asset($theme . '/css/tabs.css?v=' . $version->css) }}">
     <link href="{!! asset('/css/noty.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
 
-	@yield('css')
+  @yield('css')
 
-    <link href="{!! asset('/css/override.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
-	<link rel="shortcut icon" href="/{!! $theme !!}/img/icon.png" type="image/png">
+  <link href="{!! asset('/css/override.css?v=' . $version->css) !!}" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/{!! $theme !!}/img/icon.png" type="image/png">
 
-	@section('script')
-	<script type="text/javascript">
-	@include('common.var2js')
-	</script>
-	@append
-	@section('js')
-	<!-- Notifications related JavaScript -->
-	{{--
-	<script src="{!! asset('/admin/js/main/bootstrap.bundle.min.js') !!}"></script>
-	--}}
-	<script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
-	<script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>
-	<script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-	{{--
-	<script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
-	--}}
-	<script src="{{ asset($theme . '/js/' . $_env->s_utype . '_app.js?v=' . $version->js) }}"></script>
-	@append
+  @section('script')
+  <script type="text/javascript">
+  @include('common.var2js')
+  </script>
+  @append
+  @section('js')
+  <!-- Notifications related JavaScript -->
+  <script src="{!! asset('/admin/js/main/bootstrap.bundle.min.js') !!}"></script>
+  <script src="{{ asset('/admin/js/plugins/forms/styling/switch.min.js') }}"></script>
+  <script src="{{ asset('/admin/js/plugins/notifications/noty.min.js') }}"></script>
+  <script src="{!! asset('/admin/js/common.js?v=' . $version->js) !!}"></script>
+  {{--
+  <script src="{{ asset('/js/app_public.js?v=' . $version->js) }}"></script>
+  --}}
+  <script src="{{ asset($theme . '/js/' . $_env->s_utype . '_app.js?v=' . $version->js) }}"></script>
+  @append
 
 </head>
 <body>
@@ -115,43 +57,36 @@
 @include($theme . '::' . $_env->s_utype . '.header')
 
 <section
-	id="{{ request()->segment(1) == ''
-		|| request()->segment(1) == 'place'
-		|| request()->segment(1) == 'opinion'
-		? 'map_screen'
-		: 'custom_page'
-		}}"
-	class="{{ 
-				(
-					request()->segment(1) == ''
-					? 'general_page'
-					: 	(
-							request()->segment(1) == 'place' || request()->segment(1) == 'opinion'
-							? ''
-							: request()->segment(1) . '_page'
-						)
-				)
-			}}"
+  id="{{ request()->segment(1) == ''
+    || request()->segment(1) == 'place'
+    || request()->segment(1) == 'opinion'
+    ? 'map_screen'
+    : 'custom_page'
+    }}"
+  class="{{
+        (
+          request()->segment(1) == ''
+          ? 'general_page'
+          :   (
+              request()->segment(1) == 'place' || request()->segment(1) == 'opinion'
+              ? ''
+              : request()->segment(1) . '_page'
+            )
+        )
+      }}"
 >
 @yield('content')
 </section>
 
 @include($theme . '::' . $_env->s_utype . '.footer')
 
-<!-- Core JavaScript -->
-
 {{--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="{!! asset('/admin/js/main/jquery.min.js') !!}"></script>
 --}}
 
-{{--
 <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
---}}
-
-<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-
+{{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jQueryFormStyler/2.0.2/jquery.formstyler.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
@@ -178,7 +113,7 @@ it allows for multiple action buttons being shown
 version by another author
 we used v.1 of it
 it allows for 2 action buttons only
-on the bright side, it allows html formatting and text in "footer" under action buttons
+on the bright side, it allowed html formatting and text in "footer" under action buttons
 https://sweetalert2.github.io/
 --}}
 <script src="{{ asset('/admin/js/plugins/notifications/sweetalert2html.js') }}"></script>
@@ -190,8 +125,6 @@ https://sweetalert2.github.io/
 <div id="div_tmpl_wrapper" class="d-none">
 @yield('tmpl')
 </div>
-
-{{-- <script src="https://maps.google.com/maps/api/js?key={!! config('services.google.map.key') !!}&libraries=places&callback=initAutocomplete" type="text/javascript"></script>--}}
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

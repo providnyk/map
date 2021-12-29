@@ -1,6 +1,6 @@
 @section('js')
 <!-- http://ec.europa.eu/ipg/basics/legal/cookies/index_en.htm -->
-@if (Cookie::get( config('cookie-consent.cookie_name') ) !== null)
+@if (!config('cookie-consent.enabled') || config('cookie-consent.enabled') && Cookie::get( config('cookie-consent.cookie_name') ) !== null)
 <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.google.recaptcha.key') }}&hl={!! $app->getLocale() !!}"></script>
 @endif
 <script src="{{ asset('/admin/js/plugins/ui/moment/moment_locales.min.js') }}"></script>

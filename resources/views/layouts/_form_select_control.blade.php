@@ -2,7 +2,7 @@
 	<input type="hidden" name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" value="{!! $s_selected_id !!}"/>
 	@endif
 		<select name="{!! $s_id !!}{!! $b_many ? '[]' : '' !!}" class="select2-dropdown {!! $b_many ? 'multi-select' : '' !!}" id="{!! $s_id !!}@if ($b_readonly || $b_disabled){!! '_off' !!}@endif" data-placeholder="{!! $s_hint !!} {!! $s_typein !!}" data-url="{!! route($s_route_api) !!}"{!! $b_many ? ' multiple' : '' !!}{!! $b_disabled ? ' disabled="disabled"' : '' !!}{!! $b_readonly ? ' readonly' : '' !!}>
-			@if($s_selected_id)
+			@if(isset($s_selected_id))
 				<option value="{!! $s_selected_id !!}">
 					{!! $s_selected_title !!}
 				</option>
@@ -34,6 +34,32 @@ $(document).ready(function () {
 	@if ($b_disabled)
 	$("#{!! $s_id !!}_off").select2({disabled:true});
 	@endif
+
+	sel2 = $("#{!! $s_id !!}");
+
+	if (typeof preselected2 == "undefined")
+	{
+		preselected2 = new Array;
+	}
+	// store pre-selected value
+	preselected2.{!! $s_id !!} = sel2.val();
+
+	// restore initial value when page loaded
+	$('#btn-restore').on('click', function(){
+		sel2.val(preselected2["{!! $s_id !!}"]).trigger('change');
+	});
+
+	// clear selection
+	$('#btn-clean').on('click', function(e) {
+		var $target = $(this);
+		sel2.val(null).trigger('change');
+		$("#{!! $s_id !!}").find('option:selected').removeAttr("selected");
+	});
+
+	$('#btn-open').on('click', (e) => {
+		sel2.select2('open');
+	});
+
 });
 </script>
 @append

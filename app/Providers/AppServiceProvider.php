@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Settings;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -18,8 +17,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-    	# longer indexes
-    	# MySQL < 5.7.7 and MariaDB < 10.2.2
+    	/**
+         *  longer indexes
+    	 *  MySQL < 5.7.7 and MariaDB < 10.2.2
+         */
         Schema::defaultStringLength(191);
         Validator::extend(
             'recaptcha',
@@ -39,8 +40,5 @@ class AppServiceProvider extends ServiceProvider
         if ($this->app->environment('local', 'testing')) {
             $this->app->register(DuskServiceProvider::class);
         }
-        $this->app->singleton(Settings::class, function() {
-            return new Settings();
-        });
     }
 }

@@ -5,4 +5,5 @@ return [
 	'materials'		=> 'Матеріали',
 	'menu'			=> 'Меню',
 	'people'		=> 'Люди',
+	'website'		=> 'Сайт',
 ];

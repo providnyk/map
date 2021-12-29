@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use                                          Auth;
-use        Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use                Illuminate\Foundation\Bus\DispatchesJobs;
-use         Illuminate\Foundation\Validation\ValidatesRequests;
-use                       Illuminate\Routing\Controller     as BaseController;
-use                       Illuminate\Support\Pluralizer;
-use                                          ReflectionClass;
-use                                          ReflectionMethod;
+use                                             Auth;
+use           Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use                   Illuminate\Foundation\Bus\DispatchesJobs;
+use                                         App\File;
+use            Illuminate\Foundation\Validation\ValidatesRequests;
+use                          Illuminate\Routing\Controller     as BaseController;
+use                          Illuminate\Support\Pluralizer;
+use                       Modules\Page\Database\Page;
+use                    Modules\Setting\Database\Setting;
+use                                             ReflectionClass;
+use                                             ReflectionMethod;
+use                  Illuminate\Support\Facades\Schema;
 
 class Controller extends BaseController
 {
@@ -18,19 +22,56 @@ class Controller extends BaseController
 	protected $_env = [];
 	protected $a_fields = [];
 
+	public function downloadFile($i_file_id)
+	{
+		$res = File::findOrFail($i_file_id);
+		return $res->downloadAttachment($i_file_id);
+	}
+
+
 	public function setEnv()
 	{
+		/**
+		 *	sometimes Laravel's cache is not updated when file is changed
+		 *	this happens when file is copied from external source
+		 *	rather than edited and saved locally;
+		 *
+		 * 	another option would be to open file, modify (add space character) and save
+		 *	however this is not convenient in case of multiple files updates
+		 */
+		if (app()->environment('local', 'acceptance', 'testing'))
+		{
+		  $exitCode = \Artisan::call('cache:clear');
+		  $exitCode = \Artisan::call('view:clear');
+		}
+
 		$s_basename					= class_basename(__CLASS__);
 		$this->_env					= (object) [];
 		$s_tmp						= get_called_class();
 		$a_tmp						= explode('\\', $s_tmp);
 		$this->_env->s_name			= str_replace($s_basename, '', $a_tmp[3]);
-#dd($this->_env->s_name, $a_tmp[0], $s_tmp);
 
+		$o_settings		= Setting::getPublishedForView();
+
+/*
 		// TODO refactroring
 		// app/Providers/ViewComposerServiceProvider.php
-		$o_settings	= app('App\Settings');
-		$s_theme	= $o_settings->theme;
+
+		// TODO refactroring
+		// for purpose of unit-testing only
+		if (!isset($o_settings) || !isset($o_settings->theme))
+		{
+			$a_modules = config('fragment.modules');
+			$o_settings->theme = lcfirst($a_modules[0]);
+			$o_settings->title = 'Controller';
+			$o_settings->established = 2020;
+			$o_settings->email = 'no@spam.com';
+		}
+*/
+
+		$this->_env->s_theme		= $o_settings->theme;
+		$this->_env->s_title		= $o_settings->title;
+		$this->_env->s_email		= $o_settings->email;
 
 		if ($a_tmp[0] == 'Modules')
 		{
@@ -40,20 +81,13 @@ class Controller extends BaseController
 
 			$this->_env->s_trans	= '\Modules\\' . $this->_env->s_name . '\\' . 'Database' . '\\' . $this->_env->s_name ;
 		}
-		elseif ($s_tmp == 'App\Http\\Controllers\\Guest\\PageController')
-		{
-			$this->_env->s_name		= 'Page';
-			$this->_env->s_model	= 'App\Http\\Controllers\\Guest\\PageController';
-			$this->_env->s_trans	= 'App\Http\\Controllers\\Guest\\PageController';
-			$a_tmp[2]				= 'Guest';
-		}
 		else
 		{
 			$this->_env->s_name		= str_replace($s_basename, '', $a_tmp[4]);
 			$this->_env->s_model	= '\App\\'.$this->_env->s_name;
 			$this->_env->s_trans	= $this->_env->s_model ;
 		}
-#dd($this->_env->s_model);
+
 		$a_form_main				= [];
 		$a_fill_main				= [];
 		$a_form_trans				= [];
@@ -78,6 +112,8 @@ class Controller extends BaseController
 		$this->_env->fn_find		= $this->_env->s_model.'::findOrNew';
 		$this->_env->s_plr			= Pluralizer::plural($this->_env->s_sgl, 2);
 		$this->_env->s_utype		= strtolower($a_tmp[2]);
+		$this->_env->b_title		= isset($a_form_trans);
+
 
 		if ($a_tmp[0] == 'Modules')
 			$this->_env->s_view		= $this->_env->s_sgl . '::' . $this->_env->s_utype . '.';
@@ -96,7 +132,7 @@ class Controller extends BaseController
 		{
 			$this->_env->s_utype	= 'guest';
 			$this->_env->fn_find	= '';
-			$this->_env->s_view		= ($s_theme . '::' ?: '') . $this->_env->s_utype . '.' ;
+			$this->_env->s_view		= ($o_settings->theme . '::' ?: '') . $this->_env->s_utype . '.' ;
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
@@ -113,10 +149,11 @@ class Controller extends BaseController
 		}
 		////////////////////////////////////////////////////////////////////////////////////////////////////
 */
-		$a_tmp						= config('translatable.locales');
+		$a_locales					= config('translatable.locales');
 		$this->a_fields				= array_merge(config('translatable.locales'), $a_fill_main);
 
 		$this->a_field				= [];
+		$this->a_types				= [];
 		$this->a_default			= [];
 		$this->a_rule				= [];
 		$this->a_tab				= [];#['All'];
@@ -129,6 +166,7 @@ class Controller extends BaseController
 			$this->a_tab[]			= $s_tab;
 #			$this->a_field['all'][$s_name]	= $s_field;
 			$this->a_field[$s_tab][$s_name]	= $s_field;
+			$this->a_types[$s_field][]	= $s_name;
 			$this->a_rule[$s_name]	= $s_rules;
 			$this->a_default[$s_name]= ($a_params['default'] ?? '');
 		}
@@ -141,6 +179,10 @@ class Controller extends BaseController
 			$this->a_tab[]			= $s_tab;
 #			$this->a_field['all']['trans'][$s_name]		= $s_field;
 			$this->a_field[$s_tab]['trans'][$s_name]	= $s_field;
+			for ($i = 0; $i < count($a_locales); $i++)
+			{
+				$this->a_types[$s_field][]	= '[' . $a_locales[$i] . ']' . $s_name;
+			}
 			$this->a_rule[$s_name]	= $s_rules;
 			$this->a_default[$s_name]= ($a_params['default'] ?? '');
 		}
@@ -210,6 +252,7 @@ if (class_exists($this->_env->s_model))
 }
 
 		$this->_env->a_field		= $this->a_field;
+		$this->_env->a_types		= $this->a_types;
 		$this->_env->a_default		= $this->a_default;
 		$this->_env->a_rule			= $this->a_rule;
 		$this->_env->a_tab			= array_values(array_unique($this->a_tab));
@@ -217,10 +260,12 @@ if (class_exists($this->_env->s_model))
 		$user = Auth::user();
 		$this->_env->b_admin		= (!is_null($user) ? $user->checkAdmin() : FALSE);
 
+		$a_pages_list				= Page::getAllForView();
 		$_env						= $this->_env;
-		\View::composer('*', function ($view) use ($_env) {
+		\View::composer('*', function ($view) use ($_env, $a_pages_list) {
 			$view->with([
 				'_env'				=> $this->_env,
+				'a_pages'			=> $a_pages_list,
 			]);
 		});
 

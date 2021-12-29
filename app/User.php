@@ -2,8 +2,8 @@
 
 namespace App;
 
-use                                          App\EventHolding;
-use                                   App\Traits\Favoritable;
+#use                                          App\EventHolding;
+#use                                   App\Traits\Favoritable;
 use                                   App\Traits\GeneralTrait;
 use                     Spatie\Permission\Traits\HasRoles;
 use                     Illuminate\Notifications\Notifiable;
@@ -23,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'enabled',
+        'published',
         'email',
         'title',
         'first_name',

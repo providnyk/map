@@ -24,6 +24,8 @@ class SigninController	extends Controller
 
 	public function core(SigninRequest $request)
 	{
+		$this->setEnv();
+
 /*
 		$data = $request->post();
 		$validator = Validator::make($data, []);
@@ -40,15 +42,14 @@ class SigninController	extends Controller
 		else
 			$i_safety = NULL;
 
-		session(['safety' => $i_safety]);
+#		session(['safety' => $i_safety]);
 
 		if ($i_safety == 1)
 			$s_email = $request->email;
 		else
 			$s_email = NULL;
 
-		$a_res		= Auth::attempt(['email' => $request->email, 'password' => $request->password, 'enabled' => 1], ($i_safety == 2));
-#		$a_res		= Auth::attempt(['email' => $request->email, 'password' => $request->password, 'active' => 1], ($i_safety == 2));
+		$a_res		= Auth::attempt(['email' => $request->email, 'password' => $request->password, 'published' => 1], ($i_safety == 2));
 
 		if ($a_res)
 		{
@@ -57,10 +58,12 @@ class SigninController	extends Controller
 			$cookie_expired_in	= 2629800;//in mins = 5 years
 			$cookie_path		= '/'; // available to all pages of website.
 			$cookie_host		= $request->getHttpHost(); // domain or website you are setting this cookie.
-			$http_only			= false;
-			$secure				= false;
-			$raw					= false;
-			$samesite			= null;
+			$http_only			= FALSE;
+/*
+$secure				= false;
+$raw					= false;
+$samesite			= null;
+*/
 			$my_cookie			= cookie($cookie_name, $cookie_value, $cookie_expired_in,$cookie_path,$cookie_host,$http_only);
 			Cookie::queue($my_cookie);
 
@@ -80,7 +83,7 @@ class SigninController	extends Controller
 		else
 		{
 			$o_res				= User::whereEmail($request->email)->first();
-			if (!( (bool) $o_res->enabled === TRUE ))
+			if (is_object($o_res) && !( (bool) $o_res->published === TRUE ))
 			{
 				return response([
 					'title'			=> trans('user/form.text.inactive_account'),
@@ -88,7 +91,7 @@ class SigninController	extends Controller
 					'btn_primary'	=> trans('user/messages.button.ok'),
 					'url'			=> '',
 					'footer'		=> trans('user/form.text.inactive_extra'),
-					'extra'			=> 'mailto:' . config('services.mail.to'),
+					'extra'			=> 'mailto:' . $this->_env->s_email,
 				], 401);
 			}
 			else
@@ -99,7 +102,7 @@ class SigninController	extends Controller
 					'btn_primary'	=> trans('user/messages.button.ok'),
 					'url'			=> '',
 					'footer'		=> trans('user/form.text.inactive_extra'),
-					'extra'			=> 'mailto:' . config('services.mail.to'),
+					'extra'			=> 'mailto:' . $this->_env->s_email,
 				], 401);
 			}
 		}
@@ -117,7 +120,7 @@ class SigninController	extends Controller
 		return view($this->_env->s_view . 'login',
 					[
 						'safety'		=> $i_safety,
-						'email'			=> $s_email,
+						'email'		=> $s_email,
 						'tab'			=> request()->segment(1),
 					]);
 	}

@@ -21,6 +21,55 @@ use Spatie\Permission\Models\Role;
 $a_list = config('fragment.list');
 $a_modules = config('fragment.modules');
 
+Route::get('parse/{id?}',           ['as' => 'parse_provider',          'uses' => '\Modules\Provider\API\ProviderController@parse']);
+
+/**
+ * spell a Module's Controller name
+ *
+ * @param String    $s_model        Model located inside Module
+ * @param String    $s_type         type of user access: guest, power, api
+ *
+ * @return Response json instance of
+ */
+$getCtrlName = function (String $s_model, String $s_type)
+{
+    $s_root     = 'Modules';
+    $s_closure= 'Controller';
+    $s_split    = '\\';
+    $s_ctrl     = $s_split . $s_root . $s_split . $s_model . $s_split . $s_type . $s_split . $s_model . $s_closure;
+    return $s_ctrl ;
+};
+
+/**
+ * spell path name to be used in both URL and in 'as' alias
+ *
+ * @param String    $s_model        Model located inside Module
+ * @param String    $s_parts        optional: URL parts
+ *
+ * @return String
+ */
+$getPath = function (String $s_model, String $s_parts = '') : String
+{
+    return strtolower($s_model) . $s_parts;
+};
+
+/**
+ * combine 'as' and 'uses' params for route
+ *
+ * @param String    $s_model        Model located inside Module
+ * @param String    $s_type         type of user access: guest, power, api
+ * @param String    $s_method       name of function to be called within controller
+ *
+ * @return Array    params for route
+ */
+$getRoute = function (String $s_model, String $s_type, String $s_method) use ($getCtrlName, $getPath)
+{
+    $s_ctrl     = $getCtrlName($s_model, $s_type);
+    $s_path     = $getPath($s_model);
+    $s_res      = ['as' => $s_path . '.' . $s_method,   'uses' => $s_ctrl . '@' . $s_method];
+    return $s_res ;
+};
+
 Route::group([
 	'middleware' => []
 ], function() {
@@ -166,38 +215,61 @@ Route::group([
 	$s_method	= 'unvoted';
 	Route::get($s_path.'/{id}/'.$s_method,			['as' => $s_path . '.' . $s_method,	'uses' => $s_ctrl . '@' . $s_method]);
 
-	for ($i = 0; $i < count($a_list); $i++)
-	{
-		$s_ctrl = '';
-		$s_model = $a_list[$i];
-		if (in_array($s_model, $a_modules))
-			$s_ctrl = '\Modules\\' . $s_model . '\API\\' . $s_model ;
-		else
-			$s_ctrl = $s_model;
-		$s_path = strtolower($s_model);
-		if (!empty($s_ctrl))
-		{
-			$s_ctrl .= 'Controller';
-			Route::get($s_path . '/list',			['as' => $s_path . '.index',	'uses' => $s_ctrl . '@index']);
-			Route::post($s_path,					['as' => $s_path . '.store',	'uses' => $s_ctrl . '@store']);
-			Route::post($s_path . '/{item}/edit',	['as' => $s_path . '.update',	'uses' => $s_ctrl . '@update']);
-			Route::post($s_path . '/delete',		['as' => $s_path . '.destroy',	'uses' => $s_ctrl . '@destroy']);
-		}
-	}
 });
 
 // API Routes
+$s_type      = 'API';
 Route::group([
-	'as' => 'api.',
-	'prefix' => 'api',
-	'namespace' => 'API',
-	'middleware' => []#'language']
-], function() {
+    'as' => strtolower($s_type) . '.',
+    'prefix' => strtolower($s_type),
+    'namespace' => $s_type,
+    'middleware' => [],
+], function() use ($s_type, $getPath, $getRoute, $a_list, $a_modules) {
+
+    Route::group(['middleware' => 'auth'], function() use ($s_type, $getPath, $getRoute) {
+        $s_model    = 'Page';
+        $s_method   = 'order';
+        Route::get($getPath($s_model, '/' . $s_method),                         $getRoute($s_model, $s_type, $s_method));
+    });
 
 	Route::post('users/{id}/password-change', ['as' => 'user.password-change', 'uses' => 'UserController@passwordChange']);
 
 	Route::post('file', ['as' => 'upload.file', 'uses' => 'UploadController@file']);
 	Route::post('image', ['as' => 'upload.image', 'uses' => 'UploadController@image']);
+
+    for ($i = 0; $i < count($a_list); $i++)
+    {
+        $s_model = $a_list[$i];
+        if (in_array($s_model, $a_modules))
+        {
+            $s_method   = 'index'; Route::get($getPath($s_model, '/list'),  $getRoute($s_model, $s_type, $s_method));
+            Route::group(['middleware' => 'auth'], function() use ($s_type, $getPath, $getRoute, $s_model) {
+                $s_method   = 'store'; Route::post($getPath($s_model),  $getRoute($s_model, $s_type, $s_method));
+                $s_method   = 'update'; Route::post($getPath($s_model, '/{item}/edit'), $getRoute($s_model, $s_type, $s_method));
+                $s_method   = 'destroy'; Route::post($getPath($s_model, '/delete'), $getRoute($s_model, $s_type, $s_method));
+            });
+        }
+
+        //TODO remove when Users move to Modules
+        //ATTN: these are restricted data even for listing
+        else
+        {
+            $s_ctrl = '';
+            $s_ctrl = $s_model;
+            $s_path = strtolower($s_model);
+            if (!empty($s_ctrl))
+            {
+                $s_ctrl .= 'Controller';
+                Route::group(['middleware' => 'auth'], function() use ($s_path, $s_ctrl) {
+                    Route::get($s_path . '/list',           ['as' => $s_path . '.index',    'uses' => $s_ctrl . '@index']);
+                    Route::post($s_path,                    ['as' => $s_path . '.store',    'uses' => $s_ctrl . '@store']);
+                    Route::post($s_path . '/{item}/edit',   ['as' => $s_path . '.update',   'uses' => $s_ctrl . '@update']);
+                    Route::post($s_path . '/delete',        ['as' => $s_path . '.destroy','uses' => $s_ctrl . '@destroy']);
+                });
+            }
+        }
+        //
+    }
 
 });
 

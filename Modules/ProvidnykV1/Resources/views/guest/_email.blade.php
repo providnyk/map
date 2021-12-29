@@ -1,9 +1,11 @@
+@include($theme . '::' . $_env->s_utype . '._form_input', ['s_id' => 'email', 'item' => $user ?? NULL, ])
+{{--
 								<div class="item" data-name="email">
 									<span class="label">
-										{!! trans('user/form.field.email') !!}
+										{!! trans('crud.field.email.label') !!}
 									</span>
 									<span class="value">
-										<input type="email" class="form-control" placeholder="{!! trans('user/form.field.email') !!}" name="email" value="{{
+										<input type="email" class="form-control" placeholder="{!! trans('crud.hint.input') !!} {!! trans('crud.field.email.typein') !!}" name="email" value="{{
 										(
 											isset($email)
 											? $email
@@ -16,3 +18,4 @@
 										}}">
 									</span>
 								</div>
+--}}

@@ -124,7 +124,7 @@ return [
 
     'cookie' => env(
         'SESSION_COOKIE',
-        str_slug(env('APP_NAME', 'laravel'), '_').'_session'
+        config('app.name').'_session'
     ),
 
     /*
@@ -193,5 +193,18 @@ return [
     */
 
     'same_site' => null,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cookies Consent
+    |--------------------------------------------------------------------------
+    |
+    | Values that cookies consent will check against to understand if
+    | consent was given or user postponed their decision.
+    |
+    */
+
+    'consent_value' => 1,
+    'consent_disagree' => 'later',
 
 ];

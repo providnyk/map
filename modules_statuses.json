@@ -1,13 +1,17 @@
 {
-	"Building":		true,
-	"Complaint":	true,
-	"Element":		true,
-	"Mark":			true,
-	"Opinion":		true,
-	"Personal":		true,
-	"Place":		true,
-	"ProvidnykV1":	true,
-	"Style":		true,
-	"Track":		true,
-	"Welcome":		true
+    "ProvidnykV1":      true,
+    "__comment_1__":    "default theme is always at first position for unit-testing",
+    "__comment_2__":    "rest of modules are alphabetically sorted",
+    "Building":         true,
+    "Complaint":        true,
+    "Element":          true,
+    "Mark":             true,
+    "Opinion":          true,
+    "Page":             true,
+    "Personal":         true,
+    "Place":            true,
+    "Setting":          true,
+    "Style":            true,
+    "Track":            true,
+    "Welcome":          true
 }

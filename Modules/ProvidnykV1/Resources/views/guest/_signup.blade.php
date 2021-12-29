@@ -1,6 +1,6 @@
 					<div id="tab-signup" class="tab{{ request()->segment(1) == 'signup' ? ' opened' : '' }}">
 						<div class="user_details">
-							<div class="img" style="width: 10px;"></div>
+							{{-- <div class="img" style="width: 10px;"></div> --}}
 							<div class="name">{!! trans('general.my-area', ['app_name' => trans('app.name')]) !!} <span>{{ trans('user/form.text.hint_up') }}</span></div>
 							<div class="divider"></div>
 						</div>
@@ -15,9 +15,6 @@
 @include($theme . '::' . $_env->s_utype . '._recaptcha', ['id' => 'signup'])
 
 							</div>
-
-@include($theme . '::' . $_env->s_utype . '._confidentiality_info', ['id' => 'signup'])
-
 							<div class="buttons">
 								<button type="submit" class="confirm">{!! trans('user/form.button.signup') !!}</button>
 							</div>

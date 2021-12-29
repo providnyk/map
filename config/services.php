@@ -15,15 +15,9 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
-    ],
-
-    'mail' => [
-        'from' 	=> env('MAIL_FROM_ADDRESS'),
-        'name' 	=> env('MAIL_FROM_NAME'),
-        'to' 	=> env('MAIL_TO_ADDRESS'),
-        'me' 	=> env('MAIL_TO_NAME'),
+        'domain'    => env('MAILGUN_DOMAIN'),
+        'secret'    => env('MAILGUN_SECRET'),
+        'endpoint'  => env('MAILGUN_ENDPOINT', 'api.mailgun.net'),
     ],
 
     'ses' => [
@@ -44,8 +38,9 @@ return [
 
     'google' => [
         'recaptcha' => [
-            'key' => env('GOOGLE_RECAPTCHA_V2_SITE_KEY'),
-            'secret' => env('GOOGLE_RECAPTCHA_V2_SECRET'),
+            'key' => env('GOOGLE_RECAPTCHA_V3_SITE_KEY'),
+            'secret' => env('GOOGLE_RECAPTCHA_V3_SECRET'),
+            'version' => env('GOOGLE_RECAPTCHA_V'),
         ],
         'map' => [
             'key' => env('GOOGLE_MAPS_API_KEY'),

@@ -1,21 +1,25 @@
 <?php
+$s_url			= env('APP_URL', 'http://localhost');
+$a_tmp			= parse_url($s_url);
+$s_name			= str_slug($a_tmp['host'], '_');
+if (empty($s_name))
+{
+	$s_name		= 'Laravel';
+}
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Application Name
+    |--------------------------------------------------------------------------
+    |
+    | This value is the name of your application. This value is used when the
+    | framework needs to place the application's name in a notification or
+    | any other location as required by the application or its packages.
+    |
+    */
 
-	'theme'		=> env('APP_THEME', ''),
-	'est'		=> env('APP_EST', ''),
-	/*
-	|--------------------------------------------------------------------------
-	| Application Name
-	|--------------------------------------------------------------------------
-	|
-	| This value is the name of your application. This value is used when the
-	| framework needs to place the application's name in a notification or
-	| any other location as required by the application or its packages.
-	|
-	*/
-
-	'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', $s_name),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +58,7 @@ return [
 	|
 	*/
 
-	'url' => env('APP_URL', 'http://localhost'),
+    'url' => $s_url,
 
 	/*
 	|--------------------------------------------------------------------------

@@ -103,7 +103,6 @@ fnInitMapCenter = function(position) {
 
 function fnInitCenterErr(err) {
   console.warn(`ERROR: ${err.message} (code=${err.code})`);
-  fnInitMapCenter(o_initial_position);
 }
 
 function initMap( el )
@@ -299,13 +298,12 @@ function initMarkerFromJSON( data, map )
 				footer:				s_rating,
 			};
 			a_routes = {};
-			s_url_dissmiss = '';
 
 			if (s_text_secondary != '')
 			{
 				a_params.cancelButtonText	= s_text_secondary;
 				a_params.showCancelButton	= true;
-				s_url_dissmiss = s_route_secondary.replace(':type', 'place').replace(':id', data.id);
+				s_route_secondary = s_route_secondary.replace(':type', 'place').replace(':id', data.id);
 			}
 
 			if (s_text_extra != '')
@@ -320,7 +318,6 @@ function initMarkerFromJSON( data, map )
 				s_route_primary = s_route_primary.replace(':type', 'place').replace(':id', data.id);
 			}
 
-			// TODO unify with forms.js runSwal()
 			// we need colourful footer here so have to use another type of sweetalert2
 			Swal.fire(
 				a_params
@@ -329,19 +326,12 @@ function initMarkerFromJSON( data, map )
 					if (s_route_primary != '')
 						window.location.href = s_route_primary;
 					else
-					{
-						$("#to_lat").val(data.lat);
-						$("#to_lng").val(data.lng);
-						$("#" + s_locale + "_to_address").val(data.title);
-						// resetForm(form);
-					}
+						resetForm(form);
 				} else if (result.dismiss === Swal.DismissReason.cancel) {
-					if (s_url_dissmiss != '')
-					{
-						window.location.href = s_url_dissmiss;
-					}
-					// else
-						// resetForm(form);
+					if (s_route_secondary != '')
+						window.location.href = s_route_secondary;
+					else
+						resetForm(form);
 				}
 			})
 			;
